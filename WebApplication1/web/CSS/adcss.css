@@ -1,0 +1,208 @@
+        html, body 
+        { 
+            width: 100%; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Helvetica', 'Arial'; /* FONT CHỮ */
+        }
+            
+        /*Gach do tren header*/
+        .top-bar 
+        { 
+            width: 100%; 
+            background: RED;          
+            height: 20px;
+        }
+ 
+        /*Nen menu*/
+         #header 
+        { 
+            width: 100%; 
+            background: white; 
+            overflow: auto; 
+            border-top: 3px solid black; 
+            border-bottom: 3px solid black; 
+        }
+        
+        #body
+        { 
+            width: 100%; 
+            margin: 0 ; 
+            padding: 0 ; 
+            background: white; 
+            overflow: auto;  
+            border-top: 1em solid white;
+        }
+        
+        #content
+        {
+            width: 80%; 
+            float: right;
+            overflow: auto; 
+        }
+        
+        #sidebar
+        {
+            width: 19%;
+            height: 100% ; 
+            float: left;
+            overflow: auto;
+            border-right: 3px solid GRAY;
+            padding: 10px 0 0 10px;
+        }
+        
+        #footer
+        {
+            clear:both;
+            background:Red  ;
+            padding: 1em;
+            border-bottom: 3px solid black;
+            border-top: 1em solid white;    
+        }
+    
+        /*Logo*/
+        .logo-icon 
+        { 
+            color: BLACK; 
+            font-size: 50pt; 
+            float: left;
+        }
+        h1 
+        { 
+            float: left; 
+            color: BLACK;
+            margin: 21px 0 0 25px;
+        }
+
+        /*Menu*/
+        #menu 
+        { 
+            margin: 20px; 
+            float: right; 
+            font-size: 20pt;
+        }
+
+        #menu li 
+        { 
+            display: inline; /* chinh thanh chieu ngang */
+        }
+
+        #menu li a:link, #menu li a:visited, #menu li a:active 
+        { 
+            text-decoration: none; /* bo gach duoi */ 
+            color: red; 
+            padding: 0 16px 0 10px; /* khoang cach */ 
+            margin: 0; 
+            border-right: 4px solid Gray; /* duong gach */
+        }
+
+        #menu li a:link.last-link 
+        { 
+            border-right: 0px; /* bo dau gach cuoi cung */ 
+        }
+
+        #menu li a:hover 
+        { 
+            color: RED; /* di chuyen doi mau*/
+        }
+        
+        /*content*/
+        .grid 
+        {
+            display: grid;
+            padding: 50px 50px 50px 60px;
+            grid-template-columns: 70px 70px 70px;            
+            grid-column-gap: 300px;
+            grid-row-gap: 5em;
+        }
+        
+        .rangecontent 
+        {          
+           border: 2px solid black;
+           margin: auto;   
+        }
+        
+        .bottomrangecontent
+        {
+            background:white  ;
+            padding: 2em;
+        }
+        
+        .textcontent
+        {
+            color: RED;
+            font-size: 30pt;
+            background: #463C3C;
+            width: 50%;
+            margin: auto; 
+            font-weight: bold;
+        }
+        
+        .texttitle
+        {
+            color: RED;
+            font-size: 14pt;
+            width: 80%;
+            font-weight: bold;
+            
+        }
+        
+         .textprice
+        {
+            color: black;
+            font-size: 14pt;
+            width: 80%; 
+        }
+        
+        /*sidebar*/
+        .imagesidebar
+        {
+            display: block;
+            margin: auto;
+            width: 220px;
+            height: 110px;
+        }
+        
+        .gridsidebar
+        {
+            display: grid;
+            grid-row-gap: 3em;
+            float: left;
+        }
+        
+        .rangersidebar
+        {
+           width: 220px;
+           height: auto;
+           border: 1px solid black;
+           font-weight: bold;
+           padding-top: 10px;
+           padding-bottom: 10px;
+        }
+   
+        .textfooter
+        {
+           text-align: center; 
+           font-size: 10pt;
+           font-weight: bold;    
+        }
+       
+      
+        table 
+        {
+            padding-top: 50px;
+        }
+        tr td 
+        {
+           border-bottom: 2px solid gray;
+           padding-left: 20px;
+           padding-right: 20px;
+        }
+        
+        thead
+        {
+         color: red;   
+        }
+            
+        
+
