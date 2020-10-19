@@ -88,7 +88,6 @@
                                 <td> <%=rs.getString(13)%> </td>
                                 <td> <%=rs.getString(14)%> </td>
                             </tr>   
-                            
                             <%
                                 }
                             %>
@@ -101,12 +100,9 @@
             <div id="sidebar">               
                 <div class="gridsidebar">  
                     <div class="rangersidebar1">  
-                    <form action="GetPD" method="get" align="center">                       
-                         <input type="text" name="id" id="id" placeholder="ID"> <br> <br>  
-                         <input type="submit" value="Update"> <br>  
-                    </form>    
-                    </div>                       
-                    
+                        <center> <a href="UPD.jsp"> <input type="button" value="Update"> </a> </center> <br>  
+                    </div>          
+                           
                     <div class="rangersidebar1"> 
                     <form action="DeleteDPControl" method="get" align="center">
                          <br>

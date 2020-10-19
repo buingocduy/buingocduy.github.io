@@ -36,7 +36,7 @@
         
         #content
         {
-            width: 80%; 
+            width: 100%; 
             float: right;
             overflow: auto; 
         }
@@ -207,20 +207,27 @@
           
         table 
         {
-            padding-top: 50px;
-            width: 3000px;
+            padding-top: 0;
+            width: auto;
+            border-spacing: 100px 0;
         }
         tr td 
         {
            text-align: center;
-           border-bottom: 2px solid gray;
+           padding-right: 20px;
            padding-left: 20px;
            padding-right: 20px;
+           margin: 100px;
         }
         
-        thead
+       .grid 
         {
-         color: red;   
+            border: 2px solid gray;
+            display: grid;
+            padding: 50px 50px 50px 60px;
+            grid-template-columns: 70px 70px 70px;            
+            grid-column-gap: 300px;
+            grid-row-gap: 5em;
         }
         
         

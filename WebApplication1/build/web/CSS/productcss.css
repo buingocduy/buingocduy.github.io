@@ -183,7 +183,7 @@
            height: auto;
            border: 1px solid black;
            font-weight: bold;
-           padding-top: 10px;
+           padding-top: 20px;
            padding-bottom: 10px;
         }
         
@@ -222,6 +222,8 @@
         {
          color: red;   
         }
+        
+        
             
         
 
