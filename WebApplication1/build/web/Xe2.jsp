@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Xe1
-    Created on : Oct 10, 2020, 11:23:25 PM
+    Document   : Xe2
+    Created on : Oct 20, 2020, 11:51:48 PM
     Author     : BND6699
 --%>
 
@@ -11,12 +11,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title> Moto world </title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
         <script src="JS/xejs.js" type="text/javascript"> </script> 
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="CSS/xecss.css" />
-        <title> Moto world </title>
     </head>
+    
     <body>
          <!--header-->        
         <div id="header"> 
@@ -41,7 +42,7 @@
             <div id="content">
                    <%
                         DBContext con = new DBContext();;
-                        ResultSet rs = con.chondulieu("select * from sanpham where id='h1'");
+                        ResultSet rs = con.chondulieu("select * from sanpham where id='h2'");
                    %>
                    
                    <%

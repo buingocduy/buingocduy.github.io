@@ -15,7 +15,7 @@
         <script src="JS/xejs.js" type="text/javascript"> </script> 
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="CSS/xecss.css" />
-        <title>JSP Page</title>
+        <title> Moto world </title>
     </head>
     <body>
          <!--header-->        
@@ -55,7 +55,9 @@
                 
                 <div class="rightrangecontent">
                     <h2> Giá: <%=rs.getString(3)%> </h2> 
-                    <input type="button" name="xe1" value="Thêm vào giỏ hàng">
+                    <form action="Buy" method="get">
+                        <input type="submit" id="<%=rs.getString(1)%>" name="<%=rs.getString(1)%>" value="Thêm vào giỏ hàng">
+                    </form>
                 </div>
                 
                 <table>

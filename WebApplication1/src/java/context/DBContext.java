@@ -7,8 +7,11 @@ package context;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DBContext 
 {
@@ -32,6 +35,7 @@ public class DBContext
         DBContext connet = new DBContext();
         System.out.println(connet.getConnection());
     }
+    
     
     private final String serverName = "DESKTOP-ACKLLQG\\SQLEXPRESS";
     private final String dbName = "nguoidung";

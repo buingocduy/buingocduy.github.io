@@ -3,25 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control.DP;
+package Control.AddtoCart;
 
-import IO.PD.ProductIO;
-import IO.PD.UpdateDPIO;
 import entity.Product;
+import IO.PD.ProductIO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author BND6699
  */
-@WebServlet(name = "GetPD", urlPatterns = {"/GetPD"})
-public class GetPD extends HttpServlet {
+@WebServlet(name = "Buy", urlPatterns = {"/Buy"})
+public class Buy extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,17 +36,12 @@ public class GetPD extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-        String id = request.getParameter("id"); //lấy của netbeans
-  
-        ProductIO productio = new ProductIO(); // khai báo register
-        Product a = productio.checkProduct(id); // check a có null không
-        if(a==null)
-        {
-           response.sendRedirect("product.jsp");
-        }else{
-           response.sendRedirect("UPD.jsp");
-        }    
+        String id = request.getParameter("id");
+        
+        Product pd = new ProductIO().getProductbyID(id);
+        request.setAttribute("Product", pd);
+        request.getRequestDispatcher("cart.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

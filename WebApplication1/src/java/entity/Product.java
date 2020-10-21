@@ -5,7 +5,6 @@
  */
 package entity;
 
-import java.awt.Image;
 
 /**
  *
