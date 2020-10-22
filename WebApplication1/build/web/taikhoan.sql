@@ -8,7 +8,7 @@ Create table taikhoan
 go 
 
 Create table sanpham
-(id char(10), tensp nvarchar(100),gia nvarchar(50),hinhanh nvarchar(100),
+(id char(10), tensp nvarchar(100),gia nvarchar(50),hinhanh nvarchar(4000),
 kichthuoc char(80),chieucaoyen char(20),sizebanh char(150),engine nvarchar(200),
 CC char(20),congsuat nvarchar(50),CCnhot nvarchar(50),CCxang nvarchar(20),phanh nvarchar(50),gear nvarchar(20),primary key(id))
 go
@@ -33,11 +33,9 @@ insert into sanpham values ('h4','Air Blade','55.000.000VNĐ','Hinh\airblade.jpg
 '1.870mm x 686mm x 1.112mm','775 mm','Trước: 90/80-14M/C 43P Sau: 100/80 -14M/C 48P',N' Xăng, 4 kỳ, 1 xy lanh, làm mát bằng dung dịch',
 '149,3 cm3',N'9,6kW/8.500 vòng/phút',N' 0,8 khi thay nhớt ; 0,9 khi rã máy','4,4L',N'Phanh đĩa ABS;Tang trống',N'Vô cấp')
 
-
 insert into sanpham values ('h5','Monkey 2020','84.990.000VNĐ','Hinh\monkey.jpg',
 '1.712 x 754 x 1.029 mm','776 mm','Maxxis Tortuga: 120/80-12 65J - 130/80-12 69J',N'SOHC xy-lanh đơn, làm mát bằng gió',
 '125cc',N'9,6 mã lực tại 7.000 vòng/phút',N'0.9 lít khi thay nhớt ; 1.1 lít khi rã máy','5,7L',N'Phanh đĩa;Phanh đĩa',N'4 Cấp')
-
 
 insert into sanpham values ('h6','SH 2020','70.990.000VNĐ','Hinh\SH.jpg',
 '2.090 x 739 x 1.129 mm','799 mm','120/80-16 ; 100/80-16',N'PGM-FI, xăng, 4 kỳ, 1 xy-lanh, làm mát bằng dung dịch',
