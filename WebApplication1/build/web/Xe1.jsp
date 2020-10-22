@@ -27,7 +27,7 @@
                </p>
            </div>
            <ul id="menu"> <!--menu-->
-               <li> <a href="honda.jsp">Home</a> </li> 
+               <li> <a href="home.html">Home</a> </li> 
                <li> <a href="Xe1.jsp" onclick="hinh()">About</a> </li> 
                <li> <a href="Login.html">Login</a> </li>
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>

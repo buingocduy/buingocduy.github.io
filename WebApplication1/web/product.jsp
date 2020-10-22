@@ -31,7 +31,7 @@
                </p>
            </div>
            <ul id="menu"> <!--menu-->
-               <li> <a href="honda.jsp">Home</a> </li> 
+               <li> <a href="home.html">Home</a> </li> 
                <li> <a href="admin.jsp">Account</a> </li> 
                <li> <a href="Login.html">Logout</a> </li>
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
