@@ -36,7 +36,7 @@ public class DBContext
         System.out.println(connet.getConnection());
     }
     
-    
+    //"DESKTOP-46VDUF3\\SQLEXPRESS"; cho laptop
     private final String serverName = "DESKTOP-ACKLLQG\\SQLEXPRESS";
     private final String dbName = "nguoidung";
     private final String portNumber = "1433";
