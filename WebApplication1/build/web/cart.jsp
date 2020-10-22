@@ -19,15 +19,11 @@
                    <%
                         String id = request.getParameter("id");
                         DBContext con = new DBContext();;
-                        ResultSet rs = con.chondulieu("select * from sanpham id ");
-                        Product pd = new ProductIO().getProductbyID(id);
-                        request.setAttribute("Product", pd);
-                        
-
+                        ResultSet rs = con.chondulieu("select * from sanpham where id='"+id+"'");
                    %>
                    
                    <%
-                      if(rs.next()){
+                      while(rs.next()){
                    %>
         <h3> cart </h3>
         <table>

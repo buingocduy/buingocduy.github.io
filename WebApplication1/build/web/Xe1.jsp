@@ -27,10 +27,10 @@
                </p>
            </div>
            <ul id="menu"> <!--menu-->
-               <li> <a href="index.html">Home</a> </li> 
+               <li> <a href="honda.jsp">Home</a> </li> 
                <li> <a href="Xe1.jsp" onclick="hinh()">About</a> </li> 
                <li> <a href="Login.html">Login</a> </li>
-               <li> <a href="cart.html"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
+               <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
            </ul>
         </div>
  
@@ -40,8 +40,9 @@
     <!--content-->
             <div id="content">
                    <%
+                        String id = request.getParameter("id");
                         DBContext con = new DBContext();;
-                        ResultSet rs = con.chondulieu("select * from sanpham where id='h1'");
+                        ResultSet rs = con.chondulieu("select * from sanpham where id='"+id+"'");
                    %>
                    
                    <%
@@ -55,9 +56,9 @@
                 
                 <div class="rightrangecontent">
                     <h2> Giá: <%=rs.getString(3)%> </h2> 
-                    <form action="Buy" method="get">
+                    <a href="cart.jsp?id=<%=rs.getString(1)%>">
                         <input type="submit" id="<%=rs.getString(1)%>" name="<%=rs.getString(1)%>" value="Thêm vào giỏ hàng">
-                    </form>
+                    </a>
                 </div>
                 
                 <table>
