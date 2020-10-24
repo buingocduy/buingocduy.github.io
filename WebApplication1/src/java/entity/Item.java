@@ -11,18 +11,18 @@ package entity;
  */
 public class Item {
     private String id;
-    private Product sanpham;
-    private String gia;
-    private int soluong;
+    private String tensp;
+    private int gia;
+    private double soluongmua;
 
     public Item() {
     }
 
-    public Item(String id, Product sanpham, String gia, int soluong) {
+    public Item(String id, String tensp, int gia, double soluongmua) {
         this.id = id;
-        this.sanpham = sanpham;
+        this.tensp = tensp;
         this.gia = gia;
-        this.soluong = soluong;
+        this.soluongmua = soluongmua;
     }
 
     public String getId() {
@@ -33,30 +33,35 @@ public class Item {
         this.id = id;
     }
 
-    public Product getSanpham() {
-        return sanpham;
+    public String getTensp() {
+        return tensp;
     }
 
-    public void setSanpham(Product sanpham) {
-        this.sanpham = sanpham;
+    public void setTensp(String tensp) {
+        this.tensp = tensp;
     }
 
-    public String getGia() {
+    public int getGia() {
         return gia;
     }
 
-    public void setGia(String gia) {
+    public void setGia(int gia) {
         this.gia = gia;
     }
 
-    public int getSoluong() {
-        return soluong;
+    public double getSoluongmua() {
+        return soluongmua;
     }
 
-    public void setSoluong(int soluong) {
-        this.soluong = soluong;
+    public void setSoluongmua(double soluongmua) {
+        this.soluongmua = soluongmua;
     }
 
-     
+    @Override
+    public String toString() {
+        return "Item{" + "id=" + id + ", tensp=" + tensp + ", gia=" + gia + ", soluongmua=" + soluongmua + '}';
+    }
+
+    
 }
 

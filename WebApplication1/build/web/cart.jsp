@@ -4,6 +4,10 @@
     Author     : BND6699
 --%>
 
+<%@page import="IO.cart.Giohang"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="entity.Item"%>
+<%@page import="entity.Item"%>
 <%@page import="IO.PD.ProductIO"%>
 <%@page import="entity.Product"%>
 <%@page import="java.sql.ResultSet"%>
@@ -39,24 +43,38 @@
  
 <!--body-->            
         <div id="body">
+            
+        <!--content--> 
             <div id="content"> 
-            <div class="textcontent"> <center> CART </center> </div>
+                <div class="textcontent"> <center> CART </center> </div>                   
             </div>
                    <%
                         String id = request.getParameter("id");
                         DBContext con = new DBContext();;
-                        ResultSet rs = con.chondulieu("select * from sanpham where id='"+id+"'");
+                        ResultSet rs = con.chondulieu("select * from sanpham where id='"+id+"'");                 
                    %>
+                   
                    <%
                       while(rs.next()){
-                   %>    
-    <!--content-->
-            <div id="content"> 
+                   %>  
+            <div id="content">     
                 <table>
-                    <tr>
-                        <td> <img src=<%=rs.getString(4)%> height="150" width="150" alt="Khong tai duoc"> </td>
-                        <td> <%=rs.getString(3)%> </td>
-                    </tr>
+                        <tr>
+                            <td> STT </td>
+                            <td> ID sản phẩm </td>
+                            <td> Tên sản phẩm </td>
+                            <td> Giá </td>
+                            <td> Hình ảnh </td>
+                            <td> Số lượng </td>
+                        </tr>
+                        <tr>
+                            <td> </td>
+                            <td> <%=rs.getString(1)%> </td>
+                            <td> <%=rs.getString(2)%> </td>
+                            <td> <%=rs.getString(3)%> </td>
+                            <td> <img src=<%=rs.getString(4)%> height="150" width="150" alt="Khong tai duoc"> </td>
+                            <td> </td>
+                        </tr>
                 </table>
             </div>    
                 <%

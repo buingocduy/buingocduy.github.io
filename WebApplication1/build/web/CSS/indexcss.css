@@ -120,6 +120,8 @@
         {          
            border: 2px solid black;
            margin: auto;   
+           padding-top: 20px;
+           padding-left: 20px;
         }
         
         .bottomrangecontent

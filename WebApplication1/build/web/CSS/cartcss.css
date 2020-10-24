@@ -187,8 +187,10 @@
         
         table
         {
+            text-align: center;
             padding: 50px;
             margin: auto;
+            width: 1000px;
         }
         
         tr,td

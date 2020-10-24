@@ -39,7 +39,7 @@
             
     <!--content-->
             <div id="content"> 
-                <div class="textcontent"> <center> HONDA </center> </div>
+                 <center> <img src="Hinh/logohonda.jpg" height="80" width="300" alt="Khong tai duoc"> </center> 
                 <div class="grid">
                    <%
                         DBContext con = new DBContext();;

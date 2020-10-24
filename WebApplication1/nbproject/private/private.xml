@@ -5,7 +5,7 @@
             <url>src/java/Control/AddtoCart/Buy.java</url>
             <bookmark id="1">
                 <name/>
-                <line>41</line>
+                <line>43</line>
                 <key/>
             </bookmark>
         </file>
@@ -13,8 +13,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/G:/BuiNgocDuy/TH_JAVA/WebApplication1/web/cart.jsp</file>
-            <file>file:/G:/BuiNgocDuy/TH_JAVA/WebApplication1/web/CSS/cartcss.css</file>
-            <file>file:/G:/BuiNgocDuy/TH_JAVA/WebApplication1/web/honda.jsp</file>
+            <file>file:/G:/BuiNgocDuy/TH_JAVA/WebApplication1/web/Xe1.jsp</file>
         </group>
     </open-files>
 </project-private>

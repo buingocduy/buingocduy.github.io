@@ -12,17 +12,18 @@ package entity;
 public class Order {
     private String id;
     private String use;
-    private int items;
-    private int trangthai;
+    private String gia;
+    private String soluongmua;
 
     public Order() {
     }
 
-    public Order(String id, String use, int items, int trangthai) {
+    public Order(String id, String use, String gia, String soluongmua) {
+        super(); 
         this.id = id;
         this.use = use;
-        this.items = items;
-        this.trangthai = trangthai;
+        this.gia = gia;
+        this.soluongmua = soluongmua;
     }
 
     public String getId() {
@@ -41,21 +42,24 @@ public class Order {
         this.use = use;
     }
 
-    public int getItems() {
-        return items;
+    public String getGia() {
+        return gia;
     }
 
-    public void setItems(int items) {
-        this.items = items;
+    public void setGia(String gia) {
+        this.gia = gia;
     }
 
-    public int getTrangthai() {
-        return trangthai;
+    public String getSoluongmua() {
+        return soluongmua;
     }
 
-    public void setTrangthai(int trangthai) {
-        this.trangthai = trangthai;
+    public void setSoluongmua(String soluongmua) {
+        this.soluongmua = soluongmua;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Order{" + "id=" + id + ", use=" + use + ", gia=" + gia + ", soluongmua=" + soluongmua + '}';
+    }   
 }

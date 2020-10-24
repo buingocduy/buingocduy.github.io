@@ -7,6 +7,8 @@ package Control.AddtoCart;
 
 import entity.Product;
 import IO.PD.ProductIO;
+import IO.cart.Giohang;
+import entity.Item;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -38,8 +40,8 @@ public class Buy extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
         
-        Product pd = new ProductIO().getProductbyID(id);
-        request.setAttribute("Product", pd);
+        Giohang item = new Giohang();
+        request.setAttribute("Item", id);
         request.getRequestDispatcher("cart.jsp").forward(request, response);
         
     }
