@@ -22,15 +22,16 @@
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container"> 
-               <p href="hinh.jpg" onclick="hinh()">
-               <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
-               </p>
-           </div>
+                <a href="Login.html"> 
+                    <p href="hinh.jpg" onclick="hinh()">
+                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
+                    </p> 
+                </a>
+           </div>           
            <ul id="menu"> <!--menu-->
                <li> <a href="home.html">Home</a> </li> 
                <li> <a href="honda.jsp" onclick="hinh()">About</a> </li> 
-               <li> <a href="Login.html">Login</a> </li>
-               <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
+               <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>  
            </ul>
         </div>
  
@@ -41,21 +42,21 @@
             <div id="content"> 
                  <center> <img src="Hinh/logohonda.jpg" height="80" width="300" alt="Khong tai duoc"> </center> 
                 <div class="grid">
-                   <%
-                        DBContext con = new DBContext();;
-                        ResultSet rs = con.chondulieu("select * from sanpham");
+                   <%       
+                        DBContext cxn = new DBContext();;
+                        ResultSet rx = cxn.chondulieu("select * from sanpham");
                    %>
                    <%
-                      while(rs.next()){
+                      while(rx.next()){
                    %>
                     <div class="rangecontent">                     
-                        <a href="Xe1.jsp?id=<%=rs.getString(1)%>">
-                            <img src=<%=rs.getString(4)%> height="200" width="200" alt="Khong tai duoc"> 
+                        <a href="Xe1.jsp?id=<%=rx.getString(1)%>">
+                            <img src=<%=rx.getString(4)%> height="200" width="200" alt="Khong tai duoc"> 
                         </a>    
                         <div class="bottomrangecontent">
-                            <p class="texttitle"> <%=rs.getString(2)%> </p> 
-                            <p class="textprice"> <%=rs.getString(3)%> </p>
-                            <a href="Xe1.jsp?id=<%=rs.getString(1)%>">
+                            <p class="texttitle"> <%=rx.getString(2)%> </p> 
+                            <p class="textprice"> <%=rx.getString(3)%> VNĐ</p>
+                            <a href="Xe1.jsp?id=<%=rx.getString(1)%>">
                             <input type="button" name="1" value="Xem thông tin chi tiết"> 
                             </a>
                         </div>

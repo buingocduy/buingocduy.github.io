@@ -27,15 +27,13 @@
         #body
         { 
             width: 100%; 
-            margin: 0 ; 
-            padding: 0 ; 
             background: white; 
             overflow: auto;  
             border-top: 1em solid white;
         }
         
         #content
-        {
+        {   
             width: 80%; 
             float: right;
             overflow: auto;               
@@ -190,7 +188,7 @@
             text-align: center;
             padding: 50px;
             margin: auto;
-            width: 1000px;
+            width: auto;
         }
         
         tr,td

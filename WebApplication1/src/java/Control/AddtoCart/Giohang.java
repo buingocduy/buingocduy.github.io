@@ -5,26 +5,21 @@
  */
 package Control.AddtoCart;
 
-import entity.Product;
-import IO.PD.ProductIO;
-import IO.cart.Giohang;
+import IO.cart.InsertCart;
 import entity.Item;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author BND6699
  */
-@WebServlet(name = "Buy", urlPatterns = {"/Buy"})
-public class Buy extends HttpServlet {
+@WebServlet(name = "Giohang", urlPatterns = {"/Giohang"})
+public class Giohang extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,12 +33,20 @@ public class Buy extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("id");
+        request.setCharacterEncoding("utf-8");
+        String id = request.getParameter("id"); //lấy của netbeans
+        String tensp = request.getParameter("tensp");
+        String gia = request.getParameter("gia");
+        String hinhanh = request.getParameter("hinhanh");
         
-        Giohang item = new Giohang();
-        request.setAttribute("Item", id);
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
-        
+        InsertCart insertCart = new InsertCart(); // khai báo register
+        Item i = insertCart.checkInsert(id,tensp,gia,hinhanh); // check a có null không
+        if(i!=null)
+        {
+           response.sendRedirect("cart.jsp");
+        }else{
+            response.sendRedirect("cart.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

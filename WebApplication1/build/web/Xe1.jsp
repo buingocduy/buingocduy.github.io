@@ -22,14 +22,15 @@
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container"> 
-               <p href="hinh.jpg" onclick="hinh()">
-               <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
-               </p>
+                <a href="Login.html"> 
+                    <p href="hinh.jpg" onclick="hinh()">
+                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
+                    </p> 
+                </a>
            </div>
            <ul id="menu"> <!--menu-->
                <li> <a href="home.html">Home</a> </li> 
                <li> <a href="Xe1.jsp" onclick="hinh()">About</a> </li> 
-               <li> <a href="Login.html">Login</a> </li>
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
            </ul>
         </div>
@@ -55,10 +56,14 @@
                 </div>
                 
                 <div class="rightrangecontent">
-                    <h2> Giá: <%=rs.getString(3)%> </h2> 
-                    <a href="cart.jsp?id=<%=rs.getString(1)%>">
-                        <input type="submit" id="<%=rs.getString(1)%>" name="<%=rs.getString(1)%>" value="Thêm vào giỏ hàng">
-                    </a>
+                    <h2> Giá: <%=rs.getString(3)%> VNĐ</h2> 
+                    <form method="GET" action="Giohang">
+                        <input type="hidden" name="id" id="id" value="<%=rs.getString(1)%>"/>
+                        <input type="hidden" name="tensp" id="tensp" value="<%=rs.getString(2)%>"/>
+                        <input type="hidden" name="gia" id="gia" value="<%=rs.getString(3)%>"/>
+                        <input type="hidden" name="hinhanh" id="hinhanh" value="<%=rs.getString(4)%>"/>
+                        <button type="submit"> Thêm vào giỏ hàng </button>
+                    </form>
                 </div>
                 
                 <table>

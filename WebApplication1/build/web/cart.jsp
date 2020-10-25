@@ -4,11 +4,9 @@
     Author     : BND6699
 --%>
 
-<%@page import="IO.cart.Giohang"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entity.Item"%>
 <%@page import="entity.Item"%>
-<%@page import="IO.PD.ProductIO"%>
 <%@page import="entity.Product"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="context.DBContext"%>
@@ -29,58 +27,24 @@
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container"> 
-               <p href="hinh.jpg" onclick="hinh()">
-               <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
-               </p>
+                <a href="Login.html"> 
+                    <p href="hinh.jpg" onclick="hinh()">
+                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
+                    </p> 
+                </a>
            </div>
            <ul id="menu"> <!--menu-->
                <li> <a href="home.html">Home</a> </li> 
-               <li> <a href="honda.jsp" onclick="hinh()">About</a> </li> 
-               <li> <a href="Login.html">Login</a> </li>
+               <li> <a href="honda.jsp" onclick="hinh()">About</a> </li>
+               <li><a href="register.html"> Register</a> </li>
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
            </ul>
         </div>
  
 <!--body-->            
         <div id="body">
-            
-        <!--content--> 
-            <div id="content"> 
-                <div class="textcontent"> <center> CART </center> </div>                   
-            </div>
-                   <%
-                        String id = request.getParameter("id");
-                        DBContext con = new DBContext();;
-                        ResultSet rs = con.chondulieu("select * from sanpham where id='"+id+"'");                 
-                   %>
-                   
-                   <%
-                      while(rs.next()){
-                   %>  
-            <div id="content">     
-                <table>
-                        <tr>
-                            <td> STT </td>
-                            <td> ID sản phẩm </td>
-                            <td> Tên sản phẩm </td>
-                            <td> Giá </td>
-                            <td> Hình ảnh </td>
-                            <td> Số lượng </td>
-                        </tr>
-                        <tr>
-                            <td> </td>
-                            <td> <%=rs.getString(1)%> </td>
-                            <td> <%=rs.getString(2)%> </td>
-                            <td> <%=rs.getString(3)%> </td>
-                            <td> <img src=<%=rs.getString(4)%> height="150" width="150" alt="Khong tai duoc"> </td>
-                            <td> </td>
-                        </tr>
-                </table>
-            </div>    
-                <%
-                      }
-                %>      
-    <!--sidebar-->        
+         
+            <!--sidebar-->
             <div id="sidebar">               
                 <div class="gridsidebar">  
                     <div class="rangersidebar">
@@ -96,7 +60,44 @@
                     </div>                            
                 </div>
             </div> 
-        </div> 
+      
+
+        <!--content--> 
+            <div id="content"> 
+                <div class="textcontent"> <center> CART </center> </div>                   
+            </div>
+                   <%
+                        DBContext con = new DBContext();;
+                        ResultSet rs = con.chondulieu("select * from giohang");                 
+                   %>
+                   
+                   <%
+                      while(rs.next()){
+                   %>  
+            <div id="content">     
+                <table>
+                        <tr>
+                            <td> ID sản phẩm </td>
+                            <td> Tên sản phẩm </td>
+                            <td> Giá </td>
+                            <td> Hình ảnh </td>
+                            <td> Số lượng </td>
+                        </tr>
+                        <tr>
+                            <td> <%=rs.getString(1)%> </td>
+                            <td> <%=rs.getString(2)%> </td>
+                            <td> <%=rs.getString(3)%> </td>
+                            <td> <img src=<%=rs.getString(4)%> height="150" width="150" alt="Khong tai duoc"> </td>
+                            <td> <%=rs.getString(5)%> </td>
+                        </tr>
+                </table>
+            </div>    
+                <%
+                      }
+                %>      
+        </div>   
+   
+
 
 <!--footer-->        
         <div id="footer">  

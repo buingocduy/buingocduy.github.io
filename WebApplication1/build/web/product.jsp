@@ -26,9 +26,11 @@
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container"> 
-               <p href="hinh.jpg" onclick="hinh()">
-               <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
-               </p>
+                <a href="Login.html"> 
+                    <p href="hinh.jpg" onclick="hinh()">
+                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
+                    </p> 
+                </a>
            </div>
            <ul id="menu"> <!--menu-->
                <li> <a href="home.html">Home</a> </li> 

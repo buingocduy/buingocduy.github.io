@@ -43,7 +43,7 @@ public class LoginControl extends HttpServlet {
       
             if(a != null) 
             {
-                response.sendRedirect("index.html"); 
+                response.sendRedirect("honda.jsp?username="+ user); 
             }else{
                 response.sendRedirect("Login.html");  
             }
