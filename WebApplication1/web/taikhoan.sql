@@ -1,4 +1,5 @@
 ﻿Create database nguoidung
+go
 
 Use nguoidung
 go
@@ -8,7 +9,7 @@ Create table taikhoan
 go 
 
 Create table sanpham
-(id char(10), tensp nvarchar(100),gia bigint,hinhanh nvarchar(4000),
+(id int, tensp nvarchar(100),gia bigint,hinhanh nvarchar(4000),
 kichthuoc char(80),chieucaoyen char(20),sizebanh char(150),engine nvarchar(200),
 CC char(20),congsuat nvarchar(50),CCnhot nvarchar(50),CCxang nvarchar(20),phanh nvarchar(50),gear nvarchar(20),primary key(id))
 go

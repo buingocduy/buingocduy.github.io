@@ -85,7 +85,7 @@
                         <input type="hidden" name="tensp" id="tensp" value="<%=rs.getString(2)%>"/>
                         <input type="hidden" name="gia" id="gia" value="<%=rs.getString(3)%>"/>
                         Số lượng: <input type="text" name="soluong" id="soluong" value="1"/>
-                        <button type="submit" name="add" onclick="check()"> Thêm vào giỏ hàng </button>
+                        <button type="submit" name="add"> Thêm vào giỏ hàng </button>
                     </form>
                         
                         

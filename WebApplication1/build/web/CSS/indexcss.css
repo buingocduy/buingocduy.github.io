@@ -187,5 +187,44 @@
            font-size: 10pt;
            font-weight: bold;
         }
+        
+        table
+        { 
+           margin: auto;
+        }
+        
+        tr,td
+        {
+            text-align:  center;
+        }
+        
+        .ranger1
+        {
+          border: 2px solid black;  
+          height: auto; 
+          width: auto;
+        }
+        
+        .ranger2
+        {  
+           border: 2px solid black;
+           height: auto;
+           width: auto;
+        }
+        
+        a
+        {
+           text-decoration: none; 
+        }
+        
+        .text 
+        {
+            padding-left: 10px;
+            padding-right: 10px;
+            color: red; 
+            font-weight: bold;
+        }
+        
+        
        
 

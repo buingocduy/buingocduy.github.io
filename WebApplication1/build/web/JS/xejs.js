@@ -13,7 +13,7 @@ function hinh()
             }
             
             if(sl == 0) {
-                 alert("Làm ơn thêm số lượng");
+                 alert("Làm ơn thêm số lượng lớn hơn 0");
                  return false;
             }
  

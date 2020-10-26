@@ -60,21 +60,37 @@
                                 <td> 
                         <div style=" border: 2px solid black; text-align: center; width: 400px; padding: 20px; height: 300px; overflow:  auto;"> 
                         <form action="UpdateDPControl" method="get" align="center">
+                            <div style=" color: red; font-size: 14pt; font-weight: bold;">
+                            ID <br>
                              <input type="text" name="id" placeholder="ID" value="<%=rs.getString(1)%>"> <br> <br>  
+                            Tên xe <br>
                              <input type="text" name="name" placeholder="Name" value="<%=rs.getString(2)%>"> <br> <br>   
+                            Giá xe <br>
                              <input type="text" name="price" placeholder="Price" value="<%=rs.getString(3)%>"> <br> <br>  
+                            Hình ảnh <br> 
                              <input type="text" name="image" placeholder="Image" value="<%=rs.getString(4)%>"> <br> <br>  
+                            Dài Rộng Cao <br> 
                              <input type="text" name="LWH" placeholder="LxWxH" value="<%=rs.getString(5)%>"> <br> <br>  
+                            Độ cao yên <br> 
                              <input type="text" name="seat" placeholder="Seat height" value="<%=rs.getString(6)%>"> <br> <br>   
+                            Size bánh trước/sau <br> 
                              <input type="text" name="tire" placeholder="Front/rear tire" value="<%=rs.getString(7)%>"> <br> <br>  
+                            Động cơ <br> 
                              <input type="text" name="engine" placeholder="Engine" value="<%=rs.getString(8)%>"> <br> <br>  
+                            Dung tích máy <br> 
                              <input type="text" name="cc" placeholder="CC" value="<%=rs.getString(9)%>"> <br> <br>  
+                            Công suất <br> 
                              <input type="text" name="power" placeholder="Power" value="<%=rs.getString(10)%>"> <br> <br>  
+                            Dung tích nhớt <br> 
                              <input type="text" name="oil" placeholder="Oil" value="<%=rs.getString(11)%>"> <br> <br>  
+                            Dung tích xăng <br> 
                              <input type="text" name="gasoline" placeholder="Gasoline" value="<%=rs.getString(12)%>"> <br> <br>   
+                            Thắng trước/sau <br> 
                              <input type="text" name="brake" placeholder="Brake" value="<%=rs.getString(13)%>"> <br> <br>  
+                            Hộp số <br> 
                              <input type="text" name="gearbox" placeholder="Gearbox" value="<%=rs.getString(14)%>"> <br> <br>  
-                             <input type="submit" value="Update"> <br>  
+                             <input type="submit" value="Update"> <br> 
+                            </div> 
                         </form>    
                         </div>
                                 </td>
