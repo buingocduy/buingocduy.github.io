@@ -12,18 +12,16 @@ package entity;
 public class Item {
     private String id;
     private String tensp;
-    private String gia;
-    private String image;
-    private String soluongmua;
+    private int gia;
+    private int soluongmua;
 
     public Item() {
     }
 
-    public Item(String id, String tensp, String gia, String image, String soluongmua) {
+    public Item(String id, String tensp, int gia, int soluongmua) {
         this.id = id;
         this.tensp = tensp;
         this.gia = gia;
-        this.image = image;
         this.soluongmua = soluongmua;
     }
 
@@ -43,28 +41,24 @@ public class Item {
         this.tensp = tensp;
     }
 
-    public String getGia() {
+    public int getGia() {
         return gia;
     }
 
-    public void setGia(String gia) {
+    public void setGia(int gia) {
         this.gia = gia;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getSoluongmua() {
+    public int getSoluongmua() {
         return soluongmua;
     }
 
-    public void setSoluongmua(String soluongmua) {
+    public void setSoluongmua(int soluongmua) {
         this.soluongmua = soluongmua;
-    } 
+    }
+
+   
+    
+    
 }
 

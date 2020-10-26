@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control.DP;
+package Control.PD;
 
-import IO.PD.DeleteDPIO;
+import IO.PD.UpdateDPIO;
 import entity.Product;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author BND6699
  */
-@WebServlet(name = "DeleteDPControl", urlPatterns = {"/DeleteDPControl"})
-public class DeleteDPControl extends HttpServlet {
+@WebServlet(name = "UpdateDPControl", urlPatterns = {"/UpdateDPControl"})
+public class UpdateDPControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,9 +33,26 @@ public class DeleteDPControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         String id = request.getParameter("id"); //lấy của netbeans
-        DeleteDPIO deletedpIO = new DeleteDPIO(); // khai báo register
-        Product a = deletedpIO.checkDelete(id); // check a có null không
+        String tensp = request.getParameter("name"); //lấy của netbeans
+        String gia = request.getParameter("price"); //lấy của netbeans
+        String hinhanh = request.getParameter("image"); //lấy của netbeans
+        String kichthuoc = request.getParameter("LWH"); //lấy của netbeans
+        
+        String chieucaoyen = request.getParameter("seat"); //lấy của netbeans
+        String sizebanh = request.getParameter("tire"); //lấy của netbeans
+        String engine = request.getParameter("engine"); //lấy của netbeans
+        String CC = request.getParameter("cc"); //lấy của netbeans
+        String congsuat = request.getParameter("power"); //lấy của netbeans
+        
+        String CCnhot = request.getParameter("oil"); //lấy của netbeans
+        String CCxang = request.getParameter("gasoline"); //lấy của netbeans
+        String phanh = request.getParameter("brake"); //lấy của netbeans
+        String gear = request.getParameter("gearbox"); //lấy của netbeans
+        
+        UpdateDPIO updatedpIO = new UpdateDPIO(); // khai báo register
+        Product a = updatedpIO.checkUpdate(id, tensp, gia, hinhanh, kichthuoc, chieucaoyen, sizebanh, engine, CC, congsuat, CCnhot, CCxang, phanh, gear); // check a có null không
         if(a==null)
         {
            response.sendRedirect("product.jsp");
@@ -43,7 +60,6 @@ public class DeleteDPControl extends HttpServlet {
            response.sendRedirect("product.jsp");
         }  
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

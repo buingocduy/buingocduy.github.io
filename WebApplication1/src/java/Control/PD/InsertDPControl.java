@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control.DP;
+package Control.PD;
 
-import IO.PD.UpdateDPIO;
+import IO.PD.InsertDPIO;
 import entity.Product;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author BND6699
  */
-@WebServlet(name = "UpdateDPControl", urlPatterns = {"/UpdateDPControl"})
-public class UpdateDPControl extends HttpServlet {
+@WebServlet(name = "InsertDPControl", urlPatterns = {"/InsertDPControl"})
+public class InsertDPControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,14 +51,14 @@ public class UpdateDPControl extends HttpServlet {
         String phanh = request.getParameter("brake"); //lấy của netbeans
         String gear = request.getParameter("gearbox"); //lấy của netbeans
         
-        UpdateDPIO updatedpIO = new UpdateDPIO(); // khai báo register
-        Product a = updatedpIO.checkUpdate(id, tensp, gia, hinhanh, kichthuoc, chieucaoyen, sizebanh, engine, CC, congsuat, CCnhot, CCxang, phanh, gear); // check a có null không
+        InsertDPIO insertdpIO = new InsertDPIO(); // khai báo register
+        Product a = insertdpIO.checkInsert(id, tensp, gia, hinhanh, kichthuoc, chieucaoyen, sizebanh, engine, CC, congsuat, CCnhot, CCxang, phanh, gear); // check a có null không
         if(a==null)
         {
            response.sendRedirect("product.jsp");
         }else{
            response.sendRedirect("product.jsp");
-        }  
+        }        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

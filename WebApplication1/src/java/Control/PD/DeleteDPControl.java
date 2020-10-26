@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control.AddtoCart;
+package Control.PD;
 
-import IO.cart.InsertCart;
-import entity.Item;
+import IO.PD.DeleteDPIO;
+import entity.Product;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author BND6699
  */
-@WebServlet(name = "Giohang", urlPatterns = {"/Giohang"})
-public class Giohang extends HttpServlet {
+@WebServlet(name = "DeleteDPControl", urlPatterns = {"/DeleteDPControl"})
+public class DeleteDPControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,21 +33,17 @@ public class Giohang extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
         String id = request.getParameter("id"); //lấy của netbeans
-        String tensp = request.getParameter("tensp");
-        String gia = request.getParameter("gia");
-        String hinhanh = request.getParameter("hinhanh");
-        
-        InsertCart insertCart = new InsertCart(); // khai báo register
-        Item i = insertCart.checkInsert(id,tensp,gia,hinhanh); // check a có null không
-        if(i!=null)
+        DeleteDPIO deletedpIO = new DeleteDPIO(); // khai báo register
+        Product a = deletedpIO.checkDelete(id); // check a có null không
+        if(a==null)
         {
-           response.sendRedirect("cart.jsp");
+           response.sendRedirect("product.jsp");
         }else{
-            response.sendRedirect("cart.jsp");
-        }
+           response.sendRedirect("product.jsp");
+        }  
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

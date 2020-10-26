@@ -6,8 +6,6 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="entity.Item"%>
-<%@page import="entity.Item"%>
-<%@page import="entity.Product"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="context.DBContext"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -66,35 +64,49 @@
             <div id="content"> 
                 <div class="textcontent"> <center> CART </center> </div>                   
             </div>
-                   <%
-                        DBContext con = new DBContext();;
-                        ResultSet rs = con.chondulieu("select * from giohang");                 
-                   %>
-                   
-                   <%
-                      while(rs.next()){
-                   %>  
             <div id="content">          
                 <table>
                         <tr>
                             <td> ID sản phẩm </td>
                             <td> Tên sản phẩm </td>
                             <td> Giá </td>
-                            <td> Hình ảnh </td>
                             <td> Số lượng </td>
+                            <td> Tổng tiền </td>
+                            <td> Chức năng </td>
                         </tr>
-                        <tr>
-                            <td> <%=rs.getString(1)%> </td>
-                            <td> <%=rs.getString(2)%> </td>
-                            <td> <%=rs.getString(3)%> </td>
-                            <td> <img src=<%=rs.getString(4)%> height="150" width="150" alt="Khong tai duoc"> </td>
-                            <td> <%=rs.getString(5)%> </td>
-                        </tr>
-                </table>
-             </div>  
+                               
                 <%
-                      }
-                %>       
+                    java.util.ArrayList orders = new ArrayList();
+                    entity.Item item = new entity.Item();
+                    if (session.getAttribute("Orders") != null) {
+                        orders = ((java.util.ArrayList) session.getAttribute("Orders"));
+                    }
+ 
+                    int count = orders.size() - 1;
+                    while (count > 0) {
+                        item = (entity.Item) orders.get(count);
+ 
+                        if (request.getParameter("id") != null) {
+                            if (item.getId() == request.getParameter("id")) {
+                                orders.remove(item);
+                                count--;
+                                continue;
+                            }
+                        }
+ 
+                        out.print("<tr>");
+                        out.print("<td>" + item.getId() + "</td>");
+                        out.print("<td>" + item.getTensp()+ "</td>");               
+                        out.print("<td>" + item.getGia()+ "</td>");
+                        out.print("<td>" + item.getSoluongmua()+ "</td>");
+                        out.print("<td>" + item.getSoluongmua()* item.getGia()+ "</td>");
+                        out.print("<td> <a href='?id=" + item.getId() + "'>Delete</a></td>");
+                        count--;
+                        out.print("</tr>");
+                    }
+                %>
+                </table>
+             </div>             
         </div>   
    
 
