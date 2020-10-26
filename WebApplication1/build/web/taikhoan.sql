@@ -21,6 +21,8 @@ insert into taikhoan values ('buingocduy','123','buingocduy1999@gmail.com',09045
 insert into taikhoan values ('nguyenthanhtuyen','123','thanhtuyen990322@gmail.com',0772767594,0)
 go
 
+alter table giohang ADD CONSTRAINT kt_sl CHECK (soluong > 0)
+go 
 
 insert into sanpham values ('h1','Click 2020','85000000','Hinh\vario.jpg',
 '1919 x 679 x 1062 mm','769 mm','90/80-14 - 100/80- 14 48P Tubeless',N'PGM-Fi, xăng, 4 kỳ, 1 xy-lanh, làm mát bằng dung dịch',
@@ -51,7 +53,7 @@ insert into giohang values ('h6','SH 2020','70990000','Hinh\SH.jpg',1)
 
 select * from taikhoan 
 select * from sanpham 
-select sum(gia), SUM(soluong)  from giohang  
+select * from giohang   
 
 
 update taikhoan set password = '123', email = 'abc@gamil.com' ,khoa =  1, phonenumber=0906999599 where username = 'nguyenthanhtuyen'

@@ -74,7 +74,7 @@
                    <%
                       while(rs.next()){
                    %>  
-            <div id="content">     
+            <div id="content">          
                 <table>
                         <tr>
                             <td> ID sản phẩm </td>
@@ -91,10 +91,10 @@
                             <td> <%=rs.getString(5)%> </td>
                         </tr>
                 </table>
-            </div>    
+             </div>  
                 <%
                       }
-                %>      
+                %>       
         </div>   
    
 
