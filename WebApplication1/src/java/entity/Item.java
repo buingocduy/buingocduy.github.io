@@ -10,7 +10,7 @@ package entity;
  * @author BND6699
  */
 public class Item {
-    private String id;
+    private int id;
     private String tensp;
     private int gia;
     private int soluongmua;
@@ -18,18 +18,18 @@ public class Item {
     public Item() {
     }
 
-    public Item(String id, String tensp, int gia, int soluongmua) {
+    public Item(int id, String tensp, int gia, int soluongmua) {
         this.id = id;
         this.tensp = tensp;
         this.gia = gia;
         this.soluongmua = soluongmua;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -57,8 +57,5 @@ public class Item {
         this.soluongmua = soluongmua;
     }
 
-   
-    
-    
 }
 

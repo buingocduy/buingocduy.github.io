@@ -67,12 +67,12 @@
             <div id="content">          
                 <table>
                         <tr>
-                            <td> ID sản phẩm </td>
-                            <td> Tên sản phẩm </td>
-                            <td> Giá </td>
-                            <td> Số lượng </td>
-                            <td> Tổng tiền </td>
-                            <td> Chức năng </td>
+                            <th> ID sản phẩm </th>
+                            <th> Tên sản phẩm </th>
+                            <th> Giá </th>
+                            <th> Số lượng </th>
+                            <th> Tổng tiền </th>
+                            <th> Chức năng </th>
                         </tr>
                                
                 <%
@@ -87,7 +87,7 @@
                         item = (entity.Item) orders.get(count);
  
                         if (request.getParameter("id") != null) {
-                            if (item.getId() == request.getParameter("id")) {
+                            if (item.getId() == (Integer.parseInt(request.getParameter("id")))) {
                                 orders.remove(item);
                                 count--;
                                 continue;
@@ -100,7 +100,7 @@
                         out.print("<td>" + item.getGia()+ "</td>");
                         out.print("<td>" + item.getSoluongmua()+ "</td>");
                         out.print("<td>" + item.getSoluongmua()* item.getGia()+ "</td>");
-                        out.print("<td> <a href='?id=" + item.getId() + "'>Delete</a></td>");
+                        out.print("<td> <a href='?id="+item.getId()+"'> Delete </a> </td>");
                         count--;
                         out.print("</tr>");
                     }

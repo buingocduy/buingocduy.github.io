@@ -65,7 +65,7 @@
                     if (request.getParameter("add") != null) {
                         entity.Item item = new entity.Item();
 
-                        item.setId(request.getParameter("id"));
+                        item.setId(Integer.parseInt(request.getParameter("id")));
                         item.setTensp(request.getParameter("tensp"));
                         item.setGia(Integer.parseInt(request.getParameter("gia")));
                         item.setSoluongmua(Integer.parseInt(request.getParameter("soluong")));
@@ -80,12 +80,12 @@
                     }
                     %>
                     
-                    <form>
-                        <input type="hidden" name="id" id="id" value="<%=rs.getString(1)%>"/>
+                    <form onsubmit = "return validateForm()">
+                        <input type="hidden" name="id" id="id" value="<%=rs.getInt(1)%>"/>
                         <input type="hidden" name="tensp" id="tensp" value="<%=rs.getString(2)%>"/>
                         <input type="hidden" name="gia" id="gia" value="<%=rs.getString(3)%>"/>
-                        Số lượng: <input type="text" name="soluong"/>
-                        <button type="submit" name="add"> Thêm vào giỏ hàng </button>
+                        Số lượng: <input type="text" name="soluong" id="soluong" value="1"/>
+                        <button type="submit" name="add" onclick="check()"> Thêm vào giỏ hàng </button>
                     </form>
                         
                         

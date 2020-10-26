@@ -185,15 +185,20 @@
         
         table
         {
- 
             text-align: center;
             margin: auto;
-            width: auto;
+            width: 1000px;
         }
         
         tr,td
         {
              border: 2px solid black;
+        }
+        
+        th
+        {
+            border-bottom: 2px solid black;
+            color: red;
         }
        
 

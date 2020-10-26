@@ -13,16 +13,10 @@ kichthuoc char(80),chieucaoyen char(20),sizebanh char(150),engine nvarchar(200),
 CC char(20),congsuat nvarchar(50),CCnhot nvarchar(50),CCxang nvarchar(20),phanh nvarchar(50),gear nvarchar(20),primary key(id))
 go
 
-Create table giohang
-(id char(10), tensp nvarchar(100),gia bigint ,hinhanh nvarchar(4000),soluong int,primary key(id))
-
 go
 insert into taikhoan values ('buingocduy','123','buingocduy1999@gmail.com',0904596810,1)
 insert into taikhoan values ('nguyenthanhtuyen','123','thanhtuyen990322@gmail.com',0772767594,0)
 go
-
-alter table giohang ADD CONSTRAINT kt_sl CHECK (soluong > 0)
-go 
 
 insert into sanpham values ('h1','Click 2020','85000000','Hinh\vario.jpg',
 '1919 x 679 x 1062 mm','769 mm','90/80-14 - 100/80- 14 48P Tubeless',N'PGM-Fi, xăng, 4 kỳ, 1 xy-lanh, làm mát bằng dung dịch',
@@ -37,7 +31,7 @@ insert into sanpham values ('h3','CB150R SF','85000000','Hinh\CB150RSF.jpg',
 '149,16 cc',N'16,6 mã lực @ 9.000 vòng/phút',N'1.1 lít khi thay nhớt ; 1.3 lít khi rã máy','12L',N'Phanh đĩa;Phanh đĩa',N'6 Cấp')
 
 insert into sanpham values ('h4','Air Blade','50000000','Hinh\airblade.jpg',
-'1.870mm x 686mm x 1.112mm','775 mm','Trước: 90/80-14M/C 43P Sau: 100/80 -14M/C 48P',N' Xăng, 4 kỳ, 1 xy lanh, làm mát bằng dung dịch',
+'1.870mm x 686mm x 1.112mm','775 mm',N'Trước: 90/80-14M/C 43P Sau: 100/80 -14M/C 48P',N' Xăng, 4 kỳ, 1 xy lanh, làm mát bằng dung dịch',
 '149,3 cm3',N'9,6kW/8.500 vòng/phút',N' 0,8 khi thay nhớt ; 0,9 khi rã máy','4,4L',N'Phanh đĩa ABS;Tang trống',N'Vô cấp')
 
 insert into sanpham values ('h5','Monkey 2020','84999000','Hinh\monkey.jpg',
@@ -49,13 +43,9 @@ insert into sanpham values ('h6','SH 2020','70990000','Hinh\SH.jpg',
 '124,8cm³ (SH 125i)',N'9,6kW/8.250 vòng/phút (SH 125i)',N'0,8 khi thay nhớt ; 0,9 khi rã máy','7,8L',N'Phanh đĩa ABS;Phanh đĩa',N'Vô cấp')
 go
 
-insert into giohang values ('h6','SH 2020','70990000','Hinh\SH.jpg',1)
-
 select * from taikhoan 
 select * from sanpham 
-select * from giohang   
-
-
+ 
 update taikhoan set password = '123', email = 'abc@gamil.com' ,khoa =  1, phonenumber=0906999599 where username = 'nguyenthanhtuyen'
 
 delete from sanpham where id = 'h4'
