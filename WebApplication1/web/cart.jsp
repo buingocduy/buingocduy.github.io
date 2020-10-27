@@ -92,10 +92,10 @@
                         orders = ((java.util.ArrayList) session.getAttribute("Orders"));
                     }
  
-                    int count = orders.size() - 1;
+                    int count = orders.size() -1;
                     while (count > 0) {
                         item = (entity.Item) orders.get(count);
- 
+                        
                         if (request.getParameter("id") != null) {
                             if (item.getId() == (Integer.parseInt(request.getParameter("id")))) {
                                 orders.remove(item);
@@ -103,19 +103,22 @@
                                 continue;
                             }
                         }
- 
+                        
+                        int tongtien=item.getSoluongmua()* item.getGia();
+                        int num = 0;
                         out.print("<tr>");
                         out.print("<td>" + item.getId() + "</td>");
                         out.print("<td>" + item.getTensp()+ "</td>");               
                         out.print("<td>" + item.getGia()+ "</td>");
                         out.print("<td>" + item.getSoluongmua()+ "</td>");
-                        out.print("<td>" + item.getSoluongmua()* item.getGia()+ "</td>");
-                        out.print("<td> <a href='?id="+item.getId()+"'> Delete </a> </td>");
+                        out.print("<td>" + tongtien + "</td>");
+                        out.print("<td> <a href='?id="+item.getId()+"'> Delete </a> </td>");             
                         count--;
                         out.print("</tr>");
                     }
                 %>
-                </table>
+                </table> <br>
+                <center> <button id="mua" name="mua"> Đặt hàng </button> </center>
              </div>             
         </div>   
    

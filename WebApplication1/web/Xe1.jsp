@@ -72,10 +72,10 @@
                         java.util.ArrayList orders = new ArrayList();
                         if (session.getAttribute("Orders") != null) {
                             orders = ((java.util.ArrayList) session.getAttribute("Orders"));
+ 
                         }
                         orders.add(item);
                         session.setAttribute("Orders", orders);
-                       
                         response.sendRedirect("cart.jsp");
                     }
                     %>
