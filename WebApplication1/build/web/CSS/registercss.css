@@ -45,7 +45,6 @@
         {
             width: 19%;           
             float: left;
-            overflow: auto;
             border-right: 3px solid GRAY;
             padding: 10px 0 0 10px;
         }
@@ -102,7 +101,7 @@
 
         #menu li a:hover 
         { 
-            color: RED; /* di chuyen doi mau*/
+            color: black; /* di chuyen doi mau*/
         }
         
         /*content*/
@@ -180,3 +179,11 @@
            font-size: 10pt;
            font-weight: bold;
         }
+
+        .thumbnail img:hover 
+        {
+            transition-duration: 0.5s;
+            overflow: hidden;
+            transform: scale(1.2);
+        }
+       

@@ -12,7 +12,7 @@ function hinh()
                  return false;
             }
             
-            if(sl == 0) {
+            if(sl === 0) {
                  alert("Làm ơn thêm số lượng lớn hơn 0");
                  return false;
             }

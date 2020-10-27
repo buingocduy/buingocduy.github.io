@@ -75,7 +75,7 @@
                         }
                         orders.add(item);
                         session.setAttribute("Orders", orders);
-
+                       
                         response.sendRedirect("cart.jsp");
                     }
                     %>
@@ -84,7 +84,7 @@
                         <input type="hidden" name="id" id="id" value="<%=rs.getInt(1)%>"/>
                         <input type="hidden" name="tensp" id="tensp" value="<%=rs.getString(2)%>"/>
                         <input type="hidden" name="gia" id="gia" value="<%=rs.getString(3)%>"/>
-                        Số lượng: <input type="text" name="soluong" id="soluong" value="1"/>
+                        Số lượng: <input type="number" name="soluong" id="soluong" value="1"/>
                         <button type="submit" name="add"> Thêm vào giỏ hàng </button>
                     </form>
                         

@@ -41,7 +41,7 @@
     <!--content-->
             <div id="content"> 
                  <center> <img src="Hinh/logohonda.jpg" height="80" width="300" alt="Khong tai duoc"> </center> 
-                <div class="grid">
+                 <div class="grid">
                    <%       
                         DBContext cxn = new DBContext();;
                         ResultSet rx = cxn.chondulieu("select * from sanpham");
@@ -51,7 +51,9 @@
                    %>
                     <div class="rangecontent">                     
                         <a href="Xe1.jsp?id=<%=rx.getString(1)%>">
+                            <div class="thumbnail">
                             <img src=<%=rx.getString(4)%> height="200" width="200" alt="Khong tai duoc"> 
+                            </div>
                         </a>    
                         <div class="bottomrangecontent">
                             <p class="texttitle"> <%=rx.getString(2)%> </p> 
@@ -70,11 +72,19 @@
     <!--sidebar-->        
             <div id="sidebar">               
                 <div class="gridsidebar">  
-                    <div class="rangersidebar"> 
+                    <div class="rangersidebar">
+                        <div class="thumbnail">
+                        <a href="#">
                         <img src="Hinh/ya.jpg"  height="110" width="220" alt="Khong tai duoc" onclick="hinh()"> 
+                        </a>
+                        </div>
                     </div>             
                     <div class="rangersidebar">  
+                        <div class="thumbnail">
+                        <a href="#">
                         <img src="Hinh/su.jpg" height="110" width="220" alt="Khong tai duoc" onclick="hinh()"> 
+                        </a>
+                        </div>
                     </div>                            
                 </div>
             </div> 
