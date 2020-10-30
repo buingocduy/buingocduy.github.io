@@ -22,6 +22,11 @@
         <link rel="stylesheet" href="CSS/productcss.css" />
     </head>
     <body>
+                    <%
+                    if(session.getAttribute("user") == null){
+                        response.sendRedirect("Login.html");
+                    }
+                    %>   
         <!--header-->        
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
@@ -32,12 +37,21 @@
                     </p> 
                 </a>
            </div>
+           
+           <%
+                    if (request.getParameter("logout") != null) {
+                        session.removeAttribute("username");   
+                        response.sendRedirect("Login.html");
+                    }
+           %>
+           <form>
            <ul id="menu"> <!--menu-->
                <li> <a href="home.html">Home</a> </li> 
-               <li> <a href="admin.jsp">Account</a> </li> 
-               <li> <a href="Login.html">Logout</a> </li>
+               <li> <a href="admin.jsp">Account</a> </li>               
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
+               <li> <a href="LogoutControl"> Logout </a> </li>
            </ul>
+           </form>
         </div>
  
 <!--body-->            
@@ -45,6 +59,10 @@
         
     <!--content-->
             <div id="content"> 
+                    <%
+                    String name = (String) session.getAttribute("user");
+                    out.print("Admin: " + name);
+                    %>
                 <form> 
                     <%
                         DBContext con = new DBContext();;
@@ -99,7 +117,7 @@
             </div>  
     
     <!--sidebar-->        
-            <div id="sidebar">               
+            <div id="sidebar">            
                 <div class="gridsidebar">  
                     <div class="rangersidebar1">  
                         <center> <a href="UPD.jsp"> <input type="button" value="Update"> </a> </center> <br>  

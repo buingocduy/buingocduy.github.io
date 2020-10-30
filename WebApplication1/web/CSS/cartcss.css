@@ -208,4 +208,11 @@
             transform: scale(1.2);
         }
        
+        .rangelogin
+        {
+            padding-bottom: 10px;
+            padding-top: 10px;
+            border: 1px solid black;
+            width: 200px;
+        }
 

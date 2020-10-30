@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,21 +36,29 @@ public class LoginADControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
+
+        HttpSession session = request.getSession();
+
         try {
             String user = request.getParameter("username"); //lấy của netbeans
             String pass = request.getParameter("password");
+            session.setAttribute("user", user);
+            session.setAttribute("pass", pass); 
             boolean khoa = true;
             
             LoginADIO loginADIO = new LoginADIO(); // khai báo login
             Account a = loginADIO.checkLogin(user,pass,khoa); // check a có null không
-               
-            if(a != null & khoa) 
+            
+            if(a != null && khoa) 
             {
-                response.sendRedirect("admin.jsp");}    
-            else{
-                response.sendRedirect("Login.html");
+                response.sendRedirect("admin.jsp?user="+user+"");              
+            }   
+            else {
+              response.sendRedirect("Login.html");
             }
-        } catch (IOException e) {
+        } finally {
+            out.close();
         }
     }
 

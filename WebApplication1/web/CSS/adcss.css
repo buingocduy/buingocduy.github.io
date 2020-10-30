@@ -98,7 +98,7 @@
 
         #menu li a:link.last-link 
         { 
-            border-right: 0px; /* bo dau gach cuoi cung */ 
+            border-right: 0px;  /* bo dau gach cuoi cung */ 
         }
 
         #menu li a:hover 

@@ -4,6 +4,8 @@
     Author     : BND6699
 --%>
 
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Calendar"%>
 <%@ page import="context.DBContext" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
@@ -23,6 +25,11 @@
         <link rel="stylesheet" href="CSS/adcss.css" />
     </head>
     <body>
+                    <%
+                    if(session.getAttribute("user") == null){
+                        response.sendRedirect("Login.html");
+                    }
+                    %>                                     
         <!--header-->        
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
@@ -33,12 +40,15 @@
                     </p> 
                 </a>
            </div>
+                   
+           <form>
            <ul id="menu"> <!--menu-->
                <li> <a href="home.html">Home</a> </li> 
-               <li> <a href="product.jsp">Product</a> </li> 
-               <li> <a href="Login.html">Logout</a> </li>
+               <li> <a href="product.jsp">Product</a> </li>               
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
+               <li> <a href="LogoutControl"> Logout </a> </li>
            </ul>
+           </form>
         </div>
  
 <!--body-->            
@@ -46,6 +56,10 @@
         
     <!--content-->
             <div id="content"> 
+                    <%
+                    String name = (String) session.getAttribute("user");
+                    out.print("Admin: " + name);
+                    %>
                 <form action="ListACC"> 
                     <%
                         DBContext con = new DBContext();;
@@ -114,7 +128,7 @@
                     Địa chỉ: 475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM <br>
                     SĐT: 0904596810 | Email: MTHCM@Gmail.com       
             </div>
-        </div>
-            
+        
+        </div>           
     </body>
 </html>

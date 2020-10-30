@@ -24,7 +24,7 @@ and open the template in the editor.
                <a href="login.html"> <p href="hinh.jpg" onclick="hinh()"> </a>
                <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
                </p>
-           </div>
+           </div>           
            <ul id="menu"> <!--menu-->
                <li><a href="home.html"> Home</a> </li> 
                <li><a href="Login.html" onclick="hinh()"> About</a> </li> 
@@ -39,7 +39,7 @@ and open the template in the editor.
     <!--content-->
             <div id="content"> 
                 <div class="textcontent"> <center> Login </center> </div> <br> 
-                    <form action="LoginControl" method="post">
+                    <form action="LoginADControl" method="post">
                         <div class="rangelogin">
                             <div class="textlogin">
                             Username: <input type="text" id="username" name="username"> <br> <br>
@@ -53,17 +53,29 @@ and open the template in the editor.
     <!--sidebar-->        
             <div id="sidebar">               
                 <div class="gridsidebar">  
-                    <form action="LoginADControl" method="post">
-                        <div class="rangersidebar">  
-                            <div class="textlogin">
-                            <input type="text" id="username" name="username" placeholder="admin name"> <br> <br>
-                            <input type="password" id="password"  name="password" placeholder="password"> <br> <br>  
-                            <input type="submit" value="Sign in"> <br>      
-                            </div>
-                        </div>  
-                    </form>
+                    <div class="rangersidebar">
+                        <div class="thumbnail">
+                        <a href="honda.jsp">
+                            <img src="Hinh/honda.jpg"  height="110" width="220" alt="Khong tai duoc">
+                        </a>
+                        </div>
+                    </div>           
+                    <div class="rangersidebar"> 
+                        <div class="thumbnail">
+                        <a href="#">
+                        <img src="Hinh/ya.jpg"  height="110" width="220" alt="Khong tai duoc" onclick="hinh()"> 
+                        </a>
+                        </div>
+                    </div>             
+                    <div class="rangersidebar">
+                        <div class="thumbnail">
+                        <a href="#">
+                        <img src="Hinh/su.jpg" height="110" width="220" alt="Khong tai duoc" onclick="hinh()">
+                        </a>
+                        </div>
+                    </div>                            
                 </div>
-            </div> 
+            </div>  
         </div> 
 
 <!--footer-->        

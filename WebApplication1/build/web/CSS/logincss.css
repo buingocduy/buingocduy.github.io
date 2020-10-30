@@ -45,7 +45,6 @@
         {
             width: 19%;           
             float: left;
-            overflow: auto;
             border-right: 3px solid GRAY;
             padding: 10px 0 0 10px;
         }
@@ -171,7 +170,7 @@
         .rangersidebar
         {
            width: 220px;
-           height: 140px;
+           height: 110px;
            border: 1px solid black;
         }
         
@@ -180,4 +179,11 @@
            text-align: center; 
            font-size: 10pt;
            font-weight: bold;
+        }
+        
+            .thumbnail img:hover 
+        {
+            transition-duration: 0.5s;
+            overflow: hidden;
+            transform: scale(1.2);
         }

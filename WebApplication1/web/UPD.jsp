@@ -23,6 +23,11 @@
         <link rel="stylesheet" href="CSS/UPDcss.css" />
     </head>
     <body>
+                    <%
+                    if(session.getAttribute("user") == null){
+                        response.sendRedirect("Login.html");
+                    }
+                    %>   
         <!--header-->        
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
@@ -33,19 +38,32 @@
                     </p> 
                 </a>
            </div>
+           
+           <%
+                    if (request.getParameter("logout") != null) {
+                        session.removeAttribute("username");   
+                        response.sendRedirect("Login.html");
+                    }
+           %>
+           <form>
            <ul id="menu"> <!--menu-->
                <li> <a href="home.html">Home</a> </li> 
-               <li> <a href="product.jsp">Product</a> </li> 
-               <li> <a href="Login.html">Logout</a> </li>
+               <li> <a href="product.jsp">Product</a> </li>               
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
+               <li> <a href="LogoutControl"> Logout </a> </li>
            </ul>
+           </form>
         </div>
  
 <!--body-->            
         <div id="body">
         
     <!--content-->
-            <div id="content">                          
+            <div id="content">  
+                    <%
+                    String name = (String) session.getAttribute("user");
+                    out.print("Admin: " + name);
+                    %>
                     <%          
                         DBContext con = new DBContext();;
                         ResultSet rs = con.chondulieu("select * from sanpham "); 

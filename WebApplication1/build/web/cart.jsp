@@ -4,6 +4,7 @@
     Author     : BND6699
 --%>
 
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entity.Item"%>
 <%@page import="java.sql.ResultSet"%>
@@ -72,7 +73,12 @@
 
         <!--content--> 
             <div id="content"> 
-                <div class="textcontent"> <center> CART </center> </div>                   
+                <%
+                    String name = (String) session.getAttribute("user");
+                    out.print("User: " + name);
+                    
+                %>
+                <div class="textcontent"> <center> CART </center> </div>                
             </div>
             <div id="content">          
                 <table>
@@ -96,7 +102,7 @@
                     while (count > 0) {
                         item = (entity.Item) orders.get(count);
                         
-                        if (request.getParameter("id") != null) {
+                        if (request.getParameter("id") != null) {                          
                             if (item.getId() == (Integer.parseInt(request.getParameter("id")))) {
                                 orders.remove(item);
                                 count--;
@@ -114,11 +120,32 @@
                         out.print("<td>" + tongtien + "</td>");
                         out.print("<td> <a href='?id="+item.getId()+"'> Delete </a> </td>");             
                         count--;
-                        out.print("</tr>");
+                        out.print("</tr>");                                              
                     }
                 %>
                 </table> <br>
-                <center> <button id="mua" name="mua"> Đặt hàng </button> </center>
+                
+                
+                <%
+                    if (request.getParameter("mua") != null && name != null) {
+                        orders.removeAll(orders);                     
+                        response.sendRedirect("cart.jsp");
+                    }
+                %>
+                
+                <center>
+                    <form>
+                    <button type="submit" id="mua" name="mua" onclick="mua()"> Đặt hàng </button> </br> </br>   
+                    </form>
+                    <form action="LoginControl" method="post">
+                        <div class="rangelogin">
+                           
+                            <input type="text" id="username" name="username" placeholder="Username"> <br> <br>
+                            <input type="password" id="password" name="password" placeholder="Password"> <br> <br>                                                                      
+                            <input type="submit" value="Sign in"> <br>
+                        </div>
+                    </form>                
+                </center>
              </div>             
         </div>   
    
