@@ -37,13 +37,6 @@
                     </p> 
                 </a>
            </div>
-           
-           <%
-                    if (request.getParameter("logout") != null) {
-                        session.removeAttribute("username");   
-                        response.sendRedirect("Login.html");
-                    }
-           %>
            <form>
            <ul id="menu"> <!--menu-->
                <li> <a href="home.html">Home</a> </li> 
@@ -59,10 +52,7 @@
         
     <!--content-->
             <div id="content"> 
-                    <%
-                    String name = (String) session.getAttribute("user");
-                    out.print("Admin: " + name);
-                    %>
+                <h3> Admin: ${sessionScope.user} </h3>
                 <form> 
                     <%
                         DBContext con = new DBContext();;

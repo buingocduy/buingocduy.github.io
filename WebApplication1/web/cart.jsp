@@ -73,11 +73,7 @@
 
         <!--content--> 
             <div id="content"> 
-                <%
-                    String name = (String) session.getAttribute("user");
-                    out.print("User: " + name);
-                    
-                %>
+                <h3> Admin: ${sessionScope.user} </h3>
                 <div class="textcontent"> <center> CART </center> </div>                
             </div>
             <div id="content">          
@@ -127,8 +123,9 @@
                 
                 
                 <%
-                    if (request.getParameter("mua") != null && name != null) {
-                        orders.removeAll(orders);                     
+                    if (request.getParameter("mua") != null && session.getAttribute("user") != null) {
+                        orders.removeAll(orders);              
+                        session.removeAttribute("user");
                         response.sendRedirect("cart.jsp");
                     }
                 %>
@@ -142,7 +139,7 @@
                            
                             <input type="text" id="username" name="username" placeholder="Username"> <br> <br>
                             <input type="password" id="password" name="password" placeholder="Password"> <br> <br>                                                                      
-                            <input type="submit" value="Sign in"> <br>
+                            <input type="submit" value="Sign in"> <br> <br>
                         </div>
                     </form>                
                 </center>

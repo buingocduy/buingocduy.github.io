@@ -43,8 +43,6 @@ public class LoginControl extends HttpServlet {
         try {
             String user = request.getParameter("username"); //lấy của netbeans
             String pass = request.getParameter("password");
-            session.setAttribute("user", user);
-            session.setAttribute("pass", pass); 
             
             LoginIO loginIO = new LoginIO(); // khai báo login
             Account a = loginIO.checkLogin(user,pass); // check a có null không
@@ -52,6 +50,9 @@ public class LoginControl extends HttpServlet {
             if(a != null) 
             {
                 response.sendRedirect("cart.jsp"); 
+                session.setAttribute("user", user);
+                session.setAttribute("pass", pass); 
+            
             }else{
                 response.sendRedirect("cart.jsp");  
             }

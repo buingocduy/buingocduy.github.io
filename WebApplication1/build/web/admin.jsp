@@ -3,6 +3,12 @@
     Created on : Oct 7, 2020, 1:18:09 AM
     Author     : BND6699
 --%>
+                <%
+                    if(session.getAttribute("user") == null){
+                        response.sendRedirect("Login.html");
+                    }
+                %>  
+
 
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Calendar"%>
@@ -11,6 +17,7 @@
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -24,12 +31,7 @@
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="CSS/adcss.css" />
     </head>
-    <body>
-                    <%
-                    if(session.getAttribute("user") == null){
-                        response.sendRedirect("Login.html");
-                    }
-                    %>                                     
+    <body>                                                      
         <!--header-->        
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
@@ -56,10 +58,7 @@
         
     <!--content-->
             <div id="content"> 
-                    <%
-                    String name = (String) session.getAttribute("user");
-                    out.print("Admin: " + name);
-                    %>
+                <h3> Admin: ${sessionScope.user} </h3>
                 <form action="ListACC"> 
                     <%
                         DBContext con = new DBContext();;

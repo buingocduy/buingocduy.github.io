@@ -42,9 +42,7 @@ public class LoginADControl extends HttpServlet {
 
         try {
             String user = request.getParameter("username"); //lấy của netbeans
-            String pass = request.getParameter("password");
-            session.setAttribute("user", user);
-            session.setAttribute("pass", pass); 
+            String pass = request.getParameter("password"); 
             boolean khoa = true;
             
             LoginADIO loginADIO = new LoginADIO(); // khai báo login
@@ -52,7 +50,9 @@ public class LoginADControl extends HttpServlet {
             
             if(a != null && khoa) 
             {
-                response.sendRedirect("admin.jsp?user="+user+"");              
+                response.sendRedirect("admin.jsp?user="+user+"");      
+                session.setAttribute("user", user);
+                session.setAttribute("pass", pass); 
             }   
             else {
               response.sendRedirect("Login.html");

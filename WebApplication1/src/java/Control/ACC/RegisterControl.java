@@ -42,7 +42,7 @@ public class RegisterControl extends HttpServlet {
         Create a = registerio.checkRegister(user,pass,email,phonenumber); // check a có null không
         if(a==null)
         {
-           response.sendRedirect("Login.html");
+           response.sendRedirect("cart.jsp");
         }else{
             response.sendRedirect("register.html");
         }
