@@ -17,7 +17,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
-        <script src="JS/indexjs.js" type="text/javascript"> </script> 
+        <script src="JS/cartjs.js" type="text/javascript"> </script> 
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="CSS/cartcss.css" />
     </head>
@@ -73,7 +73,7 @@
 
         <!--content--> 
             <div id="content"> 
-                <h3> Admin: ${sessionScope.user} </h3>
+                <h3> User: <i> ${sessionScope.user} </i> </h3>
                 <div class="textcontent"> <center> CART </center> </div>                
             </div>
             <div id="content">          
@@ -95,7 +95,7 @@
                     }
  
                     int count = orders.size() -1;
-                    while (count > 0) {
+                    while (count > -1) {
                         item = (entity.Item) orders.get(count);
                         
                         if (request.getParameter("id") != null) {                          
@@ -107,7 +107,7 @@
                         }
                         
                         int tongtien=item.getSoluongmua()* item.getGia();
-                        int num = 0;
+
                         out.print("<tr>");
                         out.print("<td>" + item.getId() + "</td>");
                         out.print("<td>" + item.getTensp()+ "</td>");               
@@ -123,16 +123,22 @@
                 
                 
                 <%
-                    if (request.getParameter("mua") != null && session.getAttribute("user") != null) {
-                        orders.removeAll(orders);              
+                    if (request.getParameter("mua") != null )
+                    {
+                    if  (session.getAttribute("user") != null && session.getAttribute("Orders") != null) 
+                    {
+                        session.removeAttribute("Orders");              
                         session.removeAttribute("user");
                         response.sendRedirect("cart.jsp");
+                    }
                     }
                 %>
                 
                 <center>
-                    <form>
-                    <button type="submit" id="mua" name="mua" onclick="mua()"> Đặt hàng </button> </br> </br>   
+                    <form onsubmit = "return validateForm()">
+                        <button type="submit" id="mua" name="mua"> Đặt hàng </button> </br> </br> 
+                        <input type="hidden" id="user" name="user" value="${sessionScope.user}">
+                        <input type="hidden" id="order" name="order" value="${sessionScope.Orders}">
                     </form>
                     <form action="LoginControl" method="post">
                         <div class="rangelogin">

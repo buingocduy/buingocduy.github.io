@@ -4,6 +4,7 @@
     Author     : BND6699
 --%>
 
+<%@page import="javax.persistence.criteria.Order"%>
 <%@page import="entity.Item"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
@@ -69,6 +70,7 @@
                         item.setTensp(request.getParameter("tensp"));
                         item.setGia(Integer.parseInt(request.getParameter("gia")));
                         item.setSoluongmua(Integer.parseInt(request.getParameter("soluong")));
+                        
                         java.util.ArrayList orders = new ArrayList();
                         if (session.getAttribute("Orders") != null) {
                             orders = ((java.util.ArrayList) session.getAttribute("Orders"));

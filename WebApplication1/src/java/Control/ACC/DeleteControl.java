@@ -42,14 +42,15 @@ public class DeleteControl extends HttpServlet {
         
         if(session.getAttribute("user") != null){
         a = deleteIO.checkDelete(user); // check a có null không
-        }
-        
-        if(a != null)
+        if(a == null)
         {
            response.sendRedirect("admin.jsp");
         }else{
            response.sendRedirect("admin.jsp");
         }
+        }else{
+           response.sendRedirect("Login.html");
+        }  
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

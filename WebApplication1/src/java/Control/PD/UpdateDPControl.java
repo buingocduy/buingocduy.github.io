@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,6 +35,9 @@ public class UpdateDPControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
+        HttpSession session = request.getSession();
+        Product pd = null;
+        
         String id = request.getParameter("id"); //lấy của netbeans
         String tensp = request.getParameter("name"); //lấy của netbeans
         String gia = request.getParameter("price"); //lấy của netbeans
@@ -52,13 +56,18 @@ public class UpdateDPControl extends HttpServlet {
         String gear = request.getParameter("gearbox"); //lấy của netbeans
         
         UpdateDPIO updatedpIO = new UpdateDPIO(); // khai báo register
-        Product a = updatedpIO.checkUpdate(id, tensp, gia, hinhanh, kichthuoc, chieucaoyen, sizebanh, engine, CC, congsuat, CCnhot, CCxang, phanh, gear); // check a có null không
-        if(a==null)
+        
+        if(session.getAttribute("user") != null){
+        pd = updatedpIO.checkUpdate(id, tensp, gia, hinhanh, kichthuoc, chieucaoyen, sizebanh, engine, CC, congsuat, CCnhot, CCxang, phanh, gear); // check a có null không
+        if(pd==null)
         {
            response.sendRedirect("product.jsp");
         }else{
            response.sendRedirect("product.jsp");
         }  
+        }else{
+           response.sendRedirect("Login.html");
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

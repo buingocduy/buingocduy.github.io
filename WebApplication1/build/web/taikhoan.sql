@@ -32,7 +32,7 @@ insert into sanpham values ('3','CB150R SF','85000000','Hinh\CB150RSF.jpg',
 '149,16 cc',N'16,6 mã lực @ 9.000 vòng/phút',N'1.1 lít khi thay nhớt ; 1.3 lít khi rã máy','12L',N'Phanh đĩa;Phanh đĩa',N'6 Cấp')
 
 insert into sanpham values ('4','Air Blade','50000000','Hinh\airblade.jpg',
-'1.870mm x 686mm x 1.112mm','775 mm',N'Trước: 90/80-14M/C 43P Sau: 100/80 -14M/C 48P',N' Xăng, 4 kỳ, 1 xy lanh, làm mát bằng dung dịch',
+'1.870mm x 686mm x 1.112mm','775 mm',N'90/80-14M/C 43P - 100/80 -14M/C 48P',N' Xăng, 4 kỳ, 1 xy lanh, làm mát bằng dung dịch',
 '149,3 cm3',N'9,6kW/8.500 vòng/phút',N' 0,8 khi thay nhớt ; 0,9 khi rã máy','4,4L',N'Phanh đĩa ABS;Tang trống',N'Vô cấp')
 
 insert into sanpham values ('5','Monkey 2020','84999000','Hinh\monkey.jpg',

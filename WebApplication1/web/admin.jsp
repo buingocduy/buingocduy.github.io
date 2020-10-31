@@ -57,7 +57,8 @@
         <div id="body">
         
     <!--content-->
-            <div id="content"> 
+            <div id="content">
+                
                 <h3> Admin: ${sessionScope.user} </h3>
                 <form action="ListACC"> 
                     <%
@@ -76,7 +77,7 @@
                         </thead>
     
                         <tbody>
-                            <%
+                            <%                                
                                 while(rs.next()){
                             %>
                             <tr>                              
