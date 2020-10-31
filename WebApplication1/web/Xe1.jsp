@@ -69,7 +69,9 @@
                         item.setId(Integer.parseInt(request.getParameter("id")));
                         item.setTensp(request.getParameter("tensp"));
                         item.setGia(Integer.parseInt(request.getParameter("gia")));
-                        item.setSoluongmua(Integer.parseInt(request.getParameter("soluong")));
+                        item.setSoluongmua(Integer.parseInt(request.getParameter("soluong")));                      
+                        session.setAttribute("soluong1", item.getSoluongmua());
+                        session.setAttribute("soluong2", item.getSoluongmua());
                         
                         java.util.ArrayList orders = new ArrayList();
                         if (session.getAttribute("Orders") != null) {
