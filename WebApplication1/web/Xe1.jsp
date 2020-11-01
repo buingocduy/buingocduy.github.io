@@ -67,11 +67,10 @@
                         entity.Item item = new entity.Item();
 
                         item.setId(Integer.parseInt(request.getParameter("id")));
+                        item.setHinhanh(request.getParameter("hinhanh"));
                         item.setTensp(request.getParameter("tensp"));
                         item.setGia(Integer.parseInt(request.getParameter("gia")));
                         item.setSoluongmua(Integer.parseInt(request.getParameter("soluong")));                      
-                        session.setAttribute("soluong1", item.getSoluongmua());
-                        session.setAttribute("soluong2", item.getSoluongmua());
                         
                         java.util.ArrayList orders = new ArrayList();
                         if (session.getAttribute("Orders") != null) {
@@ -88,6 +87,7 @@
                         <input type="hidden" name="id" id="id" value="<%=rs.getInt(1)%>"/>
                         <input type="hidden" name="tensp" id="tensp" value="<%=rs.getString(2)%>"/>
                         <input type="hidden" name="gia" id="gia" value="<%=rs.getString(3)%>"/>
+                        <input type="hidden" name="hinhanh" id="hinhanh" value="<%=rs.getString(4)%>"/>
                         Số lượng: <input type="number" name="soluong" id="soluong" value="1"/>
                         <button type="submit" name="add"> Thêm vào giỏ hàng </button>
                     </form>

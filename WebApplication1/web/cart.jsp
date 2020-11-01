@@ -79,7 +79,7 @@
             <div id="content">          
                 <table>
                         <tr>
-                            <th> ID sản phẩm </th>
+                            <th> Sản phẩm </th>
                             <th> Tên sản phẩm </th>
                             <th> Giá </th>
                             <th> Số lượng </th>
@@ -108,12 +108,12 @@
                         
                         int tongtien=item.getSoluongmua()* item.getGia();
                           
-                        out.print("<tr>");
-                        out.print("<td>" + item.getId() + "</td>");
+                        out.print("<tr>"); 
+                        out.print("<td>" + "<image src="+item.getHinhanh()+" with=100; height=100>" + "</td>");
                         out.print("<td>" + item.getTensp()+ "</td>");               
                         out.print("<td>" + item.getGia()+ "</td>");
                         out.print("<td>" + item.getSoluongmua()+ "</td>");
-                        out.print("<td>" + tongtien + "</td>");                      
+                        out.print("<td>" + tongtien + "</td>");                             
                         out.print("<td> <a href='?id="+item.getId()+"'> Delete </a> </td>");             
                         count--;
                         out.print("</tr>"); 
@@ -144,7 +144,7 @@
                     <form action="LoginControl" method="post">
                         <div class="rangelogin">
                             <input type="text" id="username" name="username" placeholder="Username"> <br> <br>
-                            <input type="password" id="password" name="password" placeholder="Password"> <br> <br>                                                                      
+                            <input type="password" id="password" name="password" placeholder="Password"> <br> <br>   
                             <input type="submit" value="Sign in"> <br> <br>
                         </div>
                     </form>                

@@ -12,15 +12,17 @@ package entity;
 public class Item {
     private int id;
     private String tensp;
+    private String hinhanh;
     private int gia;
     private int soluongmua;
 
     public Item() {
     }
 
-    public Item(int id, String tensp, int gia, int soluongmua) {
+    public Item(int id, String tensp, String hinhanh, int gia, int soluongmua) {
         this.id = id;
         this.tensp = tensp;
+        this.hinhanh = hinhanh;
         this.gia = gia;
         this.soluongmua = soluongmua;
     }
@@ -41,6 +43,14 @@ public class Item {
         this.tensp = tensp;
     }
 
+    public String getHinhanh() {
+        return hinhanh;
+    }
+
+    public void setHinhanh(String hinhanh) {
+        this.hinhanh = hinhanh;
+    }
+
     public int getGia() {
         return gia;
     }
@@ -57,5 +67,5 @@ public class Item {
         this.soluongmua = soluongmua;
     }
 
+    
 }
-
