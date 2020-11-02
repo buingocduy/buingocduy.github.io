@@ -6,7 +6,6 @@
 package Control.ACC;
 
 import IO.ACC.UpdateIO;
-import entity.Account;
 import entity.Create;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -39,9 +38,8 @@ public class UpdateControl extends HttpServlet {
         String pass = request.getParameter("password"); //lấy của netbeans
         String email = request.getParameter("email");
         String phonenumber = request.getParameter("phonenumber");
-        String khoa = request.getParameter("key");
         UpdateIO updateIO = new UpdateIO(); // khai báo register
-        Create a = updateIO.checkUpdate(user,pass,email,phonenumber,khoa); // check a có null không
+        Create a = updateIO.checkUpdate(user,pass,email,phonenumber); // check a có null không
         
         if(a==null )
         {  

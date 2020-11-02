@@ -3,9 +3,12 @@ go
 
 Use nguoidung
 go
+Create table admin
+(username char(100),password char(100) primary key(username))
+go 
 
 Create table taikhoan
-(username char(100),password char(100),email char(100),phonenumber char(12),khoa bit, primary key(username))
+(username char(100),password char(100),email char(100),phonenumber char(12), primary key(username))
 go 
 
 Create table sanpham
@@ -14,9 +17,11 @@ kichthuoc char(80),chieucaoyen char(20),sizebanh char(150),engine nvarchar(200),
 CC char(20),congsuat nvarchar(50),CCnhot nvarchar(50),CCxang nvarchar(20),phanh nvarchar(50),gear nvarchar(20),primary key(id))
 go
 
+insert into admin values ('buingocduy','123')
 go
-insert into taikhoan values ('buingocduy','123','buingocduy1999@gmail.com',0904596810,1)
-insert into taikhoan values ('nguyenthanhtuyen','123','thanhtuyen990322@gmail.com',0772767594,0)
+
+insert into taikhoan values ('buingocduy','123','buingocduy1999@gmail.com',0904596810)
+insert into taikhoan values ('nguyenthanhtuyen','123','thanhtuyen990322@gmail.com',0772767594)
 go
 
 insert into sanpham values ('1','Click 2020','85000000','Hinh\vario.jpg',
@@ -47,7 +52,7 @@ go
 select * from taikhoan 
 select * from sanpham 
 
-update taikhoan set password = '123', email = 'abc@gamil.com' ,khoa =  1, phonenumber=0906999599 where username = 'nguyenthanhtuyen'
+update taikhoan set password = '1233', email = 'abc@gamil.com' , phonenumber=0906999599 where username = 'nguyenthanhtuyen'
 
 delete from sanpham where id = 'h4'
 

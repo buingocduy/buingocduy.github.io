@@ -32,18 +32,14 @@
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container"> 
-                <a href="Login.html"> 
                     <p href="hinh.jpg" onclick="hinh()">
-                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
+                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Admin: ${sessionScope.user}  </i> </h1>
                     </p> 
-                </a>
            </div>
           
            <form>
            <ul id="menu"> <!--menu-->
-               <li> <a href="home.html">Home</a> </li> 
                <li> <a href="product.jsp">Product</a> </li>               
-               <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
                <li> <a href="LogoutControl"> Logout </a> </li>
            </ul>
            </form>
@@ -54,7 +50,6 @@
         
     <!--content-->
             <div id="content">  
-                    <h3> Admin: ${sessionScope.user} </h3>
                     <%          
                         DBContext con = new DBContext();;
                         ResultSet rs = con.chondulieu("select * from sanpham "); 
@@ -124,9 +119,7 @@
 <!--footer-->        
         <div id="footer">  
             <div class="textfooter">       
-                    © MOTOWORLD HỒ CHÍ MINH <br>
-                    Địa chỉ: 475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM <br>
-                    SĐT: 0904596810 | Email: MTHCM@Gmail.com       
+                   
             </div>
         </div>
             

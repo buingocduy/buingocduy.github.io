@@ -21,20 +21,19 @@ public class UpdateIO {
         PreparedStatement ps = null; // lấy lệnh từ netbeans qua sql
         ResultSet rs = null; //nhận kết quả trả về
     
-   public Create checkUpdate(String user,String pass,String email,String phonenumber, String khoa){     
+   public Create checkUpdate(String user,String pass,String email,String phonenumber){     
         try {
-            String query = "update taikhoan set password = ?, email = ? , phonenumber = ? , khoa = ? where username = ?";
+            String query = "update taikhoan set password = ?, email = ? , phonenumber = ? where username = ?";
             conn = new DBContext().getConnection();//mở kết nối sql
             ps = conn.prepareStatement(query);//truyền lệnh cho sql
-            ps.setString(5, user); //truyền vào dấu ? taikhoan
+            ps.setString(4, user); //truyền vào dấu ? taikhoan
             ps.setString(1, pass); //truyền vào dấu ? taikhoan
             ps.setString(2, email); //truyền vào dấu ? taikhoan
             ps.setString(3, phonenumber); //truyền vào dấu ? taikhoan
-            ps.setString(4, khoa); //truyền vào dấu ? taikhoan
             rs = ps.executeQuery(); //nhận kết quả trả về
             while (rs.next())//check từng dòng trong sql
             {
-                Create a = new Create(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)); //xét giá trị a
+                Create a = new Create(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)); //xét giá trị a
                 return a;
             }
             

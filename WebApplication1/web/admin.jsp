@@ -37,18 +37,14 @@
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container"> 
-                <a href="Login.html"> 
                     <p href="hinh.jpg" onclick="hinh()">
-                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
+                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Admin: ${sessionScope.user}  </i> </h1> <!--Logo--> 
                     </p> 
-                </a>
            </div>
                    
            <form>
-           <ul id="menu"> <!--menu-->
-               <li> <a href="home.html">Home</a> </li> 
+           <ul id="menu"> <!--menu-->              
                <li> <a href="product.jsp">Product</a> </li>               
-               <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
                <li> <a href="LogoutControl"> Logout </a> </li>
            </ul>
            </form>
@@ -58,10 +54,7 @@
         <div id="body">
         
     <!--content-->
-            <div id="content">
-                
-                <h3> Admin: ${sessionScope.user} </h3>
-                
+            <div id="content">                           
                 <form action="ListACC"> 
                     <%
                         DBContext con = new DBContext();;
@@ -71,10 +64,8 @@
                         <thead>
                             <tr>
                                 <th> Username </th>
-                                <th> Password </th>
                                 <th> Email </th>
-                                <th> Phonenumber</th>
-                                <th> Key </th>                            
+                                <th> Phonenumber</th>                          
                             </tr>
                         </thead>
     
@@ -84,10 +75,8 @@
                             %>
                             <tr>                              
                                 <td> <%=rs.getString(1)%> </td>
-                                <td> <%=rs.getString(2)%> </td>
                                 <td> <%=rs.getString(3)%> </td>
                                 <td> <%=rs.getString(4)%></td>
-                                <td> <%=rs.getBoolean(5)%></td>
                             </tr>   
                             
                             <%
@@ -101,24 +90,17 @@
     <!--sidebar-->        
             <div id="sidebar">               
                 <div class="gridsidebar">  
+                    <div class="rangersidebar">  
+                    <center> <a href="UACC.jsp"> <input type="button" value="Update"> </a> </center> <br>  
+                    </div>                 
+                    
                     <div class="rangersidebar"> 
                     <form action="DeleteControl" method="get" align="center">
                          <br>
                          <input type="text" name="username"  placeholder="Username muốn xóa"> <br> <br>               
                          <input type="submit" value="Delete"> <br>  
                     </form>
-                    </div>             
-                    <div class="rangersidebar">  
-                    <form action="UpdateControl" method="get" align="center">  
-                         <input type="text" name="username" placeholder="Username"> <br> <br>  
-                         <input type="text" name="password" placeholder="Password"> <br> <br>   
-                         <input type="text" name="email" placeholder="Email"> <br> <br>  
-                         <input type="text" name="phonenumber" placeholder="Phonemunber"> <br> <br>     
-                         <input type="text" name="key" placeholder="Key true or false"> <br> <br>  
-                         <input type="submit" value="Update"> <br> 
-                         </form>
-                    </form>   
-                    </div>                            
+                    </div>                             
                 </div>
             </div> 
         </div> 
@@ -126,9 +108,7 @@
 <!--footer-->        
         <div id="footer">  
             <div class="textfooter">       
-                    © MOTOWORLD HỒ CHÍ MINH <br>
-                    Địa chỉ: 475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM <br>
-                    SĐT: 0904596810 | Email: MTHCM@Gmail.com       
+                     
             </div>
         
         </div>           

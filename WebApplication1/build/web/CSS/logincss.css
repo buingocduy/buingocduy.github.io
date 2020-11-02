@@ -36,9 +36,9 @@
         
         #content
         {
-            width: 80%; 
+            width: 100%; 
             height: auto;
-            float: right;      
+            margin: auto;
         }
         
         #sidebar

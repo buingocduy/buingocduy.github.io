@@ -1,27 +1,28 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
-    <head>
-        <title> Moto world </title>
-        <meta charset="UTF-8">
+<html> 
+    <head> 
+        <title> Moto world </title> 
+        <meta charset="UTF-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script> 
-        <script src="JS/register.js" type="text/javascript"> </script> 
+        <script src="JS/Loginjs.js" type="text/javascript"> </script> 
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link rel="stylesheet" href="CSS/registercss.css"/>
-    </head>
-    <body>
+    </head> 
+    
+    <body> 
+        
+<!--header-->        
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
-           <div id="logo-container">  
-                    <p href="hinh.jpg" onclick="hinh()">
-                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
-                    </p>
-           </div>
+           <div id="logo-container"> 
+               <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
+           </div>           
            <ul id="menu"> <!--menu-->
                <li><a href="home.html"> Home</a> </li>
                <li><a href="register.html"> Register</a> </li>
@@ -33,25 +34,19 @@ and open the template in the editor.
 <!--body-->            
         <div id="body">
             
-    <!--content-->
+<!--content-->
             <div id="content"> 
-                <div class="textcontent"> <center> Register </center> </div> <br>          
+                <div class="textcontent"> <center> Login </center> </div> <br>          
                 <div class="rangeregister">
-                    <form method="GET" action="RegisterControl" onsubmit = "return validateForm()">
-                        Username: <input type="text" name="username" id="username"/>
-                        <br><br>
-                        Password: <input type="password" name = "password" id="password"/>
-                        <br><br>
-                        Email: &emsp;&nbsp;&nbsp; <input type="text" name="email" id="email"/>
-                        <br><br>
-                        Phone:&emsp;&nbsp;&nbsp; <input type="text" name = "phonenumber" id="phonenumber"/>
-                        <br><br>
-                        <button type="submit">Register</button>
+                    <form method="GET" action="LoginControl">
+                            Username: <input type="text" id="username" name="username"> <br> <br>
+                            Password: <input type="password" id="password" name="password"> <br> <br>
+                            <input type="submit" value="Sign in"> <br> 
                     </form>
                 </div>  
             </div>
-    
-    <!--sidebar-->        
+
+<!--sidebar-->        
              <div id="sidebar">               
                 <div class="gridsidebar">  
                     <div class="rangersidebar">
@@ -87,5 +82,5 @@ and open the template in the editor.
                     SĐT: 0904596810 | Email: MTHCM@Gmail.com       
             </div>
         </div>
-    </body>    
+    </body>
 </html>

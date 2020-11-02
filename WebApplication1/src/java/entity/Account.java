@@ -12,15 +12,13 @@ package entity;
 public class Account {
     private String username;
     private String password;
-    private boolean khoa;
 
     public Account() {
     }
 
-    public Account(String username, String password, boolean khoa) {
+    public Account(String username, String password) {
         this.username = username;
         this.password = password;
-        this.khoa = khoa;
     }
 
     public String getUsername() {
@@ -37,14 +35,6 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean isKhoa() {
-        return khoa;
-    }
-
-    public void setKhoa(boolean khoa) {
-        this.khoa = khoa;
     }
 
     

@@ -14,17 +14,15 @@ public class Create {
     private String password;
     private String email;
     private String phonenumber;
-    private String khoa;
-
+    
     public Create() {
     }
 
-    public Create(String username, String password, String email, String phonenumber, String khoa) {
+    public Create(String username, String password, String email, String phonenumber) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.phonenumber = phonenumber;
-        this.khoa = khoa;
     }
 
     public String getUsername() {
@@ -59,19 +57,9 @@ public class Create {
         this.phonenumber = phonenumber;
     }
 
-    public String getKhoa() {
-        return khoa;
-    }
-
-    public void setKhoa(String khoa) {
-        this.khoa = khoa;
-    }
-
-    
-
     @Override
     public String toString() {
-        return username + password + email + phonenumber + khoa; 
+        return username + password + email + phonenumber; 
     }
     
     

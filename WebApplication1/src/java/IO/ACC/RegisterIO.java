@@ -22,7 +22,7 @@ public class RegisterIO {
     
     public Create checkRegister(String user, String pass ,String email, String phonenumber){     
         try {
-            String query = "insert into taikhoan values (?,?,?,?,0)";
+            String query = "insert into taikhoan values (?,?,?,?)";
             conn = new DBContext().getConnection();//mở kết nối sql
             ps = conn.prepareStatement(query);//truyền lệnh cho sql
             ps.setString(1, user); //truyền vào dấu ? taikhoan
@@ -32,7 +32,7 @@ public class RegisterIO {
             rs = ps.executeQuery(); //nhận kết quả trả về
             while (rs.next())//check từng dòng trong sql
             {
-                Create a = new Create(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)); //xét giá trị a
+                Create a = new Create(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)); //xét giá trị a
                 return a;
             }
             

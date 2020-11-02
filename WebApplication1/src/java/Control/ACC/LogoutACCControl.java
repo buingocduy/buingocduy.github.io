@@ -5,10 +5,10 @@
  */
 package Control.ACC;
 
-import IO.ACC.LoginADIO;
-import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author BND6699
  */
-@WebServlet(name = "LoginADControl", urlPatterns = {"/LoginADControl"})
-public class LoginADControl extends HttpServlet {
+@WebServlet(name = "LogoutACCControl", urlPatterns = {"/LogoutACCControl"})
+public class LogoutACCControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,30 +35,16 @@ public class LoginADControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-        PrintWriter out = response.getWriter();
-
-        HttpSession session = request.getSession();
-
-        try {
-            String user = request.getParameter("username"); //lấy của netbeans
-            String pass = request.getParameter("password"); 
+      PrintWriter out = response.getWriter();
             
-            LoginADIO loginADIO = new LoginADIO(); // khai báo login
-            Account a = loginADIO.checkLogin(user,pass); // check a có null không
-            
-            if(a != null) 
-            {
-                response.sendRedirect("admin.jsp");      
-                session.setAttribute("user", user);
-                session.setAttribute("pass", pass); 
-            }   
-            else {
-              response.sendRedirect("Login.html");
-            }
-        } finally {
-            out.close();
-        }
+           entity.Item item = new entity.Item();
+           java.util.ArrayList orders = new ArrayList();
+           
+           HttpSession session = request.getSession(false);
+           session.removeAttribute("user");
+           session.removeAttribute("Orders");
+           
+           response.sendRedirect("cart.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

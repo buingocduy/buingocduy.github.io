@@ -26,16 +26,12 @@
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container"> 
-                <a href="Login.html"> 
-                    <p href="hinh.jpg" onclick="hinh()">
-                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
-                    </p> 
-                </a>
+                <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
            </div>
            <ul id="menu"> <!--menu-->
-               <li> <a href="home.html">Home</a> </li> 
-               <li> <a href="honda.jsp" onclick="hinh()">About</a> </li>
+               <li><a href="home.html"> Home</a> </li>
                <li><a href="register.html"> Register</a> </li>
+               <li> <a href="LoginUSER.html"> Login </a> </li>
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
            </ul>
         </div>
@@ -73,7 +69,7 @@
 
         <!--content--> 
             <div id="content"> 
-                <h3> User: <i> ${sessionScope.user} </i> </h3>
+                <h3> User: <i> ${sessionScope.user} </i> <a href="LogoutACCControl"> Logout </a> </h3>
                 <div class="textcontent"> <center> CART </center> </div>                
             </div>
             <div id="content">          
@@ -129,7 +125,6 @@
                         if  (session.getAttribute("user") != null && session.getAttribute("Orders") != null) 
                         {
                                 session.removeAttribute("Orders");              
-                                session.removeAttribute("user");
                                 response.sendRedirect("cart.jsp");
                         }
                     }
@@ -140,14 +135,7 @@
                         <button type="submit" id="mua" name="mua"> Đặt hàng </button> </br> </br> 
                         <input type="hidden" id="user" name="user" value="${sessionScope.user}">
                         <input type="hidden" id="order" name="order" value="${sessionScope.Orders}">                    
-                    </form>
-                    <form action="LoginControl" method="post">
-                        <div class="rangelogin">
-                            <input type="text" id="username" name="username" placeholder="Username"> <br> <br>
-                            <input type="password" id="password" name="password" placeholder="Password"> <br> <br>   
-                            <input type="submit" value="Sign in"> <br> <br>
-                        </div>
-                    </form>                
+                    </form>                  
                 </center>
              </div>             
         </div>   

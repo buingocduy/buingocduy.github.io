@@ -25,15 +25,14 @@
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container"> 
-                <a href="Login.html"> 
                     <p href="hinh.jpg" onclick="hinh()">
                         <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
                     </p> 
-                </a>
            </div>
            <ul id="menu"> <!--menu-->
-               <li> <a href="home.html">Home</a> </li> 
-               <li> <a href="Xe1.jsp" onclick="hinh()">About</a> </li> 
+               <li><a href="home.html"> Home</a> </li>
+               <li><a href="register.html"> Register</a> </li>
+               <li> <a href="LoginUSER.html"> Login </a> </li>
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
            </ul>
         </div>

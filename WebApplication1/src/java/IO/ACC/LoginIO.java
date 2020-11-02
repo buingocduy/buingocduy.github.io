@@ -30,7 +30,7 @@ public class LoginIO {
             rs = ps.executeQuery(); //nhận kết quả trả về
             while (rs.next())//check từng dòng trong sql
             {
-                Account a = new Account(rs.getString(1),rs.getString(2),rs.getBoolean(3)); //xét giá trị a
+                Account a = new Account(rs.getString(1),rs.getString(2)); //xét giá trị a
                 return a; //sai thì trả null
             }
         
