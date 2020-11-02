@@ -50,7 +50,7 @@ public class LoginADControl extends HttpServlet {
             
             if(a != null && khoa) 
             {
-                response.sendRedirect("admin.jsp?user="+user+"");      
+                response.sendRedirect("admin.jsp");      
                 session.setAttribute("user", user);
                 session.setAttribute("pass", pass); 
             }   

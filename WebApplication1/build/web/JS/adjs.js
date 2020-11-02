@@ -4,5 +4,14 @@ function hinh()
 }
 
 
+function AutoRefresh( t ) 
+{
+   var user = document.getElementById("user").value;  
+   
+   if(user === null)
+   {
+   setTimeout("location.reload(true);", t);
+   }
+}
 
 

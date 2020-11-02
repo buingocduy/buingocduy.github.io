@@ -22,12 +22,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+ 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Moto world </title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
-        <script src="JS/ad.js" type="text/javascript"> </script> 
+        <script src="JS/cartjs.js" type="text/javascript"> </script> 
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="CSS/adcss.css" />
     </head>
@@ -60,6 +61,7 @@
             <div id="content">
                 
                 <h3> Admin: ${sessionScope.user} </h3>
+                
                 <form action="ListACC"> 
                     <%
                         DBContext con = new DBContext();;
