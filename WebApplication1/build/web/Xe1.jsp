@@ -40,8 +40,8 @@
 <!--body-->            
         <div id="body">
             
-    <!--content-->             
-            <div id="content">
+    <!--sidebar-->             
+            <div id="sidebar">
                    <%
                         String id = request.getParameter("id");
                         DBContext con = new DBContext();;
@@ -51,14 +51,18 @@
                    <%
                       while(rs.next()){
                    %>
-                <div class="textcontent"> <center> <%=rs.getString(2)%> </center> </div>
-                
+
                 <div class="leftrangecontent">
-                    <img src=<%=rs.getString(4)%> height="375" width="350" alt="Khong tai duoc"> 
+                    <img src=<%=rs.getString(4)%> height="375" width="100%" alt="Khong tai duoc"> 
                 </div>
-                
+            </div>
+    <!--content-->           
+    
+            <div id="content">
+             
                 <div class="rightrangecontent">
-                    <h2> Giá: <%=rs.getString(3)%> VNĐ</h2>
+                    <div class="textcontent"> <center> <%=rs.getString(2)%> </center> </div>
+                    <h2> Giá: <%=rs.getString(3)%>.000.000 VNĐ</h2>
                     
                     
                     <%
@@ -88,17 +92,15 @@
                         <input type="hidden" name="gia" id="gia" value="<%=rs.getString(3)%>"/>
                         <input type="hidden" name="hinhanh" id="hinhanh" value="<%=rs.getString(4)%>"/>
                         Số lượng: <input type="number" name="soluong" id="soluong" value="1"/>
-                        <button type="submit" name="add"> Thêm vào giỏ hàng </button>
+                        <button type="submit" name="add" class="fa fa-shopping-cart"> </button>
                     </form>
                         
                         
                 </div>
                 
+                <div class="rightrangecontent">  
+                    <p style="color:red; font-size: 22px;"> Thông số kỹ thuật </p>
                 <table>
-                    <thead>
-                        <th> Thông số kỹ thuật </th>
-                    </thead>
-                    
                     <tbody>
                         <tr> 
                             <td> Dài x Rộng x Cao : <%=rs.getString(5)%> </td> 
@@ -122,6 +124,7 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
                    <%
                         }
                    %> 

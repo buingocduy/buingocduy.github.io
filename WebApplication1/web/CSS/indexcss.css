@@ -1,7 +1,8 @@
-        html, body 
+        body 
         { 
+            height: 100%; 
             width: 100%; 
-            margin: 0; 
+            margin: auto; 
             padding: 0; 
             font-family: 'Helvetica', 'Arial'; /* FONT CHỮ */
         }
@@ -29,13 +30,13 @@
             width: 100%; 
             margin: 0 ; 
             padding: 0 ; 
-            background: white;  
+            background: white;   
             border-top: 1em solid white;
         }
         
         #content
         {   
-            width: 80%; 
+            width: 75%; 
             float: right;             
         }
         
@@ -106,26 +107,34 @@
         /*content*/
         .grid 
         {
+            overflow: auto;
             display: grid;
             padding: 50px 50px 50px 60px;
-            grid-template-columns: 70px 70px 70px;            
-            grid-column-gap: 300px;
+            grid-template-columns: 50px 50px 50px;            
+            grid-column-gap: 230px;
             grid-row-gap: 5em;
         }
         
         .rangecontent 
         {          
            border: 2px solid black;
-           margin: auto;   
+           margin: auto;
+           width: 300px;
+           height: auto;
+           max-width: 400%;
+           max-height: 100%;
            padding-top: 20px;
-           padding-left: 20px;
+           padding-left: 30px;
+           padding-bottom: 20px;
         }
         
         .bottomrangecontent
         {   
-            width: 180px;
+            padding-right: 50px;
+            border:  0px solid black;
+            max-width: 100%;
             background:white  ;
-            padding: 2em;
+            padding: 1em;
         }
         
         .textcontent
@@ -193,19 +202,14 @@
         {
             text-align:  center;
         }
-        
-        .ranger1
-        {
-          border: 2px solid black;  
-          height: auto; 
-          width: auto;
-        }
-        
+       
         .ranger2
         {  
+           margin: auto;
+           padding-top: 10px; 
            border: 2px solid black;
-           height: auto;
-           width: auto;
+           max-height: 80%; 
+           max-width: 50%;
         }
         
         a

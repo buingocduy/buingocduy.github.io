@@ -107,9 +107,9 @@
                         out.print("<tr>"); 
                         out.print("<td>" + "<image src="+item.getHinhanh()+" with=100; height=100>" + "</td>");
                         out.print("<td>" + item.getTensp()+ "</td>");               
-                        out.print("<td>" + item.getGia()+ "</td>");
+                        out.print("<td>" + item.getGia()+".000.000"+ "</td>");
                         out.print("<td>" + item.getSoluongmua()+ "</td>");
-                        out.print("<td>" + tongtien + "</td>");                             
+                        out.print("<td>" + tongtien +".000.000"+ "</td>");                             
                         out.print("<td> <a href='?id="+item.getId()+"'> Delete </a> </td>");             
                         count--;
                         out.print("</tr>"); 

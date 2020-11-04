@@ -36,18 +36,18 @@
         
         #content
         {
-            width: 100%; 
+            width: 60%; 
+            height: 100% ; 
             float: right;
             overflow: auto;
         }
         
         #sidebar
         {
-            width: 19%;
+            width: 30%;
             height: 100% ; 
             float: left;
             overflow: auto;
-            border-right: 3px solid GRAY;
             padding: 10px 0 0 10px;
         }
         
@@ -110,34 +110,22 @@
         .leftrangecontent 
         {          
            border: 3px solid black;
-           margin: 30px;
-           padding-left: 50px; 
-           width: 30%;
-           float: left;
+           margin: auto; 
+           max-width: 80%;
         }
         
         .rightrangecontent
         {
-           border: 0px solid black;
-           margin: 30px;
+           margin: auto;
            padding-top: 15px;
-           padding-right: 170px; 
-           width: 40%;
-           float: right; 
+           padding-right: 100px; 
+           width: 80%;
         }
          
         table
         {
             border: 0px solid black;
             padding: 0px;  
-        }
-        
-        thead,th
-        {
-            text-align: center;
-            font-size: 22px;
-            color: red;
-            
         }
               
         tr,td
@@ -158,8 +146,7 @@
             color: RED;
             font-size: 30pt;
             background: bisque;
-            width: 50%;
-            margin: auto; 
+            width: 60%;
             font-weight: bold;
         }
 

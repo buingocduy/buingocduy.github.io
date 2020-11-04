@@ -12,14 +12,15 @@ and open the template in the editor.
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script> 
         <script src="JS/indexjs.js" type="text/javascript"> </script> 
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
-        <link rel="stylesheet" href="CSS/indexcss.css"/>
+        <link rel="stylesheet" href="CSS/homecss.css"/>
     </head>
 <body>
-        <div id="header"> 
-           <div class="top-bar"> </div> <!--thanh do tren-->    
+        <div id="header">          
+           <div class="top-bar"> </div> <!--thanh do tren-->   
            <div id="logo-container">                
                 <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
            </div>
+
            <ul id="menu"> <!--menu-->
                <li><a href="home.html"> Home</a> </li>
                <li><a href="register.html"> Register</a> </li>
@@ -33,76 +34,60 @@ and open the template in the editor.
             
     <!--content-->
             <div id="content"> 
-                <div style="padding-top: 50px;">
-                <table>
-                    <tr>
-                        <td>  
-                            <div class="ranger1"> 
-                                <img src="Hinh/new1.jpg"  height="300" width="auto" alt="Khong tai duoc"> <br>
-                                <a href="#" onclick="tin()"> 
-                                    <span class="text"> 
-                                        Giá xe mới nhất tháng 10/2020 tại đại lý Honda 
-                                    </span>  
-                                </a>    
-                            </div> 
-                        </td>
-                        <td>
                             <table>
-                                <tr>                                   
-                                    <td> 
+                                <tr>
+                                    <td>  
                                         <div class="ranger2"> 
-                                            <img src="Hinh/new2.jpg" height="135" width="auto" alt="Khong tai duoc"> <br>
+                                            <img src="Hinh/new1.jpg"  height="150" width="70%" alt="Khong tai duoc"> <br>
+                                            <a href="#" onclick="tin()"> 
+                                                <span class="text"> 
+                                                    Giá xe mới nhất tháng 10/2020 tại đại lý Honda 
+                                                </span>  
+                                            </a>    
+                                        </div> <br>
+                    
+                                        <div class="ranger2"> 
+                                            <img src="Hinh/new2.jpg" height="150" width="70%" alt="Khong tai duoc"> <br>
                                             <a href="#" onclick="tin()"> 
                                                 <span class="text"> 
                                                     Giá xe mới nhất tháng 10/2020 tại đại lý Suzuki
                                                 </span>  
                                             </a>    
-                                        </div>                              
-                                    </td> 
-                                </tr>
-                                <tr>
-                                    <td> 
+                                        </div> <br>
+                                        
                                         <div class="ranger2"> 
-                                            <img src="Hinh/new3.jpg"  height="135" width="auto" alt="Khong tai duoc"> <br>
+                                            <img src="Hinh/new3.jpg"  height="150" width="70%" alt="Khong tai duoc"> <br>
                                             <a href="#" onclick="tin()"> 
                                                 <span class="text"> 
                                                     Giá xe mới nhất tháng 10/2020 tại đại lý Yamaha 
                                                 </span>  
                                             </a>    
                                         </div> 
-                                    </td> 
+                                    </td>              
                                 </tr>
-                            </table>
-                        </td>	
-                    </tr>
-                </table>   
+                            </table>   
                 </div>
             </div>
     
     <!--sidebar-->        
             <div id="sidebar">               
                 <div class="gridsidebar">  
-                    <div class="rangersidebar">
-                        <div class="thumbnail">
-                        <a href="honda.jsp">
-                            <img src="Hinh/honda.jpg"  height="110" width="220" alt="Khong tai duoc">
-                        </a>
-                        </div>
-                    </div>   
-                    <div class="rangersidebar">
-                        <div class="thumbnail">
+                        <a href="honda.jsp">   
+                            <div class="thumbnail">
+                            <img src="Hinh/honda.jpg"  height="150" width="80%"  style="border: 1px solid red" alt="Khong tai duoc">
+                            </div>
+                        </a>                        
                         <a href="#">
-                        <img src="Hinh/ya.jpg"  height="110" width="220" alt="Khong tai duoc" onclick="hinh()">
+                            <div class="thumbnail">
+                            <img src="Hinh/ya.jpg"  height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()">                      
+                            </div>
                         </a>
-                        </div>
-                    </div>             
-                    <div class="rangersidebar">
-                        <div class="thumbnail">
+
                         <a href="#">
-                        <img src="Hinh/su.jpg" height="110" width="220" alt="Khong tai duoc" onclick="hinh()"> 
-                        </a>
-                        </div>
-                    </div>                            
+                            <div class="thumbnail">
+                            <img src="Hinh/su.jpg" height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()"> 
+                            </div> 
+                        </a>                               
                 </div>
             </div> 
         </div> 

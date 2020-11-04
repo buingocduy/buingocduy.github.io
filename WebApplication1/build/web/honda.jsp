@@ -51,16 +51,16 @@
                     <div class="rangecontent">                     
                         <a href="Xe1.jsp?id=<%=rx.getString(1)%>">
                             <div class="thumbnail">
-                            <img src=<%=rx.getString(4)%> height="200" width="200" alt="Khong tai duoc"> 
+                            <img src=<%=rx.getString(4)%> height="200" width="80%" alt="Khong tai duoc"> 
                             </div>
                         </a>    
-                        <div class="bottomrangecontent">
+                     
                             <p class="texttitle"> <%=rx.getString(2)%> </p> 
-                            <p class="textprice"> <%=rx.getString(3)%> VNĐ</p>
+                            <p class="textprice"> <%=rx.getString(3)%>.000.000 VNĐ</p>
                             <a href="Xe1.jsp?id=<%=rx.getString(1)%>">
                             <input type="button" name="1" value="Xem thông tin chi tiết"> 
                             </a>
-                        </div>
+                       
                     </div>
                     <%
                         }
@@ -70,21 +70,18 @@
                 
     <!--sidebar-->        
             <div id="sidebar">               
-                <div class="gridsidebar">  
-                    <div class="rangersidebar">
-                        <div class="thumbnail">
+                <div class="gridsidebar">                                        
                         <a href="#">
-                        <img src="Hinh/ya.jpg"  height="110" width="220" alt="Khong tai duoc" onclick="hinh()"> 
+                            <div class="thumbnail">
+                            <img src="Hinh/ya.jpg"  height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()">                      
+                            </div>
                         </a>
-                        </div>
-                    </div>             
-                    <div class="rangersidebar">  
-                        <div class="thumbnail">
+
                         <a href="#">
-                        <img src="Hinh/su.jpg" height="110" width="220" alt="Khong tai duoc" onclick="hinh()"> 
-                        </a>
-                        </div>
-                    </div>                            
+                            <div class="thumbnail">
+                            <img src="Hinh/su.jpg" height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()"> 
+                            </div> 
+                        </a>                               
                 </div>
             </div> 
         </div> 

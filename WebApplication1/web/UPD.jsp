@@ -57,12 +57,9 @@
                     <%
                         while(rs.next()){
                     %>  
-                    <div class="grid">  
-                        <table>
-                            <tr>
-                                <td> <img src=<%=rs.getString(4)%> height=200 width=300 alt="Khong tai duoc"> </td>
-                                <td> 
-                        <div style=" border: 2px solid black; text-align: center; width: 400px; padding: 20px; height: 300px; overflow:  auto;"> 
+                    <div class="grid">     
+                        <img src=<%=rs.getString(4)%> height="80%" width="400%" style="padding-top: 30px" alt="Khong tai duoc">
+                        <div style=" border: 2px solid black; text-align: center; width: 500px; padding: 20px; height: 300px; overflow:  auto;"> 
                         <form action="UpdateDPControl" method="get" align="center">
                             <div style=" color: red; font-size: 14pt; font-weight: bold;">
                             ID <br>
@@ -97,9 +94,6 @@
                             </div> 
                         </form>    
                         </div>
-                                </td>
-                            </tr>
-                        </table>
                     </div>
             </div>  
     

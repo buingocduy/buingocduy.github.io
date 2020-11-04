@@ -1,7 +1,8 @@
-        html, body 
+        body 
         { 
+            height: 100%; 
             width: 100%; 
-            margin: 0; 
+            margin: auto; 
             padding: 0; 
             font-family: 'Helvetica', 'Arial'; /* FONT CHỮ */
         }
@@ -109,6 +110,7 @@
         /*content*/
         .grid 
         {
+            overflow: auto;
             display: grid;
             padding: 50px 50px 50px 60px;
             grid-template-columns: 70px 70px 70px;            

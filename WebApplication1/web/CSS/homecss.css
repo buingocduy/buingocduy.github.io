@@ -14,9 +14,9 @@
             background: RED;          
             height: 20px;
         }
- 
+               
         /*Nen menu*/
-         #header 
+        #header 
         { 
             width: 100%; 
             background: white; 
@@ -30,24 +30,21 @@
             width: 100%; 
             margin: 0 ; 
             padding: 0 ; 
-            background: white; 
-            overflow: auto;  
+            background: white;   
             border-top: 1em solid white;
         }
         
         #content
-        {
-            width: 100%; 
-            float: right;
-            overflow: auto; 
+        {   
+            width: 75%; 
+            float: right;             
         }
         
         #sidebar
         {
             width: 19%;
             height: 100% ; 
-            float: left;
-            overflow: auto;
+            float: left;          
             border-right: 3px solid GRAY;
             padding: 10px 0 0 10px;
         }
@@ -64,12 +61,14 @@
         /*Logo*/
         .logo-icon 
         { 
+            max-width: 20%;
             color: BLACK; 
             font-size: 50pt; 
             float: left;
         }
         h1 
         { 
+            max-width: 20%;
             float: left; 
             color: BLACK;
             margin: 21px 0 0 25px;
@@ -78,6 +77,7 @@
         /*Menu*/
         #menu 
         { 
+            max-width: 80%;
             margin: 20px; 
             float: right; 
             font-size: 20pt;
@@ -110,7 +110,6 @@
         /*content*/
         .grid 
         {
-            overflow: auto;
             display: grid;
             padding: 50px 50px 50px 60px;
             grid-template-columns: 70px 70px 70px;            
@@ -122,10 +121,13 @@
         {          
            border: 2px solid black;
            margin: auto;   
+           padding-top: 20px;
+           padding-left: 20px;
         }
         
         .bottomrangecontent
-        {
+        {   
+            width: 180px;
             background:white  ;
             padding: 2em;
         }
@@ -134,7 +136,7 @@
         {
             color: RED;
             font-size: 30pt;
-            background: #463C3C;
+            background: bisque;
             width: 50%;
             margin: auto; 
             font-weight: bold;
@@ -168,71 +170,64 @@
         .gridsidebar
         {
             display: grid;
-            grid-row-gap: 3em;
+            grid-row-gap: 4em;
             float: left;
         }
-        
-         .gridsidebar
-        {
-            display: grid;
-            grid-row-gap: 3em;
-            float: left;
-        }
-        
-        .rangersidebar1
-        {
-           width: auto;
-           height: auto;
-           border: 1px solid black;
-           font-weight: bold;
-           padding-top: 20px;
-           padding-bottom: 10px;
-        }
-        
-         .rangersidebar2
-        {
-           width: 220px;
-           height: 200px;
-           overflow: auto;
-           border: 1px solid black;
-           font-weight: bold;
-           padding-top: 10px;
-           padding-bottom: 10px;
-        }
-   
+                
         .textfooter
         {
            text-align: center; 
            font-size: 10pt;
-           font-weight: bold;    
+           font-weight: bold;
         }
-          
-        table 
+        
+        table
+        { 
+           max-width: 100%;
+        }
+        
+        tr,td
         {
-            padding-top: 0;
-            width: auto;
-            border-spacing: 100px 0;
+            max-width: 100%;
+            text-align:  center;
         }
-        tr td 
+                
+        .ranger2
+        {  
+           margin: auto;
+           padding-top: 10px; 
+           border: 2px solid black;
+           max-height: 80%; 
+           max-width: 50%;
+        }
+        
+        a
         {
-           text-align: center;
-           padding-right: 20px;
-           padding-left: 20px;
-           padding-right: 20px;
-           margin: 100px;
+           text-decoration: none; 
         }
         
-       .grid 
+        .text
         {
-            border: 2px solid gray;
-            display: grid;
-            padding: 50px 50px 50px 60px;
-            grid-template-columns: 70px 70px 70px;            
-            grid-column-gap: 300px;
-            grid-row-gap: 5em;
+            padding-left: 10px;
+            padding-right: 10px;
+            color: red; 
+            font-weight: bold;       
         }
         
+        .text:hover
+        {         
+            color: black; 
+        }
         
-            
+      
+        .thumbnail img:hover 
+        {
+            transition-duration: 0.5s;
+            overflow: hidden;
+            transform: scale(1.2);
+        }
+
         
+        
+       
 
