@@ -38,7 +38,7 @@ public class LogoutControl extends HttpServlet {
         PrintWriter out = response.getWriter();
 
            HttpSession session = request.getSession(false);
-           session.removeAttribute("user");
+           session.removeAttribute("user1");
            response.sendRedirect("Login.html");
   
     }

@@ -30,18 +30,13 @@
                     </p> 
            </div>
            <ul id="menu"> <!--menu-->
-               <li><a href="home.html"> Home</a> </li>
-               <li><a href="register.html"> Register</a> </li>
-               <li> <a href="LoginUSER.html"> Login </a> </li>
+               <li><a href="home.html">Trang chủ</a> </li>
+               <li><a href="register.html">Đăng ký</a> </li>
+               <li> <a href="LoginUSER.html">Đăng nhập</a> </li>
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
            </ul>
         </div>
- 
-<!--body-->            
-        <div id="body">
-            
-    <!--sidebar-->             
-            <div id="sidebar">
+         
                    <%
                         String id = request.getParameter("id");
                         DBContext con = new DBContext();;
@@ -50,19 +45,24 @@
                    
                    <%
                       while(rs.next()){
-                   %>
+                   %> 
+<!--body-->            
+        <div id="body">
+            <div class="textcontent"> <center> <%=rs.getString(2)%> </center> </div>    
+    <!--sidebar             
+            <div id="sidebar">                 
 
                 <div class="leftrangecontent">
-                    <img src=<%=rs.getString(4)%> height="375" width="100%" alt="Khong tai duoc"> 
+                    <img src=<%=rs.getString(4)%> height="80%" width="100%" alt="Khong tai duoc"> 
                 </div>
-            </div>
+            </div>-->
     <!--content-->           
     
-            <div id="content">
-             
+            <div id="content">               
                 <div class="rightrangecontent">
-                    <div class="textcontent"> <center> <%=rs.getString(2)%> </center> </div>
-                    <h2> Giá: <%=rs.getString(3)%>.000.000 VNĐ</h2>
+                    
+                    
+                    <center> <img src=<%=rs.getString(4)%> height="100%" width-max="100%" alt="Khong tai duoc">
                     
                     
                     <%
@@ -86,6 +86,7 @@
                     }
                     %>
                     
+                    <h2> Giá: <%=rs.getString(3)%>.000.000 VNĐ</h2>
                     <form onsubmit = "return validateForm()">
                         <input type="hidden" name="id" id="id" value="<%=rs.getInt(1)%>"/>
                         <input type="hidden" name="tensp" id="tensp" value="<%=rs.getString(2)%>"/>
@@ -94,12 +95,9 @@
                         Số lượng: <input type="number" name="soluong" id="soluong" value="1"/>
                         <button type="submit" name="add" class="fa fa-shopping-cart"> </button>
                     </form>
-                        
-                        
-                </div>
-                
-                <div class="rightrangecontent">  
-                    <p style="color:red; font-size: 22px;"> Thông số kỹ thuật </p>
+                      
+                     <h2 style="color:red"> Thông số kỹ thuật </h2>
+                     
                 <table>
                     <tbody>
                         <tr> 
@@ -125,6 +123,7 @@
                     </tbody>
                 </table>
                 </div>
+                        </center>  
                    <%
                         }
                    %> 

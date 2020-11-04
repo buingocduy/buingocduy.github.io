@@ -57,7 +57,7 @@ public class InsertDPControl extends HttpServlet {
         
         InsertDPIO insertdpIO = new InsertDPIO(); // khai báo register
         
-        if(session.getAttribute("user") != null){
+        if(session.getAttribute("user1") != null){
         pd = insertdpIO.checkInsert(id, tensp, gia, hinhanh, kichthuoc, chieucaoyen, sizebanh, engine, CC, congsuat, CCnhot, CCxang, phanh, gear); // check a có null không
         if(pd==null)
         {

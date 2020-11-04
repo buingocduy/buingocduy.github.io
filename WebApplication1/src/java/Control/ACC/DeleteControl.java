@@ -40,7 +40,7 @@ public class DeleteControl extends HttpServlet {
         DeleteIO deleteIO = new DeleteIO(); // khai báo register
         Account a = null;
         
-        if(session.getAttribute("user") != null){
+        if(session.getAttribute("user1") != null){
         a = deleteIO.checkDelete(user); // check a có null không
         if(a == null)
         {

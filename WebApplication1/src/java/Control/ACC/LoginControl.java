@@ -49,12 +49,11 @@ public class LoginControl extends HttpServlet {
       
             if(a != null) 
             {
-                response.sendRedirect("cart.jsp"); 
                 session.setAttribute("user", user);
                 session.setAttribute("pass", pass); 
-            
-            }else{
                 response.sendRedirect("cart.jsp");  
+            }else{
+                response.sendRedirect("LoginUSER.html");  
             }
         } finally {
             out.close();

@@ -50,8 +50,8 @@ public class LoginADControl extends HttpServlet {
             if(a != null) 
             {
                 response.sendRedirect("admin.jsp");      
-                session.setAttribute("user", user);
-                session.setAttribute("pass", pass); 
+                session.setAttribute("user1", user);
+                session.setAttribute("pass1", pass); 
             }   
             else {
               response.sendRedirect("Login.html");

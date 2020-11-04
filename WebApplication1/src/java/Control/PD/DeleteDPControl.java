@@ -40,7 +40,7 @@ public class DeleteDPControl extends HttpServlet {
         DeleteDPIO deletedpIO = new DeleteDPIO(); // khai báo register
         Product pd = null;
         
-        if(session.getAttribute("user") != null){
+        if(session.getAttribute("user1") != null){
         pd = deletedpIO.checkDelete(id); // check a có null không
         if(pd == null)
         {

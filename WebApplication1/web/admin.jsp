@@ -4,7 +4,7 @@
     Author     : BND6699
 --%>
                 <%
-                    if(session.getAttribute("user") == null){
+                    if(session.getAttribute("user1") == null){
                         response.sendRedirect("Login.html");
                     }
                 %>  
@@ -38,7 +38,7 @@
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container"> 
                     <p href="hinh.jpg" onclick="hinh()">
-                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Admin: ${sessionScope.user}  </i> </h1> <!--Logo--> 
+                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Admin: ${sessionScope.user1}  </i> </h1> <!--Logo--> 
                     </p> 
            </div>
                    

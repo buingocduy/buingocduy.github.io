@@ -68,19 +68,21 @@
         }
         h1 
         { 
+            float: left;
             max-width: 20%;
-            float: left; 
             color: BLACK;
             margin: 21px 0 0 25px;
         }
 
         /*Menu*/
         #menu 
-        { 
+        {      
+            padding-top: 10px;
+            float: right;
             max-width: 80%;
-            margin: 20px; 
-            float: right; 
-            font-size: 20pt;
+            margin: 20px;     
+            font-size: 15pt;
+            display: inline; /* chinh thanh chieu ngang */
         }
 
         #menu li 
@@ -92,8 +94,8 @@
         { 
             text-decoration: none; /* bo gach duoi */ 
             color: red; 
-            padding: 0 16px 0 10px; /* khoang cach */ 
-            margin: 0; 
+            padding: 0 10px 0 10px; /* khoang cach */ 
+            margin: auto; 
             border-right: 4px solid Gray; /* duong gach */
         }
 

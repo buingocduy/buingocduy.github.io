@@ -27,9 +27,9 @@
                     </p> 
            </div>           
            <ul id="menu"> <!--menu-->
-               <li><a href="home.html"> Home</a> </li>
-               <li><a href="register.html"> Register</a> </li>
-               <li> <a href="LoginUSER.html"> Login </a> </li>
+               <li><a href="home.html">Trang chủ</a> </li>
+               <li><a href="register.html">Đăng ký</a> </li>
+               <li> <a href="LoginUSER.html">Đăng nhập</a> </li>
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
            </ul>
         </div>

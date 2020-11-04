@@ -23,9 +23,9 @@ and open the template in the editor.
                     </p>
            </div>
            <ul id="menu"> <!--menu-->
-               <li><a href="home.html"> Home</a> </li>
-               <li><a href="register.html"> Register</a> </li>
-               <li> <a href="LoginUSER.html"> Login </a> </li>
+               <li><a href="home.html">Trang chủ</a> </li>
+               <li><a href="register.html">Đăng ký</a> </li>
+               <li> <a href="LoginUSER.html">Đăng nhập</a> </li>
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
            </ul>
         </div>
@@ -35,46 +35,41 @@ and open the template in the editor.
             
     <!--content-->
             <div id="content"> 
-                <div class="textcontent"> <center> Register </center> </div> <br>          
+                <div class="textcontent"> <center> Đăng ký </center> </div> <br>          
                 <div class="rangeregister">
                     <form method="GET" action="RegisterControl" onsubmit = "return validateForm()">
-                        Username: <input type="text" name="username" id="username"/>
+                        Tài khoản: <input type="text" name="username" id="username"/>
                         <br><br>
-                        Password: <input type="password" name = "password" id="password"/>
+                        Mật khẩu: <input type="password" name = "password" id="password"/>
                         <br><br>
-                        Email: &emsp;&nbsp;&nbsp; <input type="text" name="email" id="email"/>
+                        Email: &emsp;&nbsp; <input type="text" name="email" id="email"/>
                         <br><br>
-                        Phone:&emsp;&nbsp;&nbsp; <input type="text" name = "phonenumber" id="phonenumber"/>
+                        Phone: &emsp; <input type="text" name = "phonenumber" id="phonenumber"/>
                         <br><br>
-                        <button type="submit">Register</button>
+                        <button type="submit">Đăng ký</button>
                     </form>
                 </div>  
             </div>
     
     <!--sidebar-->        
-             <div id="sidebar">               
+            <div id="sidebar">               
                 <div class="gridsidebar">  
-                    <div class="rangersidebar">
-                        <div class="thumbnail">
-                        <a href="honda.jsp">
-                            <img src="Hinh/honda.jpg"  height="110" width="220" alt="Khong tai duoc">
-                        </a>
-                        </div>
-                    </div>           
-                    <div class="rangersidebar"> 
-                        <div class="thumbnail">
+                        <a href="honda.jsp">   
+                            <div class="thumbnail">
+                            <img src="Hinh/honda.jpg"  height="150" width="80%"  style="border: 1px solid red" alt="Khong tai duoc">
+                            </div>
+                        </a>                        
                         <a href="#">
-                        <img src="Hinh/ya.jpg"  height="110" width="220" alt="Khong tai duoc" onclick="hinh()"> 
+                            <div class="thumbnail">
+                            <img src="Hinh/ya.jpg"  height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()">                      
+                            </div>
                         </a>
-                        </div>
-                    </div>             
-                    <div class="rangersidebar">
-                        <div class="thumbnail">
+
                         <a href="#">
-                        <img src="Hinh/su.jpg" height="110" width="220" alt="Khong tai duoc" onclick="hinh()">
-                        </a>
-                        </div>
-                    </div>                            
+                            <div class="thumbnail">
+                            <img src="Hinh/su.jpg" height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()"> 
+                            </div> 
+                        </a>                               
                 </div>
             </div> 
         </div> 

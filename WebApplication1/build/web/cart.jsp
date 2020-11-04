@@ -29,9 +29,9 @@
                 <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
            </div>
            <ul id="menu"> <!--menu-->
-               <li><a href="home.html"> Home</a> </li>
-               <li><a href="register.html"> Register</a> </li>
-               <li> <a href="LoginUSER.html"> Login </a> </li>
+               <li><a href="home.html">Trang chủ</a> </li>
+               <li><a href="register.html">Đăng ký</a> </li>
+               <li> <a href="LoginUSER.html">Đăng nhập</a> </li>
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
            </ul>
         </div>
@@ -39,38 +39,33 @@
 <!--body-->            
         <div id="body">
          
-            <!--sidebar-->
+            <!--sidebar-->        
             <div id="sidebar">               
                 <div class="gridsidebar">  
-                    <div class="rangersidebar">
-                        <div class="thumbnail">
-                        <a href="honda.jsp">
-                            <img src="Hinh/honda.jpg"  height="110" width="220" alt="Khong tai duoc">
-                        </a>
-                        </div>
-                    </div>           
-                    <div class="rangersidebar"> 
-                        <div class="thumbnail">
+                        <a href="honda.jsp">   
+                            <div class="thumbnail">
+                            <img src="Hinh/honda.jpg"  height="150" width="80%"  style="border: 1px solid red" alt="Khong tai duoc">
+                            </div>
+                        </a>                        
                         <a href="#">
-                        <img src="Hinh/ya.jpg"  height="110" width="220" alt="Khong tai duoc" onclick="hinh()"> 
+                            <div class="thumbnail">
+                            <img src="Hinh/ya.jpg"  height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()">                      
+                            </div>
                         </a>
-                        </div>
-                    </div>             
-                    <div class="rangersidebar">
-                        <div class="thumbnail">
+
                         <a href="#">
-                        <img src="Hinh/su.jpg" height="110" width="220" alt="Khong tai duoc" onclick="hinh()">
-                        </a>
-                        </div>
-                    </div>                            
+                            <div class="thumbnail">
+                            <img src="Hinh/su.jpg" height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()"> 
+                            </div> 
+                        </a>                               
                 </div>
             </div> 
       
 
         <!--content--> 
             <div id="content"> 
-                <h3> User: <i> ${sessionScope.user} </i> <a href="LogoutACCControl"> Logout </a> </h3>
-                <div class="textcontent"> <center> CART </center> </div>                
+                <h3> User: <i> ${sessionScope.user} </i> <a href="LogoutACCControl"> Đăng xuất </a> </h3>
+                <div class="textcontent"> <center> Giỏ hàng </center> </div>                
             </div>
             <div id="content">          
                 <table>
