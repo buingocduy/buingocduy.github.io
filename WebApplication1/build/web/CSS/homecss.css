@@ -198,6 +198,7 @@
         {  
            margin: auto;
            padding-top: 10px; 
+           padding-bottom: 10px; 
            border: 2px solid black;
            max-height: 80%; 
            max-width: 50%;

@@ -45,12 +45,12 @@
  
 <!--body-->            
         <div id="body">
-        
     <!--content-->
             <div id="content">  
-                    <%          
+                    <%    
+                        String user = request.getParameter("username");
                         DBContext con = new DBContext();;
-                        ResultSet rs = con.chondulieu("select * from taikhoan "); 
+                        ResultSet rs = con.chondulieu("select * from taikhoan where username='" + user + "'"); 
                     %>
                     <%
                         while(rs.next()){
@@ -59,7 +59,7 @@
                         <table>
                             <tr>
                                 <td> 
-                        <div style=" border: 2px solid black; text-align: center; width: 400px; padding: 20px; height: 200px; overflow:  auto;"> 
+                        <div style=" border: 2px solid black; text-align: center; width: 400px; padding-top: 40px; height: 200px; overflow:  auto;"> 
                         <form action="UpdateControl" method="get" align="center">
                             <div style=" color: red; font-size: 14pt; font-weight: bold;">    
                             <input type="hidden" name="username" id="username" placeholder="username" value="<%=rs.getString(1)%>">                      

@@ -39,8 +39,8 @@
           
            <form>
            <ul id="menu"> <!--menu-->
-               <li> <a href="product.jsp">Product</a> </li>               
-               <li> <a href="LogoutControl"> Logout </a> </li>
+               <li> <a href="product.jsp">Sản phẩm</a> </li>               
+               <li> <a href="LogoutControl"> Đăng xuất </a> </li>
            </ul>
            </form>
         </div>
@@ -50,9 +50,10 @@
         
     <!--content-->
             <div id="content">  
-                    <%          
+                    <% 
+                        String id = request.getParameter("id");
                         DBContext con = new DBContext();;
-                        ResultSet rs = con.chondulieu("select * from sanpham "); 
+                        ResultSet rs = con.chondulieu("select * from sanpham where id='" + id + "'"); 
                     %>
                     <%
                         while(rs.next()){

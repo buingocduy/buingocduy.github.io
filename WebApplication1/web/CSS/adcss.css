@@ -37,7 +37,7 @@
         
         #content
         {
-            width: 70%; 
+            width: 100%; 
             float: right;
             overflow: auto; 
         }
@@ -203,6 +203,16 @@
         thead
         {
          color: red;   
+        }
+        
+        a
+        {
+            color: blueviolet;
+        }
+        
+        td a:hover
+        {
+            color: red;
         }
             
         

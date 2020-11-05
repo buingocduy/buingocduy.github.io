@@ -112,18 +112,18 @@
         /*content*/
         .grid 
         {
+            max-width: 100%;
             overflow: auto;
             display: grid;
-            padding: 50px 50px 50px 60px;
-            grid-template-columns: 50px 50px 50px;            
-            grid-column-gap: 230px;
-            grid-row-gap: 5em;
+            padding: 50px 50px 50px 30px;
+            grid-template-columns: 50px 50px 50px;           
+            grid-column-gap: 250px;
+            grid-row-gap: 4em;
         }
         
         .rangecontent 
-        {          
-           border: 2px solid black;
-           margin: auto;
+        {      
+           border: 2px solid gray;
            width: 300px;
            height: auto;
            max-width: 400%;
@@ -131,6 +131,18 @@
            padding-top: 20px;
            padding-left: 30px;
            padding-bottom: 20px;
+        }
+        
+        .rangecontent:hover  
+        {  
+          border: 2px solid red;
+        }
+        
+        .range
+        {
+           margin: auto;
+           width: 100%;
+           border: 1px solid red;
         }
         
         .bottomrangecontent
@@ -183,14 +195,7 @@
             grid-row-gap: 3em;
             float: left;
         }
-        
-        .rangersidebar
-        {
-           width: 220px;
-           height: 110px;
-           border: 1px solid black;
-        }
-        
+      
         .textfooter
         {
            text-align: center; 

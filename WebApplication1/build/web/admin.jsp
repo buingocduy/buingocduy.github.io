@@ -44,8 +44,8 @@
                    
            <form>
            <ul id="menu"> <!--menu-->              
-               <li> <a href="product.jsp">Product</a> </li>               
-               <li> <a href="LogoutControl"> Logout </a> </li>
+               <li> <a href="product.jsp">Sản phẩm</a> </li>               
+               <li> <a href="LogoutControl">Đăng xuất</a> </li>
            </ul>
            </form>
         </div>
@@ -63,9 +63,10 @@
                     <table align="center">
                         <thead>
                             <tr>
+                                <th> Chức năng </th>
                                 <th> Username </th>
                                 <th> Email </th>
-                                <th> Phonenumber</th>                          
+                                <th> Phonenumber</th>
                             </tr>
                         </thead>
     
@@ -73,7 +74,11 @@
                             <%                                
                                 while(rs.next()){
                             %>
-                            <tr>                              
+                            <tr> 
+                                <td> 
+                                    <a href="UACC.jsp?username=<%=rs.getString(1)%>" class="fa fa-pencil"> </a>  &emsp; &emsp;
+                                    <a href="DeleteControl?username=<%=rs.getString(1)%>" class="fa fa-trash"> </a>
+                                </td>
                                 <td> <%=rs.getString(1)%> </td>
                                 <td> <%=rs.getString(3)%> </td>
                                 <td> <%=rs.getString(4)%></td>
@@ -85,23 +90,6 @@
                         </tbody>           
                     </table>
                 </form>
-            </div>  
-    
-    <!--sidebar-->        
-            <div id="sidebar">               
-                <div class="gridsidebar">  
-                    <div class="rangersidebar">  
-                    <center> <a href="UACC.jsp"> <input type="button" value="Update"> </a> </center> <br>  
-                    </div>                 
-                    
-                    <div class="rangersidebar"> 
-                    <form action="DeleteControl" method="get" align="center">
-                         <br>
-                         <input type="text" name="username"  placeholder="Username muốn xóa"> <br> <br>               
-                         <input type="submit" value="Delete"> <br>  
-                    </form>
-                    </div>                             
-                </div>
             </div> 
         </div> 
 

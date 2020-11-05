@@ -20,8 +20,9 @@ go
 insert into admin values ('buingocduy','123')
 go
 
-insert into taikhoan values ('nguyenvana','123','buingocduy1999@gmail.com',0904596810)
-insert into taikhoan values ('nguyenthanhtuyen','123','thanhtuyen990322@gmail.com',0772767594)
+insert into taikhoan values ('nguyenvana','123','nguyenvana@gmail.com',0904596810)
+insert into taikhoan values ('nguyenvanb','123','nguyenvanb@gmail.com',0904596811)
+insert into taikhoan values ('nguyenvanc','123','nguyenvanc@gmail.com',0904596812)
 go
 
 insert into sanpham values ('1','Click 2020','85','Hinh\vario.jpg',

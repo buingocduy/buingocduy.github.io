@@ -22,9 +22,7 @@
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container"> 
-                    <p href="hinh.jpg" onclick="hinh()">
                         <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
-                    </p> 
            </div>           
            <ul id="menu"> <!--menu-->
                <li><a href="home.html">Trang chủ</a> </li>
@@ -41,14 +39,16 @@
             <div id="content"> 
                  <center> <img src="Hinh/logohonda.jpg" height="80" width="300" alt="Khong tai duoc"> </center> 
                  <div class="grid">
+
                    <%       
                         DBContext cxn = new DBContext();;
                         ResultSet rx = cxn.chondulieu("select * from sanpham");
                    %>
                    <%
                       while(rx.next()){
-                   %>
-                    <div class="rangecontent">                     
+                   %>              
+
+                   <div class="rangecontent">                     
                         <a href="Xe1.jsp?id=<%=rx.getString(1)%>">
                             <div class="thumbnail">
                             <img src=<%=rx.getString(4)%> height="200" width="80%" alt="Khong tai duoc"> 
@@ -62,9 +62,10 @@
                             </a>
                        
                     </div>
+                            
                     <%
                         }
-                    %>          
+                    %>   
                 </div>       
             </div> 
                 

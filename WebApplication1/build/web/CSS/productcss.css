@@ -37,8 +37,8 @@
         
         #content
         {
-            width: 70%; 
-            float: right;
+            width: 90%; 
+            margin: auto;
             overflow: auto; 
         }
         
@@ -224,6 +224,16 @@
          color: red;   
         }
         
+        a
+        {
+            color: blueviolet;
+        }
+        
+        td a:hover
+        {
+            color: red;
+        }
+            
         
             
         

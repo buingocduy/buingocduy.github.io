@@ -37,8 +37,8 @@
            </div>
            <form>
            <ul id="menu"> <!--menu-->               
-               <li> <a href="admin.jsp">Account</a> </li>               
-               <li> <a href="LogoutControl"> Logout </a> </li>
+               <li> <a href="admin.jsp">Tài khoản</a> </li>               
+               <li> <a href="LogoutControl">Đăng xuất</a> </li>
            </ul>
            </form>
         </div>
@@ -47,7 +47,8 @@
         <div id="body">
         
     <!--content-->
-            <div id="content">            
+            <div id="content">
+                <a href="IPD.jsp" style="float: right"> <input type="button" value="Thêm sản phẩm"> </a>
                 <form> 
                     <%
                         DBContext con = new DBContext();;
@@ -56,6 +57,7 @@
                     <table align="center">
                         <thead>
                             <tr>
+                                <th> Chức năng </th>
                                 <th> ID</th>
                                 <th> Name</th>
                                 <th> Price</th>
@@ -77,7 +79,11 @@
                             <%
                                 while(rs.next()){
                             %>
-                            <tr>                              
+                            <tr>
+                                <td> 
+                                    <a href="UPD.jsp?id=<%=rs.getString(1)%>" class="fa fa-pencil"> </a> &emsp; &emsp;
+                                    <a href="DeleteDPControl?id=<%=rs.getString(1)%>" class="fa fa-trash"> </a>
+                                </td>
                                 <td> <%=rs.getString(1)%> </td>
                                 <td> <%=rs.getString(2)%> </td>
                                 <td> <%=rs.getString(3)%> </td>
@@ -100,45 +106,8 @@
                     </table>
                 </form>
             </div>  
-    
-    <!--sidebar-->        
-            <div id="sidebar">            
-                <div class="gridsidebar">  
-                    <div class="rangersidebar1">  
-                        <center> <a href="UPD.jsp"> <input type="button" value="Update"> </a> </center> <br>  
-                    </div>          
-                           
-                    <div class="rangersidebar1"> 
-                    <form action="DeleteDPControl" method="get" align="center">
-                         <br>
-                         <input type="text" name="id"  placeholder="ID muốn xóa"> <br> <br>               
-                         <input type="submit" value="Delete"> <br>  
-                    </form>
-                    </div> 
-                    
-                    <div class="rangersidebar2">  
-                    <form action="InsertDPControl" method="get" align="center">                       
-                         <input type="text" name="id" placeholder="ID"> <br> <br>  
-                         <input type="text" name="name" placeholder="Name"> <br> <br>   
-                         <input type="text" name="price" placeholder="Price"> <br> <br>  
-                         <input type="text" name="image" placeholder="Image"> <br> <br>  
-                         <input type="text" name="LWH" placeholder="LxWxH"> <br> <br>  
-                         <input type="text" name="seat" placeholder="Seat height"> <br> <br>   
-                         <input type="text" name="tire" placeholder="Front/rear tire"> <br> <br>  
-                         <input type="text" name="engine" placeholder="Engine"> <br> <br>  
-                         <input type="text" name="cc" placeholder="CC"> <br> <br>  
-                         <input type="text" name="power" placeholder="Power"> <br> <br>  
-                         <input type="text" name="oil" placeholder="Oil"> <br> <br>  
-                         <input type="text" name="gasoline" placeholder="Gasoline"> <br> <br>   
-                         <input type="text" name="brake" placeholder="Brake"> <br> <br>  
-                         <input type="text" name="gearbox" placeholder="Gearbox"> <br> <br>  
-                         <input type="submit" value="Insert"> <br>  
-                    </form>    
-                    </div>                            
-                </div>
-            </div> 
-        </div> 
-
+        </div>
+   
 <!--footer-->        
         <div id="footer">  
             <div class="textfooter">       
