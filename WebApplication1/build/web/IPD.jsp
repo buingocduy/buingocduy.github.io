@@ -26,7 +26,8 @@
                     if(session.getAttribute("user1") == null){
                         response.sendRedirect("Login.html");
                     }
-                    %>   
+                    %> 
+                              
         <!--header-->        
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
@@ -43,23 +44,21 @@
         </div>
 <!--body-->            
         <div id="body">
-            <form action="InsertDPControl" method="get" align="center">                       
-                         <input type="text" name="id" placeholder="ID"> &emsp; 
+            <form action="InsertDPControl" method="get" align="center">                                    
                          <input type="text" name="name" placeholder="Name"> &emsp;  
-                         <input type="text" name="price" placeholder="Price"> <br> <br>     
-                         <input type="text" name="image" placeholder="Image"> &emsp;
-                         <input type="text" name="LWH" placeholder="LxWxH"> &emsp;
-                         <input type="text" name="seat" placeholder="Seat height"> <br> <br>   
-                         <input type="text" name="tire" placeholder="Front/rear tire"> &emsp; 
+                         <input type="text" name="price" placeholder="Price"> &emsp;     
+                         <input type="text" name="image" placeholder="Image"> <br> <br> 
+                         <input type="text" name="LWH" placeholder="LxWxH"> &emsp;  
+                         <input type="text" name="seat" placeholder="Seat height"> &emsp; 
+                         <input type="text" name="tire" placeholder="Front/rear tire"> <br> <br> 
                          <input type="text" name="engine" placeholder="Engine"> &emsp; 
-                         <input type="text" name="cc" placeholder="CC"> <br> <br>  
-                         <input type="text" name="power" placeholder="Power"> &emsp;
+                         <input type="text" name="cc" placeholder="CC"> &emsp; 
+                         <input type="text" name="power" placeholder="Power"> <br> <br> 
                          <input type="text" name="oil" placeholder="Oil"> &emsp; 
-                         <input type="text" name="gasoline" placeholder="Gasoline"> <br> <br>   
-                         <input type="text" name="brake" placeholder="Brake"> &emsp;
+                         <input type="text" name="gasoline" placeholder="Gasoline"> &emsp;
+                         <input type="text" name="brake" placeholder="Brake"> <br> <br>  
                          <input type="text" name="gearbox" placeholder="Gearbox"> <br> <br>  
-                         <input type="submit" value="Insert"> <br>  
-                         <p style="color: red ; font-weight: bold"> ${sessionScope.thongbao} </p>
+                         <input type="submit" value="Insert"> <br>                         
             </form>           
         </div>
 <!--footer-->        

@@ -37,9 +37,7 @@ public class InsertDPControl extends HttpServlet {
         request.setCharacterEncoding("utf-8");         
         HttpSession session = request.getSession();
         Product pd = null;
-        
-        
-        String id = request.getParameter("id"); //lấy của netbeans
+         
         String tensp = request.getParameter("name"); //lấy của netbeans
         String gia = request.getParameter("price"); //lấy của netbeans
         String hinhanh = request.getParameter("image"); //lấy của netbeans
@@ -59,13 +57,13 @@ public class InsertDPControl extends HttpServlet {
         InsertDPIO insertdpIO = new InsertDPIO(); // khai báo register
         
         if(session.getAttribute("user1") != null){
-        pd = insertdpIO.checkInsert(id, tensp, gia, hinhanh, kichthuoc, chieucaoyen, sizebanh, engine, CC, congsuat, CCnhot, CCxang, phanh, gear); // check a có null không
+        pd = insertdpIO.checkInsert(tensp, gia, hinhanh, kichthuoc, chieucaoyen, sizebanh, engine, CC, congsuat, CCnhot, CCxang, phanh, gear); // check a có null không
        
         if(pd != null)
         {   
             response.sendRedirect("IPD.jsp");               
         }else{            
-           response.sendRedirect("product.jsp");  
+           response.sendRedirect("product.jsp");
         }
         }else{
            response.sendRedirect("Login.html");

@@ -39,7 +39,6 @@ public class LoginADControl extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         HttpSession session = request.getSession();
-
         try {
             String user = request.getParameter("username"); //lấy của netbeans
             String pass = request.getParameter("password"); 

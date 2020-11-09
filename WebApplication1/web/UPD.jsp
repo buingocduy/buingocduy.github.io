@@ -47,7 +47,7 @@
         <div id="body">
         
     <!--content-->
-            <div id="content">  
+            <div id="content">               
                     <% 
                         String id = request.getParameter("id");
                         DBContext con = new DBContext();;
@@ -60,9 +60,8 @@
                         <img src=<%=rs.getString(4)%> height="80%" width="400%" style="padding-top: 30px" alt="Khong tai duoc">
                         <div style=" border: 2px solid black; text-align: center; width: 500px; padding: 20px; height: 300px; overflow:  auto;"> 
                         <form action="UpdateDPControl" method="get" align="center">
-                            <div style=" color: red; font-size: 14pt; font-weight: bold;">
-                            ID <br>
-                             <input type="text" name="id" placeholder="ID" value="<%=rs.getString(1)%>"> <br> <br>  
+                            <div style=" color: red; font-size: 14pt; font-weight: bold;">                    
+                            <input type="hidden" name="id" placeholder="ID" value="<%=rs.getString(1)%>"> 
                             Tên xe <br>
                              <input type="text" name="name" placeholder="Name" value="<%=rs.getString(2)%>"> <br> <br>   
                             Giá xe <br>

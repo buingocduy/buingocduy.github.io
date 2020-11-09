@@ -1,4 +1,4 @@
-        body 
+        html,body 
         { 
             height: 100%; 
             width: 100%; 
@@ -29,7 +29,7 @@
         { 
             width: 100%; 
             margin: 0 ; 
-            padding: 0 ; 
+            padding: 0 ;
             background: white; 
             overflow: auto;  
             border-top: 1em solid white;
@@ -211,8 +211,9 @@
           
         table 
         {
-            padding-top: 50px;
-            width: 3000px;
+            overflow: auto;
+            padding-top: 10px;
+            width: 300em;
         }
         tr td 
         {

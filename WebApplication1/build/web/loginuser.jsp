@@ -1,11 +1,19 @@
-    <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html> 
-    <head> 
+<%-- 
+    Document   : loginuser
+    Created on : Nov 9, 2020, 4:46:12 PM
+    Author     : BND6699
+--%>
+
+<%@ page import="context.DBContext" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+     <head> 
         <title> Moto world </title> 
         <meta charset="UTF-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +22,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link rel="stylesheet" href="CSS/registercss.css"/>
     </head> 
-    
+
     <body> 
         
 <!--header-->        
@@ -26,7 +34,7 @@ and open the template in the editor.
            <ul id="menu"> <!--menu-->
                <li><a href="home.html">Trang chủ</a> </li>
                <li><a href="register.html">Đăng ký</a> </li>
-               <li> <a href="LoginUSER.html">Đăng nhập</a> </li>
+               <li> <a href="loginuser.jsp">Đăng nhập</a> </li>
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
            </ul>
         </div>
@@ -42,6 +50,7 @@ and open the template in the editor.
                             Username: <input type="text" id="username" name="username"> <br> <br>
                             Password: <input type="password" id="password" name="password"> <br> <br>
                             <input type="submit" value="Xác nhận"> <br> 
+                            <p style="color: red"> ${sessionScope.dangnhap} </p>
                     </form>
                 </div>  
             </div>
@@ -77,5 +86,5 @@ and open the template in the editor.
                     SĐT: 0904596810 | Email: MTHCM@Gmail.com       
             </div>
         </div>
-    </body>
+    </body>    
 </html>

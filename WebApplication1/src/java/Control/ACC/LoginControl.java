@@ -39,6 +39,7 @@ public class LoginControl extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         HttpSession session = request.getSession();
+        String dn = "Đăng nhập thất bại";
         
         try {
             String user = request.getParameter("username"); //lấy của netbeans
@@ -52,8 +53,10 @@ public class LoginControl extends HttpServlet {
                 session.setAttribute("user", user);
                 session.setAttribute("pass", pass); 
                 response.sendRedirect("cart.jsp");  
+                session.removeAttribute("dangnhap");
             }else{
-                response.sendRedirect("LoginUSER.html");  
+                session.setAttribute("dangnhap",dn);
+                response.sendRedirect("loginuser.jsp");  
             }
         } finally {
             out.close();

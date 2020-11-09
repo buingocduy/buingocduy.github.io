@@ -10,8 +10,6 @@
                 %>  
 
 
-<%@page import="java.util.GregorianCalendar"%>
-<%@page import="java.util.Calendar"%>
 <%@ page import="context.DBContext" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
@@ -50,7 +48,7 @@
  
 <!--body-->            
         <div id="body">
-        
+        <h1 style="padding-left: 200px; color: maroon"> <i> Danh sách tài khoản </i> </h1>
     <!--content-->
             <div id="content">                           
                 <form action="ListACC"> 

@@ -11,7 +11,6 @@ package entity;
  * @author BND6699
  */
 public class Product {
-    private String id;
     private String tensp;
     private String gia;
     private String hinh;
@@ -29,8 +28,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String id, String tensp, String gia, String hinh, String kichthuoc, String chieucaoyen, String sizebanh, String engine, String CC, String congsuat, String CCnhot, String CCxang, String phanh, String gear) {
-        this.id = id;
+    public Product(String tensp, String gia, String hinh, String kichthuoc, String chieucaoyen, String sizebanh, String engine, String CC, String congsuat, String CCnhot, String CCxang, String phanh, String gear) {
         this.tensp = tensp;
         this.gia = gia;
         this.hinh = hinh;
@@ -44,14 +42,6 @@ public class Product {
         this.CCxang = CCxang;
         this.phanh = phanh;
         this.gear = gear;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getTensp() {
@@ -158,5 +148,6 @@ public class Product {
         this.gear = gear;
     }
 
+   
     
 }

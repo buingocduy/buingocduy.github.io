@@ -43,10 +43,10 @@
  
 <!--body-->            
         <div id="body">
-        
+            <h1 style="padding-left: 200px; color: maroon"> <i> Danh sách sản phẩm </i> </h1>
     <!--content-->
-            <div id="content">
-                <a href="IPD.jsp" style="float: right"> <input type="button" value="Thêm sản phẩm"> </a>
+            <div id="content">  
+                <a href="IPD.jsp" style="float: left"> <input type="button" value="Thêm sản phẩm"> </a>
                 <form> 
                     <%
                         DBContext con = new DBContext();;
