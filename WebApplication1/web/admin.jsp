@@ -28,7 +28,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Moto world </title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
-        <script src="JS/cartjs.js" type="text/javascript"> </script> 
+        <script src="JS/adjs.js" type="text/javascript"> </script> 
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="CSS/adcss.css" />
     </head>
@@ -37,9 +37,7 @@
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container"> 
-                    <p href="hinh.jpg" onclick="hinh()">
                         <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Admin: ${sessionScope.user1}  </i> </h1> <!--Logo--> 
-                    </p> 
            </div>
                    
            <form>
@@ -77,7 +75,7 @@
                             <tr> 
                                 <td> 
                                     <a href="UACC.jsp?username=<%=rs.getString(1)%>" class="fa fa-pencil"> </a>  &emsp; &emsp;
-                                    <a href="DeleteControl?username=<%=rs.getString(1)%>" class="fa fa-trash"> </a>
+                                    <a href="DeleteControl?username=<%=rs.getString(1)%>" class="fa fa-trash"> </a> 
                                 </td>
                                 <td> <%=rs.getString(1)%> </td>
                                 <td> <%=rs.getString(3)%> </td>

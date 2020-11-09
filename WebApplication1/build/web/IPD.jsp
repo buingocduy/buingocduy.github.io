@@ -3,7 +3,7 @@
     Created on : Nov 5, 2020, 11:56:07 PM
     Author     : BND6699
 --%>
-
+<%@ page import="entity.Item"%>
 <%@ page import="context.DBContext" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
@@ -31,9 +31,7 @@
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container"> 
-                    <p href="hinh.jpg" onclick="hinh()">
                         <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Admin: ${sessionScope.user1}  </i> </h1>
-                    </p> 
            </div>
           
            <form>
@@ -43,7 +41,6 @@
            </ul>
            </form>
         </div>
- 
 <!--body-->            
         <div id="body">
             <form action="InsertDPControl" method="get" align="center">                       
@@ -62,9 +59,9 @@
                          <input type="text" name="brake" placeholder="Brake"> &emsp;
                          <input type="text" name="gearbox" placeholder="Gearbox"> <br> <br>  
                          <input type="submit" value="Insert"> <br>  
-            </form>    
+                         <p style="color: red ; font-weight: bold"> ${sessionScope.thongbao} </p>
+            </form>           
         </div>
-
 <!--footer-->        
         <div id="footer">  
             <div class="textfooter">       

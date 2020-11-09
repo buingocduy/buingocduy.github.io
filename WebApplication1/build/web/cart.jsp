@@ -119,6 +119,7 @@
                     {
                         if  (session.getAttribute("user") != null && session.getAttribute("Orders") != null) 
                         {
+                                session.setAttribute("cart", orders);
                                 session.removeAttribute("Orders");              
                                 response.sendRedirect("cart.jsp");
                         }

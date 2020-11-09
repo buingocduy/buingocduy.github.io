@@ -4,14 +4,13 @@ function hinh()
 }
 
 
-function AutoRefresh( t ) 
+function xoa()
 {
-   var user = document.getElementById("user").value;  
-   
-   if(user === null)
-   {
-   setTimeout("location.reload(true);", t);
-   }
+  if (confirm('Bạn có phải là fan của toidicode.com không?')) {
+    document.write('Cảm ơn bạn rất nhiều!');
+} else {
+    document.write('Sao thế bạn?');
+}
 }
 
 

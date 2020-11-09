@@ -38,6 +38,7 @@ public class InsertDPControl extends HttpServlet {
         HttpSession session = request.getSession();
         Product pd = null;
         
+        
         String id = request.getParameter("id"); //lấy của netbeans
         String tensp = request.getParameter("name"); //lấy của netbeans
         String gia = request.getParameter("price"); //lấy của netbeans
@@ -59,15 +60,16 @@ public class InsertDPControl extends HttpServlet {
         
         if(session.getAttribute("user1") != null){
         pd = insertdpIO.checkInsert(id, tensp, gia, hinhanh, kichthuoc, chieucaoyen, sizebanh, engine, CC, congsuat, CCnhot, CCxang, phanh, gear); // check a có null không
-        if(pd==null)
-        {
-           response.sendRedirect("product.jsp");
-        }else{
-           response.sendRedirect("product.jsp");
+       
+        if(pd != null)
+        {   
+            response.sendRedirect("IPD.jsp");               
+        }else{            
+           response.sendRedirect("product.jsp");  
         }
         }else{
            response.sendRedirect("Login.html");
-        }       
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

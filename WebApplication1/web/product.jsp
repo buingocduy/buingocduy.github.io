@@ -31,9 +31,7 @@
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container">  
-                    <p href="hinh.jpg" onclick="hinh()">
                         <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Admin: ${sessionScope.user1}  </i> </h1> 
-                    </p> 
            </div>
            <form>
            <ul id="menu"> <!--menu-->               

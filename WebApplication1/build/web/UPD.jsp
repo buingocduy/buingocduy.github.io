@@ -32,9 +32,7 @@
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container"> 
-                    <p href="hinh.jpg" onclick="hinh()">
                         <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Admin: ${sessionScope.user1}  </i> </h1>
-                    </p> 
            </div>
           
            <form>
@@ -56,7 +54,7 @@
                         ResultSet rs = con.chondulieu("select * from sanpham where id='" + id + "'"); 
                     %>
                     <%
-                        while(rs.next()){
+                        while(rs.next()){                           
                     %>  
                     <div class="grid">     
                         <img src=<%=rs.getString(4)%> height="80%" width="400%" style="padding-top: 30px" alt="Khong tai duoc">

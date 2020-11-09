@@ -17,6 +17,19 @@ kichthuoc char(80),chieucaoyen char(20),sizebanh char(150),engine nvarchar(200),
 CC char(20),congsuat nvarchar(50),CCnhot nvarchar(50),CCxang nvarchar(20),phanh nvarchar(50),gear nvarchar(20),primary key(id))
 go
 
+Create table hoadon
+(MaHD char(100),username char(100),ngaymua date, primary key(MaHD))
+go 
+
+Create table ct_hoadon
+(MaHD char(100),id int, soluong int, gia bigint, primary key(MAHD,id))
+go 
+
+alter table  ct_hoadon add constraint FK_CTHD_SP foreign key(id) references sanpham(id)
+alter table ct_hoadon add constraint FK_CTHD_HD foreign key(MaHD) references hoadon(MaHD)  
+alter table hoadon add constraint FK_HD_KH foreign key(username) references taikhoan(username) 
+go
+
 insert into admin values ('buingocduy','123')
 go
 

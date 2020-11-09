@@ -10,7 +10,7 @@
         .top-bar 
         { 
             width: 100%; 
-            background: RED;          
+            background: sienna;          
             height: 20px;
         }
  
@@ -52,7 +52,7 @@
         #footer
         {
             clear:both;
-            background:Red  ;
+            background:saddlebrown  ;
             padding: 1em;
             border-bottom: 3px solid black;
             border-top: 1em solid white;           
@@ -127,8 +127,8 @@
         }
         
         .textcontent
-        {
-            color: RED;
+            {
+            color: red;
             font-size: 30pt;
             width: 50%;
             margin: auto; 

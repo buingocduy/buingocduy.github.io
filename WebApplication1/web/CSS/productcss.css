@@ -11,7 +11,7 @@
         .top-bar 
         { 
             width: 100%; 
-            background: RED;          
+            background: sienna;          
             height: 20px;
         }
  
@@ -55,7 +55,7 @@
         #footer
         {
             clear:both;
-            background:Red  ;
+            background:saddlebrown  ;
             padding: 1em;
             border-bottom: 3px solid black;
             border-top: 1em solid white;    
@@ -78,9 +78,12 @@
         /*Menu*/
         #menu 
         { 
-            margin: 20px; 
-            float: right; 
-            font-size: 20pt;
+            padding-top: 10px;
+            float: right;
+            max-width: 80%;
+            margin: 20px;     
+            font-size: 15pt;
+            display: inline; /* chinh thanh chieu ngang */
         }
 
         #menu li 
