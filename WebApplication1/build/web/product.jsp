@@ -57,19 +57,19 @@
                             <tr>
                                 <th> Chức năng </th>
                                 <th> ID</th>
-                                <th> Name</th>
-                                <th> Price</th>
-                                <th> Image</th>
-                                <th> LxWxH</th>
-                                <th> Seat height</th>
-                                <th> Front/rear tire</th>
-                                <th> Engine</th>
-                                <th> CC</th>
-                                <th> Power</th>
-                                <th> Oil</th>
-                                <th> Gasoline</th>
-                                <th> Front/rear brake</th>
-                                <th> Gearbox</th> 
+                                <th> Hình</th>
+                                <th> Tên sản phẩm</th>
+                                <th> Giá</th>                            
+                                <th> DàixRộngxCao</th>
+                                <th> Độ cao yên</th>
+                                <th> Bánh trước/sau</th>
+                                <th> Động cơ</th>
+                                <th> Dung tích xi lanh</th>
+                                <th> Công suất</th>
+                                <th> Dung tích nhớt</th>
+                                <th> Dung tích xăng</th>
+                                <th> Thắng trước/sau</th>
+                                <th> Hộp số</th> 
                             </tr>                
                         </thead>
     
@@ -83,9 +83,9 @@
                                     <a href="DeleteDPControl?id=<%=rs.getString(1)%>" class="fa fa-trash"> </a>
                                 </td>
                                 <td> <%=rs.getString(1)%> </td>
+                                <td> <img src=<%=rs.getString(4)%> height="30%" width="20%" alt="Khong tai duoc">  </td>
                                 <td> <%=rs.getString(2)%> </td>
-                                <td> <%=rs.getString(3)%> </td>
-                                <td> <%=rs.getString(4)%> </td>
+                                <td> <%=rs.getString(3)%> </td>                         
                                 <td> <%=rs.getString(5)%> </td>
                                 <td> <%=rs.getString(6)%> </td>
                                 <td> <%=rs.getString(7)%> </td>

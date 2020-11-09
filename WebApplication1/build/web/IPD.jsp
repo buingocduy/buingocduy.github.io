@@ -45,19 +45,19 @@
 <!--body-->            
         <div id="body">
             <form action="InsertDPControl" method="get" align="center">                                    
-                         <input type="text" name="name" placeholder="Name"> &emsp;  
-                         <input type="text" name="price" placeholder="Price"> &emsp;     
-                         <input type="text" name="image" placeholder="Image"> <br> <br> 
-                         <input type="text" name="LWH" placeholder="LxWxH"> &emsp;  
-                         <input type="text" name="seat" placeholder="Seat height"> &emsp; 
-                         <input type="text" name="tire" placeholder="Front/rear tire"> <br> <br> 
-                         <input type="text" name="engine" placeholder="Engine"> &emsp; 
-                         <input type="text" name="cc" placeholder="CC"> &emsp; 
-                         <input type="text" name="power" placeholder="Power"> <br> <br> 
-                         <input type="text" name="oil" placeholder="Oil"> &emsp; 
-                         <input type="text" name="gasoline" placeholder="Gasoline"> &emsp;
-                         <input type="text" name="brake" placeholder="Brake"> <br> <br>  
-                         <input type="text" name="gearbox" placeholder="Gearbox"> <br> <br>  
+                         <input type="text" name="name" placeholder="Tên sản phẩm"> &emsp;  
+                         <input type="text" name="price" placeholder="Giá"> &emsp;     
+                         <input type="text" name="image" placeholder="Hình ảnh"> <br> <br> 
+                         <input type="text" name="LWH" placeholder="DàixRộngxCao"> &emsp;  
+                         <input type="text" name="seat" placeholder="Chiều cao yên"> &emsp; 
+                         <input type="text" name="tire" placeholder="Bánh trước/sau"> <br> <br> 
+                         <input type="text" name="engine" placeholder="Động cơ"> &emsp; 
+                         <input type="text" name="cc" placeholder="Dung tích xi lanh"> &emsp; 
+                         <input type="text" name="power" placeholder="Công suất"> <br> <br> 
+                         <input type="text" name="oil" placeholder="Dung tích nhớt"> &emsp; 
+                         <input type="text" name="gasoline" placeholder="Dung tích xăng"> &emsp;
+                         <input type="text" name="brake" placeholder="Thắng trước/sau"> <br> <br>  
+                         <input type="text" name="gearbox" placeholder="Hộp số"> <br> <br>  
                          <input type="submit" value="Insert"> <br>                         
             </form>           
         </div>
