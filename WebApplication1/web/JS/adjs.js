@@ -3,14 +3,13 @@ function hinh()
    alert("Tính năng đang được hoàn thiện");
 }
 
+var xoa1 = document.getElementsByName("xoa1");
 
 function xoa()
 {
-  if (confirm('Bạn có phải là fan của toidicode.com không?')) {
-    document.write('Cảm ơn bạn rất nhiều!');
+  if (confirm('Bạn có muốn xóa không?')) {
+
 } else {
-    document.write('Sao thế bạn?');
+    xoa1 = null;
 }
 }
-
-

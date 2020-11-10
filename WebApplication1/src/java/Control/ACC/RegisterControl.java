@@ -6,13 +6,16 @@
 package Control.ACC;
 
 import IO.ACC.RegisterIO;
+import IO.ACC.Check;
 import entity.Create;
+import entity.checkrDK;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,15 +41,27 @@ public class RegisterControl extends HttpServlet {
         String pass = request.getParameter("password");
         String email = request.getParameter("email");
         String phonenumber = request.getParameter("phonenumber");
+        
+        Check check = new Check(); // khai báo register
+        checkrDK b = check.checkRegistercheck(user); // check a có null không
+        
         RegisterIO registerio = new RegisterIO(); // khai báo register
         Create a = registerio.checkRegister(user,pass,email,phonenumber); // check a có null không
-        if(a==null)
-        {
-           response.sendRedirect("loginuser.jsp");
-        }else{
-            response.sendRedirect("register.html");
-        }
-    }
+           
+        HttpSession session = request.getSession();
+        String tb = "Tài khoản bị trùng rồi";
+        
+            if(b != null)
+            {
+                session.setAttribute("thongbao", tb);
+                response.sendRedirect("register.jsp");
+            } else{
+                response.sendRedirect("loginuser.jsp");   
+                session.removeAttribute("thongbao"); 
+            }
+
+} 
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

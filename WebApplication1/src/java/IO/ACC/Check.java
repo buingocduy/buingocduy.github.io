@@ -6,39 +6,31 @@
 package IO.ACC;
 
 import context.DBContext;
-import entity.Create;
+import entity.checkrDK;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-/**
- *
- * @author BND6699
- */
-public class RegisterIO {
+public class Check {
     Connection conn = null; // kết nối với sql
     PreparedStatement ps = null; // lấy lệnh từ netbeans qua sql
     ResultSet rs = null; //nhận kết quả trả về
     
-    public Create checkRegister(String user, String pass ,String email, String phonenumber){     
+    public checkrDK checkRegistercheck(String user){   
         try {
-            String query = "insert into taikhoan values (?,?,?,?)";
+            String query = "select username from taikhoan where username = ?";
             conn = new DBContext().getConnection();//mở kết nối sql
             ps = conn.prepareStatement(query);//truyền lệnh cho sql
             ps.setString(1, user); //truyền vào dấu ? taikhoan
-            ps.setString(2, pass); 
-            ps.setString(3, email); 
-            ps.setString(4, phonenumber); 
             rs = ps.executeQuery(); //nhận kết quả trả về
             while (rs.next())//check từng dòng trong sql
             {
-                Create a = new Create(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)); //xét giá trị a
-                return a;
+                checkrDK b = new checkrDK(rs.getString(1)); //xét giá trị a
+                return b;
             }
             
         } catch (Exception e) {
         }
-        return null;       
+        return null;
     }
-  
 }

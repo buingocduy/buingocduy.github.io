@@ -60,9 +60,9 @@
                         <thead>
                             <tr>
                                 <th> Chức năng </th>
-                                <th> Username </th>
+                                <th> Tài khoản </th>
                                 <th> Email </th>
-                                <th> Phonenumber</th>
+                                <th> Số điện thoại </th>
                             </tr>
                         </thead>
     

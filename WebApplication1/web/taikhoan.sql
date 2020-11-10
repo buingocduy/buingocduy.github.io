@@ -63,7 +63,7 @@ insert into sanpham values ('SH 2020','71','Hinh\SH.jpg',
 '124,8cm³ (SH 125i)',N'9,6kW/8.250 vòng/phút (SH 125i)',N'0,8 khi thay nhớt ; 0,9 khi rã máy','7,8L',N'Phanh đĩa ABS;Phanh đĩa',N'Vô cấp')
 go
 
-select * from taikhoan 
+select username from taikhoan where username = 'nguyenvana'
 select * from sanpham 
 
 update taikhoan set password = '1233', email = 'abc@gamil.com' , phonenumber=0906999599 where username = 'nguyenthanhtuyen'

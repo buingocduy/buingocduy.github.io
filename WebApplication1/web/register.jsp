@@ -1,9 +1,15 @@
+<%-- 
+    Document   : register
+    Created on : Nov 10, 2020, 10:35:38 PM
+    Author     : BND6699
+--%>
+<%@ page import="context.DBContext" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title> Moto world </title>
@@ -14,7 +20,8 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link rel="stylesheet" href="CSS/registercss.css"/>
     </head>
-    <body>
+    
+<body>
         <div id="header"> 
            <div class="top-bar"> </div> <!--thanh do tren-->    
            <div id="logo-container">  
@@ -22,7 +29,7 @@ and open the template in the editor.
            </div>
            <ul id="menu"> <!--menu-->
                <li><a href="home.html">Trang chủ</a> </li>
-               <li><a href="register.html">Đăng ký</a> </li>
+               <li><a href="register.jsp">Đăng ký</a> </li>
                <li> <a href="loginuser.jsp">Đăng nhập</a> </li>
                <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
            </ul>
@@ -44,7 +51,8 @@ and open the template in the editor.
                         <br><br>
                         Phone: &emsp; <input type="text" name = "phonenumber" id="phonenumber"/>
                         <br><br>
-                        <button type="submit">Đăng ký</button>
+                        <button type="submit">Đăng ký</button> <br>
+                        <p style="color: red"> ${sessionScope.thongbao} </p>
                     </form>
                 </div>  
             </div>

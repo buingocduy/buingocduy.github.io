@@ -28,7 +28,7 @@ function hinh()
                  return false;
              }
  
-             alert("All datas are valid!, go to login!")
+             alert("Okay")
  
              return true;
          }

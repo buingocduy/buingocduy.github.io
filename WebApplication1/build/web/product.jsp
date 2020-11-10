@@ -57,12 +57,12 @@
                             <tr>
                                 <th> Chức năng </th>
                                 <th> ID</th>
-                                <th> Hình</th>
+                                <th> Hình ảnh</th>
                                 <th> Tên sản phẩm</th>
-                                <th> Giá</th>                            
+                                <th> Giá</th>                         
                                 <th> DàixRộngxCao</th>
-                                <th> Độ cao yên</th>
-                                <th> Bánh trước/sau</th>
+                                <th> Chiều cao yên </th>
+                                <th> Vỏ trước/sau</th>
                                 <th> Động cơ</th>
                                 <th> Dung tích xi lanh</th>
                                 <th> Công suất</th>
@@ -83,9 +83,9 @@
                                     <a href="DeleteDPControl?id=<%=rs.getString(1)%>" class="fa fa-trash"> </a>
                                 </td>
                                 <td> <%=rs.getString(1)%> </td>
-                                <td> <img src=<%=rs.getString(4)%> height="30%" width="20%" alt="Khong tai duoc">  </td>
+                                <td> <img src=<%=rs.getString(4)%> height="30%" width-max="30%" alt="Khong tai duoc"> </td>
                                 <td> <%=rs.getString(2)%> </td>
-                                <td> <%=rs.getString(3)%> </td>                         
+                                <td> <%=rs.getString(3)%> </td>
                                 <td> <%=rs.getString(5)%> </td>
                                 <td> <%=rs.getString(6)%> </td>
                                 <td> <%=rs.getString(7)%> </td>

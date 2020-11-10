@@ -50,15 +50,15 @@
                          <input type="text" name="image" placeholder="Hình ảnh"> <br> <br> 
                          <input type="text" name="LWH" placeholder="DàixRộngxCao"> &emsp;  
                          <input type="text" name="seat" placeholder="Chiều cao yên"> &emsp; 
-                         <input type="text" name="tire" placeholder="Bánh trước/sau"> <br> <br> 
+                         <input type="text" name="tire" placeholder="Vỏ trức/sau"> <br> <br> 
                          <input type="text" name="engine" placeholder="Động cơ"> &emsp; 
                          <input type="text" name="cc" placeholder="Dung tích xi lanh"> &emsp; 
                          <input type="text" name="power" placeholder="Công suất"> <br> <br> 
-                         <input type="text" name="oil" placeholder="Dung tích nhớt"> &emsp; 
+                         <input type="text" name="oil" placeholder="Dung tích dầu"> &emsp; 
                          <input type="text" name="gasoline" placeholder="Dung tích xăng"> &emsp;
                          <input type="text" name="brake" placeholder="Thắng trước/sau"> <br> <br>  
                          <input type="text" name="gearbox" placeholder="Hộp số"> <br> <br>  
-                         <input type="submit" value="Insert"> <br>                         
+                         <input type="submit" value="Thêm"> <br>                         
             </form>           
         </div>
 <!--footer-->        
