@@ -43,9 +43,9 @@ public class UpdateControl extends HttpServlet {
         
         if(a==null )
         {  
-           response.sendRedirect("admin.jsp");
+           response.sendRedirect("user.jsp");
         }else{
-            response.sendRedirect("admin.jsp");
+           response.sendRedirect("user.jsp");
         }
     }
 

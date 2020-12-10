@@ -1,100 +1,138 @@
 <%-- 
     Document   : admin
-    Created on : Oct 7, 2020, 1:18:09 AM
+    Created on : Dec 9, 2020, 9:50:50 PM
     Author     : BND6699
 --%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
                 <%
                     if(session.getAttribute("user1") == null){
-                        response.sendRedirect("Login.html");
+                        response.sendRedirect("loginadmin.html");
                     }
                 %>  
 
-
-<%@ page import="context.DBContext" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.PreparedStatement" %>
-
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
- 
-<html>
+<html lang="vi">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title> Moto world </title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
-        <script src="JS/adjs.js" type="text/javascript"> </script> 
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="CSS/adcss.css" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title> Motor World </title>
+        <link href="CSS/styles.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="JS/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="JS/chart-area-demo.js"></script>
+        <script src="JS/chart-bar-demo.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="JS/datatables-demo.js"></script>
     </head>
-    <body>                                                      
-        <!--header-->        
-        <div id="header"> 
-           <div class="top-bar"> </div> <!--thanh do tren-->    
-           <div id="logo-container"> 
-                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Admin: ${sessionScope.user1}  </i> </h1> <!--Logo--> 
-           </div>
-                   
-           <form>
-           <ul id="menu"> <!--menu-->              
-               <li> <a href="product.jsp">Sản phẩm</a> </li>               
-               <li> <a href="LogoutControl">Đăng xuất</a> </li>
-           </ul>
-           </form>
-        </div>
- 
-<!--body-->            
-        <div id="body">
-        <h1 style="padding-left: 200px; color: maroon"> <i> Danh sách tài khoản </i> </h1>
-    <!--content-->
-            <div id="content">                           
-                <form action="ListACC"> 
-                    <%
-                        DBContext con = new DBContext();;
-                        ResultSet rs = con.chondulieu("select * from taikhoan");
-                    %>
-                    <table align="center">
-                        <thead>
-                            <tr>
-                                <th> Chức năng </th>
-                                <th> Tài khoản </th>
-                                <th> Email </th>
-                                <th> Số điện thoại </th>
-                            </tr>
-                        </thead>
     
-                        <tbody>
-                            <%                                
-                                while(rs.next()){
-                            %>
-                            <tr> 
-                                <td> 
-                                    <a href="UACC.jsp?username=<%=rs.getString(1)%>" class="fa fa-pencil"> </a>  &emsp; &emsp;
-                                    <a href="DeleteControl?username=<%=rs.getString(1)%>" class="fa fa-trash"> </a> 
-                                </td>
-                                <td> <%=rs.getString(1)%> </td>
-                                <td> <%=rs.getString(3)%> </td>
-                                <td> <%=rs.getString(4)%></td>
-                            </tr>   
-                            
-                            <%
-                                }
-                            %>
-                        </tbody>           
-                    </table>
-                </form>
-            </div> 
-        </div> 
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<!--Logo-->             
+           <a class="navbar-brand" href="admin.jsp"> Moto World </a>
 
-<!--footer-->        
-        <div id="footer">  
-            <div class="textfooter">       
-                     
+<!--Logout--> 
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">        
+            <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#"> Đổi mật khẩu </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="LogoutControl"> Đăng xuất </a>
+                    </div>
+                </li>
+            </ul>
+            </form>
+
+<!--Menu--> 
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading"> DANH MỤC </div>
+                            <a class="nav-link" href="product.jsp">
+                                <div class="sb-nav-link-icon"><i class="fas fa-motorcycle"></i></div>
+                                SẢN PHẨM
+                            </a>  
+                            
+                            <a class="nav-link" href="user.jsp">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                TÀI KHOẢN
+                            </a>  
+                            
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                                ĐƠN HÀNG
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        ${sessionScope.user1}
+                    </div>
+                </nav>
+            </div>     
+                    
+<!--Content-->                     
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h1 class="mt-4"> </h1>
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body"> SẢN PHẨM </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="product.jsp"> Xem chi tiết </a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body"> KHÁCH HÀNG </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="user.jsp"> Xem chi tiết </a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body"> ĐƠN HÀNG </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#"> Xem chi tiết </a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>               
+                    </div>
+                </main>
+                
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted"> &copy; Motoword 2020 </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
-        
-        </div>           
+        </div>
     </body>
 </html>

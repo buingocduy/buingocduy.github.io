@@ -1,101 +1,158 @@
 <%-- 
-    Document   : UACC
-    Created on : Nov 2, 2020, 9:14:00 PM
+    Document   : admin
+    Created on : Dec 9, 2020, 9:50:50 PM
     Author     : BND6699
 --%>
-<%@ page import="context.DBContext" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.PreparedStatement" %>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="context.DBContext"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title> Moto world </title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
-        <script src="JS/productjs.js" type="text/javascript"> </script> 
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="CSS/UPDcss.css" />
-    </head>
- <body>
-                    <%
+
+                <%
                     if(session.getAttribute("user1") == null){
-                        response.sendRedirect("Login.html");
+                        response.sendRedirect("loginadmin.html");
                     }
-                    %>   
-        <!--header-->        
-        <div id="header"> 
-           <div class="top-bar"> </div> <!--thanh do tren-->    
-           <div id="logo-container"> 
-                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Admin: ${sessionScope.user1}  </i> </h1>
-           </div>
-          
-           <form>
-           <ul id="menu"> <!--menu-->
-               <li> <a href="admin.jsp">Tài khoản</a> </li>               
-               <li> <a href="LogoutControl"> Đăng xuất </a> </li>
-           </ul>
-           </form>
-        </div>
- 
-<!--body-->            
-        <div id="body">
-    <!--content-->
-            <div id="content">  
+                %>  
+
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title> Motor World </title>
+        <link href="CSS/styles_1.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="JS/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="JS/chart-area-demo.js"></script>
+        <script src="JS/chart-bar-demo.js"></script>
+        <script src="JS/chart-pie-demo.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<!--Logo-->             
+           <a class="navbar-brand" href="admin.jsp"> Moto World </a>
+     
+<!--Logout--> 
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">        
+            <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#"> Đổi mật khẩu </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="LogoutControl"> Đăng xuất </a>
+                    </div>
+                </li>
+            </ul>
+            </form>
+        </nav>
+
+        <!--Menu--> 
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading"> DANH MỤC </div>
+                            <a class="nav-link" href="product.jsp">
+                                <div class="sb-nav-link-icon"><i class="fas fa-motorcycle"></i></div>
+                                SẢN PHẨM
+                            </a>  
+                            
+                            <a class="nav-link" href="user.jsp">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                TÀI KHOẢN
+                            </a>  
+                            
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                                ĐƠN HÀNG
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        ${sessionScope.user1}
+                    </div>
+                </nav>
+            </div>
+        
+<!--Content-->                     
+            <div id="layoutSidenav_content">
                     <%    
                         String user = request.getParameter("username");
                         DBContext con = new DBContext();;
                         ResultSet rs = con.chondulieu("select * from taikhoan where username='" + user + "'"); 
                     %>
-                    <%
-                        while(rs.next()){
-                    %>  
-                    <div class="grid">  
-                        <table>
-                            <tr>
-                                <td> 
-                        <div style=" border: 2px solid black; text-align: center; width: 400px; padding-top: 40px; height: 200px; overflow:  auto;"> 
-                        <form action="UpdateControl" method="get" align="center">
-                            <div style=" color: red; font-size: 14pt; font-weight: bold;">    
-                            <input type="hidden" name="username" id="username" placeholder="username" value="<%=rs.getString(1)%>">                      
-                            <input type="hidden" name="password" id="password" placeholder="password" value="<%=rs.getString(2)%>"> 
-                            Email <br>
-                             <input type="text" name="email" id="email" placeholder="email" value="<%=rs.getString(3)%>"> <br> <br>  
-                            Phonenumber <br> 
-                             <input type="text" name="phonenumber" id="phonenumber" placeholder="phonenumber" value="<%=rs.getString(4)%>"> <br> <br>                          
-                             <input type="submit" value="Update"> <br> 
-                            </div> 
-                        </form>    
-                        </div>
-                                </td>
-                                <td> <h1> <%=rs.getString(1)%> </h1> </td>
-                            </tr>
-                        </table>
-                    </div>
-            </div>  
-    
-    <!--sidebar-->        
-           <!-- <div id="sidebar">               
-                <div class="gridsidebar">  
-                    <div class="rangersidebar1">  
-                           
-                    </div>                                                       
-                </div>
-            </div> -->
-        </div> 
-                    <%
-                        }
-                    %>
+                    <form action="UpdateControl" method="get">
+                <main>
+                    <div class="container-fluid">
+                        <h1 class="mt-4"> SỬA TÀI KHOẢN </h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"> <a href="admin.jsp"> DANH MỤC </a> </li>
+                            <li class="breadcrumb-item active"> <a href="user.jsp"> TÀI KHOẢN </a> </li>
+                            <li class="breadcrumb-item active"> SỬA TÀI KHOẢN </li>
+                        </ol>
 
-<!--footer-->        
-        <div id="footer">  
-            <div class="textfooter">       
-                   
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-users"></i>
+                                Dữ liệu tài khoản
+                            </div>
+                            
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th> Tài khoản </th>
+                                                <th> Email </th>
+                                                <th> Số điện thoại </th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <%
+                                            while(rs.next()){
+                                        %>
+                                        <tbody>
+                                        <tr>      
+                                            <input type="hidden" name="username" id="username" placeholder="username" value="<%=rs.getString(1)%>">
+                                            <input type="hidden" name="password" id="password" placeholder="password" value="<%=rs.getString(2)%>"> 
+                                            <td> <%=rs.getString(1)%> </td>
+                                            <td> <input type="text" class="form-control py-4" name="email" id="email" value="<%=rs.getString(3)%>"> </td>
+                                            <td> <input type="text" class="form-control py-4" name="phonenumber" id="phonenumber" value="<%=rs.getString(4)%>"> </td>
+                                        </tr>   
+                                        <%
+                                            }
+                                        %>
+                                        </tbody>
+                                    </table>                         
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                    <center> <input type="submit" value="Sửa" class="btn btn-primary"> </center> 
+                    </form>
+    
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted"> &copy; Motoword 2020 </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
-            
     </body>
 </html>

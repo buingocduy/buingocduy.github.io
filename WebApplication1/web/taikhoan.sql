@@ -16,7 +16,7 @@ Create table hoadon
 go 
 
 Create table sanpham
-(id int IDENTITY(1,1), tensp nvarchar(100),gia bigint,hinhanh nvarchar(4000),
+(id int IDENTITY(1,1), tensp nvarchar(100),gia bigint,hinhanh char(4000),
 kichthuoc char(80),chieucaoyen char(20),sizebanh char(150),engine nvarchar(200),
 CC char(20),congsuat nvarchar(50),CCnhot nvarchar(50),CCxang nvarchar(20),phanh nvarchar(50),gear nvarchar(20),primary key(id))
 go

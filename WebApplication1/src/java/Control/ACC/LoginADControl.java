@@ -53,7 +53,7 @@ public class LoginADControl extends HttpServlet {
                 session.setAttribute("pass1", pass); 
             }   
             else {
-              response.sendRedirect("Login.html");
+              response.sendRedirect("loginadmin.html");
             }
         } finally {
             out.close();

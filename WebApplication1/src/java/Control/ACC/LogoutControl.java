@@ -39,7 +39,7 @@ public class LogoutControl extends HttpServlet {
 
            HttpSession session = request.getSession(false);
            session.removeAttribute("user1");
-           response.sendRedirect("Login.html");
+           response.sendRedirect("loginadmin.html");
   
     }
 

@@ -13,6 +13,7 @@
                         response.sendRedirect("loginadmin.html");
                     }
                 %>  
+
 <!DOCTYPE html>
 <html lang="vi">
     <head>
@@ -22,7 +23,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title> Motor World </title>
-        <link href="CSS/styles.css" rel="stylesheet" />
+        <link href="CSS/styles_1.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -88,20 +89,22 @@
         
 <!--Content-->                     
             <div id="layoutSidenav_content">
-                    <form action="InsertDPControl" method="get">
+                    <%
+                        DBContext con = new DBContext();;
+                        ResultSet rs = con.chondulieu("select * from taikhoan");
+                    %>
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4"> THÊM SẢN PHẨM </h1>
+                        <h1 class="mt-4"> TÀI KHOẢN </h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin.jsp"> DANH MỤC </a></li>
-                            <li class="breadcrumb-item active"> <a href="product.jsp"> SẢN PHẨM </a></li>
-                            <li class="breadcrumb-item active"> THÊM SẢN PHẨM </li>
+                            <li class="breadcrumb-item active"> TÀI KHOẢN </li>
                         </ol>
 
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-motorcycle"></i>
-                                Dữ liệu sản phẩm
+                                <i class="fas fa-users"></i>
+                                Dữ liệu tài khoản
                             </div>
                             
                             <div class="card-body">
@@ -109,38 +112,39 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th> Tên sản phẩm</th>
-                                                <th> Hình ảnh</th>
-                                                <th> Giá</th>                         
-                                                <th> Dài Rộng Cao</th>
-                                                <th> Chiều cao yên </th>
-                                                <th> Vỏ trước/sau</th>
-                                                <th> Động cơ</th>
-                                                <th> Dung tích xi lanh</th>
-                                                <th> Công suất</th>
-                                                <th> Dung tích nhớt</th>
-                                                <th> Dung tích xăng</th>
-                                                <th> Thắng trước/sau</th>
-                                                <th> Hộp số</th>
+                                                <th> Chức năng </th>
+                                                <th> Tài khoản </th>
+                                                <th> Email </th>
+                                                <th> Số điện thoại </th>
                                             </tr>
                                         </thead>
                                         
-                                        <tbody>                                            
-                                        <tr>                                             
-                                            <td> <input type="text" class="form-control py-4" name="name"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="image"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="price"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="LWH"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="seat"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="tire"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="engine"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="cc"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="power"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="oil"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="gasoline"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="brake"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="gearbox"> </td>
+                                        <%
+                                            while(rs.next()){
+                                        %>
+                                        <tbody>
+                                        <tr>
+                                            <td> 
+                                                <div class="nav-link">
+                                                    <div class="sb-nav-link-icon">
+                                            <!--Xóa-->            
+                                                        <a href="DeleteControl?username=<%=rs.getString(1)%>">
+                                                            <i class="fa fa-trash"> </i>   
+                                                        </a> &emsp; &emsp;
+                                            <!--Sửa-->              
+                                                        <a href="UACC.jsp?username=<%=rs.getString(1)%>">
+                                                            <i class="fas fa-pencil-alt"> </i>   
+                                                        </a>                                                      
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td> <%=rs.getString(1)%> </td>
+                                            <td> <%=rs.getString(3)%> </td>
+                                            <td> <%=rs.getString(4)%></td>
                                         </tr>   
+                                        <%
+                                            }
+                                        %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -148,8 +152,6 @@
                         </div>
                     </div>
                 </main>
-                    <center> <input type="submit" value="Thêm" class="btn btn-primary"> </center>
-                    </form>
                 
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">

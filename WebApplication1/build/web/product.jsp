@@ -1,117 +1,188 @@
 <%-- 
-    Document   : product
-    Created on : Oct 12, 2020, 9:04:54 PM
+    Document   : admin
+    Created on : Dec 9, 2020, 9:50:50 PM
     Author     : BND6699
 --%>
-<%@ page import="context.DBContext" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.PreparedStatement" %>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="context.DBContext"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title> Moto world </title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
-        <script src="JS/productjs.js" type="text/javascript"> </script> 
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="CSS/productcss.css" />
-    </head>
-    <body>
-                    <%
+
+                <%
                     if(session.getAttribute("user1") == null){
-                        response.sendRedirect("Login.html");
+                        response.sendRedirect("loginadmin.html");
                     }
-                    %>   
-        <!--header-->        
-        <div id="header"> 
-           <div class="top-bar"> </div> <!--thanh do tren-->    
-           <div id="logo-container">  
-                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Admin: ${sessionScope.user1}  </i> </h1> 
-           </div>
-           <form>
-           <ul id="menu"> <!--menu-->               
-               <li> <a href="admin.jsp">Tài khoản</a> </li>               
-               <li> <a href="LogoutControl">Đăng xuất</a> </li>
-           </ul>
-           </form>
-        </div>
- 
-<!--body-->            
-        <div id="body">
-            <h1 style="padding-left: 200px; color: maroon"> <i> Danh sách sản phẩm </i> </h1>
-    <!--content-->
-            <div id="content">  
-                <a href="IPD.jsp" style="float: left"> <input type="button" value="Thêm sản phẩm"> </a>
-                <form> 
+                %>  
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title> Motor World </title>
+        <link href="CSS/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="JS/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="JS/chart-area-demo.js"></script>
+        <script src="JS/chart-bar-demo.js"></script>
+        <script src="JS/chart-pie-demo.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<!--Logo-->             
+           <a class="navbar-brand" href="admin.jsp"> Moto World </a>
+     
+<!--Logout--> 
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">        
+            <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#"> Đổi mật khẩu </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="LogoutControl"> Đăng xuất </a>
+                    </div>
+                </li>
+            </ul>
+            </form>
+        </nav>
+
+        <!--Menu--> 
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading"> DANH MỤC </div>
+                            <a class="nav-link" href="product.jsp">
+                                <div class="sb-nav-link-icon"><i class="fas fa-motorcycle"></i></div>
+                                SẢN PHẨM
+                            </a>  
+                            
+                            <a class="nav-link" href="user.jsp">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                TÀI KHOẢN
+                            </a>  
+                            
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                                ĐƠN HÀNG
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        ${sessionScope.user1}
+                    </div>
+                </nav>
+            </div>
+        
+<!--Content-->                     
+            <div id="layoutSidenav_content">
                     <%
                         DBContext con = new DBContext();;
                         ResultSet rs = con.chondulieu("select * from sanpham");
                     %>
-                    <table align="center">
-                        <thead>
-                            <tr>
-                                <th> Chức năng </th>
-                                <th> ID</th>
-                                <th> Hình ảnh</th>
-                                <th> Tên sản phẩm</th>
-                                <th> Giá</th>                         
-                                <th> DàixRộngxCao</th>
-                                <th> Chiều cao yên </th>
-                                <th> Vỏ trước/sau</th>
-                                <th> Động cơ</th>
-                                <th> Dung tích xi lanh</th>
-                                <th> Công suất</th>
-                                <th> Dung tích nhớt</th>
-                                <th> Dung tích xăng</th>
-                                <th> Thắng trước/sau</th>
-                                <th> Hộp số</th> 
-                            </tr>                
-                        </thead>
-    
-                        <tbody>
-                            <%
-                                while(rs.next()){
-                            %>
-                            <tr>
-                                <td> 
-                                    <a href="UPD.jsp?id=<%=rs.getString(1)%>" class="fa fa-pencil"> </a> &emsp; &emsp;
-                                    <a href="DeleteDPControl?id=<%=rs.getString(1)%>" class="fa fa-trash"> </a>
-                                </td>
-                                <td> <%=rs.getString(1)%> </td>
-                                <td> <img src=<%=rs.getString(4)%> height="30%" width-max="30%" alt="Khong tai duoc"> </td>
-                                <td> <%=rs.getString(2)%> </td>
-                                <td> <%=rs.getString(3)%> </td>
-                                <td> <%=rs.getString(5)%> </td>
-                                <td> <%=rs.getString(6)%> </td>
-                                <td> <%=rs.getString(7)%> </td>
-                                <td> <%=rs.getString(8)%> </td>
-                                <td> <%=rs.getString(9)%> </td>
-                                <td> <%=rs.getString(10)%> </td>
-                                <td> <%=rs.getString(11)%> </td>
-                                <td> <%=rs.getString(12)%> </td>
-                                <td> <%=rs.getString(13)%> </td>
-                                <td> <%=rs.getString(14)%> </td>
-                            </tr>   
-                            <%
-                                }
-                            %>
-                        </tbody>           
-                    </table>
-                </form>
-            </div>  
-        </div>
-   
-<!--footer-->        
-        <div id="footer">  
-            <div class="textfooter">       
-                     
+                <main>
+                    <div class="container-fluid">
+                        <h1 class="mt-4"> SẢN PHẨM </h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="admin.jsp"> DANH MỤC </a></li>
+                            <li class="breadcrumb-item active"> SẢN PHẨM </li>
+                        </ol>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-motorcycle"></i>
+                                Dữ liệu sản phẩm &emsp; &emsp;
+                                <a href="IPD.jsp" class="btn btn-primary"> Thêm sản phẩm </a>
+                            </div>
+                            
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th> Chức năng </th>
+                                                <th> ID</th>
+                                                <th> Hình ảnh</th>
+                                                <th> Tên sản phẩm</th>
+                                                <th> Giá</th>                         
+                                                <th> Dài Rộng Cao</th>
+                                                <th> Chiều cao yên </th>
+                                                <th> Vỏ trước/sau</th>
+                                                <th> Động cơ</th>
+                                                <th> Dung tích xi lanh</th>
+                                                <th> Công suất</th>
+                                                <th> Dung tích nhớt</th>
+                                                <th> Dung tích xăng</th>
+                                                <th> Thắng trước/sau</th>
+                                                <th> Hộp số</th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <%
+                                            while(rs.next()){
+                                        %>
+                                        <tbody>
+                                        <tr>
+                                            <td> 
+                                                <div class="nav-link">
+                                                    <div class="sb-nav-link-icon">
+                                            <!--Xóa-->            
+                                                        <a href="DeleteDPControl?id=<%=rs.getString(1)%>">
+                                                            <i class="fa fa-trash"> </i>   
+                                                        </a> &emsp; &emsp;
+                                            <!--Sửa-->              
+                                                        <a href="UPD.jsp?id=<%=rs.getString(1)%>">
+                                                            <i class="fas fa-pencil-alt"> </i>   
+                                                        </a>                                                      
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td> <%=rs.getString(1)%> </td>
+                                            <td> <img src=<%=rs.getString(4)%> height="30%" width-max="30%" alt="Khong tai duoc"> </td>
+                                            <td> <%=rs.getString(2)%> </td>
+                                            <td> <%=rs.getString(3)%> </td>
+                                            <td> <%=rs.getString(5)%> </td>
+                                            <td> <%=rs.getString(6)%> </td>
+                                            <td> <%=rs.getString(7)%> </td>
+                                            <td> <%=rs.getString(8)%> </td>
+                                            <td> <%=rs.getString(9)%> </td>
+                                            <td> <%=rs.getString(10)%> </td>
+                                            <td> <%=rs.getString(11)%> </td>
+                                            <td> <%=rs.getString(12)%> </td>
+                                            <td> <%=rs.getString(13)%> </td>
+                                            <td> <%=rs.getString(14)%> </td>
+                                        </tr>   
+                                        <%
+                                            }
+                                        %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted"> &copy; Motoword 2020 </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
-            
     </body>
 </html>
