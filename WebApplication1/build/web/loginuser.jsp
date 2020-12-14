@@ -14,77 +14,70 @@
 <!DOCTYPE html>
 <html>
      <head> 
-        <title> Moto world </title> 
-        <meta charset="UTF-8"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script> 
-        <script src="JS/Loginjs.js" type="text/javascript"> </script> 
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
-        <link rel="stylesheet" href="CSS/registercss.css"/>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title> MOWO - MOTO WORLD </title> 
+        <link href="CSS/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="JS/scripts.js"></script>
     </head> 
 
-    <body> 
-        
-<!--header-->        
-        <div id="header"> 
-           <div class="top-bar"> </div> <!--thanh do tren-->    
-           <div id="logo-container"> 
-               <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
-           </div>           
-           <ul id="menu"> <!--menu-->
-               <li><a href="home.html">Trang chủ</a> </li>
-               <li><a href="register.jsp">Đăng ký</a> </li>
-               <li> <a href="loginuser.jsp">Đăng nhập</a> </li>
-               <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
-           </ul>
-        </div>
- 
-<!--body-->            
-        <div id="body">
+    <body class="bg-primary"">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header">
+                                        <h3 class="text-center font-weight-light my-4"> <strong> KHÁCH HÀNG ĐĂNG NHẬP </strong> </h3>
+                                    </div>
+                                    <div class="card-body">
+                                        
+                                        <form action="LoginControl" method="get">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputEmailAddress"> TÀI KHOẢN </label>
+                                                <input class="form-control py-4" id="username" name="username" type="text"/>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputPassword"> MẬT KHẨU </label>
+                                                <input class="form-control py-4" id="password" name="password" type="password"/>
+                                            </div>
+                                            <p style="color: red"> ${sessionScope.dangnhap} </p>
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">   
+                                                <input class="btn btn-primary" type="submit" value="Xác nhận">
+                                                <a class="small" href="register.jsp"> Đăng ký </a>
+                                            </div>
+                                            
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">   
+                                                <br>
+                                                <a class="small" href="#"> Quên mật khẩu ? </a>
+                                            </div>
+                                        </form>         
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
             
-<!--content-->
-            <div id="content"> 
-                <div class="textcontent"> <center> Đăng nhập </center> </div> <br>          
-                <div class="rangeregister">
-                    <form method="GET" action="LoginControl">
-                            Username: <input type="text" id="username" name="username"> <br> <br>
-                            Password: <input type="password" id="password" name="password"> <br> <br>
-                            <input type="submit" value="Xác nhận"> <br> 
-                            <p style="color: red"> ${sessionScope.dangnhap} </p>
-                    </form>
-                </div>  
-            </div>
-
-<!--sidebar-->        
-            <div id="sidebar">               
-                <div class="gridsidebar">  
-                        <a href="honda.jsp">   
-                            <div class="thumbnail">
-                            <img src="Hinh/honda.jpg"  height="150" width="80%"  style="border: 1px solid red" alt="Khong tai duoc">
-                            </div>
-                        </a>                        
-                        <a href="#">
-                            <div class="thumbnail">
-                            <img src="Hinh/ya.jpg"  height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()">                      
-                            </div>
-                        </a>
-
-                        <a href="#">
-                            <div class="thumbnail">
-                            <img src="Hinh/su.jpg" height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()"> 
-                            </div> 
-                        </a>                               
-                </div>
-            </div> 
-        </div> 
-
-<!--footer-->        
-        <div id="footer">  
-            <div class="textfooter">       
-                    © MOTOWORLD HỒ CHÍ MINH <br>
-                    Địa chỉ: 475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM <br>
-                    SĐT: 0904596810 | Email: MTHCM@Gmail.com       
+            <div id="layoutAuthentication_footer">
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted"> Copyright &copy; MOWO - MOTO WORLD 2020 </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
-    </body>    
+    </body>
 </html>

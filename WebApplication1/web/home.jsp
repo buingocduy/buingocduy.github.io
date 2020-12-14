@@ -45,7 +45,10 @@
             <a class="nav-link" href="#"> DỊCH VỤ </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"> ĐĂNG NHẬP </a>
+            <a class="nav-link" href="loginuser.jsp"> ĐĂNG NHẬP </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.jsp"> <i class="fa fa-shopping-cart"> </i>  </a>
           </li>
         </ul>
       </div>

@@ -49,7 +49,7 @@ public class RegisterControl extends HttpServlet {
         Create a = registerio.checkRegister(user,pass,email,phonenumber); // check a có null không
            
         HttpSession session = request.getSession();
-        String tb = "Tài khoản bị trùng rồi";
+        String tb = "Tài khoản đã tồn tại";
         
             if(b != null)
             {

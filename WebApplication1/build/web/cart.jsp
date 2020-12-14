@@ -1,74 +1,105 @@
 <%-- 
-    Document   : cart
-    Created on : Oct 20, 2020, 11:13:29 PM
+    Document   : home
+    Created on : Dec 11, 2020, 12:16:50 AM
     Author     : BND6699
 --%>
 
-<%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="entity.Item"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="context.DBContext"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <title> Moto world </title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
-        <script src="JS/cartjs.js" type="text/javascript"> </script> 
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="CSS/cartcss.css" />
-    </head>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title> MOWO - MOTO WORLD </title>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="CSS/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="CSS/shop-homepage.css" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/newcss.css" type="text/css"/>
+  <script src="JS/cartjs.js" type="text/javascript"> </script> 
+
+</head>
+
 <body>
-        <!--header-->        
-        <div id="header"> 
-           <div class="top-bar"> </div> <!--thanh do tren-->    
-           <div id="logo-container"> 
-                <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
-           </div>
-           <ul id="menu"> <!--menu-->
-               <li><a href="home.html">Trang chủ</a> </li>
-               <li><a href="register.jsp">Đăng ký</a> </li>
-               <li> <a href="loginuser.jsp">Đăng nhập</a> </li>
-               <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
-           </ul>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">  MOWO <i class="fa fa-motorcycle logo-icon"></i> </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="home.jsp">TRANG CHỦ
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> DỊCH VỤ </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="loginuser.jsp"> ĐĂNG NHẬP </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.jsp"> <i class="fa fa-shopping-cart"> </i>  </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+                   
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3">
+        <br>
+        <div class="list-group">
+          <a href="honda.jsp" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/honda.jpg" alt="Khong tai duoc"> </a>
+          <p></p>
+          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/ya.jpg" alt="Khong tai duoc"> </a>
+          <p></p>
+          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/su.jpg" alt="Khong tai duoc"> </a>
         </div>
- 
-<!--body-->            
-        <div id="body">
-         
-            <!--sidebar-->        
-            <div id="sidebar">               
-                <div class="gridsidebar">  
-                        <a href="honda.jsp">   
-                            <div class="thumbnail">
-                            <img src="Hinh/honda.jpg"  height="150" width="80%"  style="border: 1px solid red" alt="Khong tai duoc">
-                            </div>
-                        </a>                        
-                        <a href="#">
-                            <div class="thumbnail">
-                            <img src="Hinh/ya.jpg"  height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()">                      
-                            </div>
-                        </a>
+      </div>
+      <!-- /.col-lg-3 -->
 
-                        <a href="#">
-                            <div class="thumbnail">
-                            <img src="Hinh/su.jpg" height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()"> 
-                            </div> 
-                        </a>                               
-                </div>
-            </div> 
-      
-
-        <!--content--> 
-            <div id="content"> 
-                <h3> User: <i> ${sessionScope.user} </i> <a href="LogoutACCControl"> Đăng xuất </a> </h3>
-                <div class="textcontent"> <center> Giỏ hàng </center> </div>                
-            </div>
-            <div id="content">          
-                <table>
+                 
+                
+      <div class="col-lg-9">
+        <center>
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">       
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                
+            </div>                       
+          </div>       
+        </div> 
+        </center>  
+          
+          <%{
+              if(session.getAttribute("user") != null)
+              {
+                 out.print("<h3> Tài khoản: <i> " + session.getAttribute("user") +"</i> </h3>");
+                 out.print("<a href='LogoutACCControl'> <input class='btn btn-primary' type='button' name='OUT' value='Đăng xuất'> </a>");   
+              }
+          }%>
+          
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">      
+                <table class="table table-striped table-bordered table-list">                    
                         <tr>
                             <th> Sản phẩm </th>
                             <th> Tên sản phẩm </th>
@@ -113,7 +144,6 @@
                 %>
                 </table> <br>
                 
-                
                 <%
                     if (request.getParameter("mua") != null )
                     {
@@ -128,24 +158,35 @@
                 
                 <center>
                     <form onsubmit = "return validateForm()">
-                        <button type="submit" id="mua" name="mua"> Đặt hàng </button> </br> </br> 
+                        <button class="btn btn-primary" type="submit" id="mua" name="mua"> Đặt hàng </button> </br> </br> 
                         <input type="hidden" id="user" name="user" value="${sessionScope.user}">
                         <input type="hidden" id="order" name="order" value="${sessionScope.Orders}">                    
                     </form>                  
                 </center>
-             </div>             
-        </div>   
-   
-
-
-<!--footer-->        
-        <div id="footer">  
-            <div class="textfooter">       
-                    © MOTOWORLD HỒ CHÍ MINH <br>
-                    Địa chỉ: 475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM <br>
-                    SĐT: 0904596810 | Email: MTHCM@Gmail.com       
-            </div>
+        </div>           
         </div>
-            
-    </body>
+                    
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div> <br>
+    <!-- /.row -->
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; MOWO - MOTO WORLD 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="JS/jquery.min.js"></script>
+  <script src="JS/bootstrap.bundle.min.js"></script>
+
+</body>
+
 </html>
