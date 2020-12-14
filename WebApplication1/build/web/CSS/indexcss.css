@@ -1,4 +1,4 @@
-        body 
+            body 
         { 
             height: 100%; 
             width: 100%; 
@@ -244,7 +244,7 @@
         .thumbnail img:hover 
         {
             transition-duration: 0.5s;
-            overflow: hidden;
+            overflow: auto;
             transform: scale(1.2);
         }
 

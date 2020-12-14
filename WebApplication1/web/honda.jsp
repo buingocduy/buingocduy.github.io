@@ -1,100 +1,154 @@
 <%-- 
-    Document   : honda
-    Created on : Oct 22, 2020, 5:27:35 PM
+    Document   : home
+    Created on : Dec 11, 2020, 12:16:50 AM
     Author     : BND6699
 --%>
+
 <%@page import="java.sql.ResultSet"%>
 <%@page import="context.DBContext"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <title> Moto world </title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
-        <script src="JS/indexjs.js" type="text/javascript"> </script> 
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="CSS/indexcss.css" />
-    </head>
-  <body>
-        <!--header-->        
-        <div id="header"> 
-           <div class="top-bar"> </div> <!--thanh do tren-->    
-           <div id="logo-container"> 
-                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
-           </div>           
-           <ul id="menu"> <!--menu-->
-               <li><a href="home.html">Trang chủ</a> </li>
-               <li><a href="register.jsp">Đăng ký</a> </li>
-               <li> <a href="loginuser.jsp">Đăng nhập</a> </li>
-               <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
-           </ul>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title> MOWO - MOTO WORLD </title>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="CSS/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="CSS/shop-homepage.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">  MOWO <i class="fa fa-motorcycle logo-icon"></i> </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="home.jsp">TRANG CHỦ
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> DỊCH VỤ </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> ĐĂNG NHẬP </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3">
+        <br>
+        <div class="list-group">
+          <a href="honda.jsp" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/honda.jpg" alt="Khong tai duoc"> </a>
+          <p></p>
+          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/ya.jpg" alt="Khong tai duoc"> </a>
+          <p></p>
+          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/su.jpg" alt="Khong tai duoc"> </a>
         </div>
- 
-<!--body-->            
-        <div id="body">
+
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
             
-    <!--content-->
-            <div id="content"> 
-                 <center> <img src="Hinh/logohonda.jpg" height="80" width="300" alt="Khong tai duoc"> </center> 
-                 <div class="grid">
-
-                   <%       
-                        DBContext cxn = new DBContext();;
-                        ResultSet rx = cxn.chondulieu("select * from sanpham");
-                   %>
-                   <%
-                      while(rx.next()){
-                   %>              
-
-                   <div class="rangecontent">                     
-                        <a href="Xe1.jsp?id=<%=rx.getString(1)%>">
-                            <div class="thumbnail">
-                            <img src=<%=rx.getString(4)%> height="200" width="80%" alt="Khong tai duoc"> 
-                            </div>
-                        </a>    
-                     
-                            <p class="texttitle"> <%=rx.getString(2)%> </p> 
-                            <p class="textprice"> <%=rx.getString(3)%>.000.000 VNĐ</p>
-                            <a href="Xe1.jsp?id=<%=rx.getString(1)%>">
-                            <input type="button" name="1" value="Xem thông tin chi tiết"> 
-                            </a>
-                       
-                    </div>
-                            
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <img class="d-block img-fluid" src="Hinh/honda.jpg" alt="First slide">
+            </div>          
+          </div>
+            
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        
+        <div class="row">  
+                    <%       
+                         DBContext cxn = new DBContext();;
+                         ResultSet rx = cxn.chondulieu("select * from sanpham");
+                    %>
+                    <%
+                       while(rx.next()){
+                    %>                
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="thumbnail">
+              <a href="Xe1.jsp?id=<%=rx.getString(1)%>"> <img class="card-img-top" src=<%=rx.getString(4)%>  height="200" alt="khongtaiduoc"> </a>
+                </div>
+              <div class="card-footer">
+                <h4 class="card-title">  <%=rx.getString(2)%> </h4>
+              </div>
+              
+              <div class="card-body">
+                <h5> <%=rx.getString(3)%>.000.000 VNĐ </h5>
+              </div>
+              
+            </div>
+          </div>
+                      
                     <%
                         }
-                    %>   
-                </div>       
-            </div> 
-                
-    <!--sidebar-->        
-            <div id="sidebar">               
-                <div class="gridsidebar">                                        
-                        <a href="#">
-                            <div class="thumbnail">
-                            <img src="Hinh/ya.jpg"  height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()">                      
-                            </div>
-                        </a>
-
-                        <a href="#">
-                            <div class="thumbnail">
-                            <img src="Hinh/su.jpg" height="150" width="80%" style="border: 1px solid red" alt="Khong tai duoc" onclick="hinh()"> 
-                            </div> 
-                        </a>                               
-                </div>
-            </div> 
-        </div> 
-
-<!--footer-->        
-        <div id="footer">  
-            <div class="textfooter">       
-                    © MOTOWORLD HỒ CHÍ MINH <br>
-                    Địa chỉ: 475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM <br>
-                    SĐT: 0904596810 | Email: MTHCM@Gmail.com       
-            </div>
+                    %> 
         </div>
-            
-    </body>
+        
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; MOWO - MOTO WORLD 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="JS/jquery.min.js"></script>
+  <script src="JS/bootstrap.bundle.min.js"></script>
+
+</body>
+
 </html>

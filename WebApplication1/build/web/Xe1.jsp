@@ -1,42 +1,60 @@
 <%-- 
-    Document   : Xe1
-    Created on : Oct 10, 2020, 11:23:25 PM
+    Document   : home
+    Created on : Dec 11, 2020, 12:16:50 AM
     Author     : BND6699
 --%>
 
-<%@page import="javax.persistence.criteria.Order"%>
-<%@page import="entity.Item"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="context.DBContext"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
-        <script src="JS/xejs.js" type="text/javascript"> </script> 
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="CSS/xecss.css" />
-        <title> Moto world </title>
-    </head>
-    <body>
-         <!--header-->        
-        <div id="header"> 
-           <div class="top-bar"> </div> <!--thanh do tren-->    
-           <div id="logo-container"> 
-                    <p href="hinh.jpg" onclick="hinh()">
-                        <i class="fa fa-motorcycle logo-icon" id="hinh"></i> <h1> <i> Motoworld  </i> </h1> <!--Logo--> 
-                    </p> 
-           </div>
-           <ul id="menu"> <!--menu-->
-               <li><a href="home.html">Trang chủ</a> </li>
-               <li><a href="register.jsp">Đăng ký</a> </li>
-               <li> <a href="loginuser.jsp">Đăng nhập</a> </li>
-               <li> <a href="cart.jsp"> <i class="fa fa-shopping-cart" id="cart"> </i> </a> </li>
-           </ul>
-        </div>
-         
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title> MOWO - MOTO WORLD </title>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="CSS/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="CSS/shop-homepage.css" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/newcss.css" type="text/css"/>
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">  MOWO <i class="fa fa-motorcycle logo-icon"></i> </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="home.jsp">TRANG CHỦ
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> DỊCH VỤ </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> ĐĂNG NHẬP </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
                    <%
                         String id = request.getParameter("id");
                         DBContext con = new DBContext();;
@@ -46,26 +64,24 @@
                    <%
                       while(rs.next()){
                    %> 
-<!--body-->            
-        <div id="body">
-            <div class="textcontent"> <center> <%=rs.getString(2)%> </center> </div>    
-    <!--sidebar             
-            <div id="sidebar">                 
+  <!-- Page Content -->
+  <div class="container">
 
-                <div class="leftrangecontent">
-                    <img src=<%=rs.getString(4)%> height="80%" width="100%" alt="Khong tai duoc"> 
-                </div>
-            </div>-->
-    <!--content-->           
-    
-            <div id="content">               
-                <div class="rightrangecontent">
-                    
-                    
-                    <center> <img src=<%=rs.getString(4)%> height="100%" width-max="100%" alt="Khong tai duoc">
-                    
-                    
-                    <%
+    <div class="row">
+
+      <div class="col-lg-3">
+        <br>
+        <div class="list-group">
+          <a href="honda.jsp" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/honda.jpg" alt="Khong tai duoc"> </a>
+          <p></p>
+          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/ya.jpg" alt="Khong tai duoc"> </a>
+          <p></p>
+          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/su.jpg" alt="Khong tai duoc"> </a>
+        </div>
+      </div>
+      <!-- /.col-lg-3 -->
+
+                  <%
                     if (request.getParameter("add") != null) {
                         entity.Item item = new entity.Item();
 
@@ -85,58 +101,80 @@
                         response.sendRedirect("cart.jsp");
                     }
                     %>
-                    
-                    <h2> Giá: <%=rs.getString(3)%>.000.000 VNĐ</h2>
-                    <form onsubmit = "return validateForm()">
+                
+      <div class="col-lg-9">
+        <center>
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">       
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <img class="d-block img-fluid" src=<%=rs.getString(4)%>  alt="Firstslide">
+                <h4> Giá: <%=rs.getString(3)%>.000.000 VNĐ</h4>
+                <form onsubmit = "return validateForm()">
                         <input type="hidden" name="id" id="id" value="<%=rs.getInt(1)%>"/>
                         <input type="hidden" name="tensp" id="tensp" value="<%=rs.getString(2)%>"/>
                         <input type="hidden" name="gia" id="gia" value="<%=rs.getString(3)%>"/>
                         <input type="hidden" name="hinhanh" id="hinhanh" value="<%=rs.getString(4)%>"/>
-                        Số lượng: <input type="number" name="soluong" id="soluong" value="1"/>
-                        <button type="submit" name="add" class="fa fa-shopping-cart"> </button>
-                    </form>
-                      
-                     <h2 style="color:red"> Thông số kỹ thuật </h2>
-                     
-                <table>
+                        Số lượng: <input type="number" name="soluong" id="soluong" value="1"/>                     
+                        <button class="btn btn-primary" type="submit" name="add">
+                            <i class="fa fa-shopping-cart"> </i> 
+                        </button>
+                </form>
+            </div>                       
+          </div>       
+        </div> 
+        </center>  
+     
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+                <table class="table table-striped table-bordered table-list">
                     <tbody>
                         <tr> 
-                            <td> Dài x Rộng x Cao : <%=rs.getString(5)%> </td> 
-                            <td> Độ cao yên : <%=rs.getString(6)%> </td>                     
+                            <td> <strong> Dài x Rộng x Cao : </strong> <%=rs.getString(5)%> </td> 
+                            <td> <strong> Độ cao yên : </strong> <%=rs.getString(6)%> </td>                     
                         </tr>
                         <tr> 
-                            <td> Cỡ lốp trước/sau : <%=rs.getString(7)%> </td> 
-                            <td> Loại động cơ : <%=rs.getString(8)%> </td>                     
+                            <td> <strong> Cỡ lốp trước/sau : </strong> <%=rs.getString(7)%> </td> 
+                            <td> <strong> Loại động cơ : </strong> <%=rs.getString(8)%> </td>                     
                         </tr>
                         <tr> 
-                            <td> Dung tích xy-lanh : <%=rs.getString(9)%> </td> 
-                            <td> Công suất tối đa : <%=rs.getString(10)%> </td>                     
+                            <td> <strong> Dung tích xy-lanh : </strong> <%=rs.getString(9)%> </td> 
+                            <td> <strong> Công suất tối đa : </strong> <%=rs.getString(10)%> </td>                     
                         </tr>
                         <tr> 
-                            <td> Dung tích nhớt máy : <%=rs.getString(11)%> </td> 
-                            <td> Dung tích xăng : <%=rs.getString(12)%> </td>                     
+                            <td> <strong> Dung tích nhớt máy : </strong> <%=rs.getString(11)%> </td> 
+                            <td> <strong> Dung tích xăng : </strong> <%=rs.getString(12)%> </td>                     
                         </tr>
                         <tr> 
-                            <td> Phanh trước/sau: <%=rs.getString(13)%> </td> 
-                            <td> Hộp số : <%=rs.getString(14)%> </td>                      
+                            <td> <strong> Phanh trước/sau: </strong> <%=rs.getString(13)%> </td> 
+                            <td> <strong> Hộp số : </strong> <%=rs.getString(14)%> </td>                      
                         </tr>
                     </tbody>
-                </table>
-                </div>
-                        </center>  
-                   <%
-                        }
-                   %> 
-                </div>       
-            </div>  
-<!--footer-->        
-        <div id="footer">  
-            <div class="textfooter">       
-                    © MOTOWORLD HỒ CHÍ MINH <br>
-                    Địa chỉ: 475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM <br>
-                    SĐT: 0904596810 | Email: MTHCM@Gmail.com       
-            </div>
+                </table>    
+        </div>           
         </div>
-            
-    </body>
+                    <%
+                        }
+                    %> 
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; MOWO - MOTO WORLD 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="JS/jquery.min.js"></script>
+  <script src="JS/bootstrap.bundle.min.js"></script>
+
+</body>
+
 </html>

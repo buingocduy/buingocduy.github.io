@@ -45,7 +45,7 @@
             <a class="nav-link" href="#"> DỊCH VỤ </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"> LIÊN HỆ </a>
+            <a class="nav-link" href="#"> ĐĂNG NHẬP </a>
           </li>
         </ul>
       </div>
@@ -60,9 +60,11 @@
       <div class="col-lg-3">
         <br>
         <div class="list-group">
-          <a href="#" class="list-group-item"> HONDA </a>
-          <a href="#" class="list-group-item"> YAMAHA </a>
-          <a href="#" class="list-group-item"> SUZUKI </a>
+          <a href="honda.jsp" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/honda.jpg" alt="Khong tai duoc"> </a>
+          <p></p>
+          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/ya.jpg" alt="Khong tai duoc"> </a>
+          <p></p>
+          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/su.jpg" alt="Khong tai duoc"> </a>
         </div>
 
       </div>

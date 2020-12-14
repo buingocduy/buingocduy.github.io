@@ -68,7 +68,7 @@ select * from sanpham
 
 update taikhoan set password = '1233', email = 'abc@gamil.com' , phonenumber=0906999599 where username = 'nguyenthanhtuyen'
 
-delete from sanpham where id = 'h4'
+delete from sanpham where id = '1'
 
 update sanpham set tensp = '',gia = '500000 VNĐ',hinhanh = '' ,kichthuoc = '',chieucaoyen = '',
 sizebanh = '',engine = '',CC = '',congsuat = '',CCnhot = '',CCxang = '',phanh = '' ,gear = '' where id = 'h1'
