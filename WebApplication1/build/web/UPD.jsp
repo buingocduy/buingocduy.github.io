@@ -62,17 +62,26 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading"> DANH MỤC </div>
-                            <a class="nav-link" href="product.jsp">
+                            <a class="nav-link collapsed" href="product.jsp" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-motorcycle"></i></div>
                                 SẢN PHẨM
-                            </a>  
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="product.jsp?hang=HONDA">HONDA</a>
+                                    <a class="nav-link" href="product.jsp?hang=YAMAHA">YAMAHA</a>
+                                    <a class="nav-link" href="product.jsp?hang=SUZUKI">SUZUKI</a>
+                                </nav>
+                            </div> 
+                            
                             
                             <a class="nav-link" href="user.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 TÀI KHOẢN
                             </a>  
                             
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="donhang.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                                 ĐƠN HÀNG
                             </a>
@@ -91,6 +100,7 @@
                     <% 
                         String id = request.getParameter("id");
                         DBContext con = new DBContext();;
+                        ResultSet rx = con.chondulieu("select * from hang"); 
                         ResultSet rs = con.chondulieu("select * from sanpham where id='" + id + "'"); 
                     %>
                     <form action="UpdateDPControl" method="get">
@@ -114,6 +124,7 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
+                                                <th> Hãng </th>
                                                 <th> Hình ảnh</th>
                                                 <th> Tên sản phẩm</th>
                                                 <th> Giá</th>                         
@@ -126,7 +137,7 @@
                                                 <th> Dung tích nhớt</th>
                                                 <th> Dung tích xăng</th>
                                                 <th> Thắng trước/sau</th>
-                                                <th> Hộp số</th>
+                                                <th> Hộp số </th>
                                             </tr>
                                         </thead>
                                         
@@ -135,7 +146,18 @@
                                         %>
                                         <tbody>
                                             <img src=<%=rs.getString(4)%> height="30%" width-max="30%" alt="Khong tai duoc">
-                                        <tr>                                           
+                                        <tr> 
+                                            <td>
+                                            <select name="hang">
+                                                <%
+                                                    while(rx.next()){
+                                                %>
+                                                <option> <%=rx.getString(1)%>  </option>
+                                                <%
+                                                    }
+                                                %>
+                                            </select>
+                                            </td>
                                             <input type="hidden" name="id" placeholder="ID" value="<%=rs.getString(1)%>">
                                             <td> <input type="text" class="form-control py-4" name="image" value="<%=rs.getString(4)%>"> </td>
                                             <td> <input type="text" class="form-control py-4" name="name" value="<%=rs.getString(2)%>"> </td>
@@ -149,7 +171,7 @@
                                             <td> <input type="text" class="form-control py-4" name="oil" value="<%=rs.getString(11)%>"> </td>
                                             <td> <input type="text" class="form-control py-4" name="gasoline" value="<%=rs.getString(12)%>"> </td>
                                             <td> <input type="text" class="form-control py-4" name="brake" value="<%=rs.getString(13)%>"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="gearbox" value="<%=rs.getString(14)%>"> </td>
+                                            <td> <input type="text" class="form-control py-4" name="gearbox" value="<%=rs.getString(14)%>"> </td>                                          
                                         </tr>   
                                         <%
                                             }

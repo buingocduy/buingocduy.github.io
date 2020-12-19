@@ -24,11 +24,12 @@ public class Product {
     private String CCxang;
     private String phanh;
     private String gear;
+    private String hang;
 
     public Product() {
     }
 
-    public Product(String tensp, String gia, String hinh, String kichthuoc, String chieucaoyen, String sizebanh, String engine, String CC, String congsuat, String CCnhot, String CCxang, String phanh, String gear) {
+    public Product(String tensp, String gia, String hinh, String kichthuoc, String chieucaoyen, String sizebanh, String engine, String CC, String congsuat, String CCnhot, String CCxang, String phanh, String gear, String hang) {
         this.tensp = tensp;
         this.gia = gia;
         this.hinh = hinh;
@@ -42,6 +43,7 @@ public class Product {
         this.CCxang = CCxang;
         this.phanh = phanh;
         this.gear = gear;
+        this.hang = hang;
     }
 
     public String getTensp() {
@@ -148,6 +150,12 @@ public class Product {
         this.gear = gear;
     }
 
-   
-    
+    public String getHang() {
+        return hang;
+    }
+
+    public void setHang(String hang) {
+        this.hang = hang;
+    }
+
 }

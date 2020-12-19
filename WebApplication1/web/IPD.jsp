@@ -62,17 +62,26 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading"> DANH MỤC </div>
-                            <a class="nav-link" href="product.jsp">
+                            <a class="nav-link collapsed" href="product.jsp" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-motorcycle"></i></div>
-                                SẢN PHẨM
-                            </a>  
+                                SẢN PHẨM 
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="product.jsp?hang=HONDA">HONDA</a>
+                                    <a class="nav-link" href="product.jsp?hang=YAMAHA">YAMAHA</a>
+                                    <a class="nav-link" href="product.jsp?hang=SUZUKI">SUZUKI</a>
+                                </nav>
+                            </div> 
+                            
                             
                             <a class="nav-link" href="user.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 TÀI KHOẢN
                             </a>  
                             
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="donhang.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                                 ĐƠN HÀNG
                             </a>
@@ -85,7 +94,10 @@
                     </div>
                 </nav>
             </div>
-        
+                    <% 
+                        DBContext con = new DBContext();;
+                        ResultSet rx = con.chondulieu("select * from hang");                 
+                    %>
 <!--Content-->                     
             <div id="layoutSidenav_content">
                     <form action="InsertDPControl" method="get">
@@ -126,7 +138,18 @@
                                         </thead>
                                         
                                         <tbody>                                            
-                                        <tr>                                             
+                                        <tr>
+                                            <td>
+                                            <select name="hang">
+                                                <%
+                                                    while(rx.next()){
+                                                %>
+                                                <option> <%=rx.getString(1)%>  </option>
+                                                <%
+                                                    }
+                                                %>
+                                            </select>
+                                            </td>
                                             <td> <input type="text" class="form-control py-4" name="name"> </td>
                                             <td> <input type="text" class="form-control py-4" name="image"> </td>
                                             <td> <input type="text" class="form-control py-4" name="price"> </td>

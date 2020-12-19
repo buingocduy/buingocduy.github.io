@@ -37,6 +37,7 @@ public class DeleteDPControl extends HttpServlet {
         
         HttpSession session = request.getSession();
         String id = request.getParameter("id"); //lấy của netbeans
+        String hang = request.getParameter("hang"); //lấy của netbeans
         DeleteDPIO deletedpIO = new DeleteDPIO(); // khai báo register
         Product pd = null;
         
@@ -44,9 +45,9 @@ public class DeleteDPControl extends HttpServlet {
         pd = deletedpIO.checkDelete(id); // check a có null không
         if(pd == null)
         {
-           response.sendRedirect("product.jsp");
+           response.sendRedirect("admin.jsp");
         }else{
-           response.sendRedirect("product.jsp");
+           response.sendRedirect("admin.jsp");
         }  
         }else{
            response.sendRedirect("Login.html");

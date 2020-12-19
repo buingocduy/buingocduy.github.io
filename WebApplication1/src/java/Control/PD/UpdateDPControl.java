@@ -54,16 +54,17 @@ public class UpdateDPControl extends HttpServlet {
         String CCxang = request.getParameter("gasoline"); //lấy của netbeans
         String phanh = request.getParameter("brake"); //lấy của netbeans
         String gear = request.getParameter("gearbox"); //lấy của netbeans
+        String hang = request.getParameter("hang"); //lấy của netbeans
         
         UpdateDPIO updatedpIO = new UpdateDPIO(); // khai báo register
         
         if(session.getAttribute("user1") != null){
-        pd = updatedpIO.checkUpdate(id, tensp, gia, hinhanh, kichthuoc, chieucaoyen, sizebanh, engine, CC, congsuat, CCnhot, CCxang, phanh, gear); // check a có null không
+        pd = updatedpIO.checkUpdate(id, tensp, gia, hinhanh, kichthuoc, chieucaoyen, sizebanh, engine, CC, congsuat, CCnhot, CCxang, phanh, gear,hang); // check a có null không
         if(pd==null)
         {
-           response.sendRedirect("product.jsp");
+           response.sendRedirect("product.jsp?hang="+hang+"");
         }else{
-           response.sendRedirect("product.jsp");
+           response.sendRedirect("product.jsp?id="+id+"");
         }  
         }else{
            response.sendRedirect("Login.html");

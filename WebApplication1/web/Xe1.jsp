@@ -26,6 +26,7 @@
   <!-- Custom styles for this template -->
   <link href="CSS/shop-homepage.css" rel="stylesheet">
   <link rel="stylesheet" href="CSS/newcss.css" type="text/css"/>
+  <script src="JS/cartjs.js" type="text/javascript"> </script> 
 
 </head>
 
@@ -40,6 +41,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item">           
+            <%{
+                if(session.getAttribute("user") != null)
+                {
+                   out.print("<i class='nav-link'> " + session.getAttribute("user") +"</i> ");                
+                }
+            }%>
+          </li>
           <li class="nav-item active">
             <a class="nav-link" href="home.jsp">TRANG CHỦ
               <span class="sr-only">(current)</span>
@@ -49,7 +58,14 @@
             <a class="nav-link" href="#"> DỊCH VỤ </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="loginuser.jsp"> ĐĂNG NHẬP </a>
+            <%{
+              if(session.getAttribute("user") == null)
+              {
+                out.print("<a class='nav-link' href='loginuser.jsp'> ĐĂNG NHẬP </a>");   
+              }else if(session.getAttribute("user") != null){
+                out.print("<a class='nav-link' href='LogoutACCControl'  name='OUT'> ĐĂNG XUẤT </a>");  
+              }
+            }%>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="cart.jsp"> <i class="fa fa-shopping-cart"> </i>  </a>
@@ -75,11 +91,11 @@
       <div class="col-lg-3">
         <br>
         <div class="list-group">
-          <a href="honda.jsp" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/honda.jpg" alt="Khong tai duoc"> </a>
+          <a href="sanpham.jsp?hang=HONDA" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/logohonda.jpg" alt="Khong tai duoc"> </a>
           <p></p>
-          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/ya.jpg" alt="Khong tai duoc"> </a>
+          <a href="sanpham.jsp?hang=YAMAHA" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/YAMAHA.jpg" alt="Khong tai duoc"> </a>
           <p></p>
-          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/su.jpg" alt="Khong tai duoc"> </a>
+          <a href="sanpham.jsp?hang=SUZUKI" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/SUZUKI.jpg" alt="Khong tai duoc"> </a>
         </div>
       </div>
       <!-- /.col-lg-3 -->
@@ -87,7 +103,7 @@
                   <%
                     if (request.getParameter("add") != null) {
                         entity.Item item = new entity.Item();
-
+   
                         item.setId(Integer.parseInt(request.getParameter("id")));
                         item.setHinhanh(request.getParameter("hinhanh"));
                         item.setTensp(request.getParameter("tensp"));
@@ -104,7 +120,8 @@
                         response.sendRedirect("cart.jsp");
                     }
                     %>
-                
+                    
+               
       <div class="col-lg-9">
         <center>
         <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">       
@@ -112,12 +129,12 @@
             <div class="carousel-item active">
                 <img class="d-block img-fluid" src=<%=rs.getString(4)%>  alt="Firstslide">
                 <h4> Giá: <%=rs.getString(3)%>.000.000 VNĐ</h4>
-                <form onsubmit = "return validateForm()">
+                <form onsubmit = "return validateForm1()">
                         <input type="hidden" name="id" id="id" value="<%=rs.getInt(1)%>"/>
                         <input type="hidden" name="tensp" id="tensp" value="<%=rs.getString(2)%>"/>
                         <input type="hidden" name="gia" id="gia" value="<%=rs.getString(3)%>"/>
                         <input type="hidden" name="hinhanh" id="hinhanh" value="<%=rs.getString(4)%>"/>
-                        Số lượng: <input type="number" name="soluong" id="soluong" value="1"/>                     
+                        Số lượng : <input type="number" name="soluong" id="soluong" value="1"/>                     
                         <button class="btn btn-primary" type="submit" name="add">
                             <i class="fa fa-shopping-cart"> </i> 
                         </button>

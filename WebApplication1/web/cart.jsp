@@ -41,6 +41,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item">           
+            <%{
+                if(session.getAttribute("user") != null)
+                {
+                   out.print("<i class='nav-link'> " + session.getAttribute("user") +"</i> ");                
+                }
+            }%>
+          </li>
           <li class="nav-item active">
             <a class="nav-link" href="home.jsp">TRANG CHỦ
               <span class="sr-only">(current)</span>
@@ -50,11 +58,18 @@
             <a class="nav-link" href="#"> DỊCH VỤ </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="loginuser.jsp"> ĐĂNG NHẬP </a>
+            <%{
+              if(session.getAttribute("user") == null)
+              {
+                out.print("<a class='nav-link' href='loginuser.jsp'> ĐĂNG NHẬP </a>");   
+              }else if(session.getAttribute("user") != null){
+                out.print("<a class='nav-link' href='LogoutACCControl'  name='OUT'> ĐĂNG XUẤT </a>");  
+              }
+            }%>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="cart.jsp"> <i class="fa fa-shopping-cart"> </i>  </a>
-          </li>
+          </li>        
         </ul>
       </div>
     </div>
@@ -68,11 +83,11 @@
       <div class="col-lg-3">
         <br>
         <div class="list-group">
-          <a href="honda.jsp" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/honda.jpg" alt="Khong tai duoc"> </a>
+          <a href="sanpham.jsp?hang=HONDA" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/logohonda.jpg" alt="Khong tai duoc"> </a>
           <p></p>
-          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/ya.jpg" alt="Khong tai duoc"> </a>
+          <a href="sanpham.jsp?hang=YAMAHA" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/YAMAHA.jpg" alt="Khong tai duoc"> </a>
           <p></p>
-          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/su.jpg" alt="Khong tai duoc"> </a>
+          <a href="sanpham.jsp?hang=SUZUKI" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/SUZUKI.jpg" alt="Khong tai duoc"> </a>
         </div>
       </div>
       <!-- /.col-lg-3 -->
@@ -88,16 +103,7 @@
             </div>                       
           </div>       
         </div> 
-        </center>  
-          
-          <%{
-              if(session.getAttribute("user") != null)
-              {
-                 out.print("<h3> Tài khoản: <i> " + session.getAttribute("user") +"</i> </h3>");
-                 out.print("<a href='LogoutACCControl'> <input class='btn btn-primary' type='button' name='OUT' value='Đăng xuất'> </a>");   
-              }
-          }%>
-          
+        </center>       
         <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">      
                 <table class="table table-striped table-bordered table-list">                    
                         <tr>
@@ -117,12 +123,14 @@
                     }
  
                     int count = orders.size() -1;
-                    while (count > -1) {
+                    while (count > -1) 
+                    {
                         item = (entity.Item) orders.get(count);
                         
                         if (request.getParameter("id") != null) {                          
-                            if (item.getId() == (Integer.parseInt(request.getParameter("id")))) {
-                                orders.remove(item);                              
+                            if (item.getId() == (Integer.parseInt(request.getParameter("id")))) 
+                            {
+                                orders.remove(item);
                                 count--;
                                 continue;
                             }
@@ -135,13 +143,13 @@
                         out.print("<td>" + item.getTensp()+ "</td>");               
                         out.print("<td>" + item.getGia()+".000.000"+ "</td>");
                         out.print("<td>" + item.getSoluongmua()+ "</td>");
-                        out.print("<td>" + tongtien +".000.000"+ "</td>");                             
-                        out.print("<td> <a href='?id="+item.getId()+"'> Delete </a> </td>");             
+                        out.print("<td>" + tongtien +".000.000"+ "</td>");
+                        out.print("<td> <a href='?id="+item.getId()+"'> Delete </a> </td>");
+                
                         count--;
-                        out.print("</tr>"); 
-                    }
-                    
-                %>
+                        out.print("</tr>");        
+                    }                
+                %>                    
                 </table> <br>
                 
                 <%
@@ -157,11 +165,16 @@
                 %>
                 
                 <center>
-                    <form onsubmit = "return validateForm()">
-                        <button class="btn btn-primary" type="submit" id="mua" name="mua"> Đặt hàng </button> </br> </br> 
+                    <form method="GET" action="InsertCart" onsubmit = "return validateForm()">
+                        <button class="btn btn-primary" type="submit" id="mua" name="mua"> Đặt hàng </button> </br> </br>
                         <input type="hidden" id="user" name="user" value="${sessionScope.user}">
-                        <input type="hidden" id="order" name="order" value="${sessionScope.Orders}">                    
-                    </form>                  
+                        <input type="hidden" id="order" name="order" value="${sessionScope.Orders}">
+                        <%                      
+                            out.print("<input type='hidden' id='tensp' name='tensp' value='"+ item.getTensp()+ "'>"); 
+                            out.print("<input type='hidden' id='soluongmua' name='soluongmua' value='"+ item.getSoluongmua()+ "'>");
+                            out.print("<input type='hidden' id='tongtien' name='tongtien' value='"+ item.getSoluongmua() * item.getGia() + "'>");
+                        %>
+                    </form> 
                 </center>
         </div>           
         </div>

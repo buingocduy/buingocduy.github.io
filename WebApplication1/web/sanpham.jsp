@@ -38,6 +38,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item">           
+            <%{
+                if(session.getAttribute("user") != null)
+                {
+                   out.print("<i class='nav-link'> " + session.getAttribute("user") +"</i> ");                
+                }
+            }%>
+          </li>
           <li class="nav-item active">
             <a class="nav-link" href="home.jsp">TRANG CHỦ
               <span class="sr-only">(current)</span>
@@ -47,7 +55,15 @@
             <a class="nav-link" href="#"> DỊCH VỤ </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="loginuser.jsp"> ĐĂNG NHẬP </a>
+            <%{
+              if(session.getAttribute("user") == null)
+              {
+                out.print("<a class='nav-link' href='loginuser.jsp'> ĐĂNG NHẬP </a>");   
+              }else if(session.getAttribute("user") != null){
+                out.print("<a class='nav-link' href='LogoutACCControl'  name='OUT'> ĐĂNG XUẤT </a>");  
+              }
+            }%>
+            
           </li>
           <li class="nav-item">
             <a class="nav-link" href="cart.jsp"> <i class="fa fa-shopping-cart"> </i>  </a>
@@ -65,11 +81,11 @@
       <div class="col-lg-3">
         <br>
         <div class="list-group">
-          <a href="honda.jsp" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/honda.jpg" alt="Khong tai duoc"> </a>
+          <a href="sanpham.jsp?hang=HONDA" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/logohonda.jpg" alt="Khong tai duoc"> </a>
           <p></p>
-          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/ya.jpg" alt="Khong tai duoc"> </a>
+          <a href="sanpham.jsp?hang=YAMAHA" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/YAMAHA.jpg" alt="Khong tai duoc"> </a>
           <p></p>
-          <a href="#" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/su.jpg" alt="Khong tai duoc"> </a>
+          <a href="sanpham.jsp?hang=SUZUKI" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/SUZUKI.jpg" alt="Khong tai duoc"> </a>
         </div>
 
       </div>
@@ -86,7 +102,10 @@
             
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-                <img class="d-block img-fluid" src="Hinh/honda.jpg" alt="First slide">
+            <%{
+               String hang = request.getParameter("hang");
+               out.print("<img class='d-block img-fluid' src='Hinh/"+hang+".jpg' alt='First slide'>");         
+            }%>               
             </div>          
           </div>
             
@@ -101,9 +120,10 @@
         </div>
         
         <div class="row">  
-                    <%       
-                         DBContext cxn = new DBContext();;
-                         ResultSet rx = cxn.chondulieu("select * from sanpham");
+                    <%     
+                        String hang = request.getParameter("hang");
+                        DBContext cxn = new DBContext();;
+                        ResultSet rx = cxn.chondulieu("select * from sanpham where tenhang = '"+ hang +"'");
                     %>
                     <%
                        while(rx.next()){

@@ -15,16 +15,18 @@ public class Item {
     private String hinhanh;
     private int gia;
     private int soluongmua;
+    private int tonggia;
 
     public Item() {
     }
 
-    public Item(int id, String tensp, String hinhanh, int gia, int soluongmua) {
+    public Item(int id, String tensp, String hinhanh, int gia, int soluongmua, int tonggia) {
         this.id = id;
         this.tensp = tensp;
         this.hinhanh = hinhanh;
         this.gia = gia;
         this.soluongmua = soluongmua;
+        this.tonggia = tonggia;
     }
 
     public int getId() {
@@ -67,5 +69,18 @@ public class Item {
         this.soluongmua = soluongmua;
     }
 
+    public int getTonggia() {
+        return tonggia;
+    }
+
+    public void setTonggia(int tonggia) {
+        this.tonggia = tonggia;
+    }
+
+
+   
+
+    
+    
     
 }

@@ -62,17 +62,26 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading"> DANH MỤC </div>
-                            <a class="nav-link" href="product.jsp">
+                            <a class="nav-link collapsed" href="product.jsp" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-motorcycle"></i></div>
                                 SẢN PHẨM
-                            </a>  
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="product.jsp?hang=HONDA">HONDA</a>
+                                    <a class="nav-link" href="product.jsp?hang=YAMAHA">YAMAHA</a>
+                                    <a class="nav-link" href="product.jsp?hang=SUZUKI">SUZUKI</a>
+                                </nav>
+                            </div> 
+                             
                             
                             <a class="nav-link" href="user.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 TÀI KHOẢN
                             </a>  
                             
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="donhang.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                                 ĐƠN HÀNG
                             </a>
@@ -89,24 +98,38 @@
 <!--Content-->                     
             <div id="layoutSidenav_content">
                     <%
-                        DBContext con = new DBContext();;
-                        ResultSet rs = con.chondulieu("select * from sanpham");
+                        String hang = request.getParameter("hang");
+                        DBContext con = new DBContext();
+                        ResultSet rs = con.chondulieu("select * from sanpham where tenhang = '"+hang+"'");
+                        ResultSet rx = con.chondulieu("select * from hang where tenhang = '"+hang+"'");
                     %>
                 <main>
+                        <%
+                            while(rx.next()){
+                        %>
                     <div class="container-fluid">
-                        <h1 class="mt-4"> SẢN PHẨM </h1>
+                        <h1 class="mt-4"> SẢN PHẨM  <%=rx.getString(1)%>
+
+                        </h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin.jsp"> DANH MỤC </a></li>
-                            <li class="breadcrumb-item active"> SẢN PHẨM </li>
+                            <li class="breadcrumb-item active"> 
+                                SẢN PHẨM   <%=rx.getString(1)%>            
+                            </li>
                         </ol>
-
+                        <%
+                            }
+                        %>     
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-motorcycle"></i>
-                                Dữ liệu sản phẩm &emsp; &emsp;
+                                Dữ liệu sản phẩm 
+        
+                                &emsp; &emsp;
+                                
                                 <a href="IPD.jsp" class="btn btn-primary"> Thêm sản phẩm </a>
                             </div>
-                            
+                 
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -127,12 +150,14 @@
                                                 <th> Dung tích xăng</th>
                                                 <th> Thắng trước/sau</th>
                                                 <th> Hộp số</th>
+                                                <th> Hãng </th>
                                             </tr>
                                         </thead>
                                         
                                         <%
                                             while(rs.next()){
                                         %>
+                                        
                                         <tbody>
                                         <tr>
                                             <td> 
@@ -163,6 +188,7 @@
                                             <td> <%=rs.getString(12)%> </td>
                                             <td> <%=rs.getString(13)%> </td>
                                             <td> <%=rs.getString(14)%> </td>
+                                            <td> <%=rs.getString(15)%> </td>
                                         </tr>   
                                         <%
                                             }

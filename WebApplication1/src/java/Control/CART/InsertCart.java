@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control.PD;
+package Control.CART;
 
-import IO.PD.InsertDPIO;
-import entity.Product;
+import IO.CART.InserCartIO;
+import entity.Cart;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author BND6699
  */
-@WebServlet(name = "InsertDPControl", urlPatterns = {"/InsertDPControl"})
-public class InsertDPControl extends HttpServlet {
+@WebServlet(name = "InsertCart", urlPatterns = {"/InsertCart"})
+public class InsertCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,43 +33,37 @@ public class InsertDPControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");         
         HttpSession session = request.getSession();
-        Product pd = null;
+        Cart c = null;
          
-        String tensp = request.getParameter("name"); //lấy của netbeans
-        String gia = request.getParameter("price"); //lấy của netbeans
-        String hinhanh = request.getParameter("image"); //lấy của netbeans
-        String kichthuoc = request.getParameter("LWH"); //lấy của netbeans
+        String mua = request.getParameter("mua"); //lấy của netbeans
+        String username = request.getParameter("user"); //lấy của netbeans
+        String tensp = request.getParameter("tensp"); //lấy của netbeans
+        String soluongmua = request.getParameter("soluongmua"); //lấy của netbeans
+        String tonggia = request.getParameter("tongtien"); //lấy của netbeans
+    
+        InserCartIO insercartIO = new InserCartIO(); // khai báo register
         
-        String chieucaoyen = request.getParameter("seat"); //lấy của netbeans
-        String sizebanh = request.getParameter("tire"); //lấy của netbeans
-        String engine = request.getParameter("engine"); //lấy của netbeans
-        String CC = request.getParameter("cc"); //lấy của netbeans
-        String congsuat = request.getParameter("power"); //lấy của netbeans
-        
-        String CCnhot = request.getParameter("oil"); //lấy của netbeans
-        String CCxang = request.getParameter("gasoline"); //lấy của netbeans
-        String phanh = request.getParameter("brake"); //lấy của netbeans
-        String gear = request.getParameter("gearbox"); //lấy của netbeans
-        String hang = request.getParameter("hang"); //lấy của netbeans
-        
-        
-        InsertDPIO insertdpIO = new InsertDPIO(); // khai báo register
-        
-        if(session.getAttribute("user1") != null){
-        pd = insertdpIO.checkInsert(tensp, gia, hinhanh, kichthuoc, chieucaoyen, sizebanh, engine, CC, congsuat, CCnhot, CCxang, phanh, gear, hang); // check a có null không
+        c = insercartIO.checkCart(username, tensp, soluongmua, tonggia); // check a có null không
        
-        if(pd != null)
-        {   
-            response.sendRedirect("IPD.jsp");               
-        }else{            
-           response.sendRedirect("product.jsp?hang="+hang+"");
+       
+        if(c != null)
+        {      
+            response.sendRedirect("cart.jsp");  
+        }else
+        {
+            if(mua != null)
+            {   
+                if(session.getAttribute("user") != null && session.getAttribute("Orders") != null) 
+                    {
+                        session.removeAttribute("Orders");              
+                        response.sendRedirect("cart.jsp");
+                    } 
+            }          
         }
-        }else{
-           response.sendRedirect("Login.html");
-        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

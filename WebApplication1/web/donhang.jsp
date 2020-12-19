@@ -13,6 +13,7 @@
                         response.sendRedirect("loginadmin.html");
                     }
                 %>  
+
 <!DOCTYPE html>
 <html lang="vi">
     <head>
@@ -21,8 +22,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title> MOWO - MOTO WORLD </title>
-        <link href="CSS/styles.css" rel="stylesheet" />
+        <title> Motor World </title>
+        <link href="CSS/styles_1.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -81,10 +82,12 @@
                                 TÀI KHOẢN
                             </a>  
                             
-                            <a class="nav-link" href="donhang.jsp">
+                            <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                                 ĐƠN HÀNG
                             </a>
+                            
+                            
                         </div>
                     </div>
                     
@@ -97,26 +100,22 @@
         
 <!--Content-->                     
             <div id="layoutSidenav_content">
-                    <% 
-                        String id = request.getParameter("id");
+                    <%
                         DBContext con = new DBContext();;
-                        ResultSet rx = con.chondulieu("select * from hang"); 
-                        ResultSet rs = con.chondulieu("select * from sanpham where id='" + id + "'"); 
+                        ResultSet rs = con.chondulieu("select * from hoadon");
                     %>
-                    <form action="UpdateDPControl" method="get">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4"> SỬA SẢN PHẨM </h1>
+                        <h1 class="mt-4"> ĐƠN HÀNG </h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin.jsp"> DANH MỤC </a></li>
-                            <li class="breadcrumb-item active"> <a href="product.jsp"> SẢN PHẨM </a></li>
-                            <li class="breadcrumb-item active"> SỬA SẢN PHẨM </li>
+                            <li class="breadcrumb-item active"> ĐƠN HÀNG </li>
                         </ol>
 
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-motorcycle"></i>
-                                Dữ liệu sản phẩm
+                                <i class="fas fa-users"></i>
+                                Dữ liệu đơn hàng    
                             </div>
                             
                             <div class="card-body">
@@ -124,20 +123,12 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th> Hãng </th>
-                                                <th> Hình ảnh</th>
-                                                <th> Tên sản phẩm</th>
-                                                <th> Giá</th>                         
-                                                <th> Dài Rộng Cao</th>
-                                                <th> Chiều cao yên </th>
-                                                <th> Vỏ trước/sau</th>
-                                                <th> Động cơ</th>
-                                                <th> Dung tích xi lanh</th>
-                                                <th> Công suất</th>
-                                                <th> Dung tích nhớt</th>
-                                                <th> Dung tích xăng</th>
-                                                <th> Thắng trước/sau</th>
-                                                <th> Hộp số </th>
+                                                <th> STT đơn hàng </th>
+                                                <th> Người đặt </th>
+                                                <th> Tên sản phẩm </th>
+                                                <th> Số lượng </th>
+                                                <th> Tổng tiền </th>
+                                                <th> Chức năng </th>
                                             </tr>
                                         </thead>
                                         
@@ -145,33 +136,22 @@
                                             while(rs.next()){
                                         %>
                                         <tbody>
-                                            <img src=<%=rs.getString(4)%> height="30%" width-max="30%" alt="Khong tai duoc">
-                                        <tr> 
-                                            <td>
-                                            <select name="hang">
-                                                <%
-                                                    while(rx.next()){
-                                                %>
-                                                <option> <%=rx.getString(1)%>  </option>
-                                                <%
-                                                    }
-                                                %>
-                                            </select>
+                                        <tr>                                           
+                                            <td> <%=rs.getString(1)%> </td>
+                                            <td> <%=rs.getString(2)%> </td>
+                                            <td> <%=rs.getString(3)%></td>
+                                            <td> <%=rs.getString(4)%> </td>
+                                            <td> <%=rs.getString(5)%>.000.000 VNĐ </td>
+                                            <td> 
+                                                <div class="nav-link">
+                                                    <div class="sb-nav-link-icon">
+                                            <!--Xóa-->            
+                                                        <a href="DeleteCart?MaHD=<%=rs.getString(1)%>">
+                                                            <i class="fa fa-trash"> </i>   
+                                                        </a> &emsp; &emsp;                                                                                          
+                                                    </div>
+                                                </div>
                                             </td>
-                                            <input type="hidden" name="id" placeholder="ID" value="<%=rs.getString(1)%>">
-                                            <td> <input type="text" class="form-control py-4" name="image" value="<%=rs.getString(4)%>"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="name" value="<%=rs.getString(2)%>"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="price" value="<%=rs.getString(3)%>"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="LWH" value="<%=rs.getString(5)%>"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="seat" value="<%=rs.getString(6)%>"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="tire" value="<%=rs.getString(7)%>"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="engine" value="<%=rs.getString(8)%>"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="cc" value="<%=rs.getString(9)%>"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="power" value="<%=rs.getString(10)%>"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="oil" value="<%=rs.getString(11)%>"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="gasoline" value="<%=rs.getString(12)%>"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="brake" value="<%=rs.getString(13)%>"> </td>
-                                            <td> <input type="text" class="form-control py-4" name="gearbox" value="<%=rs.getString(14)%>"> </td>                                          
                                         </tr>   
                                         <%
                                             }
@@ -183,13 +163,11 @@
                         </div>
                     </div>
                 </main>
-                    <center> <input type="submit" value="Sửa" class="btn btn-primary"> </center>
-                    </form>
                 
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted"> Copyright &copy; MOWO - MOTO WORLD 2020 </div>
+                            <div class="text-muted"> &copy; Motoword 2020 </div>
                         </div>
                     </div>
                 </footer>

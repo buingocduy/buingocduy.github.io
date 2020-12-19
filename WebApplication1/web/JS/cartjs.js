@@ -28,6 +28,20 @@ function validateForm()
 }
 
 
+function validateForm1() 
+{
+   var soluong = document.getElementById("soluong").value;  
+ 
+   if(soluong > 10)
+   {
+     alert("Chỉ đặt số lượng dưới 10");
+     return false;
+   }
+   
+   return true;
+}
+
+
 
 
 
