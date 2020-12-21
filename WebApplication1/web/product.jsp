@@ -69,13 +69,25 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="product.jsp?hang=HONDA">HONDA</a>
-                                    <a class="nav-link" href="product.jsp?hang=YAMAHA">YAMAHA</a>
-                                    <a class="nav-link" href="product.jsp?hang=SUZUKI">SUZUKI</a>
+                                    <%
+                                        DBContext conx = new DBContext();
+                                        ResultSet rsx = conx.chondulieu("select * from hang");
+                                    %>
+                                    <%
+                                            while(rsx.next()){
+                                    %>
+                                    <a class="nav-link" href="product.jsp?hang=<%=rsx.getString(1)%>"><%=rsx.getString(1)%></a>
+                                    <%
+                                            }
+                                    %>
                                 </nav>
                             </div> 
                              
-                            
+                            <a class="nav-link" href="hangxe.jsp">
+                                <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                                HÃNG XE
+                            </a> 
+                                
                             <a class="nav-link" href="user.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 TÀI KHOẢN
@@ -114,7 +126,7 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin.jsp"> DANH MỤC </a></li>
                             <li class="breadcrumb-item active"> 
-                                SẢN PHẨM   <%=rx.getString(1)%>            
+                                SẢN PHẨM <%=rx.getString(1)%>            
                             </li>
                         </ol>
                         <%
@@ -139,7 +151,7 @@
                                                 <th> ID</th>
                                                 <th> Hình ảnh</th>
                                                 <th> Tên sản phẩm</th>
-                                                <th> Giá</th>                         
+                                                <th> Giá $</th>                         
                                                 <th> Dài Rộng Cao</th>
                                                 <th> Chiều cao yên </th>
                                                 <th> Vỏ trước/sau</th>
@@ -177,7 +189,7 @@
                                             <td> <%=rs.getString(1)%> </td>
                                             <td> <img src=<%=rs.getString(4)%> height="30%" width-max="30%" alt="Khong tai duoc"> </td>
                                             <td> <%=rs.getString(2)%> </td>
-                                            <td> <%=rs.getString(3)%> </td>
+                                            <td> <%=rs.getString(3)%> $ </td>
                                             <td> <%=rs.getString(5)%> </td>
                                             <td> <%=rs.getString(6)%> </td>
                                             <td> <%=rs.getString(7)%> </td>

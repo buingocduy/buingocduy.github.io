@@ -25,6 +25,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="JS/scripts.js"></script>
+        <script src="JS/scripts.js"></script>
     </head> 
 
     <body class="bg-primary">
@@ -56,11 +57,12 @@
                                                 <label class="small mb-1" for="inputEmailAddress"> EMAIL </label>
                                                 <input class="form-control py-4" id="email" name="email" type="email" aria-describedby="emailHelp"/>
                                             </div>
+                                           
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> SỐ ĐIỆN THOẠI </label>
-                                                        <input class="form-control py-4" id="phonenumber" name="phonenumber" type="number"/>
+                                                        <input class="form-control py-4" pattern="[0-9]{10}" title="Phải nhập số trong khoảng 0-9" id="phonenumber" name="phonenumber" type="text"/>
                                                     </div>
                                                 </div> 
                                                   

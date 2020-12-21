@@ -88,14 +88,22 @@
 
     <div class="row">
 
+      <%
+            DBContext conx = new DBContext();
+            ResultSet rsx = conx.chondulieu("select * from hang");
+        %>
+                                  
       <div class="col-lg-3">
         <br>
         <div class="list-group">
-          <a href="sanpham.jsp?hang=HONDA" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/logohonda.jpg" alt="Khong tai duoc"> </a>
-          <p></p>
-          <a href="sanpham.jsp?hang=YAMAHA" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/YAMAHA.jpg" alt="Khong tai duoc"> </a>
-          <p></p>
-          <a href="sanpham.jsp?hang=SUZUKI" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/SUZUKI.jpg" alt="Khong tai duoc"> </a>
+            <%
+                while(rsx.next()){
+            %>  
+          <a href="sanpham.jsp?hang=<%=rsx.getString(1)%>" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/<%=rsx.getString(1)%>.jpg" alt="Khong tai duoc"> </a>
+          <p> </p>
+            <%
+                }
+            %>
         </div>
       </div>
       <!-- /.col-lg-3 -->
@@ -128,7 +136,7 @@
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <img class="d-block img-fluid" src=<%=rs.getString(4)%>  alt="Firstslide">
-                <h4> Giá: <%=rs.getString(3)%>.000.000 VNĐ</h4>
+                <h4> Giá: <%=rs.getString(3)%> $</h4>
                 <form onsubmit = "return validateForm1()">
                         <input type="hidden" name="id" id="id" value="<%=rs.getInt(1)%>"/>
                         <input type="hidden" name="tensp" id="tensp" value="<%=rs.getString(2)%>"/>

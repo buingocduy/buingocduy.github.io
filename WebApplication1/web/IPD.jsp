@@ -69,13 +69,25 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="product.jsp?hang=HONDA">HONDA</a>
-                                    <a class="nav-link" href="product.jsp?hang=YAMAHA">YAMAHA</a>
-                                    <a class="nav-link" href="product.jsp?hang=SUZUKI">SUZUKI</a>
+                                    <%
+                                        DBContext conx = new DBContext();
+                                        ResultSet rsx = conx.chondulieu("select * from hang");
+                                    %>
+                                    <%
+                                            while(rsx.next()){
+                                    %>
+                                    <a class="nav-link" href="product.jsp?hang=<%=rsx.getString(1)%>"><%=rsx.getString(1)%></a>
+                                    <%
+                                            }
+                                    %>
                                 </nav>
                             </div> 
                             
-                            
+                            <a class="nav-link" href="hangxe.jsp">
+                                <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                                HÃNG XE
+                            </a> 
+                                
                             <a class="nav-link" href="user.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 TÀI KHOẢN
@@ -105,8 +117,7 @@
                     <div class="container-fluid">
                         <h1 class="mt-4"> THÊM SẢN PHẨM </h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="admin.jsp"> DANH MỤC </a></li>
-                            <li class="breadcrumb-item active"> <a href="product.jsp"> SẢN PHẨM </a></li>
+                            <li class="breadcrumb-item"><a href="admin.jsp"> DANH MỤC </a></li>     
                             <li class="breadcrumb-item active"> THÊM SẢN PHẨM </li>
                         </ol>
 
@@ -121,6 +132,7 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
+                                                <th> Hãng </th>
                                                 <th> Tên sản phẩm</th>
                                                 <th> Hình ảnh</th>
                                                 <th> Giá</th>                         

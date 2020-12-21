@@ -77,18 +77,25 @@
   <div class="container">
 
     <div class="row">
-
+        <%
+            DBContext conx = new DBContext();
+            ResultSet rsx = conx.chondulieu("select * from hang");
+        %>
+                                  
       <div class="col-lg-3">
         <br>
         <div class="list-group">
-          <a href="sanpham.jsp?hang=HONDA" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/logohonda.jpg" alt="Khong tai duoc"> </a>
-          <p></p>
-          <a href="sanpham.jsp?hang=YAMAHA" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/YAMAHA.jpg" alt="Khong tai duoc"> </a>
-          <p></p>
-          <a href="sanpham.jsp?hang=SUZUKI" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/SUZUKI.jpg" alt="Khong tai duoc"> </a>
+            <%
+                while(rsx.next()){
+            %>  
+          <a href="sanpham.jsp?hang=<%=rsx.getString(1)%>" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/<%=rsx.getString(1)%>.jpg" alt="Khong tai duoc"> </a>
+          <p> </p>
+            <%
+                }
+            %>
         </div>
-
       </div>
+                                   
       <!-- /.col-lg-3 -->
 
       <div class="col-lg-9">
@@ -138,7 +145,7 @@
               </div>
               
               <div class="card-body">
-                <h5> <%=rx.getString(3)%>.000.000 VNĐ </h5>
+                <h5> <%=rx.getString(3)%> $ </h5>
               </div>
               
             </div>

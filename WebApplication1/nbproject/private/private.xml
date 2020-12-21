@@ -12,11 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/G:/BuiNgocDuy/TH_JAVA/buingocduy.github.io/WebApplication1/web/product.jsp</file>
-            <file>file:/G:/BuiNgocDuy/TH_JAVA/buingocduy.github.io/WebApplication1/src/java/Control/PD/DeleteDPControl.java</file>
-            <file>file:/G:/BuiNgocDuy/TH_JAVA/buingocduy.github.io/WebApplication1/web/UPD.jsp</file>
-            <file>file:/G:/BuiNgocDuy/TH_JAVA/buingocduy.github.io/WebApplication1/src/java/Control/PD/UpdateDPControl.java</file>
-            <file>file:/G:/BuiNgocDuy/TH_JAVA/buingocduy.github.io/WebApplication1/src/java/Control/PD/InsertDPControl.java</file>
+            <file>file:/G:/BuiNgocDuy/TH_JAVA/buingocduy.github.io/WebApplication1/web/home.jsp</file>
+            <file>file:/G:/BuiNgocDuy/TH_JAVA/buingocduy.github.io/WebApplication1/web/sanpham.jsp</file>
+            <file>file:/G:/BuiNgocDuy/TH_JAVA/buingocduy.github.io/WebApplication1/web/cart.jsp</file>
+            <file>file:/G:/BuiNgocDuy/TH_JAVA/buingocduy.github.io/WebApplication1/web/Xe1.jsp</file>
         </group>
     </open-files>
 </project-private>

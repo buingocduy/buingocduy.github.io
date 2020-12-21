@@ -80,14 +80,22 @@
 
     <div class="row">
 
+        <%
+            DBContext conx = new DBContext();
+            ResultSet rsx = conx.chondulieu("select * from hang");
+        %>
+                                  
       <div class="col-lg-3">
         <br>
         <div class="list-group">
-          <a href="sanpham.jsp?hang=HONDA" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/logohonda.jpg" alt="Khong tai duoc"> </a>
-          <p></p>
-          <a href="sanpham.jsp?hang=YAMAHA" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/YAMAHA.jpg" alt="Khong tai duoc"> </a>
-          <p></p>
-          <a href="sanpham.jsp?hang=SUZUKI" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/SUZUKI.jpg" alt="Khong tai duoc"> </a>
+            <%
+                while(rsx.next()){
+            %>  
+          <a href="sanpham.jsp?hang=<%=rsx.getString(1)%>" class="list-group-item"> <img class="d-block img-fluid" src="Hinh/<%=rsx.getString(1)%>.jpg" alt="Khong tai duoc"> </a>
+          <p> </p>
+            <%
+                }
+            %>
         </div>
       </div>
       <!-- /.col-lg-3 -->
@@ -123,16 +131,16 @@
                     }
  
                     int count = orders.size() -1;
-                    while (count > -1) 
+                    if (count > -1) 
                     {
                         item = (entity.Item) orders.get(count);
                         
                         if (request.getParameter("id") != null) {                          
                             if (item.getId() == (Integer.parseInt(request.getParameter("id")))) 
                             {
-                                orders.remove(item);
-                                count--;
-                                continue;
+                                orders.remove(item);                       
+                                session.removeAttribute("Orders");                       
+                                response.sendRedirect("cart.jsp");
                             }
                         }
                         
@@ -141,12 +149,10 @@
                         out.print("<tr>"); 
                         out.print("<td>" + "<image src="+item.getHinhanh()+" with=100; height=100>" + "</td>");
                         out.print("<td>" + item.getTensp()+ "</td>");               
-                        out.print("<td>" + item.getGia()+".000.000"+ "</td>");
+                        out.print("<td>" + item.getGia()+" $"+ "</td>");
                         out.print("<td>" + item.getSoluongmua()+ "</td>");
-                        out.print("<td>" + tongtien +".000.000"+ "</td>");
-                        out.print("<td> <a href='?id="+item.getId()+"'> Delete </a> </td>");
-                
-                        count--;
+                        out.print("<td>" + tongtien +" $"+ "</td>");
+                        out.print("<td> <a href='?id="+item.getId()+"'> Xóa </a> </td>");                      
                         out.print("</tr>");        
                     }                
                 %>                    

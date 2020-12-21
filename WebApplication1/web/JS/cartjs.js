@@ -22,7 +22,7 @@ function validateForm()
      return false;
    }
    
-   alert("Đặt hàng thành công \n"+user+" sẽ được liên hệ sau vài phút để xác nhận");
+   alert("Đặt hàng thành công \n"+user+" sẽ được liên hệ để xác nhận đơn hàng");
    
    return true;
 }
