@@ -176,7 +176,8 @@
                                                 <div class="nav-link">
                                                     <div class="sb-nav-link-icon">
                                             <!--Xóa-->            
-                                                        <a href="DeleteDPControl?id=<%=rs.getString(1)%>">
+                                                        <input type="hidden" id="id" value="<%=rs.getString(2)%>">
+                                                        <a href="DeleteDPControl?id=<%=rs.getString(1)%>" onclick="return xoa()">
                                                             <i class="fa fa-trash"> </i>   
                                                         </a> &emsp; &emsp;
                                             <!--Sửa-->              

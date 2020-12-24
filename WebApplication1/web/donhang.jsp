@@ -157,8 +157,9 @@
                                             <td> 
                                                 <div class="nav-link">
                                                     <div class="sb-nav-link-icon">
-                                            <!--Xóa-->            
-                                                        <a href="DeleteCart?MaHD=<%=rs.getString(1)%>">
+                                            <!--Xóa-->   
+                                                        <input type="hidden" id="id" value="<%=rs.getString(1)%>">
+                                                        <a href="DeleteCart?MaHD=<%=rs.getString(1)%>" nclick="return xoa()">
                                                             <i class="fa fa-trash"> </i>   
                                                         </a> &emsp; &emsp;                                                                                          
                                                     </div>
