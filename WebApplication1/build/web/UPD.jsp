@@ -166,7 +166,7 @@
                                                 <%
                                                     while(rx.next()){
                                                 %>
-                                                <option> <%=rx.getString(1)%>  </option>
+                                                <option> <%=rx.getString(2)%>  </option>
                                                 <%
                                                     }
                                                 %>

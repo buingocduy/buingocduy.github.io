@@ -129,7 +129,7 @@ go
 
 select username from taikhoan where username = 'nguyenvana'
 
-select * from hoadon 
+select * from taikhoan 
 
 select * from sanpham where tenhang = 'HONDA'
 
