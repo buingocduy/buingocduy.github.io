@@ -57,7 +57,6 @@ public class hoadon extends javax.swing.JFrame {
         jPanelDetail = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txt_thanhtoan = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -69,6 +68,7 @@ public class hoadon extends javax.swing.JFrame {
         txt_mahoadon = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txt_ngaylap = new com.toedter.calendar.JDateChooser();
+        txt_thanhtoan = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
@@ -129,6 +129,8 @@ public class hoadon extends javax.swing.JFrame {
 
         txt_ngaylap.setDateFormatString("dd/MM/yyyy");
 
+        txt_thanhtoan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TIỀN MẶT", "QUẸT THẺ" }));
+
         javax.swing.GroupLayout jPanelDetailLayout = new javax.swing.GroupLayout(jPanelDetail);
         jPanelDetail.setLayout(jPanelDetailLayout);
         jPanelDetailLayout.setHorizontalGroup(
@@ -146,13 +148,13 @@ public class hoadon extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txt_mahoadon)
-                    .addComponent(txt_thanhtoan, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_SHD, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_makh, javax.swing.GroupLayout.Alignment.LEADING, 0, 181, Short.MAX_VALUE)
                     .addComponent(txt_nguoilap, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_tongtien, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_ngaylap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(188, 188, 188))
+                    .addComponent(txt_ngaylap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_thanhtoan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(206, 206, 206))
         );
         jPanelDetailLayout.setVerticalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,7 +323,7 @@ public class hoadon extends javax.swing.JFrame {
         if( selectedHoaDon != null){
             txt_makh.setSelectedItem(findCustomer(Integer.valueOf(selectedHoaDon.getMaKH()), dskh ));           
         }    
-        txt_thanhtoan.setText(HinhThucTT);
+        txt_thanhtoan.setSelectedItem(HinhThucTT);
         
         if( selectedHoaDon != null){       
             txt_nguoilap.setSelectedItem(findUserAccount(selectedHoaDon.getUserID(), dsuser));        
@@ -346,7 +348,9 @@ public class hoadon extends javax.swing.JFrame {
         if(selectedRow >=0 && selectedColumn >=0){
             selectedData = String.valueOf(jTableData.getValueAt(selectedRow, selectedColumn));
             selectedID = (String) jTableData.getValueAt(selectedRow, 0);
-
+            //Find book
+            selectedHoaDon = findHoaDon(selectedID, dsHoaDon);
+            
             System.out.println("Selected: " + selectedData + " , MaHoaDon: " + selectedID);    
             
             
@@ -368,7 +372,8 @@ public class hoadon extends javax.swing.JFrame {
                 
         //load data
         ArrayList<HoaDon> list = hoadonservices.getAllRecords();
-               
+        dsHoaDon = list;
+        
         Object[] row = new Object[7];
         
         for(int i = 0; i < list.size(); i++){
@@ -380,7 +385,7 @@ public class hoadon extends javax.swing.JFrame {
             row[4] = list.get(i).getHinhThucTT();
             row[5] = list.get(i).getTongTien();
             row[6] = list.get(i).getUserID();
-                        
+            
             model.addRow(row);
         }
         
@@ -404,7 +409,7 @@ public class hoadon extends javax.swing.JFrame {
         Date Ngay = txt_ngaylap.getDate();
         Customer MaKH = (Customer) txt_makh.getSelectedItem();
        
-        String HinhThucTT= txt_thanhtoan.getText().trim();
+        String HinhThucTT = String.valueOf(txt_thanhtoan.getSelectedItem());
         int TongTien = Integer.valueOf(txt_tongtien.getText().trim());
         UserAccount UserID = (UserAccount)txt_nguoilap.getSelectedItem();
         
@@ -426,7 +431,7 @@ public class hoadon extends javax.swing.JFrame {
             String SoHoaDon = txt_SHD.getText().trim();
             Date Ngay = txt_ngaylap.getDate();
             Customer MaKH = (Customer)txt_makh.getSelectedItem();
-            String HinhThucTT= txt_thanhtoan.getText().trim();
+            String HinhThucTT = String.valueOf(txt_thanhtoan.getSelectedItem());
             int TongTien = Integer.valueOf(txt_tongtien.getText().trim());
             UserAccount UserID = (UserAccount)txt_nguoilap.getSelectedItem();
 
@@ -508,7 +513,7 @@ public class hoadon extends javax.swing.JFrame {
     }
     
     
-    //Load tac gia
+    //Load khách
     private void loadCustomer(){
         txt_makh.removeAllItems();
         dskh = CusService.getAllRecords();
@@ -562,7 +567,7 @@ public class hoadon extends javax.swing.JFrame {
     
     public UserAccount findUserAccount(String UserID, ArrayList<UserAccount> userAccounts) {
       for (UserAccount item : userAccounts) {
-          if (item.getUsername() == UserID) {
+          if (item.getUsername().equals(UserID)) {
               return item;
           }
       }
@@ -571,7 +576,7 @@ public class hoadon extends javax.swing.JFrame {
     
      public HoaDon findHoaDon(String MaHoaDon, ArrayList<HoaDon> hoaDons) {
       for (HoaDon item : hoaDons) {
-          if(item.getMaHoaDon() == MaHoaDon) {
+          if(item.getMaHoaDon().equals(MaHoaDon)) {
               return item;
           }
       }
@@ -601,7 +606,7 @@ public class hoadon extends javax.swing.JFrame {
     private javax.swing.JComboBox<Customer> txt_makh;
     private com.toedter.calendar.JDateChooser txt_ngaylap;
     private javax.swing.JComboBox<UserAccount> txt_nguoilap;
-    private javax.swing.JTextField txt_thanhtoan;
+    private javax.swing.JComboBox<String> txt_thanhtoan;
     private javax.swing.JTextField txt_tongtien;
     // End of variables declaration//GEN-END:variables
 

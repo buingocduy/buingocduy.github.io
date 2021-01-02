@@ -43,7 +43,7 @@ public class hoadonServices {
             String sql = "INSERT INTO HoaDon (SoHoaDon, Ngay, MaKH, HinhThucTT, TongTien, UserID) VALUES('"+ SoHoaDon + "'" +
                     ",'" + strngay + "'" +
                     ",'" + MaKH + "'" +
-                    ",'" + HinhThucTT + "'" +                   
+                    ",N'" + HinhThucTT + "'" +                   
                     ",'" + TongTien + "'" +
                     ",'" + UserID +"')";                    
             
@@ -67,7 +67,7 @@ public class hoadonServices {
             String sql = "UPDATE HoaDon SET SoHoaDon='" + SoHoaDon + "'" +
                     ", Ngay ='" + strngay +"'" +
                     ", MaKH ='" + MaKH +"'" +
-                    ", HinhThucTT ='" + HinhThucTT +"'" +
+                    ", HinhThucTT = N'" + HinhThucTT +"'" +
                     ", TongTien ='" + TongTien +"'" +
                     ", UserID ='" + UserID +"'" +
                     " WHERE MaHoaDon = '" + MaHoaDon +"'";
