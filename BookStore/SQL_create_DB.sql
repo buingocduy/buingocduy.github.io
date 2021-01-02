@@ -1,0 +1,359 @@
+CREATE DATABASE [BookStoreDB]
+GO
+
+USE [BookStoreDB]
+GO
+
+/****** Object:  Table [dbo].[Kho]    Script Date: 11/16/2020 11:45:34 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Kho](
+	[MaKho] [int] IDENTITY(1,1) NOT NULL,
+	[TenKho] [nvarchar](50) NOT NULL,
+	[DiaChi] [nvarchar](200) NULL,
+	[Phone] [varchar](30) NULL,
+ CONSTRAINT [PK_Kho] PRIMARY KEY CLUSTERED 
+(
+	[MaKho] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[TacGia](
+	[MaTacGia] [int] IDENTITY(1,1) NOT NULL,
+	[TenTacGia] [nvarchar](100) NOT NULL,
+	[GhiChu] [nvarchar](200) NULL,
+ CONSTRAINT [PK_TacGia] PRIMARY KEY CLUSTERED 
+(
+	[MaTacGia] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[LoaiSach](
+	[MaLoai] [int] IDENTITY(1,1) NOT NULL,
+	[TenLoai] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_LoaiSach] PRIMARY KEY CLUSTERED 
+(
+	[MaLoai] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+CREATE TABLE [dbo].[NhaXuatBan](
+	[MaNXB] [int] IDENTITY(1,1) NOT NULL,
+	[TenNXB] [nvarchar](100) NOT NULL,
+	[DiaChi] [nvarchar](100) NOT NULL,
+	[Email] [varchar](50) NULL,
+	[NguoiLienHe] [nvarchar](50) NULL,
+ CONSTRAINT [PK_NhaXuatBan] PRIMARY KEY CLUSTERED 
+(
+	[MaNXB] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[NhaCungCap](
+	[MaNCC] [int] IDENTITY(1,1) NOT NULL,
+	[TenNCC] [nvarchar](100) NOT NULL,
+	[DiaChi] [nvarchar](100) NOT NULL,
+	[Email] [varchar](50) NULL,
+	[Phone] [varchar](50) NULL,
+	[NguoiLienHe] [nvarchar](50) NULL,
+ CONSTRAINT [PK_NhaCungCap] PRIMARY KEY CLUSTERED 
+(
+	[MaNCC] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[KhachHang](
+	[MaKH] [int] IDENTITY(1,1) NOT NULL,
+	[TenKH] [nvarchar](100) NOT NULL,
+	[DiaChi] [nvarchar](100) NULL,
+	[Email] [varchar](50) NULL,
+	[Phone] [varchar](50) NULL,
+ CONSTRAINT [PK_KhachHang] PRIMARY KEY CLUSTERED 
+(
+	[MaKH] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[UserAccount](
+	[Username] [varchar](10) NOT NULL,
+	[Password] [varchar](50) NULL,
+	[HoTen] [nvarchar](50) NOT NULL,
+	[NgaySinh] [datetime] NOT NULL,
+	[Email] [varchar](50) NULL,
+	[Phone] [varchar](50) NULL,
+	[NgayBatDau] [datetime] NOT NULL,
+ CONSTRAINT [PK_UserAccount] PRIMARY KEY CLUSTERED 
+(
+	[Username] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+/****** Object:  Table [dbo].[Sach]    Script Date: 11/16/2020 2:55:00 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Sach](
+	[MaSach] [varchar](10) NOT NULL,
+	[TenSach] [nvarchar](100) NOT NULL,
+	[MaTacGia] [int] NOT NULL,
+	[MaLoaiSach] [int] NOT NULL,
+	[MaNXB] [int] NOT NULL,
+	[NamXuatBan] [int] NOT NULL,
+ CONSTRAINT [PK_Sach] PRIMARY KEY CLUSTERED 
+(
+	[MaSach] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Sach]  WITH CHECK ADD  CONSTRAINT [FK_Sach_LoaiSach] FOREIGN KEY([MaLoaiSach])
+REFERENCES [dbo].[LoaiSach] ([MaLoai])
+GO
+
+ALTER TABLE [dbo].[Sach] CHECK CONSTRAINT [FK_Sach_LoaiSach]
+GO
+
+ALTER TABLE [dbo].[Sach]  WITH CHECK ADD  CONSTRAINT [FK_Sach_NhaXuatBan] FOREIGN KEY([MaNXB])
+REFERENCES [dbo].[NhaXuatBan] ([MaNXB])
+GO
+
+ALTER TABLE [dbo].[Sach] CHECK CONSTRAINT [FK_Sach_NhaXuatBan]
+GO
+
+ALTER TABLE [dbo].[Sach]  WITH CHECK ADD  CONSTRAINT [FK_Sach_TacGia] FOREIGN KEY([MaTacGia])
+REFERENCES [dbo].[TacGia] ([MaTacGia])
+GO
+
+ALTER TABLE [dbo].[Sach] CHECK CONSTRAINT [FK_Sach_TacGia]
+GO
+
+
+
+/****** Object:  Table [dbo].[PhieuNhap]    Script Date: 11/16/2020 2:56:45 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PhieuNhap](
+	[MaPN] [int] IDENTITY(1,1) NOT NULL,
+	[SoPN] [varchar](10) NULL,
+	[UserID] [varchar](10) NOT NULL,
+	[MaNCC] [int] NOT NULL,
+	[NgayNhap] [datetime] NOT NULL,
+	[MaKho] [int] NOT NULL,
+ CONSTRAINT [PK_PhieuNhap_1] PRIMARY KEY CLUSTERED 
+(
+	[MaPN] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[PhieuNhap]  WITH CHECK ADD  CONSTRAINT [FK_PhieuNhap_Kho] FOREIGN KEY([MaKho])
+REFERENCES [dbo].[Kho] ([MaKho])
+GO
+
+ALTER TABLE [dbo].[PhieuNhap] CHECK CONSTRAINT [FK_PhieuNhap_Kho]
+GO
+
+ALTER TABLE [dbo].[PhieuNhap]  WITH CHECK ADD  CONSTRAINT [FK_PhieuNhap_NhaCungCap] FOREIGN KEY([MaNCC])
+REFERENCES [dbo].[NhaCungCap] ([MaNCC])
+GO
+
+ALTER TABLE [dbo].[PhieuNhap] CHECK CONSTRAINT [FK_PhieuNhap_NhaCungCap]
+GO
+
+ALTER TABLE [dbo].[PhieuNhap]  WITH CHECK ADD  CONSTRAINT [FK_PhieuNhap_UserAccount] FOREIGN KEY([UserID])
+REFERENCES [dbo].[UserAccount] ([Username])
+GO
+
+ALTER TABLE [dbo].[PhieuNhap] CHECK CONSTRAINT [FK_PhieuNhap_UserAccount]
+GO
+
+/****** Object:  Table [dbo].[CTPhieuNhap]    Script Date: 11/16/2020 2:57:47 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[CTPhieuNhap](
+	[MaCTPN] [int] IDENTITY(1,1) NOT NULL,
+	[MaPN] [int] NOT NULL,
+	[MaSach] [varchar](10) NOT NULL,
+	[SoLuong] [int] NOT NULL,
+	[DonGia] [int] NOT NULL,
+ CONSTRAINT [PK_CTPhieuNhap_1] PRIMARY KEY CLUSTERED 
+(
+	[MaCTPN] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[CTPhieuNhap]  WITH CHECK ADD  CONSTRAINT [FK_CTPhieuNhap_PhieuNhap] FOREIGN KEY([MaPN])
+REFERENCES [dbo].[PhieuNhap] ([MaPN])
+GO
+
+ALTER TABLE [dbo].[CTPhieuNhap] CHECK CONSTRAINT [FK_CTPhieuNhap_PhieuNhap]
+GO
+
+
+/****** Object:  Table [dbo].[PhieuXuat]    Script Date: 11/16/2020 2:58:31 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PhieuXuat](
+	[MaPX] [int] IDENTITY(1,1) NOT NULL,
+	[SoPX] [varchar](30) NULL,
+	[UserID] [varchar](10) NOT NULL,
+	[MaKH] [int] NOT NULL,
+	[NgayNhap] [datetime] NOT NULL,
+	[MaKho] [int] NOT NULL,
+ CONSTRAINT [PK_PhieuXuat] PRIMARY KEY CLUSTERED 
+(
+	[MaPX] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[PhieuXuat]  WITH CHECK ADD  CONSTRAINT [FK_PhieuXuat_KhachHang] FOREIGN KEY([MaKH])
+REFERENCES [dbo].[KhachHang] ([MaKH])
+GO
+
+ALTER TABLE [dbo].[PhieuXuat] CHECK CONSTRAINT [FK_PhieuXuat_KhachHang]
+GO
+
+ALTER TABLE [dbo].[PhieuXuat]  WITH CHECK ADD  CONSTRAINT [FK_PhieuXuat_Kho] FOREIGN KEY([MaKho])
+REFERENCES [dbo].[Kho] ([MaKho])
+GO
+
+ALTER TABLE [dbo].[PhieuXuat] CHECK CONSTRAINT [FK_PhieuXuat_Kho]
+GO
+
+ALTER TABLE [dbo].[PhieuXuat]  WITH CHECK ADD  CONSTRAINT [FK_PhieuXuat_UserAccount] FOREIGN KEY([UserID])
+REFERENCES [dbo].[UserAccount] ([Username])
+GO
+
+ALTER TABLE [dbo].[PhieuXuat] CHECK CONSTRAINT [FK_PhieuXuat_UserAccount]
+GO
+
+/****** Object:  Table [dbo].[CTPhieuXuat]    Script Date: 11/16/2020 2:58:58 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[CTPhieuXuat](
+	[MaCTPN] [int] IDENTITY(1,1) NOT NULL,
+	[MaPX] [int] NOT NULL,
+	[MaSach] [varchar](10) NOT NULL,
+	[SoLuong] [int] NOT NULL,
+	[DonGia] [int] NOT NULL,
+ CONSTRAINT [PK_CTPhieuXuat] PRIMARY KEY CLUSTERED 
+(
+	[MaCTPN] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[CTPhieuXuat]  WITH CHECK ADD  CONSTRAINT [FK_CTPhieuXuat_PhieuXuat] FOREIGN KEY([MaPX])
+REFERENCES [dbo].[PhieuXuat] ([MaPX])
+GO
+
+ALTER TABLE [dbo].[CTPhieuXuat] CHECK CONSTRAINT [FK_CTPhieuXuat_PhieuXuat]
+GO
+
+
+/****** Object:  Table [dbo].[HoaDon]    Script Date: 11/16/2020 2:59:26 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[HoaDon](
+	[MaHoaDon] [int] IDENTITY(1,1) NOT NULL,
+	[SoHoaDon] [varchar](30) NOT NULL,
+	[Ngay] [datetime] NOT NULL,
+	[MaKH] [int] NOT NULL,
+	[HinhThucTT] [nvarchar](30) NOT NULL,
+	[TongTien] [int] NOT NULL,
+	[UserID] [varchar](10) NOT NULL,
+ CONSTRAINT [PK_HoaDon] PRIMARY KEY CLUSTERED 
+(
+	[MaHoaDon] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[HoaDon]  WITH CHECK ADD  CONSTRAINT [FK_HoaDon_KhachHang] FOREIGN KEY([MaKH])
+REFERENCES [dbo].[KhachHang] ([MaKH])
+GO
+
+ALTER TABLE [dbo].[HoaDon] CHECK CONSTRAINT [FK_HoaDon_KhachHang]
+GO
+
+ALTER TABLE [dbo].[HoaDon]  WITH CHECK ADD  CONSTRAINT [FK_HoaDon_UserAccount] FOREIGN KEY([UserID])
+REFERENCES [dbo].[UserAccount] ([Username])
+GO
+
+ALTER TABLE [dbo].[HoaDon] CHECK CONSTRAINT [FK_HoaDon_UserAccount]
+GO
+
+/****** Object:  Table [dbo].[CTHoaDon]    Script Date: 11/16/2020 2:59:41 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[CTHoaDon](
+	[MaCTHoaDon] [int] IDENTITY(1,1) NOT NULL,
+	[MaHoaDon] [int] NOT NULL,
+	[MaSach] [varchar](10) NOT NULL,
+	[SoLuong] [int] NOT NULL,
+	[DonGia] [int] NOT NULL,
+ CONSTRAINT [PK_CTHoaDon] PRIMARY KEY CLUSTERED 
+(
+	[MaCTHoaDon] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[CTHoaDon]  WITH CHECK ADD  CONSTRAINT [FK_CTHoaDon_HoaDon] FOREIGN KEY([MaHoaDon])
+REFERENCES [dbo].[HoaDon] ([MaHoaDon])
+GO
+
+ALTER TABLE [dbo].[CTHoaDon] CHECK CONSTRAINT [FK_CTHoaDon_HoaDon]
+GO
+
+ALTER TABLE [dbo].[CTHoaDon]  WITH CHECK ADD  CONSTRAINT [FK_CTHoaDon_Sach] FOREIGN KEY([MaSach])
+REFERENCES [dbo].[Sach] ([MaSach])
+GO
+
+ALTER TABLE [dbo].[CTHoaDon] CHECK CONSTRAINT [FK_CTHoaDon_Sach]
+GO
+
