@@ -1,0 +1,172 @@
+        html, body 
+        { 
+            width: 100%; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Helvetica', 'Arial'; /* FONT CHỮ */
+        }
+            
+        /*Gach do tren header*/
+        .top-bar 
+        { 
+            width: 100%; 
+            background: RED;          
+            height: 20px;
+        }
+ 
+        /*Nen menu*/
+         #header 
+        { 
+            width: 100%; 
+            background: white; 
+            overflow: auto; 
+            border-top: 3px solid black; 
+            border-bottom: 3px solid black; 
+        }
+        
+        #body
+        { 
+            width: 100%; 
+            margin: 0 ; 
+            padding: 0 ; 
+            background: white; 
+            overflow: auto;  
+            border-top: 1em solid white;
+        }
+        
+        #content
+        {
+            width: 100%; 
+            height: 100% ; 
+            float: right;
+            overflow: auto;
+        }
+        
+        #sidebar
+        {
+            width: 30%;
+            height: 100% ; 
+            float: left;
+            overflow: auto;
+            padding-top: 70px; 
+            padding-left: 70px
+        }
+        
+        #footer
+        {
+            clear:both;
+            background:Red  ;
+            padding: 1em;
+            border-bottom: 3px solid black;
+            border-top: 1em solid white;    
+        }
+    
+        /*Logo*/
+        .logo-icon 
+        { 
+            max-width: 20%;
+            color: BLACK; 
+            font-size: 50pt; 
+            float: left;
+        }
+        h1 
+        { 
+            float: left;
+            max-width: 20%;
+            color: BLACK;
+            margin: 21px 0 0 25px;
+        }
+
+        /*Menu*/
+        #menu 
+        {      
+            padding-top: 10px;
+            float: right;
+            max-width: 80%;
+            margin: 20px;     
+            font-size: 15pt;
+            display: inline; /* chinh thanh chieu ngang */
+        }
+
+        #menu li 
+        { 
+            display: inline; /* chinh thanh chieu ngang */
+        }
+
+        #menu li a:link, #menu li a:visited, #menu li a:active 
+        { 
+            text-decoration: none; /* bo gach duoi */ 
+            color: red; 
+            padding: 0 10px 0 10px; /* khoang cach */ 
+            margin: auto; 
+            border-right: 4px solid Gray; /* duong gach */
+        }
+
+        #menu li a:link.last-link 
+        { 
+            border-right: 0px; /* bo dau gach cuoi cung */ 
+        }
+
+        #menu li a:hover 
+        { 
+            color: black; /* di chuyen doi mau*/
+        }
+        
+        /*content*/      
+        .leftrangecontent 
+        {      
+           margin: 0 auto; 
+           max-width: 50%;
+           display: block;
+           padding-right: 20px;
+           padding-top: 20px;
+        }
+        
+        .rightrangecontent
+        {
+           clear: none;
+           padding-top: 15px;
+           max-width: 80%;
+           margin: auto;
+        }
+         
+        table
+        {
+            max-width: 100%;
+            border: 0px solid black;
+            padding: 0px;  
+        }
+              
+        tr,td
+        {
+             
+             border: 2px solid gray;
+             padding: 10px;
+             font-size: 13px;
+        }
+        
+        .bottomrangecontent
+        {
+            background:white  ;
+            padding: 2em;
+        }
+        
+        .textcontent
+        {
+            color: RED;
+            font-size: 30pt;
+            background: bisque;
+            max-width: 50%;
+            font-weight: bold;
+            margin: auto;
+        }
+
+        /*footer*/
+        .textfooter
+        {
+           text-align: center; 
+           font-size: 10pt;
+           font-weight: bold;
+        }
+       
+
