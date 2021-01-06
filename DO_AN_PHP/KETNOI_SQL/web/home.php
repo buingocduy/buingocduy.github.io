@@ -13,13 +13,12 @@ require_once ('../db/dbhelper.php');
   <meta name="author" content="">
 
   <title> MOWO - MOTO WORLD </title>
-  <link rel="../stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Bootstrap core CSS -->
   <link href="../CSS/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="../CSS/shop-homepage.css" rel="stylesheet">
-  
-  <!-- Bootstrap core JavaScript -->
+    <!-- Bootstrap core JavaScript -->
   <script src="../JS/jquery.min.js"></script>
   <script src="../JS/bootstrap.bundle.min.js"></script>
 

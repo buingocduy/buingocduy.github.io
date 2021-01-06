@@ -48,7 +48,7 @@ if(!empty($_POST))
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#"> Đổi mật khẩu </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="LogoutControl"> Đăng xuất </a>
+                        <a class="dropdown-item" href="login.php"> Đăng xuất </a>
                     </div>
                 </li>
             </ul>
