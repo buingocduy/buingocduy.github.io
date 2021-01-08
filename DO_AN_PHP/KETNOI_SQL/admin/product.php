@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php session_start();?>
+
+<?php 
+    if($_SESSION['USER'] == '')
+    {
+    header('Location: login.php');    
+    }
+?>
 <?php
 require_once ('../db/dbhelper.php');
 
@@ -38,7 +46,7 @@ if(!empty($_POST))
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 <!--Logo-->             
-           <a class="navbar-brand" href="admin.jsp"> Moto World </a>
+           <a class="navbar-brand" href="admin.php"> Moto World </a>
      
 <!--Logout--> 
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">        
@@ -48,7 +56,7 @@ if(!empty($_POST))
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#"> Đổi mật khẩu </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.php"> Đăng xuất </a>
+                        <a class="dropdown-item" href="logout.php"> Đăng xuất </a>
                     </div>
                 </li>
             </ul>
@@ -86,12 +94,24 @@ if(!empty($_POST))
                             <a class="nav-link" href="category.php">
                                 <div class="sb-nav-link-icon"> <i class="fas fa-warehouse"> </i></div>
                                 HÃNG XE
-                            </a>  
+                            </a>
+                            
+                            <a class="nav-link" href="donhang.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                                ĐƠN HÀNG
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Quản trị viên
+                          <?php
+                                //nếu có session tên dangnhap thì ta thực hiện lệnh dưới
+                                if(isset($_SESSION['USER']) && $_SESSION['USER'] != NULL)
+                                {
+                                    echo $_SESSION['USER'];
+                                                    
+                                }
+                        ?>  
                     </div>
                 </nav>
             </div>

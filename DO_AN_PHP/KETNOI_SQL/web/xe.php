@@ -70,7 +70,6 @@ require_once ('../db/dbhelper.php');
            ?>        
         </div>
       </div>
-        
         <?php
             $tenhang = $_GET['tenhang']; 
             $id = $_GET['id'];  
@@ -87,7 +86,18 @@ require_once ('../db/dbhelper.php');
             <div class="carousel-item active">
                 <img class="d-block img-fluid" src='.$item['hinhanh'].'  alt="Firstslide">
                 <h4 style="color: red;"> '.$item['tensp'].' </h4>
-                <h4> Giá: '.$item['gia'].' $</h4>               
+                <h4> Giá: '.$item['gia'].' $</h4>     
+                    
+                <form onsubmit = "return validateForm1()" action="dathang.php">
+                        <input type="hidden" name="id" id="id" value="'.$item['id'].'"/>
+                        <input type="hidden" name="tensp" id="tensp" value="'.$item['tensp'].'"/>
+                        <input type="hidden" name="gia" id="gia" value="'.$item['gia'].'"/>
+                        <input type="hidden" name="hinhanh" id="hinhanh" value="'.$item['hinhanh'].'"/>
+                        Số lượng : <input type="number" name="soluong" id="soluong" value="1"/>                     
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-shopping-cart"> </i> 
+                        </button>
+                </form>
             </div>                       
           </div>       
         </div> 

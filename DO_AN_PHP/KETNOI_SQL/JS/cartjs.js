@@ -37,6 +37,11 @@ function validateForm1()
      alert("Chỉ đặt số lượng dưới 10");
      return false;
    }
+   if(soluong < 1)
+   {
+     alert("Đặt số lượng ít nhất 1");
+     return false;
+   }
    
    return true;
 }

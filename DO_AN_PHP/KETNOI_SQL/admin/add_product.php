@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<?php session_start();?>
+
+<?php 
+    if($_SESSION['USER'] == '')
+    {
+    header('Location: login.php');    
+    }
+?>
+
 <?php
 require_once ('../db/dbhelper.php');
 
@@ -55,7 +64,7 @@ if(!empty($_POST)){
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html"> MOWO </a>
+            <a class="navbar-brand" href="admin.php"> MOWO </a>
             
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -69,7 +78,7 @@ if(!empty($_POST)){
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#"> Đổi mật khẩu </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.php"> Đăng xuất </a>
+                        <a class="dropdown-item" href="logout.php"> Đăng xuất </a>
                     </div>
                 </li>
             </ul>
@@ -103,12 +112,24 @@ if(!empty($_POST)){
                             <a class="nav-link" href="category.php">
                                 <div class="sb-nav-link-icon"> <i class="fas fa-warehouse"> </i></div>
                                 HÃNG XE
-                            </a>  
+                            </a>
+                            
+                            <a class="nav-link" href="donhang.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                                ĐƠN HÀNG
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Quản trị viên
+                        <?php
+                                //nếu có session tên dangnhap thì ta thực hiện lệnh dưới
+                                if(isset($_SESSION['USER']) && $_SESSION['USER'] != NULL)
+                                {
+                                    echo $_SESSION['USER'];
+                                                    
+                                }
+                        ?>    
                     </div>
                 </nav>
             </div>
@@ -138,7 +159,6 @@ if(!empty($_POST)){
                                                             // lấy dữ liệu hãng ra
                                                             $sql = 'select * from hang';   
                                                             $categoryList = executeResult($sql);
-                                                            $index = 1;
                                                             foreach ($categoryList as $item)
                                                             {
                                                                 echo '<option> '.$item['tenhang'].' </option>';                                            
@@ -242,12 +262,7 @@ if(!empty($_POST)){
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
+                            <div class="text-muted">Copyright &copy; MOWO - MOTO WORLD 2020</div>
                         </div>
                     </div>
                 </footer>

@@ -27,31 +27,47 @@
  {
              var u = document.getElementById("username").value;
              var p = document.getElementById("password").value;
-             var e = document.getElementById("email").value;
-             var ph = document.getElementById("phonenumber").value;  
-             
+
              if(u === "") {
-                 alert("Please enter your Username");
+                 alert("Làm ơn nhập username");
                  return false;
              }
              if(p === "") {
-                 alert("Please enter you Password");
+                 alert("Làm ơn nhập Password");
                  return false;
              }
-             if(e === "") {
-                 alert("Please enter your Email");
-                 return false;
-             }
-             if(ph === "") {
-                 alert("Please enter you Phonenumber");
-                 return false;
-             }
- 
-             alert("Okay")
+             
+             alert("Đăng nhập thành công");
  
              return true;
          }
-         
+
+ function validateForm1()  
+ {
+             var hvt = document.getElementById("hovaten").value;
+             var sdt = document.getElementById("sdt").value;
+             var e = document.getElementById("email").value;
+             var dc = document.getElementById("diachi").value;  
+             
+             if(hvt === "") {
+                 alert("Làm ơn điền họ và tên");
+                 return false;
+             }
+             if(sdt === "") {
+                 alert("Làm ơn điền số điện thoại");
+                 return false;
+             }
+             if(e === "") {
+                 alert("Làm ơn điền email");
+                 return false;
+             }
+             if(dc === "") {
+                 alert("Làm ơn điền địa chỉ");
+                 return false;
+             }
+             alert("Đặt hàng thành công bạn sẽ được liên hệ để xác minh đơn hàng");
+             return true;
+         }
 
 function xoa()
 {  

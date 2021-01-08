@@ -1,3 +1,12 @@
+<?php session_start();?>
+
+<?php 
+    if($_SESSION['USER'] == '')
+    {
+    header('Location: login.php');    
+    }
+?>
+
 <?php
 require_once ('../db/dbhelper.php');
 ?>
@@ -38,7 +47,7 @@ require_once ('../db/dbhelper.php');
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#"> Đổi mật khẩu </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"> Đăng xuất </a>
+                        <a class="dropdown-item" href="logout.php"> Đăng xuất </a>
                     </div>
                 </li>
             </ul>
@@ -63,7 +72,6 @@ require_once ('../db/dbhelper.php');
                                         // lấy dữ liệu hãng ra
                                         $sql = 'select * from hang';   
                                         $categoryList = executeResult($sql);
-                                        $index = 1;
                                         foreach ($categoryList as $item)
                                         {
                                             echo '<a class="nav-link" href="product.php?tenhang='.$item['tenhang'].'">'.$item['tenhang'].'</a>';                                            
@@ -75,13 +83,25 @@ require_once ('../db/dbhelper.php');
                             <a class="nav-link" href="category.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                                 HÃNG XE
-                            </a>  
+                            </a>
+                            
+                            <a class="nav-link" href="donhang.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                                ĐƠN HÀNG
+                            </a>
                         </div>
                     </div>
                     
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Quản trị viên
+                           <?php
+                                //nếu có session tên dangnhap thì ta thực hiện lệnh dưới
+                                if(isset($_SESSION['USER']) && $_SESSION['USER'] != NULL)
+                                {
+                                    echo $_SESSION['USER'];
+                                                    
+                                }
+                            ?>       
                     </div>
                 </nav>
             </div>     
@@ -102,6 +122,17 @@ require_once ('../db/dbhelper.php');
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body"> ĐƠN HÀNG </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="donhang.php"> Xem chi tiết </a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>               
                     </div>
                 </main>

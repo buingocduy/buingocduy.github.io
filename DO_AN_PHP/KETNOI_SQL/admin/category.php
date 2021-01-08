@@ -1,11 +1,20 @@
 <!DOCTYPE html>
+<?php session_start();?>
+
+<?php 
+    if($_SESSION['USER'] == '')
+    {
+    header('Location: login.php');    
+    }
+?>
+
 <?php
 require_once ('../db/dbhelper.php');
 
 if(!empty($_POST))
 {
     $tenhang = $_POST['tenhang'];
-    
+  
     $sql = 'delete from hang where tenhang = "'.$tenhang.'"';
     execute($sql);
     header('Location: category.php');
@@ -50,7 +59,7 @@ if(!empty($_POST))
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#"> Đổi mật khẩu </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.php"> Đăng xuất </a>
+                        <a class="dropdown-item" href="logout.php"> Đăng xuất </a>
                     </div>
                 </li>
             </ul>
@@ -84,12 +93,24 @@ if(!empty($_POST))
                             <a class="nav-link" href="category.php">
                                 <div class="sb-nav-link-icon"> <i class="fas fa-warehouse"> </i></div>
                                 HÃNG XE
-                            </a>  
+                            </a> 
+                            
+                            <a class="nav-link" href="donhang.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                                ĐƠN HÀNG
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Quản trị viên
+                          <?php
+                                //nếu có session tên dangnhap thì ta thực hiện lệnh dưới
+                                if(isset($_SESSION['USER']) && $_SESSION['USER'] != NULL)
+                                {
+                                    echo $_SESSION['USER'];
+                                                    
+                                }
+                          ?>  
                     </div>
                 </nav>
             </div>
@@ -99,7 +120,7 @@ if(!empty($_POST))
                         <h1 class="mt-4"> HÃNG XE </h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin.php"> DANH MỤC </a></li>
-                            <li class="breadcrumb-item active"> Quản lý hãng xe </li>
+                            <li class="breadcrumb-item active"> QUẢN LÝ HÃNG XE </li>
                         </ol>
                        
                         <div class="card mb-4">
@@ -138,7 +159,7 @@ if(!empty($_POST))
                                                             <form method="post">
                                                             <input value="'.$item['tenhang'].'" type="hidden" name="tenhang" id="tenhang">
                                                             <a class="btn btn-primary" href="update_category.php?tenhang='.$item['tenhang'].'"> Sửa </a> &emsp;   
-                                                            <button class="btn btn-primary"> Xóa </button>
+                                                            <button class="btn btn-primary" name="xoa" id="xoa"> Xóa </button>
                                                             </form>
                                                         </td> 
                                                   </tr>';  
@@ -154,12 +175,7 @@ if(!empty($_POST))
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
+                            <div class="text-muted">Copyright &copy; MOWO - MOTO WORLD 2020</div>
                         </div>
                     </div>
                 </footer>

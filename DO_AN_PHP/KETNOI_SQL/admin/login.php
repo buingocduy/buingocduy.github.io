@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <?php
 require_once ('../db/config.php');
 if(!empty($_POST))
@@ -19,7 +21,10 @@ if(!empty($_POST))
 	if ($num_rows==0) 
         {
             header('Location: login.php');
+            $_SESSION['dangnhap'] = 'Nhập sai gì rồi thằng ngu !';
         }else{
+            $_SESSION['USER'] = $username;
+            unset($_SESSION['dangnhap']);
             header('Location: admin.php');
         die();
         }
@@ -56,7 +61,7 @@ if(!empty($_POST))
                                     </div>
                                     <div class="card-body">
                                         
-                                        <form method="post">
+                                        <form method="post" onsubmit = "return validateForm()">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputEmailAddress"> TÀI KHOẢN </label>
                                                 <input class="form-control py-4" id="username" name="username" type="text"/>
@@ -66,7 +71,14 @@ if(!empty($_POST))
                                                 <label class="small mb-1" for="inputPassword"> MẬT KHẨU </label>
                                                 <input class="form-control py-4" id="password" name="password" type="password"/>
                                             </div>
-                          
+                                            <?php
+                                                //nếu có session tên dangnhap thì ta thực hiện lệnh dưới
+                                                if(isset($_SESSION['dangnhap']) && $_SESSION['dangnhap'] != NULL)
+                                                {
+                                                    echo '<h4 style="color: red"> '.$_SESSION['dangnhap'];' </h4>';
+                                                    
+                                                }
+                                            ?>                                              
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">   
                                                 <input class="btn btn-primary" type="submit" value="Xác nhận">
                                                 <a class="small" href="#"> Quên mật khẩu ?</a>
