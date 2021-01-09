@@ -27,10 +27,11 @@ if(!empty($_POST)){
         $phanh = $_POST['phanh'];
         $hopso = $_POST['hopso'];
         $tenhang = $_POST['tenhang'];
-
+        $noidung = $_POST['noidung'];
+        $noidung = str_replace('"', '\\"', $noidung);
     
         $sql = 'update sanpham 
-        set tensp = "'.$name.'",gia = '.$gia.',hinhanh = "'.$hinhanh.'" ,kichthuoc = "'.$kichthuoc.'",chieucaoyen = "'.$chieucaoyen.'",sizebanh = "'.$kichthuocbanh.'",engine = "'.$dongco.'",CC = "'.$cc.'",congsuat = "'.$congsuat.'",CCnhot = "'.$ccnhot.'",CCxang = "'.$ccxang.'",phanh = "'.$phanh.'" ,gear = "'.$hopso.'",tenhang = "'.$tenhang.'" 
+        set tensp = "'.$name.'",gia = '.$gia.',hinhanh = "'.$hinhanh.'" ,kichthuoc = "'.$kichthuoc.'",chieucaoyen = "'.$chieucaoyen.'",sizebanh = "'.$kichthuocbanh.'",engine = "'.$dongco.'",CC = "'.$cc.'",congsuat = "'.$congsuat.'",CCnhot = "'.$ccnhot.'",CCxang = "'.$ccxang.'",phanh = "'.$phanh.'" ,gear = "'.$hopso.'",noidung = "'.$noidung.'",tenhang = "'.$tenhang.'" 
         where id = '.$id.'';
 
         execute($sql);
@@ -57,6 +58,10 @@ if(!empty($_POST)){
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="../JS/datatables-demo.js"></script>
+        
+        <!-- Summernote -->
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
         
     </head>
     <body class="sb-nav-fixed">
@@ -276,7 +281,10 @@ if(!empty($_POST)){
                                                     </div>
                                                 </div> 
                                             </div>
-                                    
+                                            <div class="form-group">
+                                                <label class="small mb-1"> Nội dung </label>
+                                                <textarea class="form-control py-4" id="noidung" name="noidung"/> '.$item['noidung'].' </textarea>
+                                            </div> 
                                             <div class="form-group mt-4 mb-0">
                                                 <button class="btn btn-primary btn-block"> Sửa </button>
                                             </div> ';}?>
@@ -295,4 +303,12 @@ if(!empty($_POST)){
             </div>
         </div>        
     </body>
+    <script type="text/javascript">
+        $('#noidung').summernote({
+            height: 500,   // chỉnh chiều cao của bảng nội dung
+            codemirror: { // chọn giao diện
+              theme: 'monokai'
+            }
+          });
+    </script>
 </html>
