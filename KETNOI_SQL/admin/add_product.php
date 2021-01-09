@@ -105,7 +105,8 @@ if(!empty($_POST)){
                                         {
                                             echo '<a class="nav-link" href="product.php?tenhang='.$item['tenhang'].'">'.$item['tenhang'].'</a>';                                            
                                         }
-                                ?>       
+                                ?>
+                                    <a class="nav-link" href="product.php?tenhang=ẨN"> Sản phẩm ẩn </a>
                                 </nav>
                             </div> 
                             

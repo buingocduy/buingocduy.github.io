@@ -82,12 +82,12 @@ if(!empty($_POST))
                                         // lấy dữ liệu hãng ra
                                         $sql = 'select * from hang';   
                                         $categoryList = executeResult($sql);
-                                        $index = 1;
                                         foreach ($categoryList as $item)
                                         {
                                             echo '<a class="nav-link" href="product.php?tenhang='.$item['tenhang'].'">'.$item['tenhang'].'</a>';                                            
                                         }
-                                ?>       
+                                ?>
+                                    <a class="nav-link" href="product.php?tenhang=ẨN"> Sản phẩm ẩn </a>
                                 </nav>
                             </div> 
                             
@@ -175,7 +175,7 @@ if(!empty($_POST))
                                                                 <input value="'.$item['id'].'" type="hidden" name="id" id="id">
                                                                 <input value="'.$item['tenhang'].'" type="hidden" name="tenhang" id="tenhang">    
                                                                 <a class="btn btn-primary" href="update_product.php?id='.$item['id'].'&tenhang='.$item['tenhang'].'"> Sửa </a> &emsp;   
-                                                                <button class="btn btn-primary"> Xóa </button>
+                                                                <button class="btn btn-primary" onclick="if (!confirm()) { return false;}"> Xóa </button>
                                                             </form>
                                                         </td> 
                                                         <td>'.$item['id'].'</td>

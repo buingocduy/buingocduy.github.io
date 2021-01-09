@@ -69,17 +69,13 @@
          }
 
 function xoa()
-{  
-  var id = document.getElementById("id").value;    
-  var xoa1=confirm('Bạn có muốn xóa '+id);   
-  if (xoa1 === true) {
-    alert("Xóa thành công");
-    return true;
-} else {
-    alert("Hủy xóa");
-    return false;
+{
+  if (!confirm()) 
+  { 
+      return false; 
+  }
 }
-}
+
 
 function donhang() 
 {

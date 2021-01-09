@@ -14,7 +14,7 @@ require_once ('../db/dbhelper.php');
 if(!empty($_POST))
 {
     $tenhang = $_POST['tenhang'];
-  
+    
     $sql = 'delete from hang where tenhang = "'.$tenhang.'"';
     execute($sql);
     header('Location: category.php');
@@ -81,12 +81,12 @@ if(!empty($_POST))
                                         // lấy dữ liệu hãng ra
                                         $sql = 'select * from hang';   
                                         $categoryList = executeResult($sql);
-                                        $index = 1;
                                         foreach ($categoryList as $item)
                                         {
                                             echo '<a class="nav-link" href="product.php?tenhang='.$item['tenhang'].'">'.$item['tenhang'].'</a>';                                            
                                         }
-                                ?>       
+                                ?>      
+                                    <a class="nav-link" href="product.php?tenhang=ẨN"> Sản phẩm ẩn </a>
                                 </nav>
                             </div> 
                             
@@ -148,6 +148,7 @@ if(!empty($_POST))
                                         <tbody>
                                         <?php                                                                                                               
                                         // lấy dữ liệu hãng ra
+                                        $xoa = 'Xóa hem';
                                         $sql = "select * from hang";   
                                         $categoryList = executeResult($sql);
                                         foreach ($categoryList as $item)
@@ -157,9 +158,9 @@ if(!empty($_POST))
                                                         <td> <img src='.$item['logo'].' height="100" width-max="100" alt="Khong tai duoc"> </td>   
                                                         <td> 
                                                             <form method="post">
-                                                            <input value="'.$item['tenhang'].'" type="hidden" name="tenhang" id="tenhang">
-                                                            <a class="btn btn-primary" href="update_category.php?tenhang='.$item['tenhang'].'"> Sửa </a> &emsp;   
-                                                            <button class="btn btn-primary" name="xoa" id="xoa"> Xóa </button>
+                                                                <input value="'.$item['tenhang'].'" type="hidden" name="tenhang" id="tenhang">
+                                                                <a class="btn btn-primary" href="update_category.php?tenhang='.$item['tenhang'].'"> Sửa </a> &emsp;   
+                                                                <button class="btn btn-primary" onclick="if (!confirm()) { return false;}"> Xóa </button>
                                                             </form>
                                                         </td> 
                                                   </tr>';  

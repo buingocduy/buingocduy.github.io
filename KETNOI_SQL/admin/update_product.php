@@ -97,12 +97,12 @@ if(!empty($_POST)){
                                         // lấy dữ liệu hãng ra
                                         $sql = 'select * from hang';   
                                         $categoryList = executeResult($sql);
-                                        $index = 1;
                                         foreach ($categoryList as $item)
                                         {
                                             echo '<a class="nav-link" href="product.php?tenhang='.$item['tenhang'].'">'.$item['tenhang'].'</a>';                                            
                                         }
-                                ?>       
+                                ?>      
+                                    <a class="nav-link" href="product.php?tenhang=ẨN"> Sản phẩm ẩn </a>
                                 </nav>
                             </div> 
                             
@@ -146,21 +146,34 @@ if(!empty($_POST)){
                             </div>
                             
                             <div class="card-body">
+                                <form method="post">
                                             <div class="form-row">
-
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
-                                                       <?php
-                                                        $id = $_GET['id'];  
-                                                        // lấy dữ liệu hãng ra
-                                                        $sql = "SELECT * FROM sanpham where id = $id";   
-                                                        $categoryList = executeResult($sql);
-                                                        foreach ($categoryList  as $item)
-                                                        {
-                                                        echo' 
-                                                            
-
-                                                            ';}?> 
+                                                    <label class="small mb-1" for="id_category"> Hãng </label>
+                                                    <div class="form-group">                                            
+                                                    <select id="tenhang" name="tenhang">   
+                                                    <?php
+                                                            $tenhang = $_GET['tenhang'];
+                                                            $sql = "select * from hang where tenhang = '$tenhang'";   
+                                                            $categoryList = executeResult($sql);
+                                                            foreach ($categoryList as $item)
+                                                            {
+                                                                echo '<option> '.$item['tenhang'].' </option>';                                            
+                                                            }
+                                                    ?> 
+                                                        
+                                                    <?php
+                                                            // lấy dữ liệu hãng ra
+                                                            $tenhang = $_GET['tenhang'];                                                           
+                                                            $sql = "select * from hang where not tenhang = '$tenhang'";   
+                                                            $categoryList = executeResult($sql);
+                                                            foreach ($categoryList as $item)
+                                                            {
+                                                                echo '<option> '.$item['tenhang'].' </option>';                                            
+                                                            }
+                                                    ?>
+                                                        <option> Ẩn </option>
+                                                    </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -172,7 +185,6 @@ if(!empty($_POST)){
                                     foreach ($categoryList  as $item)
                                     {
                                     echo'
-                                <form method="post">
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -180,13 +192,7 @@ if(!empty($_POST)){
                                                         <input value="'.$item['id'].'" class="form-control py-4" id="id" name="id" type="hidden"/> 
                                                         <input value="'.$item['id'].'" class="form-control py-4" type="text" disabled/> 
                                                     </div>
-                                                </div>   
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="small mb-1" for="id_category"> Hãng </label>
-                                                        <input value="'.$item['tenhang'].'" class="form-control py-4" id="tenhang" name="tenhang" type="text"/> 
-                                                    </div>
-                                                </div>
+                                                </div>                                                  
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-6">
@@ -273,8 +279,8 @@ if(!empty($_POST)){
                                     
                                             <div class="form-group mt-4 mb-0">
                                                 <button class="btn btn-primary btn-block"> Sửa </button>
-                                            </div>
-                                </form> ';}?> 
+                                            </div> ';}?>
+                                    </form>
                             </div>
                         </div>     
                     </div>                    

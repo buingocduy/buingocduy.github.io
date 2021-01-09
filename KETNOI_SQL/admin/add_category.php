@@ -89,12 +89,12 @@ if(!empty($_POST)){
                                         // lấy dữ liệu hãng ra
                                         $sql = 'select * from hang';   
                                         $categoryList = executeResult($sql);
-                                        $index = 1;
                                         foreach ($categoryList as $item)
                                         {
                                             echo '<a class="nav-link" href="product.php?tenhang='.$item['tenhang'].'">'.$item['tenhang'].'</a>';                                            
                                         }
                                 ?>       
+                                    <a class="nav-link" href="product.php?tenhang=ẨN"> Sản phẩm ẩn </a>
                                 </nav>
                             </div> 
                             
