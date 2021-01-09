@@ -23,7 +23,7 @@
 
 
 
- function validateForm()  
+ function dangnhap()  
  {
              var u = document.getElementById("username").value;
              var p = document.getElementById("password").value;
@@ -37,12 +37,11 @@
                  return false;
              }
              
-             alert("Đăng nhập thành công");
- 
+             alert("Chạy nào !");
              return true;
          }
 
- function validateForm1()  
+ function dathang()  
  {
              var hvt = document.getElementById("hovaten").value;
              var sdt = document.getElementById("sdt").value;
@@ -50,19 +49,19 @@
              var dc = document.getElementById("diachi").value;  
              
              if(hvt === "") {
-                 alert("Làm ơn điền họ và tên");
+                 alert("Vui lòng nhập họ và tên");
                  return false;
              }
              if(sdt === "") {
-                 alert("Làm ơn điền số điện thoại");
+                 alert("Vui lòng nhập số điện thoại");
                  return false;
              }
              if(e === "") {
-                 alert("Làm ơn điền email");
+                 alert("Vui lòng nhập email");
                  return false;
              }
              if(dc === "") {
-                 alert("Làm ơn điền địa chỉ");
+                 alert("Vui lòng nhập địa chỉ");
                  return false;
              }
              alert("Đặt hàng thành công bạn sẽ được liên hệ để xác minh đơn hàng");
@@ -81,3 +80,22 @@ function xoa()
     return false;
 }
 }
+
+function donhang() 
+{
+   var soluong = document.getElementById("soluong").value;  
+ 
+   if(soluong > 10)
+   {
+     alert("Chỉ đặt số lượng dưới 10");
+     return false;
+   }
+   if(soluong < 1)
+   {
+     alert("Đặt số lượng ít nhất 1");
+     return false;
+   }
+   
+   return true;
+}
+

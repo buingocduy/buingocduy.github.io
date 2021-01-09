@@ -115,7 +115,7 @@ require_once ('../db/dbhelper.php');
                   <a href="xe.php?id='.$item['id'].'&tenhang='.$item['tenhang'].'"> <img class="card-img-top" src='.$item['hinhanh'].'  height="200" alt="khongtaiduoc"> </a>
                     </div>
                   <div class="card-footer">
-                    <h4 class="card-title"> '.$item['tensp'].' </h4>
+                    <h4 style="color: firebrick;" class="card-title"> '.$item['tensp'].' </h4>
                   </div>
 
                   <div class="card-body">

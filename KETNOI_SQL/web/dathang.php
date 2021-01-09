@@ -55,7 +55,7 @@ if(!empty($_POST)){
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">ĐẶT HÀNG</h3></div>
                                     <div class="card-body">
-                                        <form method="post" onsubmit="return validateForm1()">
+                                        <form method="post" onsubmit="return dathang()">
                                             <div class="form-row">
                                                <div class="col-md-6">
                                                     <div class="form-group">
@@ -75,10 +75,10 @@ if(!empty($_POST)){
                                                     $tensp = $_GET['tensp'];  
                                                     $tongtien = $soluong * $gia;
                                                     
-                                                    echo '<h2 style="color: red;"> '.$tensp.' </h2> <br>'; 
-                                                    echo '<h5>Đơn giá: '.$gia.'$ </h5>'; 
-                                                    echo '<h5>Số lượng đặt: '.$soluong.' </h5>'; 
-                                                    echo '<h5>Tổng tiền: '.$tongtien.'$</h5>'; 
+                                                    echo '<h2 style="color: firebrick;">  '.$tensp.' </h2> <br>'; 
+                                                    echo '<h6>Đơn giá:&emsp;&emsp;  '.$gia.'$ </h6>'; 
+                                                    echo '<h6>Số lượng đặt: &emsp;  '.$soluong.' </h6>'; 
+                                                    echo '<h6>Tổng tiền:&emsp;&nbsp; '.$tongtien.'$ </h6>'; 
                                                     ?> 
                                                     </div>
                                                </div>

@@ -146,6 +146,24 @@ if(!empty($_POST)){
                             </div>
                             
                             <div class="card-body">
+                                            <div class="form-row">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                       <?php
+                                                        $id = $_GET['id'];  
+                                                        // lấy dữ liệu hãng ra
+                                                        $sql = "SELECT * FROM sanpham where id = $id";   
+                                                        $categoryList = executeResult($sql);
+                                                        foreach ($categoryList  as $item)
+                                                        {
+                                                        echo' 
+                                                            
+
+                                                            ';}?> 
+                                                    </div>
+                                                </div>
+                                            </div>
                                 <?php
                                     $id = $_GET['id'];  
                                     // lấy dữ liệu hãng ra

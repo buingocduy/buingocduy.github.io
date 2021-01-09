@@ -18,7 +18,7 @@ require_once ('../db/dbhelper.php');
   <!-- Custom styles for this template -->
   <link href="../CSS/shop-homepage.css" rel="stylesheet">
   <link rel="stylesheet" href="../CSS/newcss.css" type="text/css"/>
-  <script src="../JS/cartjs.js" type="text/javascript"> </script> 
+  <script src="../JS/scripts.js" type="text/javascript"> </script> 
     <!-- Bootstrap core JavaScript -->
   <script src="../JS/jquery.min.js"></script>
   <script src="../JS/bootstrap.bundle.min.js"></script>
@@ -85,10 +85,10 @@ require_once ('../db/dbhelper.php');
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <img class="d-block img-fluid" src='.$item['hinhanh'].'  alt="Firstslide">
-                <h4 style="color: red;"> '.$item['tensp'].' </h4>
-                <h4> Giá: '.$item['gia'].' $</h4>     
+                <h2 style="color: firebrick;"> '.$item['tensp'].' </h2>
+                <h5> Giá: '.$item['gia'].' $</h5>     
                     
-                <form onsubmit = "return validateForm1()" action="dathang.php">
+                <form onsubmit = "return donhang()" action="dathang.php">
                         <input type="hidden" name="id" id="id" value="'.$item['id'].'"/>
                         <input type="hidden" name="tensp" id="tensp" value="'.$item['tensp'].'"/>
                         <input type="hidden" name="gia" id="gia" value="'.$item['gia'].'"/>

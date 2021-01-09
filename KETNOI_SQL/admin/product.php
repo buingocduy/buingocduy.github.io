@@ -71,7 +71,7 @@ if(!empty($_POST))
                     <div class="sb-sidenav-menu">
                          <div class="nav">
                             <div class="sb-sidenav-menu-heading"> DANH MỤC </div>
-                            <a class="nav-link collapsed" href="product.jsp" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="product.php" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-motorcycle"></i></div>
                                 SẢN PHẨM
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
