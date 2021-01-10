@@ -23,7 +23,7 @@ if(!empty($_POST)){
     {
 
         $sql = 'INSERT INTO hang (tenhang,logo) 
-                VALUES ("'.$name.'","'.$hinhanh.'")';
+                VALUES ("'.$name.'","../HINH/LOGO'.$hinhanh.'")';
         execute($sql);
         header('Location: category.php');
         die();
@@ -149,8 +149,8 @@ if(!empty($_POST)){
                                                 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="name"> Hình ảnh </label>
-                                                        <input class="form-control py-4" id="hinhanh" name="hinhanh" type="text"/>
+                                                        <label class="small mb-1" for="name"> Hình ảnh </label> <br>
+                                                        <input id="hinhanh" name="hinhanh" type="file"/>
                                                     </div>
                                                 </div> 
                                             </div>

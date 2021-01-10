@@ -184,7 +184,7 @@ if(!empty($_POST)){
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="small mb-1"> Giá </label>
+                                                        <label class="small mb-1"> Giá $ </label>
                                                         <input class="form-control py-4" id="gia" name="gia" type="text"/>
                                                     </div>
                                                 </div>                                    

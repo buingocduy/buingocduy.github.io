@@ -131,7 +131,7 @@ if(!empty($_POST))
                                 
                                 &emsp; &emsp;
                                 
-                                <a href="add_category.php" class="btn btn-primary"> Thêm sản phẩm </a>
+                                <a href="add_category.php" class="btn btn-primary"> Thêm hãng </a>
                             </div>
                             
                             <div class="card-body">
