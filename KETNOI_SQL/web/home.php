@@ -74,18 +74,35 @@ require_once ('../db/dbhelper.php');
 
       <div class="col-lg-9">
 
-        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-          
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">         
           <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                <img class="d-block img-fluid" src="../Hinh/LOGO/HONDA.jpg" alt="First slide">
-            </div>
-            <div class="carousel-item">
-                <img class="d-block img-fluid" src="../Hinh/LOGO/YAMAHA.jpg" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-                <img class="d-block img-fluid" src="../Hinh/LOGO/SUZUKI.jpg" alt="Third slide">
-            </div>  
+            <?php
+                // lấy dữ liệu hãng ra
+                $sql = "select * from hang where tenhang = 'HONDA'";   
+                $categoryList = executeResult($sql);
+                foreach ($categoryList as $item)
+                {
+                    echo '
+                            <div class="carousel-item active">
+                                <img class="d-block img-fluid" src='.$item['logo'].' alt="First slide">
+                            </div>
+                         ';                                            
+                }
+            ?> 
+              
+            <?php
+                // lấy dữ liệu hãng ra
+                $sql = "select * from hang where not tenhang = 'HONDA'";   
+                $categoryList = executeResult($sql);
+                foreach ($categoryList as $item)
+                {
+                    echo '
+                            <div class="carousel-item">
+                                <img class="d-block img-fluid" src='.$item['logo'].' alt="Second slide">
+                            </div>
+                         ';                                            
+                }
+            ?>          
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

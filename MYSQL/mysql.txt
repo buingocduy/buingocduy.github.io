@@ -4,7 +4,7 @@ Create table hang
 Create table sanpham
 (id int PRIMARY KEY AUTO_INCREMENT, tensp varchar(100),gia bigint,hinhanh longtext,
 kichthuoc char(80),chieucaoyen char(20),sizebanh char(150),engine varchar(200),
-CC char(20),congsuat varchar(50),CCnhot varchar(50),CCxang varchar(20),phanh varchar(100),gear varchar(20),tenhang varchar(30));
+CC char(20),congsuat varchar(50),CCnhot varchar(50),CCxang varchar(20),phanh varchar(100),gear varchar(20),noidung longtext,tenhang varchar(30));
 
 Create table taikhoan
 (username varchar(100),password varchar(100));

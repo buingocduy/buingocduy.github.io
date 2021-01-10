@@ -29,7 +29,7 @@ require_once ('../db/dbhelper.php');
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">  MOWO <i class="fa fa-motorcycle logo-icon"></i> </a>
+      <a class="navbar-brand" href="home.php">  MOWO <i class="fa fa-motorcycle logo-icon"></i> </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -61,7 +61,6 @@ require_once ('../db/dbhelper.php');
             // lấy dữ liệu hãng ra
             $sql = 'select * from hang';   
             $categoryList = executeResult($sql);
-            $index = 1;
             foreach ($categoryList as $item)
             {
                 echo '<a class="list-group-item" href="sanpham.php?tenhang='.$item['tenhang'].'"> <img class="d-block img-fluid" src='.$item['logo'].' alt="Khong tai duoc"> </a>  <p> </p>';                                            
@@ -74,30 +73,21 @@ require_once ('../db/dbhelper.php');
 
       <div class="col-lg-9">
 
-        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-            
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">    
            <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-            <?php 
-                $tenhang = $_GET['tenhang']; 
-                echo '<img class="d-block img-fluid" src="../Hinh/LOGO/'.$tenhang.'.jpg" alt="Khong tai duoc">';
-            ?>  
+            <?php
+                // lấy dữ liệu hãng ra
+                $tenhang = $_GET['tenhang'];
+                $sql = "select * from hang where tenhang = '$tenhang'";   
+                $categoryList = executeResult($sql);
+                foreach ($categoryList as $item)
+                {
+                    echo '<img class="d-block img-fluid" src='.$item['logo'].' alt="Khong tai duoc">';                                            
+                }
+            ?>        
             </div>          
-          </div>
-            
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+          </div>      
         </div>
         
         <div class="row">
