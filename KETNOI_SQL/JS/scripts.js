@@ -21,8 +21,6 @@
     });
 })(jQuery);
 
-
-
  function dangnhap()  
  {
              var u = document.getElementById("username").value;
@@ -39,7 +37,7 @@
              
              alert("Chạy nào !");
              return true;
-         }
+}
 
  function dathang()  
  {
@@ -67,15 +65,6 @@
              alert("Đặt hàng thành công bạn sẽ được liên hệ để xác minh đơn hàng");
              return true;
          }
-
-function xoa()
-{
-  if (!confirm()) 
-  { 
-      return false; 
-  }
-}
-
 
 function donhang() 
 {

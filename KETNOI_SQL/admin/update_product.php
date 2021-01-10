@@ -11,7 +11,9 @@
 require_once ('../db/dbhelper.php');
 
 if(!empty($_POST)){
-        
+      
+    if(isset($_POST['hinhanh']))
+    {
         $id = $_POST['id'];
         $name = $_POST['name'];
         $gia = $_POST['gia'];
@@ -29,15 +31,23 @@ if(!empty($_POST)){
         $tenhang = $_POST['tenhang'];
         $noidung = $_POST['noidung'];
         $noidung = str_replace('"', '\\"', $noidung);
-    
+        $hh_h = "../HINH/$tenhang/$hinhanh"; 
+        
+        if(!empty($hinhanh))
+        {
         $sql = 'update sanpham 
-        set tensp = "'.$name.'",gia = '.$gia.',hinhanh = "'.$hinhanh.'" ,kichthuoc = "'.$kichthuoc.'",chieucaoyen = "'.$chieucaoyen.'",sizebanh = "'.$kichthuocbanh.'",engine = "'.$dongco.'",CC = "'.$cc.'",congsuat = "'.$congsuat.'",CCnhot = "'.$ccnhot.'",CCxang = "'.$ccxang.'",phanh = "'.$phanh.'" ,gear = "'.$hopso.'",noidung = "'.$noidung.'",tenhang = "'.$tenhang.'" 
+        set tensp = "'.$name.'",gia = '.$gia.',hinhanh = "'.$hh_h.'" ,kichthuoc = "'.$kichthuoc.'",chieucaoyen = "'.$chieucaoyen.'",sizebanh = "'.$kichthuocbanh.'",engine = "'.$dongco.'",CC = "'.$cc.'",congsuat = "'.$congsuat.'",CCnhot = "'.$ccnhot.'",CCxang = "'.$ccxang.'",phanh = "'.$phanh.'" ,gear = "'.$hopso.'",noidung = "'.$noidung.'",tenhang = "'.$tenhang.'" 
         where id = '.$id.'';
 
         execute($sql);
+        unset($_SESSION['thongbao']);
         header('Location: product.php?tenhang='.$tenhang.'');
         die();
+        } else {
+          $_SESSION['thongbao'] = 'Chọn hình ảnh đê !';
+        }
     }
+}
 ?>
 
 <html lang="vi">
@@ -181,9 +191,16 @@ if(!empty($_POST)){
                                                     </select>
                                                     </div>
                                                 </div>
+                                                <?php
+                                                    if(isset($_SESSION['thongbao']) && $_SESSION['thongbao'] != NULL)
+                                                {
+                                                    echo '<h4 style="color: red"> '.$_SESSION['thongbao'].' </h4>';
+                                                    
+                                                }
+                                                ?>
                                             </div>
                                 <?php
-                                    $id = $_GET['id'];  
+                                    $id = $_GET['id'];
                                     // lấy dữ liệu hãng ra
                                     $sql = "SELECT * FROM sanpham where id = $id";   
                                     $categoryList = executeResult($sql);
@@ -197,8 +214,14 @@ if(!empty($_POST)){
                                                         <input value="'.$item['id'].'" class="form-control py-4" id="id" name="id" type="hidden"/> 
                                                         <input value="'.$item['id'].'" class="form-control py-4" type="text" disabled/> 
                                                     </div>
-                                                </div>                                                  
+                                                </div>    
+                                                
+                                                <div class="form-group">
+                                                    <label class="small mb-1"> Hình ảnh </label> <br>
+                                                    <input id="hinhanh" name="hinhanh" type="file"/>                                        
+                                                </div>                                                 
                                             </div>
+                                            
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -206,74 +229,77 @@ if(!empty($_POST)){
                                                         <input value="'.$item['tensp'].'" class="form-control py-4" id="name" name="name" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Giá </label>
                                                         <input value="'.$item['gia'].'" class="form-control py-4" id="gia" name="gia" type="text"/>
                                                     </div>
                                                 </div>                                    
-                                            </div>
-                                    
-                                            <div class="form-group">
-                                                <label class="small mb-1"> Hình ảnh </label>
-                                                <input value="'.$item['hinhanh'].'" class="form-control py-4" id="hinhanh" name="hinhanh" type="text"/>
-                                            </div>
-                                    
-                                            <div class="form-row">
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Kích thước </label>
                                                         <input value="'.$item['kichthuoc'].'" class="form-control py-4" id="kichthuoc" name="kichthuoc" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Chiều cao yên </label>
                                                         <input value="'.$item['chieucaoyen'].'" class="form-control py-4" id="chieucaoyen" name="chieucaoyen" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Kích thước bánh </label>
                                                         <input value="'.$item['sizebanh'].'" class="form-control py-4" id="kichthuocbanh" name="kichthuocbanh" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Động cơ </label>
                                                         <input value="'.$item['engine'].'" class="form-control py-4" id="dongco" name="dongco" type="text"/>
                                                     </div>
-                                                </div>               
+                                                </div>      
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Dung tích </label>
                                                         <input value="'.$item['CC'].'" class="form-control py-4" id="cc" name="cc" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Công suất </label>
                                                         <input value="'.$item['congsuat'].'" class="form-control py-4" id="congsuat" name="congsuat" type="text"/>
                                                     </div>
                                                 </div>  
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="name"> Dung tích nhớt </label>
                                                         <input value="'.$item['CCnhot'].'" class="form-control py-4" id="ccnhot" name="ccnhot" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Dung tích xăng </label>
                                                         <input value="'.$item['CCxang'].'" class="form-control py-4" id="ccxang" name="ccxang" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Phanh </label>
                                                         <input value="'.$item['phanh'].'" class="form-control py-4" id="phanh" name="phanh" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Hộp số </label>
@@ -281,6 +307,7 @@ if(!empty($_POST)){
                                                     </div>
                                                 </div> 
                                             </div>
+                                            
                                             <div class="form-group">
                                                 <label class="small mb-1"> Nội dung </label>
                                                 <textarea class="form-control py-4" id="noidung" name="noidung"/> '.$item['noidung'].' </textarea>

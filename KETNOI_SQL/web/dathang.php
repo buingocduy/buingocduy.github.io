@@ -23,7 +23,7 @@ if(!empty($_POST)){
         $sql = 'INSERT INTO donhang VALUES (NULL,"'.$tensp.'",'.$soluong.',"'.$hovaten.'","'.$sdt.'","'.$email.'","'.$diachi.'","'.$ghichu.'")';
     execute($sql);
 
-    header('Location: xemdonhang.php');
+    header('Location: home.php');
     die();
     }
 }

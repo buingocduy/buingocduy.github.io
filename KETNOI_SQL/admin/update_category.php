@@ -11,21 +11,24 @@
 require_once ('../db/dbhelper.php');
 
 if(!empty($_POST)){
-    $hinhanh = '';
     
     if(isset($_POST['hinhanh']))
     {
-    $name = $_POST['name'];
-    $hinhanh = $_POST['hinhanh'];
-    }
-    
-    if(!empty($hinhanh))
-    {
+        $name = $_POST['name'];
+        $hinhanh = $_POST['hinhanh'];
         
-        $sql = ' update hang set  logo = "'.$hinhanh.'" where tenhang = "'.$name.'"';
-        execute($sql);
-        header('Location: category.php');
-        die();
+        
+        if(!empty($hinhanh))
+        {
+
+            $sql = ' update hang set  logo = "../HINH/LOGO/'.$hinhanh.'" where tenhang = "'.$name.'"';
+            execute($sql);
+            unset($_SESSION['thongbao1']);
+            header('Location: category.php');
+            die();
+        } else {
+          $_SESSION['thongbao1'] = 'Chọn hình ảnh đê !';
+        }
     }
 }
 ?>
@@ -137,6 +140,13 @@ if(!empty($_POST)){
                             </div>
                             
                             <div class="card-body">
+                                <?php
+                                    if(isset($_SESSION['thongbao1']) && $_SESSION['thongbao1'] != NULL)
+                                    {
+                                        echo '<h4 style="color: red"> '.$_SESSION['thongbao1'].' </h4>';
+                                                    
+                                    }
+                                ?>
                                 <?php   
                                         $tenhang = $_GET['tenhang'];
                                         // lấy dữ liệu hãng ra
@@ -153,19 +163,18 @@ if(!empty($_POST)){
                                                                 <input value="'.$item['tenhang'].'" class="form-control py-4" type="text"/ disabled>
                                                             </div>
                                                         </div>
-
+                                                        
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label class="small mb-1" for="name"> Hình ảnh </label>
-                                                                <input value="'.$item['logo'].'" class="form-control py-4" id="hinhanh" name="hinhanh" type="text"/>
+                                                                <label class="small mb-1" for="name"> Hình ảnh </label> <br>
+                                                                <input id="hinhanh" name="hinhanh" type="file"/>
                                                             </div>
                                                         </div> 
                                                     </div>
                                                     <div class="form-group mt-4 mb-0">
                                                         <button class="btn btn-primary btn-block"> Sửa </button>
                                                     </div>
-                                        </form>
-                                        ';}?>
+                                        </form> ';}?>
                             </div>
                         </div>     
                     </div>                    

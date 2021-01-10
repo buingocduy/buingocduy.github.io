@@ -12,8 +12,7 @@
 require_once ('../db/dbhelper.php');
 
 if(!empty($_POST)){
-    $name = '';
-    $gia = '';
+
     if(isset($_POST['gia']) && isset($_POST['name']) )
     {
         $name = $_POST['name'];
@@ -31,11 +30,12 @@ if(!empty($_POST)){
         $hopso = $_POST['hopso'];
         $tenhang = $_POST['tenhang'];
         $noidung = $_POST['noidung'];
-        $noidung = str_replace('"', '\\"', $noidung);
+        $noidung = str_replace('"', '\\"', $noidung);       
+        $hh_h = "../HINH/$tenhang/$hinhanh";     
     }
     
     if(!empty($name) && !empty($gia)){
-        $sql = 'INSERT INTO sanpham VALUES (NULL,"'.$name.'",'.$gia.',"'.$hinhanh.'","'.$kichthuoc.'","'.$chieucaoyen.'","'.$kichthuocbanh.'","'.$dongco.'","'.$cc.'","'.$congsuat.'","'.$ccnhot.'","'.$ccxang.'","'.$phanh.'","'.$hopso.'","'.$noidung.'","'.$tenhang.'")';
+        $sql = 'INSERT INTO sanpham VALUES (NULL,"'.$name.'",'.$gia.',"'.$hh_h.'","'.$kichthuoc.'","'.$chieucaoyen.'","'.$kichthuocbanh.'","'.$dongco.'","'.$cc.'","'.$congsuat.'","'.$ccnhot.'","'.$ccxang.'","'.$phanh.'","'.$hopso.'","'.$noidung.'","'.$tenhang.'")';
     execute($sql);
 
     header('Location: product.php?tenhang='.$tenhang.'');
@@ -158,22 +158,27 @@ if(!empty($_POST)){
                             <div class="card-body">
                                 <form method="post">
                                             <div class="form-row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="small mb-1" for="id_category"> Hãng </label>
-                                                    <select name="tenhang" id="tenhang">
-                                                    <?php
-                                                            // lấy dữ liệu hãng ra
-                                                            $sql = 'select * from hang';   
-                                                            $categoryList = executeResult($sql);
-                                                            foreach ($categoryList as $item)
-                                                            {
-                                                                echo '<option> '.$item['tenhang'].' </option>';                                            
-                                                            }
-                                                    ?> 
-                                                    </select>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="id_category"> Hãng </label> <br>
+                                                        <select name="tenhang" id="tenhang">
+                                                        <?php
+                                                                // lấy dữ liệu hãng ra
+                                                                $sql = 'select * from hang';   
+                                                                $categoryList = executeResult($sql);
+                                                                foreach ($categoryList as $item)
+                                                                {
+                                                                    echo '<option> '.$item['tenhang'].' </option>';                                            
+                                                                }
+                                                        ?> 
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                
+                                                <div class="form-group">
+                                                    <label class="small mb-1"> Hình ảnh </label> <br>
+                                                    <input id="hinhanh" name="hinhanh" type="file"/>
+                                                </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-6">
@@ -182,74 +187,77 @@ if(!empty($_POST)){
                                                         <input class="form-control py-4" id="name" name="name" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Giá $ </label>
                                                         <input class="form-control py-4" id="gia" name="gia" type="text"/>
                                                     </div>
                                                 </div>                                    
-                                            </div>
-                                    
-                                            <div class="form-group">
-                                                <label class="small mb-1"> Hình ảnh </label>
-                                                <input class="form-control py-4" id="hinhanh" name="hinhanh" type="text"/>
-                                            </div>
-                                    
-                                            <div class="form-row">
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Kích thước </label>
                                                         <input class="form-control py-4" id="kichthuoc" name="kichthuoc" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Chiều cao yên </label>
                                                         <input class="form-control py-4" id="chieucaoyen" name="chieucaoyen" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Kích thước bánh </label>
                                                         <input class="form-control py-4" id="kichthuocbanh" name="kichthuocbanh" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Động cơ </label>
                                                         <input class="form-control py-4" id="dongco" name="dongco" type="text"/>
                                                     </div>
-                                                </div>               
+                                                </div>  
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Dung tích </label>
                                                         <input class="form-control py-4" id="cc" name="cc" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Công suất </label>
                                                         <input class="form-control py-4" id="congsuat" name="congsuat" type="text"/>
                                                     </div>
                                                 </div>  
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="name"> Dung tích nhớt </label>
                                                         <input class="form-control py-4" id="ccnhot" name="ccnhot" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Dung tích xăng </label>
                                                         <input class="form-control py-4" id="ccxang" name="ccxang" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Phanh </label>
                                                         <input class="form-control py-4" id="phanh" name="phanh" type="text"/>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1"> Hộp số </label>

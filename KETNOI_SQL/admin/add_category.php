@@ -12,7 +12,7 @@
 require_once ('../db/dbhelper.php');
 
 if(!empty($_POST)){
-    $name = '';
+
     if(isset($_POST['name']))
     {
         $name = $_POST['name'];
@@ -23,7 +23,7 @@ if(!empty($_POST)){
     {
 
         $sql = 'INSERT INTO hang (tenhang,logo) 
-                VALUES ("'.$name.'","../HINH/LOGO'.$hinhanh.'")';
+                VALUES ("'.$name.'","../HINH/LOGO/'.$hinhanh.'")';
         execute($sql);
         header('Location: category.php');
         die();
