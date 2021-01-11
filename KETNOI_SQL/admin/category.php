@@ -30,17 +30,18 @@ if(!empty($_POST))
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title> ADMIN </title>
+        <title> MOWO - MOTO WORLD </title>
         <link href="../CSS/styles_1.css" rel="stylesheet" />
-        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
-        
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../JS/scripts.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="../JS/datatables-demo.js"></script>
+        <script src="JS/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="../JS/chart-area-demo.js"></script>
+        <script src="../JS/chart-bar-demo.js"></script>
+        <script src="../JS/chart-pie-demo.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+    
         
     </head>
     <body class="sb-nav-fixed">
@@ -116,7 +117,7 @@ if(!empty($_POST))
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid">
+                    <div class="container-fluid">   
                         <h1 class="mt-4"> HÃNG XE </h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin.php"> DANH MỤC </a></li>

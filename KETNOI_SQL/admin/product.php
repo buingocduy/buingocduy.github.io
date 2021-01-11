@@ -41,6 +41,7 @@ if(!empty($_POST))
         <script src="../JS/chart-bar-demo.js"></script>
         <script src="../JS/chart-pie-demo.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+    
     </head>
     
     <body class="sb-nav-fixed">
@@ -120,8 +121,7 @@ if(!empty($_POST))
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4"> SẢN PHẨM <?php $tenhang = $_GET['tenhang']; echo ''.$tenhang.'';?> 
-                        </h1>
+                        <h1 class="mt-4"> SẢN PHẨM <?php $tenhang = $_GET['tenhang']; echo ''.$tenhang.'';?> </h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin.php"> DANH MỤC </a></li>
                             <li class="breadcrumb-item active"> 
