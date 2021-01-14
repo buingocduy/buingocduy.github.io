@@ -85,6 +85,7 @@ require_once ('../db/dbhelper.php');
                                 <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                                 HÃNG XE
                             </a>
+                          
                             
                             <a class="nav-link" href="donhang.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
@@ -113,9 +114,9 @@ require_once ('../db/dbhelper.php');
                     <div class="container-fluid">
                         <h1 class="mt-4"> </h1>
                         <div class="row">
-                            
+                                                    
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
+                                <div class="card bg-primary text-white mb-4">
                                     <div class="card-body"> HÃNG XE  </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="category.php"> Xem chi tiết </a>
@@ -125,7 +126,7 @@ require_once ('../db/dbhelper.php');
                             </div>
                             
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
+                                <div class="card bg-success text-white mb-4">
                                     <div class="card-body"> ĐƠN HÀNG </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="donhang.php"> Xem chi tiết </a>
@@ -134,7 +135,35 @@ require_once ('../db/dbhelper.php');
                                 </div>
                             </div>
                             
-                        </div>               
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-dark text-white mb-4">
+                                    <div class="card-body"> SẢN PHẨM ẨN </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="product.php?tenhang=ẨN"> Xem chi tiết </a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>                                            
+                        </div>  
+                        
+                        <div class="row">               
+                            <?php
+                                        $sql = 'select * from hang';   
+                                        $categoryList = executeResult($sql);
+                                        foreach ($categoryList as $item)
+                                        {
+                                            echo '                                          
+                                            <div class="col-xl-3 col-md-6">
+                                                <div class="card bg-danger text-white mb-4">
+                                                    <div class="card-body"> SẢN PHẨM '.$item['tenhang'].' </div>
+                                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                                        <a class="small text-white stretched-link" href="product.php?tenhang='.$item['tenhang'].'"> Xem chi tiết </a>
+                                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>                     
+                                                    </div>
+                                                </div>
+                                            </div>';}
+                            ?>
+                        </div>
                     </div>
                 </main>
                 

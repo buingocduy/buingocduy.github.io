@@ -142,7 +142,8 @@ if(!empty($_POST))
                                             <tr>
                                                 <th> ID </th>
                                                 <th> Tên hãng </th>
-                                                <th> Chức năng </th>
+                                                <th> Sửa </th>
+                                                <th> Xóa </th>
                                             </tr>
                                         </thead>
                                         
@@ -157,10 +158,10 @@ if(!empty($_POST))
                                             echo '<tr>
                                                         <td>'.$item['tenhang'].'</td>
                                                         <td> <img src='.$item['logo'].' height="100" width-max="100" alt="Khong tai duoc"> </td>   
+                                                        <td> <a class="btn btn-primary" href="update_category.php?tenhang='.$item['tenhang'].'"> Sửa </a> </td>    
                                                         <td> 
                                                             <form method="post">
-                                                                <input value="'.$item['tenhang'].'" type="hidden" name="tenhang" id="tenhang">
-                                                                <a class="btn btn-primary" href="update_category.php?tenhang='.$item['tenhang'].'"> Sửa </a> &emsp;   
+                                                                <input value="'.$item['tenhang'].'" type="hidden" name="tenhang" id="tenhang">  
                                                                 <button class="btn btn-primary" onclick="if (!confirm()) { return false;}"> Xóa </button>
                                                             </form>
                                                         </td> 

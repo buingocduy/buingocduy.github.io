@@ -143,7 +143,8 @@ if(!empty($_POST))
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th> Chức năng </th>
+                                                <th> Sửa </th>
+                                                <th> Xóa </th>
                                                 <th> ID</th>
                                                 <th> Hình ảnh</th>
                                                 <th> Tên sản phẩm</th>
@@ -170,14 +171,16 @@ if(!empty($_POST))
                                         foreach ($categoryList  as $item)
                                         {
                                             echo '<tr>
-                                                        <td> 
+                                                        <td>                                                             
+                                                                <a class="btn btn-primary" href="update_product.php?id='.$item['id'].'&tenhang='.$item['tenhang'].'"> Sửa </a>     
+                                                        </td>
+                                                        <td>
                                                             <form method="post">
                                                                 <input value="'.$item['id'].'" type="hidden" name="id" id="id">
-                                                                <input value="'.$item['tenhang'].'" type="hidden" name="tenhang" id="tenhang">    
-                                                                <a class="btn btn-primary" href="update_product.php?id='.$item['id'].'&tenhang='.$item['tenhang'].'"> Sửa </a> &emsp;   
+                                                                <input value="'.$item['tenhang'].'" type="hidden" name="tenhang" id="tenhang">                                                                     
                                                                 <button class="btn btn-primary" onclick="if (!confirm()) { return false;}"> Xóa </button>
                                                             </form>
-                                                        </td> 
+                                                        </td>
                                                         <td>'.$item['id'].'</td>
                                                         <td> <img src='.$item['hinhanh'].' height="100" width-max="100" alt="Khong tai duoc"> </td>
                                                         <td>'.$item['tensp'].'</td>
