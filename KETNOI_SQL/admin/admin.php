@@ -91,6 +91,11 @@ require_once ('../db/dbhelper.php');
                                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                                 ĐƠN HÀNG
                             </a>
+                            
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
+                                HÓA ĐƠN
+                            </a>
                         </div>
                     </div>
                     
@@ -136,6 +141,16 @@ require_once ('../db/dbhelper.php');
                             </div>
                             
                             <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body"> HÓA ĐƠN </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#"> Xem chi tiết </a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>          
+                            
+                            <div class="col-xl-3 col-md-6">
                                 <div class="card bg-dark text-white mb-4">
                                     <div class="card-body"> SẢN PHẨM ẨN </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
@@ -143,7 +158,7 @@ require_once ('../db/dbhelper.php');
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
-                            </div>                                            
+                            </div> 
                         </div>  
                         
                         <div class="row">               

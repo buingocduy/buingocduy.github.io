@@ -84,3 +84,16 @@ function donhang()
    return true;
 }
 
+function kiemtradathang() 
+{
+   var sdt = document.getElementById("sdt").value;  
+ 
+   if(sdt === "")
+   {
+     alert("Xin vui lòng nhập số điện thoại");
+     return false;
+   }
+   
+   return true;
+}
+

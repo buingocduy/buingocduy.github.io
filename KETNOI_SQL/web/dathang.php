@@ -17,10 +17,11 @@ if(!empty($_POST)){
         $ghichu = $_POST['ghichu'];
         $soluong = $_GET['soluong']; 
         $tensp = $_GET['tensp'];  
+        $tongtien = $_POST['tongtien'];
     }
     
     if(!empty($hovaten) && !empty($sdt) && !empty($email) && !empty($diachi)){
-        $sql = 'INSERT INTO donhang VALUES (NULL,"'.$tensp.'",'.$soluong.',"'.$hovaten.'","'.$sdt.'","'.$email.'","'.$diachi.'","'.$ghichu.'")';
+        $sql = 'INSERT INTO donhang VALUES (NULL,"'.$tensp.'",'.$soluong.','.$tongtien.',"'.$hovaten.'","'.$sdt.'","'.$email.'","'.$diachi.'","'.$ghichu.'")';
     execute($sql);
 
     header('Location: home.php');
@@ -53,7 +54,7 @@ if(!empty($_POST)){
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">ĐẶT HÀNG</h3></div>
+                                    <div class="card-header"><h1 class="text-center font-weight-light my-4">ĐẶT HÀNG</h1></div>
                                     <div class="card-body">
                                         <form method="post" onsubmit="return dathang()">
                                             <div class="form-row">
@@ -73,12 +74,13 @@ if(!empty($_POST)){
                                                     $soluong = $_GET['soluong']; 
                                                     $hinhanh = $_GET['hinhanh']; 
                                                     $tensp = $_GET['tensp'];  
-                                                    $tongtien = $soluong * $gia;
+                                                    $tt = $soluong * $gia;
                                                     
                                                     echo '<h2 style="color: firebrick;">  '.$tensp.' </h2> <br>'; 
                                                     echo '<h6>Đơn giá:&emsp;&emsp;  '.$gia.'$ </h6>'; 
                                                     echo '<h6>Số lượng đặt: &emsp;  '.$soluong.' </h6>'; 
-                                                    echo '<h6>Tổng tiền:&emsp;&nbsp; '.$tongtien.'$ </h6>'; 
+                                                    echo '<h6>Tổng tiền:&emsp;&nbsp; '.$tt.'$ </h6>'; 
+                                                    echo '<input id="tongtien" name="tongtien" type="hidden" value="'.$tt.'"/>'
                                                     ?> 
                                                     </div>
                                                </div>
@@ -112,7 +114,7 @@ if(!empty($_POST)){
                                                 <input class="form-control py-4" id="ghichu" name="ghichu" type="text" aria-describedby="emailHelp"/>
                                             </div>
                                             
-                                            <div class="form-group mt-4 mb-0">
+                                            <div class="form-group mt-4 mb-0">                            
                                                 <input type="submit" class="btn btn-primary btn-block" value="Đặt hàng ">
                                             </div>
                                         </form>
@@ -123,6 +125,7 @@ if(!empty($_POST)){
                     </div>
                 </main>
             </div>
+            
             <div id="layoutAuthentication_footer">
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">

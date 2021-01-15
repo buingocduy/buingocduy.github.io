@@ -107,6 +107,11 @@ if(!empty($_POST)){
                                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                                 ĐƠN HÀNG
                             </a>
+                            
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
+                                HÓA ĐƠN
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

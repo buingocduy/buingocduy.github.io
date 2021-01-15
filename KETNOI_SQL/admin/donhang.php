@@ -99,6 +99,11 @@ if(!empty($_POST))
                                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                                 ĐƠN HÀNG
                             </a>
+                            
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
+                                HÓA ĐƠN
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -144,6 +149,7 @@ if(!empty($_POST))
                                                 <th> ID </th>
                                                 <th> Tên sản phẩm </th>
                                                 <th> Số lượng đặt </th>
+                                                <th> Tổng tiền $ </th>
                                                 <th> Tên khách hàng </th>
                                                 <th> Số điện thoại </th>
                                                 <th> Email </th>
@@ -156,7 +162,7 @@ if(!empty($_POST))
                                         <tbody>
                                         <?php                                                                                                               
                                         // lấy dữ liệu hãng ra
-                                        $sql = "select * from donhang";   
+                                        $sql = "SELECT * FROM donhang";   
                                         $categoryList = executeResult($sql);
                                         foreach ($categoryList as $item)
                                         {
@@ -164,6 +170,7 @@ if(!empty($_POST))
                                                         <td>'.$item['id'].'</td>
                                                         <td>'.$item['tensp'].'</td>  
                                                         <td>'.$item['soluongdat'].'</td>  
+                                                        <td>'.$item['tongtien'].'</td>  
                                                         <td>'.$item['tenkh'].'</td>
                                                         <td>'.$item['sdt'].'</td>
                                                         <td>'.$item['email'].'</td>  

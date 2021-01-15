@@ -10,7 +10,7 @@ Create table taikhoan
 (username varchar(100),password varchar(100));
 
 Create table donhang
-(id int PRIMARY KEY AUTO_INCREMENT,tensp varchar(100),soluongdat int,tenkh varchar(100),sdt char(11),email varchar(100),diachi longtext,ghichu longtext);
+(id int PRIMARY KEY AUTO_INCREMENT,tensp varchar(100),soluongdat int,tongtien bigint,tenkh varchar(100),sdt char(11),email varchar(100),diachi longtext,ghichu longtext);
 
 alter table sanpham add constraint FK_sp_h foreign key(tenhang) references hang(tenhang); 
 

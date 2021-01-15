@@ -21,6 +21,7 @@ require_once ('../db/dbhelper.php');
     <!-- Bootstrap core JavaScript -->
   <script src="../JS/jquery.min.js"></script>
   <script src="../JS/bootstrap.bundle.min.js"></script>
+  <script src="../JS/scripts.js"></script>
 
 
 </head>
@@ -45,7 +46,19 @@ require_once ('../db/dbhelper.php');
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"> DỊCH VỤ </a>
-          </li>       
+          </li>
+          <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> KIỂM TRA ĐƠN HÀNG </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <form action="kiemtradonhang.php" onsubmit="return kiemtradathang()">
+                            <h5 style="text-align: center; color: red;"> SỐ ĐIỆN THOẠI </h5>
+                            <input type="number" id="sdt" name="sdt" value="" class="form-control py-4" placeholder="SĐT: 0123456789"> <br>
+                            <input type="submit" class="btn btn-primary btn-block" value="Kiểm tra">
+                        </form>
+                    </div>
+                </li>
+          </ul>
         </ul>
       </div>
     </div>
@@ -62,7 +75,6 @@ require_once ('../db/dbhelper.php');
             // lấy dữ liệu hãng ra
             $sql = 'select * from hang';   
             $categoryList = executeResult($sql);
-            $index = 1;
             foreach ($categoryList as $item)
             {
                 echo '<a class="list-group-item" href="sanpham.php?tenhang='.$item['tenhang'].'"> <img class="d-block img-fluid" src='.$item['logo'].' alt="Khong tai duoc"> </a>  <p> </p>';                                            
@@ -192,6 +204,7 @@ require_once ('../db/dbhelper.php');
   <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; MOWO - MOTO WORLD 2020</p>
+      <p class="m-0 text-center text-white">HOTLINE: 0904596810</p>
     </div>
     <!-- /.container -->
   </footer>
