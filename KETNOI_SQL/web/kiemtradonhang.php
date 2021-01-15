@@ -41,7 +41,15 @@ require_once ('../db/dbhelper.php');
                                                         <h5 style="color:red;"> THÔNG TIN KHÁCH HÀNG </h5> 
                                                         Mã đơn hàng: '.$item['id'].' 
                                                     </div>
-                                                </div>                                               
+                                                </div>  
+                                                
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        Trạng thái đơn hàng: 
+                                                        <h5> '.$item['trangthai'].'  </h5> 
+                                                    </div>
+                                                </div>    
+                                                
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-6">

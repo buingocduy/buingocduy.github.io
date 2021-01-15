@@ -17,8 +17,7 @@ if(!empty($_POST))
     $sql = 'delete from donhang where id = "'.$id.'"';
     execute($sql);
     header('Location: donhang.php');
-    die();
-
+    die();  
 }
 ?>
 
@@ -146,7 +145,8 @@ if(!empty($_POST))
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th> ID </th>
+                                                <th> Trạng thái </th>
+                                                <th> Mã hóa đơn </th>
                                                 <th> Tên sản phẩm </th>
                                                 <th> Số lượng đặt </th>
                                                 <th> Tổng tiền $ </th>
@@ -167,6 +167,13 @@ if(!empty($_POST))
                                         foreach ($categoryList as $item)
                                         {
                                             echo '<tr>
+                                                        <td> 
+                                                            <h5> '.$item['trangthai'].' </h5>
+                                                            <form action="capnhat_donhang">
+                                                            <input value="'.$item['id'].'" type="hidden" name="id" id="id">
+                                                            <button class="btn btn-primary"> Cập nhật </button>
+                                                            </form>
+                                                        </td>
                                                         <td>'.$item['id'].'</td>
                                                         <td>'.$item['tensp'].'</td>  
                                                         <td>'.$item['soluongdat'].'</td>  
@@ -179,7 +186,7 @@ if(!empty($_POST))
                                                         <td> 
                                                             <form method="post">
                                                             <input value="'.$item['id'].'" type="hidden" name="id" id="id">
-                                                            <button class="btn btn-primary" name="xoa" id="xoa"> Xóa </button>
+                                                            <button class="btn btn-primary"> Xóa </button>
                                                             </form>
                                                         </td> 
                                                   </tr>';  

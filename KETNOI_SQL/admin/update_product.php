@@ -156,7 +156,7 @@ if(!empty($_POST)){
                         <h1 class="mt-4"> SỬA SẢN PHẨM </h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin.php"> DANH MỤC </a></li>
-                            <li class="breadcrumb-item active"> Sửa sản phẩm </li>
+                            <li class="breadcrumb-item active"> SỬA SẢN PHẨM </li>
                         </ol>
                        
                         <div class="card mb-4">

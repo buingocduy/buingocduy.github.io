@@ -21,7 +21,7 @@ if(!empty($_POST)){
     }
     
     if(!empty($hovaten) && !empty($sdt) && !empty($email) && !empty($diachi)){
-        $sql = 'INSERT INTO donhang VALUES (NULL,"'.$tensp.'",'.$soluong.','.$tongtien.',"'.$hovaten.'","'.$sdt.'","'.$email.'","'.$diachi.'","'.$ghichu.'")';
+        $sql = 'INSERT INTO donhang VALUES (NULL,"'.$tensp.'",'.$soluong.','.$tongtien.',"'.$hovaten.'","'.$sdt.'","'.$email.'","'.$diachi.'","'.$ghichu.'","Chờ xác nhận")';
     execute($sql);
 
     header('Location: home.php');
