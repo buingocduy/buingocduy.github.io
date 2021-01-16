@@ -155,7 +155,7 @@ if(!empty($_POST)){
                                                     <label class="small mb-1"> Trạng thái </label>
                                                     <div class="form-group">                                            
                                                     <select id="trangthai" name="trangthai">   
-                                                        <option> Chưa xác nhận </option>
+                                                        <option> Chờ xác nhận </option>
                                                         <option> Đã xác nhận </option>
                                                     </select>
                                                     </div>
