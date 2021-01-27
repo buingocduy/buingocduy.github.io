@@ -42,6 +42,7 @@ public class Dangnhap extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ĐĂNG NHẬP");
+        setResizable(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(java.awt.Color.blue);
@@ -141,7 +142,7 @@ public class Dangnhap extends javax.swing.JFrame {
 
                     //open form Main
                     Menu menu = new Menu();
-                    menu.setTenUser(txtUsername.getText());
+                    menu.setTenUser(txtUsername.getText().toLowerCase());
 
                     //vi tri giua man hinh va maximize
                     menu.pack();

@@ -15,7 +15,7 @@ import javax.swing.*;
  */
 public class Menu extends javax.swing.JFrame {
     
-    public void setTenUser(String username){ 
+    public void setTenUser(String username){        
         this.txt_username.setText(username);
         
         String b = "admin";
@@ -36,7 +36,7 @@ public class Menu extends javax.swing.JFrame {
     }
     
     public Menu() {
-        initComponents();    
+        initComponents();      
     }
 
     /**
@@ -70,6 +70,7 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý xe máy");
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(153, 180, 209));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
