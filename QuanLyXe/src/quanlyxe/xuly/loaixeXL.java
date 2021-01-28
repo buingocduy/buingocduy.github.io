@@ -34,6 +34,24 @@ public class loaixeXL {
         return list;
     }
     
+    //Lấy danh sách theo tìm kiếm
+    public ArrayList<loaixeTT> getRecords(String Tenloai){
+        ArrayList<loaixeTT> list = new ArrayList<loaixeTT>();
+        try{        
+            hienthi_sql acc = new hienthi_sql();
+            ResultSet rs = acc.Query("SELECT * FROM loaixe WHERE Tenloai = N'"+Tenloai+"'");
+
+            while(rs.next()){
+                loaixeTT loaixe = new loaixeTT(rs.getString("Maloai"), rs.getString("Tenloai"));
+                list.add(loaixe);
+            }            
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return list;
+    }
+    
     //Thêm
     public int AddNewRecord(String Maloai, String Tenloai){
         int rowCount = 0;

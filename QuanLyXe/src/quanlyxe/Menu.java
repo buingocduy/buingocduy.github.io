@@ -95,6 +95,11 @@ public class Menu extends javax.swing.JFrame {
         btn_nhacungcap.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_nhacungcap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/groupbook.png"))); // NOI18N
         btn_nhacungcap.setText("Thông tin nhà cung cấp");
+        btn_nhacungcap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_nhacungcapActionPerformed(evt);
+            }
+        });
 
         btn_khachhang.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_khachhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/people.png"))); // NOI18N
@@ -311,6 +316,15 @@ public class Menu extends javax.swing.JFrame {
             Logger.getLogger(MenuSP.class.getName()).log(Level.SEVERE, null, ex);
         }       
     }//GEN-LAST:event_btn_phieuActionPerformed
+
+    private void btn_nhacungcapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nhacungcapActionPerformed
+        //Nhà cung cấp
+        Nhacungcap nhacungcap = new Nhacungcap();
+        //vi tri giua man hinh
+        nhacungcap.pack();
+        nhacungcap.setLocationRelativeTo(null);        
+        nhacungcap.setVisible(true);
+    }//GEN-LAST:event_btn_nhacungcapActionPerformed
 
     /**
      * @param args the command line arguments
