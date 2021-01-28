@@ -8,7 +8,15 @@ import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.beans.PropertyVetoException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.*;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.swing.JRViewer;
+import quanlyxe.xuly.ketnoi_sql;
 /**
  *
  * @author BND6699
@@ -95,10 +103,20 @@ public class Menu extends javax.swing.JFrame {
         btn_phieu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_phieu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/ban.png"))); // NOI18N
         btn_phieu.setText("Phiếu nhập, xuất, hóa đơn");
+        btn_phieu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_phieuActionPerformed(evt);
+            }
+        });
 
         btn_baocao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_baocao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report4.png"))); // NOI18N
         btn_baocao.setText("Báo cáo");
+        btn_baocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_baocaoActionPerformed(evt);
+            }
+        });
 
         btn_taikhoan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_taikhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/people2.png"))); // NOI18N
@@ -270,8 +288,29 @@ public class Menu extends javax.swing.JFrame {
         } catch (PropertyVetoException ex) {
             Logger.getLogger(MenuSP.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_btn_sanphamActionPerformed
+
+    private void btn_baocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_baocaoActionPerformed
+        
+    }//GEN-LAST:event_btn_baocaoActionPerformed
+
+    private void btn_phieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_phieuActionPerformed
+        MenuNX menunx;
+
+        try {
+            menunx = new MenuNX();
+            // new loginJFrame().show();
+            // dispose();
+            //setSize(frame);
+            menunx.setVisible(true);
+  
+            desktop.add(menunx);
+            menunx.setSelected(true);
+
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MenuSP.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+    }//GEN-LAST:event_btn_phieuActionPerformed
 
     /**
      * @param args the command line arguments
