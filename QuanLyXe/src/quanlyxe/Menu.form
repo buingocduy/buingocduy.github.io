@@ -175,6 +175,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#xf4;ng tin kh&#xe1;ch h&#xe0;ng"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_khachhangActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_phieu">
           <Properties>

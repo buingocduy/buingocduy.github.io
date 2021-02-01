@@ -155,7 +155,12 @@ public class MenuSP extends javax.swing.JInternalFrame {
 
     private void btn_sanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sanphamActionPerformed
         //sản phẩm
-
+        Sanpham sanpham = new Sanpham();
+        //vi tri giua man hinh
+        sanpham.pack();
+        sanpham.setLocationRelativeTo(null);        
+        sanpham.setVisible(true);
+ 
         
     }//GEN-LAST:event_btn_sanphamActionPerformed
 

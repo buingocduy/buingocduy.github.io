@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author Vinh
  */
 public class nhacungcapXL {
-    //lay danh sach UserAccount
+    //lay danh sach toàn bộ UserAccount
     public ArrayList<nhacungcapTT> getAllRecords(){
         ArrayList<nhacungcapTT> list = new ArrayList<nhacungcapTT>();
         try{        
@@ -35,6 +35,26 @@ public class nhacungcapXL {
         }
         return list;
     }
+    
+    // lấy danh sách theo tìm kiếm
+    public ArrayList<nhacungcapTT> getRecords(String MaNCC){
+        ArrayList<nhacungcapTT> list = new ArrayList<nhacungcapTT>();
+        try{        
+            hienthi_sql acc = new hienthi_sql();
+            ResultSet rs = acc.Query("SELECT * FROM nhacungcap WHERE MaNCC = '"+MaNCC+"'");
+
+            while(rs.next()){
+                nhacungcapTT ncc = new nhacungcapTT(rs.getString("MaNCC"), rs.getString("TenNCC"), 
+                        rs.getString("DiaChi"), rs.getString("Email"),rs.getString("SDT"));
+                list.add(ncc);
+            }            
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return list;
+    }
+    
     //Tao moi
     public int AddNewRecord(String MaNCC, String tenNCC, String diaChi, String email, String phone){
         int rowCount = 0;

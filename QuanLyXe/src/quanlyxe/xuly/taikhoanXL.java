@@ -32,6 +32,24 @@ public class taikhoanXL {
         return list;
     }
     
+    //Lấy danh sách tìm kiếm trong tài khoản
+    public ArrayList<taikhoanTT> getRecords(String HoTen){
+        ArrayList<taikhoanTT> list = new ArrayList<taikhoanTT>();
+        try{        
+            hienthi_sql acc = new hienthi_sql();
+            ResultSet rs = acc.Query("SELECT * FROM taikhoan WHERE HoTen = N'"+HoTen+"'");
+
+            while(rs.next()){
+                taikhoanTT taikhoan = new taikhoanTT(rs.getString("Username"), rs.getString("Password"), rs.getString("HoTen"), rs.getString("Email"), rs.getString("Phone"), rs.getDate("NgaySinh"), rs.getDate("NgayBatDau"));
+                list.add(taikhoan);
+            }            
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return list;
+    }
+    
     //Thêm
     public int AddNewRecord(String username, String pass, String hoten, String email, String phone, Date birthDay, Date startDate){
         int rowCount = 0;

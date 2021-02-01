@@ -104,6 +104,11 @@ public class Menu extends javax.swing.JFrame {
         btn_khachhang.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_khachhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/people.png"))); // NOI18N
         btn_khachhang.setText("Thông tin khách hàng");
+        btn_khachhang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_khachhangActionPerformed(evt);
+            }
+        });
 
         btn_phieu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_phieu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/ban.png"))); // NOI18N
@@ -325,6 +330,15 @@ public class Menu extends javax.swing.JFrame {
         nhacungcap.setLocationRelativeTo(null);        
         nhacungcap.setVisible(true);
     }//GEN-LAST:event_btn_nhacungcapActionPerformed
+
+    private void btn_khachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_khachhangActionPerformed
+         //Nhà khách hàng
+        Khachhang khachhang = new Khachhang();
+        //vi tri giua man hinh
+        khachhang.pack();
+        khachhang.setLocationRelativeTo(null);        
+        khachhang.setVisible(true);
+    }//GEN-LAST:event_btn_khachhangActionPerformed
 
     /**
      * @param args the command line arguments

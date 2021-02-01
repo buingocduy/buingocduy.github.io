@@ -31,7 +31,7 @@ public class Taikhoan extends javax.swing.JFrame {
     public Taikhoan() {
         initComponents();
         
-        showUserAccounts();                
+        showAllUserAccounts();                
     }
 
     /**
@@ -61,13 +61,19 @@ public class Taikhoan extends javax.swing.JFrame {
         jDateChooserBD = new com.toedter.calendar.JDateChooser();
         jDateStartDate = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableUsers = new javax.swing.JTable();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableUsers = new javax.swing.JTable();
+        btnAdd = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btn_timkiem = new javax.swing.JButton();
+        txt_timkiem = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        btn_tailai = new javax.swing.JButton();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -187,19 +193,31 @@ public class Taikhoan extends javax.swing.JFrame {
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jDateStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jTableUsers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Username", "Password", "Họ tên", "Email", "Phone", "Ngày sinh", "Ngày bắt đầu làm"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableUsers.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(jTableUsers);
+        jTableUsers.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jPanel2.setBackground(new java.awt.Color(153, 180, 209));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/add1.png"))); // NOI18N
-        btnAdd.setText("Thêm");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/sua2.png"))); // NOI18N
         btnUpdate.setText("Sửa");
@@ -225,52 +243,101 @@ public class Taikhoan extends javax.swing.JFrame {
             }
         });
 
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/add1.png"))); // NOI18N
+        btnAdd.setText("Thêm");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(26, 26, 26))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jTableUsers.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jTabbedPane3.addTab("Chức năng", jPanel2);
 
-            },
-            new String [] {
-                "Username", "Password", "Họ tên", "Email", "Phone", "Ngày sinh", "Ngày bắt đầu làm"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
+        jPanel1.setBackground(new java.awt.Color(153, 180, 209));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        btn_timkiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/tim.png"))); // NOI18N
+        btn_timkiem.setText("Tìm kiếm");
+        btn_timkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_timkiemActionPerformed(evt);
             }
         });
-        jTableUsers.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(jTableUsers);
-        jTableUsers.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Tìm theo họ tên");
+
+        btn_tailai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/phuchoi.png"))); // NOI18N
+        btn_tailai.setText("Tải lại");
+        btn_tailai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_tailaiActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_timkiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_tailai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(24, 24, 24))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel8)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_timkiem)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(btn_tailai)
+                .addGap(12, 12, 12))
+        );
+
+        jTabbedPane3.addTab("Tìm kiếm", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -286,8 +353,8 @@ public class Taikhoan extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 13, Short.MAX_VALUE))))
+                        .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 8, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,7 +363,7 @@ public class Taikhoan extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -304,9 +371,15 @@ public class Taikhoan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/**/
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // Tao Moi
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // Thoat form
+        this.dispose();
+        //System.exit(0);
+    }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        //Xoa Record
         String username = txtUsername.getText().trim();
         String password = new String(txtPassword.getPassword()).trim();
         String hoten = txtFullName.getText().trim();
@@ -314,20 +387,28 @@ public class Taikhoan extends javax.swing.JFrame {
         String phone = txtPhone.getText().trim();
         Date birthDay = jDateChooserBD.getDate();
         Date startDate = jDateStartDate.getDate();
-        
-        //goi ham trong package "bookstore.dal"
-        int rowEffected = userAccountService.AddNewRecord(username, password, hoten, email, phone, birthDay, startDate);
-        if(rowEffected > 0){
-            showUserAccounts();
-            JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
-        }            
-        else
-            JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
 
-    }//GEN-LAST:event_btnAddActionPerformed
+        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn tài khoảng "+username+" không?","Confirmation...",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        System.out.println("Xoa? =" +input);
+
+        if(input == 0)
+        {
+            //Xoa
+            //goi ham trong package "bookstore.dal"
+            int rowEffected = userAccountService.DeleteRecord(username);
+            if(rowEffected > 0){
+                showAllUserAccounts();
+                JOptionPane.showMessageDialog(null, "Xóa thành công!");
+            }
+            else
+            JOptionPane.showMessageDialog(null, "Xóa thất bại");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        
+
         // Cap Nhat record
         String username = txtUsername.getText().trim();
         String password = new String(txtPassword.getPassword()).trim();
@@ -339,15 +420,26 @@ public class Taikhoan extends javax.swing.JFrame {
         //goi ham trong package "bookstore.dal"
         int rowEffected = userAccountService.UpdateRecord(username, password, hoten, email, phone, birthDay, startDate);
         if(rowEffected > 0){
-            showUserAccounts();
+            showAllUserAccounts();
             JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
-        }            
+        }
         else
-            JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+        JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        //Xoa Record        
+    private void btn_tailaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tailaiActionPerformed
+        //Load lại toàn bộ dữ liệu
+        showAllUserAccounts();;
+    }//GEN-LAST:event_btn_tailaiActionPerformed
+
+    private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
+        //Load bộ dữ liệu tìm kiếm
+        showSearchUserAccounts();
+    }//GEN-LAST:event_btn_timkiemActionPerformed
+
+    // Thêm
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+
         String username = txtUsername.getText().trim();
         String password = new String(txtPassword.getPassword()).trim();
         String hoten = txtFullName.getText().trim();
@@ -356,32 +448,53 @@ public class Taikhoan extends javax.swing.JFrame {
         Date birthDay = jDateChooserBD.getDate();
         Date startDate = jDateStartDate.getDate();
         
-        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn tài khoảng "+username+" không?","Confirmation...",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        
-        System.out.println("Xoa? =" +input);
-        
-        if(input == 0)
-        {
-            //Xoa
-            //goi ham trong package "bookstore.dal"
-            int rowEffected = userAccountService.DeleteRecord(username);
-            if(rowEffected > 0){
-                showUserAccounts();
-                JOptionPane.showMessageDialog(null, "Xóa thành công!");
-            }            
-            else
-                JOptionPane.showMessageDialog(null, "Xóa thất bại");
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+        //goi ham trong package "bookstore.dal"
+        int rowEffected = userAccountService.AddNewRecord(username, password, hoten, email, phone, birthDay, startDate);
+        if(rowEffected > 0){
+            showAllUserAccounts();
+            JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
+        }            
+        else
+            JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
 
-    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        // Thoat form
-        this.dispose();
-        //System.exit(0);
-    }//GEN-LAST:event_btnCloseActionPerformed
-      
-    private void showUserAccounts(){
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    
+    private void showSearchUserAccounts(){
+        String HoTen = txt_timkiem.getText().trim();
+        DefaultTableModel model = (DefaultTableModel)this.jTableUsers.getModel(); 
+        model.setRowCount(0);
+                
+        //load data
+        ArrayList<taikhoanTT> list = userAccountService.getRecords(HoTen);
+               
+        Object[] row = new Object[7];
+        
+        for(int i = 0; i < list.size(); i++){
+            
+            row[0] = list.get(i).getUsername();
+            row[1] = list.get(i).getPassword();
+            row[2] = list.get(i).getHoten();
+            row[3] = list.get(i).getEmail();
+            row[4] = list.get(i).getPhone();
+            row[5] = list.get(i).getNgaysinh();
+            row[6] = list.get(i).getNgaybatdau();
+            
+            model.addRow(row);
+        }
+        
+        ListSelectionModel cellSelectionModel = jTableUsers.getSelectionModel();
+        cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //Dang ky event click tren danh sach        
+        cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                //goi ham show data chi tiet
+                gridSelectedChanged(e);
+            }
+          });
+    }
+    
+    private void showAllUserAccounts(){
         
         DefaultTableModel model = (DefaultTableModel)this.jTableUsers.getModel(); 
         model.setRowCount(0);
@@ -504,6 +617,8 @@ public class Taikhoan extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btn_tailai;
+    private javax.swing.JButton btn_timkiem;
     private com.toedter.calendar.JDateChooser jDateChooserBD;
     private com.toedter.calendar.JDateChooser jDateStartDate;
     private javax.swing.JLabel jLabel1;
@@ -513,17 +628,21 @@ public class Taikhoan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelDetail;
     private javax.swing.JPanel jPanelHeader;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTableUsers;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtUsername;
+    private javax.swing.JTextField txt_timkiem;
     // End of variables declaration//GEN-END:variables
 }
