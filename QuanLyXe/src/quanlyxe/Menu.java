@@ -46,6 +46,8 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();      
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -306,12 +308,11 @@ public class Menu extends javax.swing.JFrame {
 
     private void btn_phieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_phieuActionPerformed
         MenuNX menunx;
-
+        
         try {
             menunx = new MenuNX();
-            // new loginJFrame().show();
-            // dispose();
-            //setSize(frame);
+            menunx.setTenUser(txt_username.getText());
+            
             menunx.setVisible(true);
   
             desktop.add(menunx);

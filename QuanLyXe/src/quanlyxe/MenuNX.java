@@ -25,6 +25,10 @@ public class MenuNX extends javax.swing.JInternalFrame {
        
     }
     
+    public void setTenUser(String username){        
+        this.txt_username.setText(username);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -35,9 +39,10 @@ public class MenuNX extends javax.swing.JInternalFrame {
         jPanelDanhMuc = new javax.swing.JPanel();
         jLabelTieuDe = new javax.swing.JLabel();
         btn_thoat = new javax.swing.JButton();
-        btn_sanpham = new javax.swing.JButton();
-        btn_loaisp = new javax.swing.JButton();
-        btn_sanpham1 = new javax.swing.JButton();
+        btn_phieuxuat = new javax.swing.JButton();
+        btn_phieunhap = new javax.swing.JButton();
+        btn_hoadon = new javax.swing.JButton();
+        txt_username = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jTree1);
 
@@ -79,35 +84,37 @@ public class MenuNX extends javax.swing.JInternalFrame {
             }
         });
 
-        btn_sanpham.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_sanpham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report3.png"))); // NOI18N
-        btn_sanpham.setText("Phiếu xuất");
-        btn_sanpham.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_sanpham.addActionListener(new java.awt.event.ActionListener() {
+        btn_phieuxuat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_phieuxuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report3.png"))); // NOI18N
+        btn_phieuxuat.setText("Phiếu xuất");
+        btn_phieuxuat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_phieuxuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_sanphamActionPerformed(evt);
+                btn_phieuxuatActionPerformed(evt);
             }
         });
 
-        btn_loaisp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_loaisp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/list.png"))); // NOI18N
-        btn_loaisp.setText("Phiếu nhập");
-        btn_loaisp.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_loaisp.addActionListener(new java.awt.event.ActionListener() {
+        btn_phieunhap.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_phieunhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/list.png"))); // NOI18N
+        btn_phieunhap.setText("Phiếu nhập");
+        btn_phieunhap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_phieunhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_loaispActionPerformed(evt);
+                btn_phieunhapActionPerformed(evt);
             }
         });
 
-        btn_sanpham1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_sanpham1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report.png"))); // NOI18N
-        btn_sanpham1.setText("Hóa đơn");
-        btn_sanpham1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_sanpham1.addActionListener(new java.awt.event.ActionListener() {
+        btn_hoadon.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_hoadon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report.png"))); // NOI18N
+        btn_hoadon.setText("Hóa đơn");
+        btn_hoadon.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_hoadon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_sanpham1ActionPerformed(evt);
+                btn_hoadonActionPerformed(evt);
             }
         });
+
+        txt_username.setText("jLabel1");
 
         javax.swing.GroupLayout jPanelDanhMucLayout = new javax.swing.GroupLayout(jPanelDanhMuc);
         jPanelDanhMuc.setLayout(jPanelDanhMucLayout);
@@ -116,31 +123,33 @@ public class MenuNX extends javax.swing.JInternalFrame {
             .addGroup(jPanelDanhMucLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelDanhMucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDanhMucLayout.createSequentialGroup()
-                        .addGroup(jPanelDanhMucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_thoat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_sanpham, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                            .addComponent(btn_loaisp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDanhMucLayout.createSequentialGroup()
-                        .addComponent(btn_sanpham1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                    .addComponent(btn_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_phieuxuat, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                    .addComponent(btn_phieunhap, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_hoadon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(jPanelDanhMucLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabelTieuDe)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanelDanhMucLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_username)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDanhMucLayout.setVerticalGroup(
             jPanelDanhMucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDanhMucLayout.createSequentialGroup()
                 .addComponent(jLabelTieuDe, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_loaisp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_phieunhap, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_sanpham)
+                .addComponent(btn_phieuxuat)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_sanpham1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(btn_hoadon)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(txt_username)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_thoat)
                 .addContainerGap())
         );
@@ -162,43 +171,51 @@ public class MenuNX extends javax.swing.JInternalFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanelDanhMuc, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(jPanelDanhMuc, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_sanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sanphamActionPerformed
+    private void btn_phieuxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_phieuxuatActionPerformed
         //sản phẩm
 
         
-    }//GEN-LAST:event_btn_sanphamActionPerformed
+    }//GEN-LAST:event_btn_phieuxuatActionPerformed
 
-    private void btn_loaispActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loaispActionPerformed
+    private void btn_phieunhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_phieunhapActionPerformed
   
  
-    }//GEN-LAST:event_btn_loaispActionPerformed
+    }//GEN-LAST:event_btn_phieunhapActionPerformed
 
     private void btn_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thoatActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btn_thoatActionPerformed
 
-    private void btn_sanpham1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sanpham1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_sanpham1ActionPerformed
+    private void btn_hoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hoadonActionPerformed
+        // Hóa đơn
+        Hoadon hoadon = new Hoadon();
+        hoadon.setTenUser(txt_username.getText());
+            
+        //vi tri giua man hinh
+        hoadon.pack();
+        hoadon.setLocationRelativeTo(null);        
+        hoadon.setVisible(true);
+    }//GEN-LAST:event_btn_hoadonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_loaisp;
-    private javax.swing.JButton btn_sanpham;
-    private javax.swing.JButton btn_sanpham1;
+    private javax.swing.JButton btn_hoadon;
+    private javax.swing.JButton btn_phieunhap;
+    private javax.swing.JButton btn_phieuxuat;
     private javax.swing.JButton btn_thoat;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabelTieuDe;
     private javax.swing.JPanel jPanelDanhMuc;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
+    private javax.swing.JLabel txt_username;
     // End of variables declaration//GEN-END:variables
 
     /**

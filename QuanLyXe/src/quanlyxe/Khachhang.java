@@ -267,7 +267,7 @@ public class Khachhang extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Tìm số điện thoại");
 
-        btn_tailai1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/phuchoi.png"))); // NOI18N
+        btn_tailai1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/refresh.png"))); // NOI18N
         btn_tailai1.setText("Tải lại");
         btn_tailai1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,7 +303,7 @@ public class Khachhang extends javax.swing.JFrame {
                 .addComponent(txt_timkiem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_timkiem1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(btn_tailai1)
                 .addContainerGap())
         );
@@ -561,9 +561,7 @@ public class Khachhang extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btn_tailai;
     private javax.swing.JButton btn_tailai1;
-    private javax.swing.JButton btn_timkiem;
     private javax.swing.JButton btn_timkiem1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -571,15 +569,12 @@ public class Khachhang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelDetail;
     private javax.swing.JPanel jPanelHeader;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTableData;
     private javax.swing.JTextField txtDiaChi;
@@ -587,7 +582,6 @@ public class Khachhang extends javax.swing.JFrame {
     private javax.swing.JTextField txtMaKH;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtTenKH;
-    private javax.swing.JTextField txt_timkiem;
     private javax.swing.JTextField txt_timkiem1;
     // End of variables declaration//GEN-END:variables
 }

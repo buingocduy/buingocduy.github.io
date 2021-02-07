@@ -294,7 +294,7 @@ public class Taikhoan extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Tìm theo họ tên");
 
-        btn_tailai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/phuchoi.png"))); // NOI18N
+        btn_tailai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/refresh.png"))); // NOI18N
         btn_tailai.setText("Tải lại");
         btn_tailai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,7 +332,7 @@ public class Taikhoan extends javax.swing.JFrame {
                 .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_timkiem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(btn_tailai)
                 .addGap(12, 12, 12))
         );

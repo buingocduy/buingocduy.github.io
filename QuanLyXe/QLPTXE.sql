@@ -3,6 +3,7 @@ go
 use QLXE
 go
 
+--TÀI KHOẢN
 Create table taikhoan
 (Username varchar(100),
 	Password varchar(100),
@@ -14,12 +15,14 @@ Create table taikhoan
 	primary key(username))
 go 
 
+--LOẠI XE
 Create table loaixe
 (Maloai varchar(10),
 	Tenloai nvarchar(100),
 	primary key(MaLoai))
 go
 
+--NHÀ CUNG CẤP
 Create table nhacungcap
 (MaNCC varchar(10), 
 	TenNCC nvarchar(100), 
@@ -29,6 +32,7 @@ Create table nhacungcap
 	primary key(MaNCC))
 go
 
+--KHÁCH HÀNG
 Create table khachhang
 (MaKH int IDENTITY(1,1) NOT NULL,
 	TenKH nvarchar(100) NOT NULL,
@@ -38,6 +42,7 @@ Create table khachhang
 	Primary key(MaKH))
 go
 
+--SẢN PHẨM
 CREATE TABLE sanpham(
 	MaSP varchar (10) NOT NULL,
 	TenSP nvarchar (100) NOT NULL,	
@@ -47,10 +52,46 @@ CREATE TABLE sanpham(
 	Primary key(MaSP))
 go
 
+--HÓA ĐƠN
+CREATE TABLE hoadon(
+	MaHoaDon int IDENTITY(1,1) NOT NULL,	
+	Ngay  date  NOT NULL,
+	MaKH  int NOT NULL,
+	HinhThucTT nvarchar (30) NOT NULL,
+	TongTien bigint NOT NULL,
+	Username varchar (100) NOT NULL,
+	Primary key(MaHoaDon))
+go
+
+--CT HÓA ĐƠN
+CREATE TABLE ct_hoadon(
+	MaCTHoaDon int IDENTITY(1,1) NOT NULL,
+	MaHoaDon int NOT NULL,
+	MaSP varchar(10) NOT NULL,
+	SoLuong int NOT NULL,
+	DonGia bigint NOT NULL,
+	Primary key(MaCTHoaDon))
+go
+
+--Ràng buộc SẢN PHẨM
 alter table sanpham
 add constraint FK_sp_ncc foreign key(MaNCC) references nhacungcap(MaNCC)
 alter table sanpham
 add constraint FK_sp_loai foreign key(Maloai) references loaixe(Maloai)
+go
+
+--Ràng buộc HÓA ĐƠN
+alter table hoadon
+add constraint FK_hd_kh foreign key(MaKH) references khachhang(MaKH)
+alter table hoadon
+add constraint FK_hd_tk foreign key(Username) references taikhoan(Username)
+go
+
+--Ràng buộc CHI TIẾT HÓA ĐƠN
+alter table ct_hoadon
+add constraint FK_cthd_hd foreign key(MaHoaDon) references hoadon(MaHoaDon)
+alter table ct_hoadon
+add constraint FK_cthd_sp foreign key(MaSP) references sanpham(MaSP)
 go
 
 /*Tài khoảng*/
@@ -72,13 +113,18 @@ go
 
 /*Sản phẩm*/
 insert into sanpham values ('WINX','WINNER X','XCT','HONDA','2020')
+go
 
+/*Hóa đơn*/
+insert into hoadon values ('2021-02-07',2,N'TIỀN MẶT',400000,'admin')
+go
 
 select * from taikhoan
 select * from loaixe
 select * from nhacungcap
 select * from khachhang
 select * from sanpham
+select * from hoadon where Ngay = '10/02/2021'
 
 go
 
