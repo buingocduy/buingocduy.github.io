@@ -42,6 +42,15 @@ Create table khachhang
 	Primary key(MaKH))
 go
 
+--KHO
+CREATE TABLE Kho
+	(MaKho int IDENTITY(1,1) NOT NULL,
+	TenKho nvarchar (50) NOT NULL,
+	DiaChi nvarchar (200) NULL,
+	Phone varchar (30) NULL,
+	Primary key(MaKho))
+go
+
 --SẢN PHẨM
 CREATE TABLE sanpham(
 	MaSP varchar (10) NOT NULL,
@@ -105,6 +114,10 @@ go
 
 /*Nhà cung cấp*/
 insert into nhacungcap values ('HONDA',N'Công ty HONDA Việt Nam',N'Tầng 8, Zen Plaza, 54-56 đường Nguyễn Trãi, quận 1, thành phố Hồ Chính Minh','cr@honda.com.vn','(84) 28-39256949')
+go
+
+/*Kho*/
+insert into Kho values (N'Kho 1',N'439 Hậu Giang P11, Q6, TP.HCM','0777747747')
 go
 
 /*Khách hàng*/

@@ -142,6 +142,11 @@ public class Menu extends javax.swing.JFrame {
         btn_kho.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_kho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/home1.png"))); // NOI18N
         btn_kho.setText("Kho sản phẩm");
+        btn_kho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_khoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -333,13 +338,22 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_nhacungcapActionPerformed
 
     private void btn_khachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_khachhangActionPerformed
-         //Nhà khách hàng
+         //khách hàng
         Khachhang khachhang = new Khachhang();
         //vi tri giua man hinh
         khachhang.pack();
         khachhang.setLocationRelativeTo(null);        
         khachhang.setVisible(true);
     }//GEN-LAST:event_btn_khachhangActionPerformed
+
+    private void btn_khoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_khoActionPerformed
+         //Nhà kho
+        Kho kho = new Kho();
+        //vi tri giua man hinh
+        kho.pack();
+        kho.setLocationRelativeTo(null);        
+        kho.setVisible(true);
+    }//GEN-LAST:event_btn_khoActionPerformed
 
     /**
      * @param args the command line arguments

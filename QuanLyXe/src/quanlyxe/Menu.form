@@ -231,6 +231,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Kho s&#x1ea3;n ph&#x1ea9;m"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_khoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
