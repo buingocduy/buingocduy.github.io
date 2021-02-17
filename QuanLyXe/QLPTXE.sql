@@ -42,15 +42,6 @@ Create table khachhang
 	Primary key(MaKH))
 go
 
---KHO
-CREATE TABLE Kho
-	(MaKho int IDENTITY(1,1) NOT NULL,
-	TenKho nvarchar (50) NOT NULL,
-	DiaChi nvarchar (200) NULL,
-	Phone varchar (30) NULL,
-	Primary key(MaKho))
-go
-
 --SẢN PHẨM
 CREATE TABLE sanpham(
 	MaSP varchar (10) NOT NULL,
@@ -60,6 +51,24 @@ CREATE TABLE sanpham(
 	NamSanXuat varchar(10) NOT NULL,
 	Primary key(MaSP))
 go
+
+--KHO
+CREATE TABLE kho
+	(MaKho int IDENTITY(1,1) NOT NULL,
+	TenKho nvarchar (50) NOT NULL,
+	DiaChi nvarchar (200) NULL,
+	Phone varchar (30) NULL,
+	Primary key(MaKho))
+go
+
+--CHI TIẾT KHO
+CREATE TABLE ct_kho(
+	CTMaKho int IDENTITY(1,1) NOT NULL,
+	MaKho int not null,
+	MaSP varchar(10) NOT NULL,
+	Soluong int,
+	Primary key (CTMaKho)
+)
 
 --HÓA ĐƠN
 CREATE TABLE hoadon(
@@ -82,11 +91,58 @@ CREATE TABLE ct_hoadon(
 	Primary key(MaCTHoaDon))
 go
 
+--PHIẾU NHẬP
+CREATE TABLE phieunhap(
+	MaPN int IDENTITY(1,1) NOT NULL,
+	Username varchar(100) NOT NULL,
+	MaNCC varchar(10),
+	NgayNhap date NOT NULL,
+	MaKho int NOT NULL,
+    Primary key (MaPN))
+go
+
+--CHI TIẾT PHIẾU NHẬP
+CREATE TABLE ct_phieunhap(
+	MaCTPN int IDENTITY(1,1) NOT NULL,
+	MaPN int NOT NULL,
+	MaSP varchar(10) NOT NULL,
+	SoLuong int NOT NULL,
+	DonGiaNhap int NOT NULL,
+    Primary key (MaCTPN))
+go
+
+--PHIẾU XUẤT
+CREATE TABLE phieuxuat(
+	MaPX int IDENTITY(1,1) NOT NULL,
+	Username varchar(100) NOT NULL,
+	MaKH int NOT NULL,
+	NgayXuat date NOT NULL,
+	MaKho int NOT NULL,
+	Primary key (MaPX))
+go
+
+--CHI TIẾT PHIẾU XUẤT
+CREATE TABLE ct_phieuxuat(
+	MaCTPX int IDENTITY(1,1) NOT NULL,
+	MaPX int NOT NULL,
+	MaSP varchar(10) NOT NULL,
+	SoLuong int NOT NULL,
+	DonGia int NOT NULL,
+	Primary key (MaCTPX))
+go
+
 --Ràng buộc SẢN PHẨM
 alter table sanpham
 add constraint FK_sp_ncc foreign key(MaNCC) references nhacungcap(MaNCC)
 alter table sanpham
 add constraint FK_sp_loai foreign key(Maloai) references loaixe(Maloai)
+go
+
+--Ràng buộc CHI TIẾT KHO
+alter table ct_kho
+add constraint FK_ctk_sp foreign key(MaSP) references sanpham(MaSP)
+alter table ct_kho
+add constraint FK_ctk_k foreign key(MaKho) references kho(MaKho)
 go
 
 --Ràng buộc HÓA ĐƠN
@@ -101,6 +157,34 @@ alter table ct_hoadon
 add constraint FK_cthd_hd foreign key(MaHoaDon) references hoadon(MaHoaDon)
 alter table ct_hoadon
 add constraint FK_cthd_sp foreign key(MaSP) references sanpham(MaSP)
+go
+
+--Ràng buộc PHIẾU NHẬP
+alter table phieunhap
+add constraint FK_pn_ncc foreign key(MaNCC) references nhacungcap(MaNCC)
+alter table phieunhap
+add constraint FK_pn_tk foreign key(Username) references taikhoan(Username)
+go
+
+--Ràng buộc CHI TIẾT PHIẾU NHẬP
+alter table ct_phieunhap
+add constraint FK_ctpn_pn foreign key(MaPN) references phieunhap(MaPN)
+alter table ct_phieunhap
+add constraint FK_ctpn_sp foreign key(MaSP) references sanpham(MaSP)
+go
+
+--Ràng buộc PHIẾU XUẤT
+alter table phieuxuat
+add constraint FK_px_k foreign key(MaKho) references kho(MaKho)
+alter table phieuxuat
+add constraint FK_px_tk foreign key(Username) references taikhoan(Username)
+go
+
+--Ràng buộc CHI TIẾT PHIẾU XUẤT
+alter table ct_phieuxuat
+add constraint FK_ctpx_px foreign key(MaPX) references phieuxuat(MaPX)
+alter table ct_phieuxuat
+add constraint FK_ctpx_tk foreign key(MaSP) references sanpham(MaSP)
 go
 
 /*Tài khoảng*/
@@ -132,13 +216,50 @@ go
 insert into hoadon values ('2021-02-07',2,N'TIỀN MẶT',400000,'admin')
 go
 
+/*CT_Hóa đơn*/
+insert into ct_hoadon values (1,'EX',1,400000)
+go
+
+/*Kho*/
+insert into kho values ('Kho 1',N'1024 Hậu Giang, P11, Q6, TP.HCM',0907577775)
+go
+
+/*CT_Kho*/
+insert into ct_kho values (1,'EX',5)
+insert into ct_kho values (1,'WINX',5)
+go
+
+/*PHIẾU NHẬP*/
+insert into phieunhap values ('DUY','HONDA','2020-02-07',1)
+insert into phieunhap values ('DUY','Yamaha','2020-02-07',1)
+go
+
+/*CT PHIẾU NHẬP*/
+insert into ct_phieunhap values (1,'EX',5,15000)
+insert into ct_phieunhap values (1,'WINX',5,15000)
+go
+
+/*PHIẾU XUẤT*/
+insert into phieuxuat values ('DUY',2,'2021-02-07',1)
+go
+
+/*CT PHIẾU XUẤT*/
+insert into ct_phieuxuat values (1,'EX',5,40000)
+go
+
 select * from taikhoan
 select * from loaixe
 select * from nhacungcap
 select * from khachhang
 select * from sanpham
-select * from hoadon where Ngay = '10/02/2021'
-
+select * from kho
+select * from ct_kho
+select * from hoadon
+select * from ct_hoadon
+select * from phieunhap
+select * from ct_phieuNhap
+select * from phieuxuat
+select * from ct_phieuxuat
 go
 
 delete from loaixe where Maloai = 'XM'
