@@ -617,6 +617,7 @@ public class Hoadon extends javax.swing.JFrame {
     private void btn_cthdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cthdActionPerformed
         CT_Hoadon ct_hoadon = new CT_Hoadon();
         ct_hoadon.setMHD(txt_mahoadon.getText());
+        ct_hoadon.showDataList(txt_mahoadon.getText());
         
          //vi tri giua man hinh va maximize
         ct_hoadon.pack();

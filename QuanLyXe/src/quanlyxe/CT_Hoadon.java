@@ -39,9 +39,8 @@ public class CT_Hoadon extends javax.swing.JFrame {
     public CT_Hoadon() {
         
         initComponents();
-        //load danh sach 
-        showDataList();
-
+        
+        //load danh san pham     
         loadSanpham();
         
         txt_soluong.setText("0");
@@ -86,7 +85,6 @@ public class CT_Hoadon extends javax.swing.JFrame {
         txt_tonggia = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txt_mahoadon = new javax.swing.JTextField();
-        btn_hienthi = new javax.swing.JButton();
 
         setTitle("Quản lý chi tiết hóa đơn");
         setResizable(false);
@@ -239,14 +237,6 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
         txt_mahoadon.setEnabled(false);
 
-        btn_hienthi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/phuchoi.png"))); // NOI18N
-        btn_hienthi.setText("Hiển thị dữ liệu");
-        btn_hienthi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_hienthiActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelDetailLayout = new javax.swing.GroupLayout(jPanelDetail);
         jPanelDetail.setLayout(jPanelDetailLayout);
         jPanelDetailLayout.setHorizontalGroup(
@@ -268,9 +258,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
                     .addComponent(txt_soluong)
                     .addComponent(txt_dongia)
                     .addComponent(txt_mahoadon))
-                .addGap(63, 63, 63)
-                .addComponent(btn_hienthi)
-                .addContainerGap())
+                .addGap(204, 204, 204))
         );
         jPanelDetailLayout.setVerticalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,10 +288,6 @@ public class CT_Hoadon extends javax.swing.JFrame {
                     .addComponent(txt_tonggia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_hienthi)
-                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -436,9 +420,8 @@ public class CT_Hoadon extends javax.swing.JFrame {
         }
     }
     
-    private void showDataList(){
-        String MaHD = txt_mahoadon.getText().trim();
-        
+    public void showDataList(String MaHD){
+    
         DefaultTableModel model = (DefaultTableModel)this.jTableData.getModel(); 
         model.setRowCount(0);
                 
@@ -492,7 +475,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
         int rowEffected = ct_hoadonservices.AddNewRecord(MaHD, masp.getID(), SoLuong, DonGia);
         if(rowEffected > 0){
             JOptionPane.showMessageDialog(null, "Tao moi thanh cong!");
-            showDataList();
+            showDataList(MaHD);
         }
         else
         JOptionPane.showMessageDialog(null, "Tao moi that bai");
@@ -518,7 +501,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
         //goi ham trong package "bookstore.dal"
         int rowEffected = ct_hoadonservices.UpdateRecord(MaCTHoaDon, MaHD, masp.getID(), SoLuong, DonGia);
         if(rowEffected > 0){
-            showDataList();
+            showDataList(MaHD);
             JOptionPane.showMessageDialog(null, "Cap nhat thanh cong!");
         }
         else
@@ -530,6 +513,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
         //Xoa Record
 
         String MaCTHoaDon = txt_macthoadon.getText().trim();
+        String MaHD = txt_mahoadon.getText().trim();
         
         int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa chi tiết hóa đơn "+MaCTHoaDon+" không?", "Confirmation...",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -542,7 +526,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
             //goi ham trong package "bookstore.dal"
             int rowEffected = ct_hoadonservices.DeleteRecord(MaCTHoaDon);
             if(rowEffected > 0){
-                showDataList();
+                showDataList(MaHD);
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
             }
             else
@@ -578,10 +562,6 @@ public class CT_Hoadon extends javax.swing.JFrame {
     private void txt_dongiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dongiaActionPerformed
        
     }//GEN-LAST:event_txt_dongiaActionPerformed
-
-    private void btn_hienthiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hienthiActionPerformed
-        showDataList();
-    }//GEN-LAST:event_btn_hienthiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -623,7 +603,6 @@ public class CT_Hoadon extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btn_hienthi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
