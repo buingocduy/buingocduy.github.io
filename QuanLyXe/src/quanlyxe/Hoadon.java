@@ -104,7 +104,7 @@ public class Hoadon extends javax.swing.JFrame {
         jPanelHeader1Layout.setHorizontalGroup(
             jPanelHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHeader1Layout.createSequentialGroup()
-                .addGap(284, 284, 284)
+                .addGap(321, 321, 321)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -588,7 +588,7 @@ public class Hoadon extends javax.swing.JFrame {
 
         String MaHoaDon = txt_mahoadon.getText().trim();
 
-        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa?", "Confirmation...",
+        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa hóa đơn "+MaHoaDon+" không?", "Confirmation...",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         System.out.println("Delete data? =" +input);
@@ -615,7 +615,14 @@ public class Hoadon extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btn_cthdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cthdActionPerformed
-       
+        CT_Hoadon ct_hoadon = new CT_Hoadon();
+        ct_hoadon.setMHD(txt_mahoadon.getText());
+        
+         //vi tri giua man hinh va maximize
+        ct_hoadon.pack();
+        ct_hoadon.setLocationRelativeTo(null);
+        ct_hoadon.setVisible(true);
+
     }//GEN-LAST:event_btn_cthdActionPerformed
 
     private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed

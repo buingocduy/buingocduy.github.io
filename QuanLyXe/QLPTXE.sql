@@ -263,3 +263,5 @@ select * from ct_phieuxuat
 go
 
 delete from loaixe where Maloai = 'XM'
+
+select * from ct_hoadon where MaHoaDon = '1'
