@@ -265,3 +265,4 @@ go
 delete from loaixe where Maloai = 'XM'
 
 select * from ct_hoadon where MaHoaDon = '1'
+Select sum(DonGia) From ct_hoadon Where MaHoaDon = '1'

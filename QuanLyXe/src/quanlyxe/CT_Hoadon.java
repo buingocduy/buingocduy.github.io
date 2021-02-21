@@ -53,6 +53,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
     public void setMHD(String MaHD){        
         this.txt_mahoadon.setText(MaHD);     
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,6 +86,8 @@ public class CT_Hoadon extends javax.swing.JFrame {
         txt_tonggia = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txt_mahoadon = new javax.swing.JTextField();
+        txt_tongtien = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setTitle("Quản lý chi tiết hóa đơn");
         setResizable(false);
@@ -105,7 +108,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
             .addGroup(jPanelHeader1Layout.createSequentialGroup()
                 .addGap(243, 243, 243)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
         jPanelHeader1Layout.setVerticalGroup(
             jPanelHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,9 +175,9 @@ public class CT_Hoadon extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,6 +240,15 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
         txt_mahoadon.setEnabled(false);
 
+        txt_tongtien.setEnabled(false);
+        txt_tongtien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_tongtienActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Tổng tiền của hóa đơn");
+
         javax.swing.GroupLayout jPanelDetailLayout = new javax.swing.GroupLayout(jPanelDetail);
         jPanelDetail.setLayout(jPanelDetailLayout);
         jPanelDetailLayout.setHorizontalGroup(
@@ -254,11 +266,17 @@ public class CT_Hoadon extends javax.swing.JFrame {
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_tonggia)
                     .addComponent(txt_macthoadon, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txt_masp, 0, 181, Short.MAX_VALUE)
+                    .addComponent(txt_masp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_soluong)
                     .addComponent(txt_dongia)
                     .addComponent(txt_mahoadon))
-                .addGap(204, 204, 204))
+                .addGap(151, 151, 151))
+            .addGroup(jPanelDetailLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_tongtien, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDetailLayout.setVerticalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,7 +305,11 @@ public class CT_Hoadon extends javax.swing.JFrame {
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_tonggia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_tongtien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -299,10 +321,9 @@ public class CT_Hoadon extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jPanelDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addComponent(jPanelHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -361,15 +382,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
       }
       return null;
     }
-    
-     public hoadonTT findHoaDon(String MaHoaDon, ArrayList<hoadonTT> hoaDons) {
-      for (hoadonTT item : hoaDons) {
-          if(item.getMaHoaDon().equals(MaHoaDon)) {
-              return item;
-          }
-      }
-      return null;
-    }
+
     
     private void showDataDetail(String MaCTHoaDon, String MaHoaDon, String MaSP, int SoLuong, long Dongia){
         
@@ -554,14 +567,16 @@ public class CT_Hoadon extends javax.swing.JFrame {
         int tg = sl * dg;
         
         
-        txt_tonggia.setText(String.valueOf(sl * dg));   
-   
-        
+        txt_tonggia.setText(String.valueOf(sl * dg));         
     }//GEN-LAST:event_txt_soluongActionPerformed
 
     private void txt_dongiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dongiaActionPerformed
        
     }//GEN-LAST:event_txt_dongiaActionPerformed
+       
+    private void txt_tongtienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tongtienActionPerformed
+
+    }//GEN-LAST:event_txt_tongtienActionPerformed
 
     /**
      * @param args the command line arguments
@@ -607,6 +622,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -621,5 +637,6 @@ public class CT_Hoadon extends javax.swing.JFrame {
     private javax.swing.JComboBox<sanphamTT> txt_masp;
     private javax.swing.JTextField txt_soluong;
     private javax.swing.JTextField txt_tonggia;
+    private javax.swing.JTextField txt_tongtien;
     // End of variables declaration//GEN-END:variables
 }
