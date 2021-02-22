@@ -26,7 +26,7 @@ public class khoXL {
             ResultSet rs = acc.Query("SELECT * FROM Kho");
 
             while(rs.next()){
-                khoTT kho = new khoTT(rs.getString("MaKho"), rs.getString("TenKho"), rs.getString("DiaChi"),rs.getString("Phone"));
+                khoTT kho = new khoTT(rs.getInt("MaKho"), rs.getString("TenKho"), rs.getString("DiaChi"),rs.getString("Phone"));
                 list.add(kho);
             }            
         }
@@ -44,7 +44,7 @@ public class khoXL {
             ResultSet rs = acc.Query("SELECT * FROM Kho WHERE Makho = N'"+ Makho +"'");
 
             while(rs.next()){
-                khoTT kho = new khoTT(rs.getString("MaKho"), rs.getString("TenKho"), rs.getString("DiaChi"),rs.getString("Phone"));
+                khoTT kho = new khoTT(rs.getInt("MaKho"), rs.getString("TenKho"), rs.getString("DiaChi"),rs.getString("Phone"));
                 list.add(kho);
             }            
         }

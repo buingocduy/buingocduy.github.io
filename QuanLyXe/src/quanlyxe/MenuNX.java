@@ -179,9 +179,14 @@ public class MenuNX extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_phieuxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_phieuxuatActionPerformed
-        //sản phẩm
-
-        
+        // Phiếu xuất
+        Phieuxuat phieuxuat = new Phieuxuat();
+        phieuxuat.setTenUser(txt_username.getText());
+            
+        //vi tri giua man hinh
+        phieuxuat.pack();
+        phieuxuat.setLocationRelativeTo(null);        
+        phieuxuat.setVisible(true);     
     }//GEN-LAST:event_btn_phieuxuatActionPerformed
 
     private void btn_phieunhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_phieunhapActionPerformed

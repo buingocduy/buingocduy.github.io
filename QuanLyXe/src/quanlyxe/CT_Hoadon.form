@@ -292,7 +292,7 @@
                       <Component id="txt_tongtien" min="-2" pref="141" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="513" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

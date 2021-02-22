@@ -9,23 +9,24 @@ import java.util.Date;
 
 /**
  *
- * @author Nguyen Van Ky
+ * @author Bui Ngoc Duy
  */
 public class khoTT {
-    private String MaKho,TenKho, DiaChi, Phone;
+    private int MaKho;
+    private String TenKho, DiaChi, Phone;
 
-    public khoTT(String MaKho, String TenKho, String DiaChi, String Phone) {
+    public khoTT(int MaKho, String TenKho, String DiaChi, String Phone) {
         this.MaKho = MaKho;
         this.TenKho = TenKho;
         this.DiaChi = DiaChi;
         this.Phone = Phone;
     }
 
-    public String getMaKho() {
+    public int getMaKho() {
         return MaKho;
     }
 
-    public void setMaKho(String MaKho) {
+    public void setMaKho(int MaKho) {
         this.MaKho = MaKho;
     }
 
@@ -52,6 +53,7 @@ public class khoTT {
     public void setPhone(String Phone) {
         this.Phone = Phone;
     }
+
     
     
   

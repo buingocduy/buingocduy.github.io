@@ -36,24 +36,24 @@ public class CT_Hoadon extends javax.swing.JFrame {
     ArrayList<ct_hoadonTT> dsCTHoaDon = new ArrayList<>();
     ArrayList<hoadonTT> dsHoaDon = new ArrayList<>();
     
+    public void setMHD(String MaHD){        
+        this.txt_mahoadon.setText(MaHD);     
+    }
+    
     public CT_Hoadon() {
         
         initComponents();
         
         //load danh san pham     
         loadSanpham();
-        
+   
         txt_soluong.setText("0");
         txt_dongia.setText("3000");
         txt_tonggia.setText("0");
 
         
     }
-    
-    public void setMHD(String MaHD){        
-        this.txt_mahoadon.setText(MaHD);     
-    }
-    
+       
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -276,7 +276,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_tongtien, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(513, Short.MAX_VALUE))
         );
         jPanelDetailLayout.setVerticalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -465,7 +465,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
             }
           });
     }
-         
+   
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // Tao Moi
@@ -573,11 +573,11 @@ public class CT_Hoadon extends javax.swing.JFrame {
     private void txt_dongiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dongiaActionPerformed
        
     }//GEN-LAST:event_txt_dongiaActionPerformed
-       
+
     private void txt_tongtienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tongtienActionPerformed
 
     }//GEN-LAST:event_txt_tongtienActionPerformed
-
+       
     /**
      * @param args the command line arguments
      */

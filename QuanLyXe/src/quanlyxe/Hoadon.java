@@ -146,7 +146,7 @@ public class Hoadon extends javax.swing.JFrame {
         txt_nguoilap.setEnabled(false);
 
         btn_cthd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report.png"))); // NOI18N
-        btn_cthd.setText("Chi tiết hóa đơn");
+        btn_cthd.setText("Xem chi tiết");
         btn_cthd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cthdActionPerformed(evt);
@@ -440,7 +440,7 @@ public class Hoadon extends javax.swing.JFrame {
         if(selectedRow >=0 && selectedColumn >=0){
             selectedData = String.valueOf(jTableData.getValueAt(selectedRow, selectedColumn));
             selectedID = (String) jTableData.getValueAt(selectedRow, 0);
-            //Find book
+           
             selectedHoaDon = findHoaDon(selectedID, dsHoaDon);
             
             System.out.println("Selected: " + selectedData + " , MaHoaDon: " + selectedID);    

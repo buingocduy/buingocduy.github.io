@@ -460,7 +460,7 @@ public class Kho extends javax.swing.JFrame {
     
     public void gridSelectedChanged(ListSelectionEvent e) {
         String selectedData = null;
-        String selectedID = ""; //username
+        int selectedID = 0; //username
 
         int[] selectedRows = jTableKho.getSelectedRows();
         int[] selectedColumns = jTableKho.getSelectedColumns();
@@ -473,12 +473,12 @@ public class Kho extends javax.swing.JFrame {
         
         if(selectedRow >=0 && selectedColumn >=0){
             //selectedData = String.valueOf(jTableKho.getValueAt(selectedRow, selectedColumn));
-            selectedID = (String) jTableKho.getValueAt(selectedRow, 0);
+            selectedID = (int) jTableKho.getValueAt(selectedRow, 0);
 
             System.out.println("Selected: "  + selectedID);
 
             showDataDetail( 
-                (String) jTableKho.getValueAt(selectedRow, 0),
+                (int) jTableKho.getValueAt(selectedRow, 0),
                 (String) jTableKho.getValueAt(selectedRow, 1),
                 (String) jTableKho.getValueAt(selectedRow, 2), 
                 (String) jTableKho.getValueAt(selectedRow, 3)); 
@@ -486,7 +486,7 @@ public class Kho extends javax.swing.JFrame {
         }
     }
     
-    private void showDataDetail(String makho, String tenkho, String address, String phone){
+    private void showDataDetail(int makho, String tenkho, String address, String phone){
         
         txtMakho.setText(String.valueOf(makho));
         txtTenKho.setText(tenkho);
