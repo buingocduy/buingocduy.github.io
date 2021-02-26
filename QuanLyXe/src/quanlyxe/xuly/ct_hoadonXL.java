@@ -80,7 +80,7 @@ public class ct_hoadonXL {
             String sql = "UPDATE ct_hoadon SET MaHoaDon='" + MaHoaDon + "'" +
                     ", MaSP ='" + MaSP +"'" +
                     ", SoLuong ='" + SoLuong +"'" +
-                    ", DonGia = N'" + DonGia +"'" +
+                    ", DonGia = '" + DonGia +"'" +
                     " WHERE MaCTHoaDon = '" + MaCTHoaDon +"'";
             
             System.out.println(sql);

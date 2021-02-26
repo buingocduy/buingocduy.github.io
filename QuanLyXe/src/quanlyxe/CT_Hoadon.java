@@ -163,12 +163,12 @@ public class CT_Hoadon extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,7 +322,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addComponent(jPanelHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -487,11 +487,11 @@ public class CT_Hoadon extends javax.swing.JFrame {
         //goi ham trong package "bookstore.dal"
         int rowEffected = ct_hoadonservices.AddNewRecord(MaHD, masp.getID(), SoLuong, DonGia);
         if(rowEffected > 0){
-            JOptionPane.showMessageDialog(null, "Tao moi thanh cong!");
+            JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
             showDataList(MaHD);
         }
         else
-        JOptionPane.showMessageDialog(null, "Tao moi that bai");
+        JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -515,10 +515,10 @@ public class CT_Hoadon extends javax.swing.JFrame {
         int rowEffected = ct_hoadonservices.UpdateRecord(MaCTHoaDon, MaHD, masp.getID(), SoLuong, DonGia);
         if(rowEffected > 0){
             showDataList(MaHD);
-            JOptionPane.showMessageDialog(null, "Cap nhat thanh cong!");
+            JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
         }
         else
-        JOptionPane.showMessageDialog(null, "Cap nhat that bai");
+        JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 

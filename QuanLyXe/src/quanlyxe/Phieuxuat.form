@@ -142,14 +142,14 @@
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="txt_nguoilap" alignment="0" max="32767" attributes="0"/>
                               <Component id="cbxKhachHang" alignment="0" max="32767" attributes="0"/>
-                              <Component id="dtmNgayXuat" alignment="0" max="32767" attributes="0"/>
+                              <Component id="dtmNgayXuat" alignment="0" pref="230" max="32767" attributes="0"/>
                               <Component id="cbxKho" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtMaPX" min="-2" pref="260" max="-2" attributes="0"/>
+                              <Component id="txtMaPX" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -204,6 +204,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="33" red="ff" type="rgb"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
