@@ -190,7 +190,14 @@ public class MenuNX extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_phieuxuatActionPerformed
 
     private void btn_phieunhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_phieunhapActionPerformed
-  
+        // Phiếu nhập
+        Phieunhap phieunhap = new Phieunhap();
+        phieunhap.setTenUser(txt_username.getText());
+            
+        //vi tri giua man hinh
+        phieunhap.pack();
+        phieunhap.setLocationRelativeTo(null);        
+        phieunhap.setVisible(true);  
  
     }//GEN-LAST:event_btn_phieunhapActionPerformed
 

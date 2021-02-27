@@ -25,8 +25,7 @@ import javax.swing.table.DefaultTableModel;
  * @author vuhuynh
  */
 public class CT_Phieuxuat extends javax.swing.JFrame {
-    public static int phieuXuatID = 0;
-    
+
     ct_phieuxuatTT selectedPhieuXuatCT = null;
     ct_phieuxuatXL phieuXuatCTServices = new ct_phieuxuatXL();
     
@@ -192,7 +191,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         tblPhieuXuatCT = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Chi tiết Phiếu Xuất");
+        setTitle("Chi tiết phiêu xuất kho");
         setResizable(false);
 
         jPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -205,7 +204,8 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
 
         txt_mapx.setEnabled(false);
 
-        txt_mactpx.setEnabled(false);
+        txt_mactpx.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_mactpx.setForeground(new java.awt.Color(255, 51, 0));
 
         jLabel1.setText("Mã chi tiết phiếu xuất");
 
@@ -261,7 +261,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jPanelHeader.setBackground(java.awt.SystemColor.activeCaption);
@@ -270,7 +270,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 51, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("CHI TIẾT PHIẾU XUẤT");
+        jLabel9.setText("CHI TIẾT PHIẾU XUẤT KHO");
         jLabel9.setIconTextGap(10);
 
         javax.swing.GroupLayout jPanelHeaderLayout = new javax.swing.GroupLayout(jPanelHeader);
@@ -278,7 +278,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         jPanelHeaderLayout.setHorizontalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHeaderLayout.createSequentialGroup()
-                .addGap(271, 271, 271)
+                .addGap(249, 249, 249)
                 .addComponent(jLabel9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

@@ -212,7 +212,8 @@ public class CT_Hoadon extends javax.swing.JFrame {
             }
         });
 
-        txt_macthoadon.setEnabled(false);
+        txt_macthoadon.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_macthoadon.setForeground(new java.awt.Color(255, 51, 0));
 
         jLabel9.setText("Mã chi tiết hóa đơn");
 
@@ -305,7 +306,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_tonggia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_tongtien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

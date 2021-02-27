@@ -39,7 +39,6 @@ public class Phieuxuat extends javax.swing.JFrame {
     ArrayList<phieuxuatTT> dsPhieuXuat = new ArrayList<phieuxuatTT>();
 
     phieuxuatTT selectedPhieuXuat= null;
-    private int phieuXuatID = 0;
     
     public Phieuxuat(){
         initComponents();
@@ -50,7 +49,7 @@ public class Phieuxuat extends javax.swing.JFrame {
         showDataList();
     }
 
-     public void setTenUser(String username){ 
+    public void setTenUser(String username){ 
         this.txt_nguoilap.setText(username);
     }
 
@@ -220,7 +219,7 @@ public class Phieuxuat extends javax.swing.JFrame {
         tblPhieuXuat = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Quản lý xuất kho");
+        setTitle("Quản lý phiếu xuất kho");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
@@ -257,7 +256,6 @@ public class Phieuxuat extends javax.swing.JFrame {
 
         txtMaPX.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtMaPX.setForeground(new java.awt.Color(255, 51, 0));
-        txtMaPX.setEnabled(false);
 
         jLabel2.setText("Người Xuất");
 
@@ -477,7 +475,6 @@ public class Phieuxuat extends javax.swing.JFrame {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         int maPX = Integer.parseInt(txtMaPX.getText().trim());
-        String soPX = txtMaPX.getText().trim();
         String User = txt_nguoilap.getText().trim();
         khachhangTT khachHang = (khachhangTT) cbxKhachHang.getSelectedItem();
         Date ngayXuat = dtmNgayXuat.getDate();

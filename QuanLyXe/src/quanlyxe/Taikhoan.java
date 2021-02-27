@@ -49,7 +49,6 @@ public class Taikhoan extends javax.swing.JFrame {
         jPanelDetail = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtFullName = new javax.swing.JTextField();
@@ -61,6 +60,7 @@ public class Taikhoan extends javax.swing.JFrame {
         jDateChooserBD = new com.toedter.calendar.JDateChooser();
         jDateStartDate = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableUsers = new javax.swing.JTable();
         jTabbedPane3 = new javax.swing.JTabbedPane();
@@ -149,32 +149,35 @@ public class Taikhoan extends javax.swing.JFrame {
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPhone)
                     .addComponent(txtEmail)
-                    .addComponent(txtPassword)
                     .addComponent(txtFullName)
                     .addComponent(txtUsername)
                     .addGroup(jPanelDetailLayout.createSequentialGroup()
                         .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jDateStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jDateChooserBD, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 232, Short.MAX_VALUE)))
+                        .addGap(0, 232, Short.MAX_VALUE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(27, 27, 27))
         );
         jPanelDetailLayout.setVerticalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDetailLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
+                .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDetailLayout.createSequentialGroup()
-                        .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1)))
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanelDetailLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
                         .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -188,7 +191,7 @@ public class Taikhoan extends javax.swing.JFrame {
                             .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6))
-                    .addComponent(jDateChooserBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooserBD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jDateStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -381,7 +384,7 @@ public class Taikhoan extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         //Xoa Record
         String username = txtUsername.getText().trim();
-        String password = new String(txtPassword.getPassword()).trim();
+        String password = new String(txtPassword.getText()).trim();
         String hoten = txtFullName.getText().trim();
         String email = txtEmail.getText().trim();
         String phone = txtPhone.getText().trim();
@@ -411,7 +414,7 @@ public class Taikhoan extends javax.swing.JFrame {
 
         // Cap Nhat record
         String username = txtUsername.getText().trim();
-        String password = new String(txtPassword.getPassword()).trim();
+        String password = new String(txtPassword.getText()).trim();
         String hoten = txtFullName.getText().trim();
         String email = txtEmail.getText().trim();
         String phone = txtPhone.getText().trim();
@@ -441,7 +444,7 @@ public class Taikhoan extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
         String username = txtUsername.getText().trim();
-        String password = new String(txtPassword.getPassword()).trim();
+        String password = new String(txtPassword.getText()).trim();
         String hoten = txtFullName.getText().trim();
         String email = txtEmail.getText().trim();
         String phone = txtPhone.getText().trim();
@@ -640,7 +643,7 @@ public class Taikhoan extends javax.swing.JFrame {
     private javax.swing.JTable jTableUsers;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
-    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtUsername;
     private javax.swing.JTextField txt_timkiem;

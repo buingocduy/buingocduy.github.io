@@ -266,3 +266,6 @@ delete from loaixe where Maloai = 'XM'
 
 select * from ct_hoadon where MaHoaDon = '1'
 Select sum(DonGia) From ct_hoadon Where MaHoaDon = '1'
+
+UPDATE ct_phieuxuat SET MaPX = '1',MaSP ='EX',SoLuong = '4',DonGia = '40000' WHERE MaCTPX = '1'
+UPDATE phieunhap SET Username = 'DUY', MaNCC = 'HONDA' , NgayNhap = '2020-02-07' WHERE MaPN = '1'
