@@ -51,6 +51,22 @@ public class Phieuxuat extends javax.swing.JFrame {
 
     public void setTenUser(String username){ 
         this.txt_nguoilap.setText(username);
+        
+        String b = "admin";
+        
+        boolean c = b.equals(username);
+        
+        System.out.println(c);
+        if(c == true)
+        {
+            btnXoa.setEnabled(true);
+        } 
+        
+        if(c == false)
+        {
+            btnXoa.setEnabled(false); 
+        }
+        System.out.println(username);
     }
 
     

@@ -48,7 +48,8 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
     }
     
      public void setMPX(String MaPX){        
-        this.txt_mapx.setText(MaPX);     
+        this.txt_mapx.setText(MaPX);    
+                
     }
     
 

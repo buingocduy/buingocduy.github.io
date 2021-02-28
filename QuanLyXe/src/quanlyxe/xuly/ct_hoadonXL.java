@@ -32,21 +32,10 @@ public class ct_hoadonXL {
     }
      
      
-    public ArrayList<ct_hoadonTT> getTong(String MaHD){
-        ArrayList<ct_hoadonTT> list = new ArrayList<ct_hoadonTT>();
-        try{        
-            hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("Select sum(DonGia) From ct_hoadon Where MaHoaDon = "+MaHD+"");
-                    
-            while(rs.next()){
-                ct_hoadonTT cthd = new ct_hoadonTT(rs.getString("MaCTHoaDon"), rs.getString("MaHoaDon"), rs.getString("MaSP"), rs.getInt("SoLuong"), rs.getLong("DonGia"));
-                list.add(cthd);
-            }            
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return list;
+    public String getTong(String MaHD){            
+        hienthi_sql acc = new hienthi_sql();
+        ResultSet rs = acc.Query("Select sum(DonGia) From ct_hoadon Where MaHoaDon = "+MaHD+"");        
+        return null;
     }
        
 

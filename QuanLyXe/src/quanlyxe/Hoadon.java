@@ -45,6 +45,22 @@ public class Hoadon extends javax.swing.JFrame {
     
     public void setTenUser(String username){ 
         this.txt_nguoilap.setText(username);
+        
+        String b = "admin";
+        
+        boolean c = b.equals(username);
+        
+        System.out.println(c);
+        if(c == true)
+        {
+            btnDelete.setEnabled(true);
+        } 
+        
+        if(c == false)
+        {
+            btnDelete.setEnabled(false); 
+        }
+        System.out.println(username);
     }
 
     /**
