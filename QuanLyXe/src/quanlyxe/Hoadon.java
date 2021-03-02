@@ -31,16 +31,14 @@ public class Hoadon extends javax.swing.JFrame {
     ArrayList<khachhangTT> dskh = new ArrayList<>();
     ArrayList<taikhoanTT> dsuser = new ArrayList<>();
     ArrayList<hoadonTT> dsHoaDon = new ArrayList<>();
-    
+     
     public Hoadon() {
         initComponents();
        
         //load danh sach 
         showDataList();
         
-        loadCustomer();
-            
-        
+        loadCustomer();          
     }
     
     public void setTenUser(String username){ 
@@ -149,6 +147,8 @@ public class Hoadon extends javax.swing.JFrame {
                 txt_makhActionPerformed(evt);
             }
         });
+
+        txt_tongtien.setEnabled(false);
 
         txt_mahoadon.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_mahoadon.setForeground(new java.awt.Color(255, 51, 0));
@@ -419,6 +419,8 @@ public class Hoadon extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_makhActionPerformed
     
+
+    
     private void showDataDetail(String MaHoaDon, Date Ngay, int MaKH, String HinhThucTT, long TongTien, String UserID){
         
         txt_mahoadon.setText(MaHoaDon);        
@@ -520,7 +522,7 @@ public class Hoadon extends javax.swing.JFrame {
           });
     } 
      
-    private void showDataList(){
+    public void showDataList(){
         
         DefaultTableModel model = (DefaultTableModel)this.jTableData.getModel(); 
         model.setRowCount(0);
@@ -571,11 +573,11 @@ public class Hoadon extends javax.swing.JFrame {
         //goi ham trong package "bookstore.dal"
         int rowEffected = hoadonservices.AddNewRecord(Ngay, MaKH.getMaKH() , HinhThucTT, TongTien, UserID);
         if(rowEffected > 0){
-            JOptionPane.showMessageDialog(null, "Tao moi thanh cong!");
+            JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
             showDataList();
         }
         else
-        JOptionPane.showMessageDialog(null, "Tao moi that bai");
+        JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
 
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -593,10 +595,10 @@ public class Hoadon extends javax.swing.JFrame {
             int rowEffected = hoadonservices.UpdateRecord(MaHoaDon, Ngay, MaKH.getMaKH(), HinhThucTT, TongTien, UserID);
             if(rowEffected > 0){
                 showDataList();
-                JOptionPane.showMessageDialog(null, "Cap nhat thanh cong!");
+                JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
             }
             else
-            JOptionPane.showMessageDialog(null, "Cap nhat that bai");
+            JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
         
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -635,6 +637,7 @@ public class Hoadon extends javax.swing.JFrame {
         CT_Hoadon ct_hoadon = new CT_Hoadon();
         ct_hoadon.setMHD(txt_mahoadon.getText());
         ct_hoadon.showDataList(txt_mahoadon.getText());
+        this.dispose();
         
          //vi tri giua man hinh va maximize
         ct_hoadon.pack();

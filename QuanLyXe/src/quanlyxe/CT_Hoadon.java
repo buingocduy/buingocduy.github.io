@@ -160,7 +160,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
         });
 
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/close2.png"))); // NOI18N
-        btnClose.setText("Thoat");
+        btnClose.setText("Thoát");
         btnClose.setIconTextGap(10);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,6 +458,8 @@ public class CT_Hoadon extends javax.swing.JFrame {
             }
           });
     }
+    
+    
       
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -482,6 +484,8 @@ public class CT_Hoadon extends javax.swing.JFrame {
         if(rowEffected > 0){
             JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
             showDataList(MaHD);
+            Hoadon hoadon = new Hoadon();
+            hoadon.showDataList();
         }
         else
         JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
@@ -530,7 +534,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
         {
             //Xoa
             //goi ham trong package "bookstore.dal"
-            int rowEffected = ct_hoadonservices.DeleteRecord(MaCTHoaDon);
+            int rowEffected = ct_hoadonservices.DeleteRecord(MaCTHoaDon,MaHD);
             if(rowEffected > 0){
                 showDataList(MaHD);
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
@@ -541,9 +545,14 @@ public class CT_Hoadon extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        // Thoat form
+        // Hóa đơn
+        Hoadon hoadon = new Hoadon();
         this.dispose();
-        //System.exit(0);
+        
+        //vi tri giua man hinh
+        hoadon.pack();
+        hoadon.setLocationRelativeTo(null);        
+        hoadon.setVisible(true);
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void txt_maspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_maspActionPerformed

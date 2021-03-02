@@ -32,37 +32,36 @@ public class ct_hoadonXL {
     }
      
      
-    public String getTong(String MaHD){            
-        hienthi_sql acc = new hienthi_sql();
-        ResultSet rs = acc.Query("Select sum(DonGia) From ct_hoadon Where MaHoaDon = "+MaHD+"");        
-        return null;
-    }
-       
-
-     
     //Tao moi
     public int AddNewRecord(String MaHoaDon, String MaSP, int SoLuong, long DonGia){
         int rowCount = 0;
+        int rowCount2 = 0;
         try{
             
             hienthi_sql acc = new hienthi_sql();
             String sql = "INSERT INTO ct_hoadon (MaHoaDon, MaSP, SoLuong, DonGia) VALUES('"+ MaHoaDon + "'" +
                     ",'" + MaSP + "'" +
                     ",'" + SoLuong + "'" +
-                    ",'" + DonGia +"')";                    
-    
+                    ",'" + DonGia +"')"; 
+            
+            String sql2 = "UPDATE hoadon SET TongTien = (Select 'TongTien'=sum(DonGia) From ct_hoadon Where MaHoaDon = '"+ MaHoaDon + "') WHERE MaHoaDon = '"+ MaHoaDon + "'";
+            
             System.out.println(sql);
+            System.out.println(sql2);
           
             rowCount = acc.Update(sql);
+            rowCount2 = acc.Update(sql2);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-        return rowCount;
+        return rowCount & rowCount2;
     }
+    
     //Cap nhat
     public int UpdateRecord(String MaCTHoaDon,String MaHoaDon, String MaSP, int SoLuong, long DonGia){
         int rowCount = 0;
+        int rowCount2 = 0;
         try{
             
             hienthi_sql acc = new hienthi_sql();
@@ -72,31 +71,42 @@ public class ct_hoadonXL {
                     ", DonGia = '" + DonGia +"'" +
                     " WHERE MaCTHoaDon = '" + MaCTHoaDon +"'";
             
+            
+            String sql2 = "UPDATE hoadon SET TongTien = (Select 'TongTien'=sum(DonGia) From ct_hoadon Where MaHoaDon = '"+ MaHoaDon + "') WHERE MaHoaDon = '"+ MaHoaDon + "'";
+            
             System.out.println(sql);
+            System.out.println(sql2);
+          
             rowCount = acc.Update(sql);
+            rowCount2 = acc.Update(sql2);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-        return rowCount;
+        return rowCount & rowCount2;
     }
     
-    //Cap nhat
-    public int DeleteRecord(String MaCTHoaDon){
+    //Xóa
+    public int DeleteRecord(String MaCTHoaDon, String MaHoaDon){
         int rowCount = 0;
+        int rowCount2 = 0;
         try{
                 
             hienthi_sql acc = new hienthi_sql();
             String sql = "DELETE FROM ct_hoadon WHERE MaCTHoaDon = " + MaCTHoaDon;
             
-            System.out.println(sql);
+            String sql2 = "UPDATE hoadon SET TongTien = (Select 'TongTien'=sum(DonGia) From ct_hoadon Where MaHoaDon = '"+ MaHoaDon + "') WHERE MaHoaDon = '"+ MaHoaDon + "'";
             
+            System.out.println(sql);
+            System.out.println(sql2);
+          
             rowCount = acc.Update(sql);
+            rowCount2 = acc.Update(sql2);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-        return rowCount;
+        return rowCount & rowCount2;
     }
 
 }

@@ -265,13 +265,24 @@ go
 delete from loaixe where Maloai = 'XM'
 
 select * from ct_hoadon where MaHoaDon = '1'
-Select sum(DonGia) From ct_hoadon Where MaHoaDon = '1'
 
-select hoadon.MaHoaDon,Ngay, MaSP, SoLuong, MaKH, HinhThucTT, TongTien, Username 
+select MaSP,SUM(SoLuong), sum(DonGia)
+from ct_hoadon
+Group by MaSP
+
+select Ngay, MaSP, SoLuong, MaKH, HinhThucTT, TongTien, Username 
 from ct_hoadon, hoadon
 where hoadon.MaHoaDon = ct_hoadon.MaHoaDon and Ngay between '2021-02-07' and '2021-02-09'  
 
 select * from hoadon where  Ngay between '2021-02-07' and '2021-02-09' 
 
 UPDATE ct_phieuxuat SET MaPX = '1',MaSP ='EX',SoLuong = '4',DonGia = '40000' WHERE MaCTPX = '1'
-UPDATE phieunhap SET Username = 'DUY', MaNCC = 'HONDA' , NgayNhap = '2020-02-07' WHERE MaPN = '1'
+
+Select 'TongTien'=sum(DonGia) 
+From ct_hoadon 
+Where MaHoaDon = '1' 
+
+UPDATE hoadon 
+SET TongTien = (Select 'TongTien'=sum(DonGia) 
+From ct_hoadon 
+Where MaHoaDon = '1') WHERE MaHoaDon = '1'
