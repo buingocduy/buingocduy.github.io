@@ -308,7 +308,12 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_sanphamActionPerformed
 
     private void btn_baocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_baocaoActionPerformed
-        
+        //Báo cáo
+        MenuBC menubc = new MenuBC();
+        //vi tri giua man hinh
+        menubc.pack();
+        menubc.setLocationRelativeTo(null);        
+        menubc.setVisible(true);
     }//GEN-LAST:event_btn_baocaoActionPerformed
 
     private void btn_phieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_phieuActionPerformed

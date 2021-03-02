@@ -15,7 +15,7 @@ import java.util.Date;
 public class hoadonXL {
 
  
-    //lay danh sach UserAccount
+    //lay danh sach HOA DON
     public ArrayList<hoadonTT> getAllRecords(){
         ArrayList<hoadonTT> list = new ArrayList<hoadonTT>();
         try{        
@@ -33,7 +33,7 @@ public class hoadonXL {
         return list;
     }
     
-    //lay danh sach UserAccount
+    //lay danh sach HOA DON
     public ArrayList<hoadonTT> getRecords(String tim, String lua){
         ArrayList<hoadonTT> list = new ArrayList<hoadonTT>();
         try{        
