@@ -145,6 +145,7 @@ public class Phieunhap extends javax.swing.JFrame {
 
         txt_MaPN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_MaPN.setForeground(new java.awt.Color(255, 51, 0));
+        txt_MaPN.setEnabled(false);
 
         jLabel2.setText("Người nhập");
 

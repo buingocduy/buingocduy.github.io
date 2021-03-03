@@ -272,6 +272,7 @@ public class Phieuxuat extends javax.swing.JFrame {
 
         txtMaPX.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtMaPX.setForeground(new java.awt.Color(255, 51, 0));
+        txtMaPX.setEnabled(false);
 
         jLabel2.setText("Người Xuất");
 

@@ -38,7 +38,8 @@ public class Hoadon extends javax.swing.JFrame {
         //load danh sach 
         showDataList();
         
-        loadCustomer();          
+        loadCustomer();  
+        txt_tongtien.setText("0");
     }
     
     public void setTenUser(String username){ 
@@ -152,6 +153,7 @@ public class Hoadon extends javax.swing.JFrame {
 
         txt_mahoadon.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_mahoadon.setForeground(new java.awt.Color(255, 51, 0));
+        txt_mahoadon.setEnabled(false);
 
         jLabel9.setText("Mã hóa đơn");
 
@@ -174,8 +176,12 @@ public class Hoadon extends javax.swing.JFrame {
         jPanelDetail.setLayout(jPanelDetailLayout);
         jPanelDetailLayout.setHorizontalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
+                .addContainerGap(558, Short.MAX_VALUE)
+                .addComponent(btn_cthd)
+                .addContainerGap())
             .addGroup(jPanelDetailLayout.createSequentialGroup()
-                .addGap(182, 182, 182)
+                .addGap(149, 149, 149)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
                     .addComponent(jLabel5)
@@ -184,18 +190,14 @@ public class Hoadon extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
-                .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txt_mahoadon)
-                    .addComponent(txt_makh, javax.swing.GroupLayout.Alignment.LEADING, 0, 181, Short.MAX_VALUE)
-                    .addComponent(txt_tongtien, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_ngaylap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_thanhtoan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_nguoilap))
-                .addGap(200, 200, 200))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_cthd)
-                .addContainerGap())
+                .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txt_tongtien)
+                    .addComponent(txt_thanhtoan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_makh, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_ngaylap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_mahoadon, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_nguoilap, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDetailLayout.setVerticalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

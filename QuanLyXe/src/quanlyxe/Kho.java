@@ -92,6 +92,7 @@ public class Kho extends javax.swing.JFrame {
 
         txtMakho.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtMakho.setForeground(new java.awt.Color(255, 51, 0));
+        txtMakho.setEnabled(false);
 
         jLabel9.setText("Địa chỉ");
 

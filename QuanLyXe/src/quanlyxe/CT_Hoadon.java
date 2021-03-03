@@ -46,11 +46,10 @@ public class CT_Hoadon extends javax.swing.JFrame {
         
         //load danh san pham     
         loadSanpham();
-   
-        txt_soluong.setText("0");
-        txt_dongia.setText("3000");
+        
+        txt_soluong.setText("1");
         txt_tonggia.setText("0");
-             
+        txt_dongia.setText("0");
     }    
 
     /**
@@ -225,6 +224,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
         txt_macthoadon.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_macthoadon.setForeground(new java.awt.Color(255, 51, 0));
+        txt_macthoadon.setEnabled(false);
 
         jLabel9.setText("Mã chi tiết hóa đơn");
 
@@ -257,7 +257,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
         jPanelDetailLayout.setHorizontalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDetailLayout.createSequentialGroup()
-                .addGap(178, 178, 178)
+                .addGap(173, 173, 173)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7)
                     .addComponent(jLabel9)
@@ -273,12 +273,12 @@ public class CT_Hoadon extends javax.swing.JFrame {
                     .addComponent(txt_soluong)
                     .addComponent(txt_dongia)
                     .addComponent(txt_mahoadon))
-                .addGap(151, 151, 151))
+                .addGap(156, 156, 156))
         );
         jPanelDetailLayout.setVerticalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDetailLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_macthoadon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
@@ -302,7 +302,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_tonggia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(44, 44, 44))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -390,10 +390,18 @@ public class CT_Hoadon extends javax.swing.JFrame {
         Locale localeEN = new Locale("en", "EN");
         NumberFormat en = NumberFormat.getInstance(localeEN);     
         String str1 = en.format(tien);
-
+        
         
         txt_soluong.setText(String.valueOf(SoLuong));
         txt_tonggia.setText(String.valueOf(str1));
+        
+        long tg = Long.valueOf(txt_tonggia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
+        long sl = Long.valueOf(txt_soluong.getText().trim());
+        long dg = tg / sl;    
+        long dongia = dg;
+        String str2 = en.format(dongia);
+         
+        txt_dongia.setText(str2);
     }
     
      public void gridSelectedChanged(ListSelectionEvent e) {
@@ -464,9 +472,9 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // Tao Moi
-        int dg = Integer.valueOf(txt_dongia.getText().trim());
+        int dg = Integer.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
         int sl = Integer.valueOf(txt_soluong.getText().trim());
-        int tg = sl * dg;
+
         txt_tonggia.setText(String.valueOf(sl * dg));  
         
         
@@ -493,9 +501,9 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // Cap Nhat record
-        int dg = Integer.valueOf(txt_dongia.getText().trim());
+        int dg = Integer.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
         int sl = Integer.valueOf(txt_soluong.getText().trim());
-        int tg = sl * dg;
+
         txt_tonggia.setText(String.valueOf(sl * dg));  
    
         String MaCTHoaDon = txt_macthoadon.getText().trim();

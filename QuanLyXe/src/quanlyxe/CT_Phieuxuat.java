@@ -207,6 +207,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
 
         txt_mactpx.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_mactpx.setForeground(new java.awt.Color(255, 51, 0));
+        txt_mactpx.setEnabled(false);
 
         jLabel1.setText("Mã chi tiết phiếu xuất");
 
