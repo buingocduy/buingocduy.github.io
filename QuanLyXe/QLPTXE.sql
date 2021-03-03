@@ -193,63 +193,80 @@ insert into taikhoan values ('admin','123','admin',6/6/1999,'admin@gmail.com',09
 go
 
 /*Loại xe*/
-insert into loaixe values ('XM',N'Xe Máy')
+insert into loaixe values ('XM',N'Xe số')
+insert into loaixe values ('XCT',N'Xe côn tay')
+insert into loaixe values ('XTG',N'Xe tay ga')
 go
 
 /*Nhà cung cấp*/
 insert into nhacungcap values ('HONDA',N'Công ty HONDA Việt Nam',N'Tầng 8, Zen Plaza, 54-56 đường Nguyễn Trãi, quận 1, thành phố Hồ Chính Minh','cr@honda.com.vn','(84) 28-39256949')
+insert into nhacungcap values ('YAMAHA',N'Công ty Yamaha Việt Nam',N'Thôn Bình An, Xã Trung Giã, Huyện Sóc Sơn, TP. Hà Nội','cskh@yamaha-motor.com.vn','18001588')
+insert into nhacungcap values ('SUZUKI',N'Công ty TNHH Việt Nam Suzuki',N'Đường số 2, KCN Long Bình, P. Long Bình,TP. Biên Hòa, Đồng Nai','null','18006950')
 go
 
 /*Kho*/
 insert into Kho values (N'Kho 1',N'439 Hậu Giang P11, Q6, TP.HCM','0777747747')
 go
 
+/*CT_Kho*/
+insert into ct_kho values (1,'EX',5)
+insert into ct_kho values (1,'WINX',5)
+insert into ct_kho values (1,'RAI',5)
+go
+
 /*Khách hàng*/
 insert into khachhang values (N'Bùi Ngọc Duy',N'439B/4 Hậu Giang P11, Q6, TP.HCM','buingocduy1999@gmail.com','0904596810')
+insert into khachhang values (N'Phan Hồng Tuấn',N'475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM','phanhongtuan@gmail.com','0904596810')
+insert into khachhang values (N'Huỳnh Lưu Trọng Vũ',N'475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM','huynhluutrongvu@gmail.com','0904596810')
+insert into khachhang values (N'Trần Văn Kỳ',N'475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM','tranvanky@gmail.com','0904596810')
 go
 
 /*Sản phẩm*/
 insert into sanpham values ('WINX','WINNER X','XCT','HONDA','2020')
+insert into sanpham values ('EX','EXCITER 150','XCT','YAMAHA','2020')
+insert into sanpham values ('RAI','RAIDER 150','XCT','SUZUKI','2020')
 go
 
 /*Hóa đơn*/
-insert into hoadon values ('2021-02-07',2,N'TIỀN MẶT',400000,'admin')
+insert into hoadon values ('2021-02-07',1,N'TIỀN MẶT',400000,'admin')
+insert into hoadon values ('2021-02-08',2,N'TIỀN MẶT',400000,'admin')
+insert into hoadon values ('2021-02-09',3,N'TIỀN MẶT',400000,'admin')
+insert into hoadon values ('2021-02-10',4,N'TIỀN MẶT',400000,'admin')
+insert into hoadon values ('2021-02-11',1,N'TIỀN MẶT',400000,'admin')
 go
 
 /*CT_Hóa đơn*/
 insert into ct_hoadon values (1,'EX',1,400000)
+insert into ct_hoadon values (2,'EX',2,400000)
+insert into ct_hoadon values (3,'EX',3,400000)
+insert into ct_hoadon values (4,'EX',4,400000)
+insert into ct_hoadon values (5,'EX',1,400000)
 go
 
-/*Kho*/
-insert into kho values ('Kho 1',N'1024 Hậu Giang, P11, Q6, TP.HCM',0907577775)
-go
-
-/*CT_Kho*/
-insert into ct_kho values (1,'EX',5)
-insert into ct_kho values (1,'WINX',5)
-go
 
 /*PHIẾU NHẬP*/
 insert into phieunhap values ('DUY','HONDA','2020-02-07',1)
-insert into phieunhap values ('DUY','Yamaha','2020-02-07',1)
+insert into phieunhap values ('DUY','YAMAHA','2020-02-07',1)
+insert into phieunhap values ('DUY','SUZUKI','2020-02-07',1)
 go
 
 /*CT PHIẾU NHẬP*/
 insert into ct_phieunhap values (1,'EX',5,15000)
 insert into ct_phieunhap values (1,'WINX',5,15000)
+insert into ct_phieunhap values (1,'RAI',5,15000)
 go
 
 /*PHIẾU XUẤT*/
-insert into phieuxuat values ('DUY',2,'2021-02-07',1)
+insert into phieuxuat values ('DUY',1,'2021-02-07',1)
 go
 
 /*CT PHIẾU XUẤT*/
-insert into ct_phieuxuat values (1,'EX',5,40000)
+insert into ct_phieuxuat values (1,'EX',1,40000)
 go
 
 select * from taikhoan
-select * from loaixe
-select * from nhacungcap
+select * from loaixe 
+select * from nhacungcap 
 select * from khachhang
 select * from sanpham
 select * from kho
@@ -262,7 +279,8 @@ select * from phieuxuat
 select * from ct_phieuxuat
 go
 
-delete from loaixe where Maloai = 'XM'
+/*
+delete from ct_hoadon where MaHoaDon = '4'
 
 select * from ct_hoadon where MaHoaDon = '1'
 
@@ -285,4 +303,5 @@ Where MaHoaDon = '1'
 UPDATE hoadon 
 SET TongTien = (Select 'TongTien'=sum(DonGia) 
 From ct_hoadon 
-Where MaHoaDon = '1') WHERE MaHoaDon = '1'
+Where MaHoaDon = '1') WHERE MaHoaDon = '1' 
+*/

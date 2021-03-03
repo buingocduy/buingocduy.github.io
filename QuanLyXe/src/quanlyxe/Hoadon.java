@@ -624,7 +624,7 @@ public class Hoadon extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
             }
             else
-            JOptionPane.showMessageDialog(null, "Xóa thất bại");
+            JOptionPane.showMessageDialog(null, "Phải xóa hết chi tiết hóa đơn mới xóa được");
         }
 
     }//GEN-LAST:event_btnDeleteActionPerformed

@@ -74,6 +74,7 @@ public class hoadonXL {
         }
         return rowCount;
     }
+    
     //Cap nhat
     public int UpdateRecord(String MaHoaDon, Date Ngay, int MaKH, String HinhThucTT, long TongTien, String Username){
         int rowCount = 0;
@@ -98,22 +99,23 @@ public class hoadonXL {
         return rowCount;
     }
     
-    //Cap nhat
+    //Xóa
     public int DeleteRecord(String MaHoaDon){
         int rowCount = 0;
         try{
                 
             hienthi_sql acc = new hienthi_sql();
+     
             String sql = "DELETE FROM hoadon WHERE MaHoaDon = " + MaHoaDon;
             
             System.out.println(sql);
-            
+
             rowCount = acc.Update(sql);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-        return rowCount;
+        return  rowCount;
     }
 
 }
