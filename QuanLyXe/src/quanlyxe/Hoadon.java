@@ -423,7 +423,7 @@ public class Hoadon extends javax.swing.JFrame {
     
 
     
-    private void showDataDetail(String MaHoaDon, Date Ngay, int MaKH, String HinhThucTT, long TongTien, String UserID){
+    private void showDataDetail(String MaHoaDon, Date Ngay, int MaKH, String HinhThucTT, String TongTien, String UserID){
         
         txt_mahoadon.setText(MaHoaDon);        
         txt_ngaylap.setDate(Ngay);
@@ -434,15 +434,8 @@ public class Hoadon extends javax.swing.JFrame {
         txt_thanhtoan.setSelectedItem(HinhThucTT);
         
             
-        txt_nguoilap.setText(UserID);        
-           
-        long tien = TongTien;
-        Locale localeEN = new Locale("en", "EN");
-        NumberFormat en = NumberFormat.getInstance(localeEN);     
-        String str1 = en.format(tien);
-
-        txt_tongtien.setText(String.valueOf(str1));
-        
+        txt_nguoilap.setText(UserID);               
+        txt_tongtien.setText(TongTien);     
     }
     
      public void gridSelectedChanged(ListSelectionEvent e) {
@@ -471,7 +464,7 @@ public class Hoadon extends javax.swing.JFrame {
                 (Date) jTableData.getValueAt(selectedRow, 1),   
                 (int) jTableData.getValueAt(selectedRow, 2), 
                 (String) jTableData.getValueAt(selectedRow, 3),             
-                (long) jTableData.getValueAt(selectedRow, 4),  
+                (String) jTableData.getValueAt(selectedRow, 4),  
                 (String) jTableData.getValueAt(selectedRow, 5));  
             
         }
@@ -499,6 +492,10 @@ public class Hoadon extends javax.swing.JFrame {
         ArrayList<hoadonTT> list = hoadonservices.getRecords(tim, lua);
         dsHoaDon = list;
         
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);     
+       
+        
         Object[] row = new Object[7];
         
         for(int i = 0; i < list.size(); i++){
@@ -507,7 +504,7 @@ public class Hoadon extends javax.swing.JFrame {
             row[1] = list.get(i).getNgay();
             row[2] = list.get(i).getMaKH();
             row[3] = list.get(i).getHinhThucTT();
-            row[4] = list.get(i).getTongTien();
+            row[4] = en.format(list.get(i).getTongTien());
             row[5] = list.get(i).getUserID();
             
             model.addRow(row);
@@ -533,6 +530,10 @@ public class Hoadon extends javax.swing.JFrame {
         ArrayList<hoadonTT> list = hoadonservices.getAllRecords();
         dsHoaDon = list;
         
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);     
+       
+        
         Object[] row = new Object[7];
         
         for(int i = 0; i < list.size(); i++){
@@ -541,7 +542,7 @@ public class Hoadon extends javax.swing.JFrame {
             row[1] = list.get(i).getNgay();
             row[2] = list.get(i).getMaKH();
             row[3] = list.get(i).getHinhThucTT();
-            row[4] = list.get(i).getTongTien();
+            row[4] = en.format(list.get(i).getTongTien());
             row[5] = list.get(i).getUserID();
             
             model.addRow(row);

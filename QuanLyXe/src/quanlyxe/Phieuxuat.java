@@ -523,6 +523,7 @@ public class Phieuxuat extends javax.swing.JFrame {
         CT_Phieuxuat ct_phieuxuat = new CT_Phieuxuat();
         ct_phieuxuat.setMPX(txtMaPX.getText());
         ct_phieuxuat.showDataList(txtMaPX.getText());
+        this.dispose();
         
          //vi tri giua man hinh va maximize
         ct_phieuxuat.pack();

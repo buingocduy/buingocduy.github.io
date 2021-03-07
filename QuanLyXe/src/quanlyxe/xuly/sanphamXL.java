@@ -52,6 +52,23 @@ public class sanphamXL {
         return list;
     }
     
+    public ArrayList<sanphamTT> getSP(String MaNCC){
+        ArrayList<sanphamTT> list = new ArrayList<sanphamTT>();
+        try{        
+            hienthi_sql acc = new hienthi_sql();
+            ResultSet rs = acc.Query("SELECT * FROM sanpham WHERE MaNCC = '"+MaNCC+"'");
+
+            while(rs.next()){
+                sanphamTT sp = new sanphamTT(rs.getString("MaSP"), rs.getString("TenSP"),rs.getString("Maloai"), rs.getString("MaNCC"), rs.getString("Namsanxuat"));
+                list.add(sp);
+            }            
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return list;
+    }
+    
     //Tao moi
     public int AddNewRecord(String ID, String Name, String categoryID, String supplierID, String publishingYear){
         int rowCount = 0;

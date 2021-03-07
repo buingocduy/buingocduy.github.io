@@ -11,10 +11,10 @@ package quanlyxe.thucthe;
  */
 public class ct_hoadonTT {
     String MaCTHoaDon,MaHoaDon,MaSP;
-    int SoLuong;
+    long SoLuong;
     long Dongia;
 
-    public ct_hoadonTT(String MaCTHoaDon, String MaHoaDon, String MaSP, int SoLuong, long Dongia) {
+    public ct_hoadonTT(String MaCTHoaDon, String MaHoaDon, String MaSP, long SoLuong, long Dongia) {
         this.MaCTHoaDon = MaCTHoaDon;
         this.MaHoaDon = MaHoaDon;
         this.MaSP = MaSP;
@@ -46,11 +46,11 @@ public class ct_hoadonTT {
         this.MaSP = MaSP;
     }
 
-    public int getSoLuong() {
+    public long getSoLuong() {
         return SoLuong;
     }
 
-    public void setSoLuong(int SoLuong) {
+    public void setSoLuong(long SoLuong) {
         this.SoLuong = SoLuong;
     }
 

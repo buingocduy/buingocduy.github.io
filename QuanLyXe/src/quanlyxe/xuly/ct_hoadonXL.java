@@ -21,7 +21,7 @@ public class ct_hoadonXL {
             ResultSet rs = acc.Query("select * from ct_hoadon where MaHoaDon = '"+MaHD+"'");
 
             while(rs.next()){
-                ct_hoadonTT cthd = new ct_hoadonTT(rs.getString("MaCTHoaDon"), rs.getString("MaHoaDon"), rs.getString("MaSP"), rs.getInt("SoLuong"), rs.getLong("DonGia"));
+                ct_hoadonTT cthd = new ct_hoadonTT(rs.getString("MaCTHoaDon"), rs.getString("MaHoaDon"), rs.getString("MaSP"), rs.getLong("SoLuong"), rs.getLong("DonGia"));
                 list.add(cthd);
             }            
         }
@@ -44,8 +44,10 @@ public class ct_hoadonXL {
                     ",'" + SoLuong + "'" +
                     ",'" + DonGia +"')"; 
             
-            String sql2 = "UPDATE hoadon SET TongTien = (Select 'TongTien'=sum(DonGia) From ct_hoadon Where MaHoaDon = '"+ MaHoaDon + "') WHERE MaHoaDon = '"+ MaHoaDon + "'";
-            
+            String sql2 = "UPDATE hoadon SET TongTien = "
+                    + "(select 'TongTien'=sum(SoLuong * DonGia) from ct_hoadon where MaHoaDon = '"+ MaHoaDon + "' Group by MaHoaDon)"
+                    + "WHERE MaHoaDon = '"+ MaHoaDon + "'";
+ 
             System.out.println(sql);
             System.out.println(sql2);
           
@@ -72,7 +74,9 @@ public class ct_hoadonXL {
                     " WHERE MaCTHoaDon = '" + MaCTHoaDon +"'";
             
             
-            String sql2 = "UPDATE hoadon SET TongTien = (Select 'TongTien'=sum(DonGia) From ct_hoadon Where MaHoaDon = '"+ MaHoaDon + "') WHERE MaHoaDon = '"+ MaHoaDon + "'";
+            String sql2 = "UPDATE hoadon SET TongTien = "
+                    + "(select 'TongTien'=sum(SoLuong * DonGia) from ct_hoadon where MaHoaDon = '"+ MaHoaDon + "' Group by MaHoaDon)"
+                    + "WHERE MaHoaDon = '"+ MaHoaDon + "'";
             
             System.out.println(sql);
             System.out.println(sql2);
@@ -95,8 +99,10 @@ public class ct_hoadonXL {
             hienthi_sql acc = new hienthi_sql();
             String sql = "DELETE FROM ct_hoadon WHERE MaCTHoaDon = " + MaCTHoaDon;
             
-            String sql2 = "UPDATE hoadon SET TongTien = (Select 'TongTien'=sum(DonGia) From ct_hoadon Where MaHoaDon = '"+ MaHoaDon + "') WHERE MaHoaDon = '"+ MaHoaDon + "'";
-            
+            String sql2 = "UPDATE hoadon SET TongTien = "
+                    + "(select 'TongTien'=sum(SoLuong * DonGia) from ct_hoadon where MaHoaDon = '"+ MaHoaDon + "' Group by MaHoaDon)"
+                    + "WHERE MaHoaDon = '"+ MaHoaDon + "'";
+ 
             System.out.println(sql);
             System.out.println(sql2);
           

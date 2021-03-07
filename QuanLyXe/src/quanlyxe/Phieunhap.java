@@ -317,10 +317,13 @@ public class Phieunhap extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnChiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietActionPerformed
+        nhacungcapTT nhacungcap = (nhacungcapTT) cbxNCC.getSelectedItem();
         CT_Phieunhap ct_phieunhap = new CT_Phieunhap();
         ct_phieunhap.setMPX(txt_MaPN.getText());
         ct_phieunhap.showDataList(txt_MaPN.getText());
-
+        ct_phieunhap.loadSanpham(nhacungcap.getMaNCC());
+        this.dispose();
+                
         //vi tri giua man hinh va maximize
         ct_phieunhap.pack();
         ct_phieunhap.setLocationRelativeTo(null);

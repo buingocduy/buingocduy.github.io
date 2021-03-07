@@ -236,11 +236,11 @@ insert into hoadon values ('2021-02-11',1,N'TIỀN MẶT',400000,'admin')
 go
 
 /*CT_Hóa đơn*/
-insert into ct_hoadon values (1,'EX',1,400000)
-insert into ct_hoadon values (2,'EX',2,400000)
-insert into ct_hoadon values (3,'EX',3,400000)
-insert into ct_hoadon values (4,'EX',4,400000)
-insert into ct_hoadon values (5,'EX',1,400000)
+insert into ct_hoadon values (12,'EX',1,400000)
+insert into ct_hoadon values (13,'EX',2,400000)
+insert into ct_hoadon values (14,'EX',3,400000)
+insert into ct_hoadon values (15,'EX',4,400000)
+insert into ct_hoadon values (16,'EX',1,400000)
 go
 
 
@@ -279,14 +279,11 @@ select * from phieuxuat
 select * from ct_phieuxuat
 go
 
-/*
+
 delete from ct_hoadon where MaHoaDon = '4'
 
 select * from ct_hoadon where MaHoaDon = '1'
 
-select MaSP,SUM(SoLuong), sum(DonGia)
-from ct_hoadon
-Group by MaSP
 
 select Ngay, MaSP, SoLuong, MaKH, HinhThucTT, TongTien, Username 
 from ct_hoadon, hoadon
@@ -298,10 +295,22 @@ UPDATE ct_phieuxuat SET MaPX = '1',MaSP ='EX',SoLuong = '4',DonGia = '40000' WHE
 
 Select 'TongTien'=sum(DonGia) 
 From ct_hoadon 
-Where MaHoaDon = '1' 
+Where MaHoaDon = '12' 
+
+select 'SoLuong'=SUM(SoLuong)
+from ct_hoadon
+where MaHoaDon = '12'
+
+
+select 'DonGia'=sum(DonGia)
+from ct_hoadon
+where MaHoaDon = '12'
+
 
 UPDATE hoadon 
-SET TongTien = (Select 'TongTien'=sum(DonGia) 
-From ct_hoadon 
-Where MaHoaDon = '1') WHERE MaHoaDon = '1' 
-*/
+SET TongTien = 
+(select 'TongTien'=sum(SoLuong * DonGia)
+from ct_hoadon
+where MaHoaDon = '12'
+Group by MaHoaDon)
+where MaHoaDon = '12'

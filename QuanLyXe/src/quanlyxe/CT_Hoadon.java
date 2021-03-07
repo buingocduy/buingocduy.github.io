@@ -48,8 +48,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
         loadSanpham();
         
         txt_soluong.setText("1");
-        txt_tonggia.setText("0");
-        txt_dongia.setText("0");
+        txt_dongia.setText("0");     
     }    
 
     /**
@@ -200,7 +199,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã chi tiết hóa đơn", "Mã hóa đơn", "Mã sản phẩm", "Số lượng", "Tổng tiền"
+                "Mã chi tiết hóa đơn", "Mã hóa đơn", "Mã sản phẩm", "Số lượng", "Đơn giá"
             }
         ));
         jTableData.setColumnSelectionAllowed(true);
@@ -392,7 +391,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
     }
 
     
-    private void showDataDetail(String MaCTHoaDon, String MaHoaDon, String MaSP, int SoLuong, long Dongia){
+    private void showDataDetail(String MaCTHoaDon, String MaHoaDon, String MaSP, long SoLuong, String Dongia){
         
         txt_macthoadon.setText(MaCTHoaDon);        
         txt_mahoadon.setText(MaHoaDon);
@@ -401,22 +400,18 @@ public class CT_Hoadon extends javax.swing.JFrame {
             txt_masp.setSelectedItem(findSanpham(selectedCTHoaDon.getMaSP(), dsSanpham));
         }    
         
-        long tien = Dongia;
         Locale localeEN = new Locale("en", "EN");
         NumberFormat en = NumberFormat.getInstance(localeEN);     
-        String str1 = en.format(tien);
-        
-        
+             
         txt_soluong.setText(String.valueOf(SoLuong));
-        txt_tonggia.setText(String.valueOf(str1));
+        txt_dongia.setText(Dongia);
         
-        long tg = Long.valueOf(txt_tonggia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
+        long dg = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
         long sl = Long.valueOf(txt_soluong.getText().trim());
-        long dg = tg / sl;    
-        long dongia = dg;
-        String str2 = en.format(dongia);
+        long tg = dg * sl;    
+        String str2 = en.format(tg);
          
-        txt_dongia.setText(str2);
+        txt_tonggia.setText(str2);
     }
     
      public void gridSelectedChanged(ListSelectionEvent e) {
@@ -444,8 +439,8 @@ public class CT_Hoadon extends javax.swing.JFrame {
             showDataDetail(selectedID, 
                 (String) jTableData.getValueAt(selectedRow, 1),
                 (String) jTableData.getValueAt(selectedRow, 2),   
-                (int) jTableData.getValueAt(selectedRow, 3),              
-                (long) jTableData.getValueAt(selectedRow, 4));  
+                (long) jTableData.getValueAt(selectedRow, 3),              
+                (String) jTableData.getValueAt(selectedRow, 4));  
         }
     }
     
@@ -458,6 +453,10 @@ public class CT_Hoadon extends javax.swing.JFrame {
         ArrayList<ct_hoadonTT> list = ct_hoadonservices.getAllRecords(MaHD);
         dsCTHoaDon = list;
         
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);     
+       
+        
         Object[] row = new Object[7];
         
         for(int i = 0; i < list.size(); i++){
@@ -466,7 +465,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
             row[1] = list.get(i).getMaHoaDon();
             row[2] = list.get(i).getMaSP();
             row[3] = list.get(i).getSoLuong();
-            row[4] = list.get(i).getDongia();
+            row[4] = en.format(list.get(i).getDongia());
             
             model.addRow(row);
         }
@@ -486,21 +485,12 @@ public class CT_Hoadon extends javax.swing.JFrame {
       
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // Tao Moi
-        int dg = Integer.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
-        int sl = Integer.valueOf(txt_soluong.getText().trim());
-
-        txt_tonggia.setText(String.valueOf(sl * dg));  
-        
-        
+        // Tao Moi     
         String MaCTHoaDon = txt_macthoadon.getText().trim();
         String MaHD = txt_mahoadon.getText().trim();
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
-        String DG = txt_tonggia.getText().trim().replaceAll("\\.","").replaceAll(",","");
-        
+        long DonGia = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
         int SoLuong = Integer.valueOf(txt_soluong.getText().trim());
-        long DonGia = Integer.valueOf(DG);
-
 
         //goi ham trong package "bookstore.dal"
         int rowEffected = ct_hoadonservices.AddNewRecord(MaHD, masp.getID(), SoLuong, DonGia);
@@ -516,20 +506,11 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // Cap Nhat record
-        int dg = Integer.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
-        int sl = Integer.valueOf(txt_soluong.getText().trim());
-
-        txt_tonggia.setText(String.valueOf(sl * dg));  
-   
         String MaCTHoaDon = txt_macthoadon.getText().trim();
         String MaHD = txt_mahoadon.getText().trim();
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
-        String DG = txt_tonggia.getText().trim().replaceAll("\\.","").replaceAll(",","");
-        
-
+        long DonGia = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
         int SoLuong = Integer.valueOf(txt_soluong.getText().trim());
-        long DonGia = Integer.valueOf(DG);
-
 
         //goi ham trong package "bookstore.dal"
         int rowEffected = ct_hoadonservices.UpdateRecord(MaCTHoaDon, MaHD, masp.getID(), SoLuong, DonGia);
@@ -587,16 +568,39 @@ public class CT_Hoadon extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_tonggiaActionPerformed
 
     private void txt_soluongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_soluongActionPerformed
-        int dg = Integer.valueOf(txt_dongia.getText().trim());
-        int sl = Integer.valueOf(txt_soluong.getText().trim());
-        int tg = sl * dg;
+        long dg = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
+        long sl = Long.valueOf(txt_soluong.getText().trim());
+        long tg = sl * dg;
         
-        
-        txt_tonggia.setText(String.valueOf(sl * dg));         
+        if(tg > 1000000000)
+        {
+            JOptionPane.showMessageDialog(null, "Tổng tiền tối đa 1 tỷ!"); 
+        } else {  
+            long tien = tg;
+            Locale localeEN = new Locale("en", "EN");
+            NumberFormat en = NumberFormat.getInstance(localeEN);     
+            String str1 = en.format(tien);
+
+            txt_tonggia.setText(str1);
+        }     
     }//GEN-LAST:event_txt_soluongActionPerformed
 
     private void txt_dongiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dongiaActionPerformed
-       
+        long dg = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
+        long sl = Long.valueOf(txt_soluong.getText().trim());
+        long tg = sl * dg;
+        
+        if(tg > 1000000000)
+        {
+            JOptionPane.showMessageDialog(null, "Tổng tiền tối đa 1 tỷ!"); 
+        } else {  
+            long tien = tg;
+            Locale localeEN = new Locale("en", "EN");
+            NumberFormat en = NumberFormat.getInstance(localeEN);     
+            String str1 = en.format(tien);
+
+            txt_tonggia.setText(str1);
+        }
     }//GEN-LAST:event_txt_dongiaActionPerformed
 
     // Xóa toàn bộ dữ liệu của 1 hóa đơn

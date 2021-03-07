@@ -60,6 +60,10 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         ArrayList<ct_phieuxuatTT> list = phieuXuatCTServices.getRecords(MaPX); 
         dsPhieuXuatCT = list;
         
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);     
+       
+        
         Object[] row = new Object[6];
         
         for(int i = 0; i < list.size(); i++){
@@ -67,7 +71,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
             row[1] = list.get(i).getMaPX();
             row[2] = list.get(i).getMaSP();
             row[3] = list.get(i).getSoLuong();
-            row[4] = list.get(i).getDonGia();
+            row[4] = en.format(list.get(i).getDonGia());
             model.addRow(row);
         }
         ListSelectionModel cellSelectionModel = tblPhieuXuatCT.getSelectionModel();
@@ -100,27 +104,21 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
                     (String) tblPhieuXuatCT.getValueAt(selectedRow,1),
                     (String) tblPhieuXuatCT.getValueAt(selectedRow,2),
                     (long) tblPhieuXuatCT.getValueAt(selectedRow,3),
-                    (long) tblPhieuXuatCT.getValueAt(selectedRow,4));
+                    (String) tblPhieuXuatCT.getValueAt(selectedRow,4));
                
         }
     }
     
-    private void ShowDataDetail(String MaCTPX,String MaPX, String MaSP, long SoLuong, long DonGia){
+    private void ShowDataDetail(String MaCTPX,String MaPX, String MaSP, long SoLuong, String DonGia){
         txt_mactpx.setText(MaCTPX);
         txt_mapx.setText(MaPX);
         
         if(selectedPhieuXuatCT != null){
            txt_masp.setSelectedItem(findSanpham(selectedPhieuXuatCT.getMaSP(), dsSanpham));
         }
-        
-        long tien = DonGia;
-        Locale localeEN = new Locale("en", "EN");
-        NumberFormat en = NumberFormat.getInstance(localeEN);     
-        String str1 = en.format(tien);
-
-        
+           
         txtSoLuong.setText(String.valueOf(SoLuong));
-        txtDonGia.setText(String.valueOf(str1));
+        txtDonGia.setText(DonGia);
     }
     
     private void loadSanpham(){
@@ -404,7 +402,13 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
+        Phieuxuat phieuxuat = new Phieuxuat();
         this.dispose();
+        
+        //vi tri giua man hinh
+        phieuxuat.pack();
+        phieuxuat.setLocationRelativeTo(null);        
+        phieuxuat.setVisible(true);
     }//GEN-LAST:event_btnDongActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
