@@ -54,6 +54,7 @@ public class Kho extends javax.swing.JFrame {
         txtAddress = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
+        btn_cthd = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -98,6 +99,14 @@ public class Kho extends javax.swing.JFrame {
 
         jLabel10.setText("Số điện thoại");
 
+        btn_cthd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report.png"))); // NOI18N
+        btn_cthd.setText("Xem chi tiết");
+        btn_cthd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cthdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,6 +132,10 @@ public class Kho extends javax.swing.JFrame {
                             .addComponent(txtPhone)
                             .addComponent(txtAddress))))
                 .addGap(29, 29, 29))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_cthd)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +156,9 @@ public class Kho extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_cthd)
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(153, 180, 209));
@@ -393,6 +408,17 @@ public class Kho extends javax.swing.JFrame {
         // Thoat form
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void btn_cthdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cthdActionPerformed
+        CT_Kho ct_kho = new CT_Kho();
+        ct_kho.showDataList(txtMakho.getText());
+        this.dispose();
+
+        //vi tri giua man hinh va maximize
+        ct_kho.pack();
+        ct_kho.setLocationRelativeTo(null);
+        ct_kho.setVisible(true);
+    }//GEN-LAST:event_btn_cthdActionPerformed
     
     private void showDataList(){
         
@@ -543,6 +569,7 @@ public class Kho extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btn_cthd;
     private javax.swing.JButton btn_tailai;
     private javax.swing.JButton btn_timkiem;
     private javax.swing.JLabel jLabel1;

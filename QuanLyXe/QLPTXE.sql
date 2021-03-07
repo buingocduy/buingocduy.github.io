@@ -204,16 +204,6 @@ insert into nhacungcap values ('YAMAHA',N'Công ty Yamaha Việt Nam',N'Thôn B�
 insert into nhacungcap values ('SUZUKI',N'Công ty TNHH Việt Nam Suzuki',N'Đường số 2, KCN Long Bình, P. Long Bình,TP. Biên Hòa, Đồng Nai','null','18006950')
 go
 
-/*Kho*/
-insert into Kho values (N'Kho 1',N'439 Hậu Giang P11, Q6, TP.HCM','0777747747')
-go
-
-/*CT_Kho*/
-insert into ct_kho values (1,'EX',5)
-insert into ct_kho values (1,'WINX',5)
-insert into ct_kho values (1,'RAI',5)
-go
-
 /*Khách hàng*/
 insert into khachhang values (N'Bùi Ngọc Duy',N'439B/4 Hậu Giang P11, Q6, TP.HCM','buingocduy1999@gmail.com','0904596810')
 insert into khachhang values (N'Phan Hồng Tuấn',N'475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM','phanhongtuan@gmail.com','0904596810')
@@ -225,43 +215,72 @@ go
 insert into sanpham values ('WINX','WINNER X','XCT','HONDA','2020')
 insert into sanpham values ('EX','EXCITER 150','XCT','YAMAHA','2020')
 insert into sanpham values ('RAI','RAIDER 150','XCT','SUZUKI','2020')
+insert into sanpham values ('VS','VISION 110','XTG','HONDA','2020')
+insert into sanpham values ('FG','FREEGO 125','XTG','YAMAHA','2020')
+insert into sanpham values ('GD','GD 110','XCT','SUZUKI','2020')
 go
 
 /*Hóa đơn*/
-insert into hoadon values ('2021-02-07',1,N'TIỀN MẶT',400000,'admin')
-insert into hoadon values ('2021-02-08',2,N'TIỀN MẶT',400000,'admin')
-insert into hoadon values ('2021-02-09',3,N'TIỀN MẶT',400000,'admin')
-insert into hoadon values ('2021-02-10',4,N'TIỀN MẶT',400000,'admin')
-insert into hoadon values ('2021-02-11',1,N'TIỀN MẶT',400000,'admin')
+insert into hoadon values ('2021-02-07',1,N'TIỀN MẶT',50000000,'admin')
+insert into hoadon values ('2021-02-07',2,N'TIỀN MẶT',30000000,'admin')
+insert into hoadon values ('2021-02-07',3,N'TIỀN MẶT',41000000,'admin')
+insert into hoadon values ('2021-02-07',4,N'TIỀN MẶT',30000000,'admin')
+insert into hoadon values ('2021-02-07',1,N'TIỀN MẶT',50000000,'admin')
+go
+
+/*Kho*/
+insert into Kho values (N'Kho HONDA',N'439 Hậu Giang P11, Q6, TP.HCM','0777747747')
+insert into Kho values (N'Kho YAMAHA',N'439 Hậu Giang P11, Q6, TP.HCM','0777747747')
+insert into Kho values (N'Kho SUZUKI',N'439 Hậu Giang P11, Q6, TP.HCM','0777747747')
+go
+
+/*CT_Kho*/
+insert into ct_kho values (1,'WINX',10)
+insert into ct_kho values (1,'VS',10)
+insert into ct_kho values (2,'EX',10)
+insert into ct_kho values (2,'FG',10)
+insert into ct_kho values (3,'RAI',10)
+insert into ct_kho values (3,'GD',10)
 go
 
 /*CT_Hóa đơn*/
-insert into ct_hoadon values (12,'EX',1,400000)
-insert into ct_hoadon values (13,'EX',2,400000)
-insert into ct_hoadon values (14,'EX',3,400000)
-insert into ct_hoadon values (15,'EX',4,400000)
-insert into ct_hoadon values (16,'EX',1,400000)
+insert into ct_hoadon values (1,'EX',1,50000000)
+insert into ct_hoadon values (2,'FG',1,30000000)
+insert into ct_hoadon values (3,'WINX',1,41000000)
+insert into ct_hoadon values (4,'VS',1,30000000)
+insert into ct_hoadon values (5,'RAI',1,50000000)
 go
 
 
 /*PHIẾU NHẬP*/
 insert into phieunhap values ('DUY','HONDA','2020-02-07',1)
-insert into phieunhap values ('DUY','YAMAHA','2020-02-07',1)
-insert into phieunhap values ('DUY','SUZUKI','2020-02-07',1)
+insert into phieunhap values ('DUY','YAMAHA','2020-02-07',2)
+insert into phieunhap values ('DUY','SUZUKI','2020-02-07',3)
 go
 
 /*CT PHIẾU NHẬP*/
-insert into ct_phieunhap values (1,'EX',5,15000)
-insert into ct_phieunhap values (1,'WINX',5,15000)
-insert into ct_phieunhap values (1,'RAI',5,15000)
+insert into ct_phieunhap values (1,'WINX',10,35000000)
+insert into ct_phieunhap values (1,'VS',10,20000000)
+insert into ct_phieunhap values (2,'EX',10,40000000)
+insert into ct_phieunhap values (2,'FG',10,20000000)
+insert into ct_phieunhap values (3,'RAI',10,40000000)
+insert into ct_phieunhap values (3,'GD',10,15000000)
 go
 
 /*PHIẾU XUẤT*/
-insert into phieuxuat values ('DUY',1,'2021-02-07',1)
+insert into phieuxuat values ('DUY',1,'2021-02-07',2)
+insert into phieuxuat values ('DUY',2,'2021-02-07',2)
+insert into phieuxuat values ('DUY',3,'2021-02-07',1)
+insert into phieuxuat values ('DUY',4,'2021-02-07',1)
+insert into phieuxuat values ('DUY',1,'2021-02-07',3)
 go
 
 /*CT PHIẾU XUẤT*/
-insert into ct_phieuxuat values (1,'EX',1,40000)
+insert into ct_phieuxuat values (1,'EX',1,50000000)
+insert into ct_phieuxuat values (2,'FG',1,30000000)
+insert into ct_phieuxuat values (3,'WINX',1,41000000)
+insert into ct_phieuxuat values (4,'VS',1,30000000)
+insert into ct_phieuxuat values (5,'RAI',1,50000000)
 go
 
 select * from taikhoan
@@ -280,7 +299,8 @@ select * from ct_phieuxuat
 go
 
 
-delete from ct_hoadon where MaHoaDon = '4'
+/*
+delete from kho where MaKho = '1'	
 
 select * from ct_hoadon where MaHoaDon = '1'
 
@@ -314,3 +334,4 @@ from ct_hoadon
 where MaHoaDon = '12'
 Group by MaHoaDon)
 where MaHoaDon = '12'
+*/

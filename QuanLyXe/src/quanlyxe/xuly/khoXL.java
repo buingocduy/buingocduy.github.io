@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class khoXL {
     
-    //lay danh sach UserAccount
+    //lay danh sach KHO
     public ArrayList<khoTT> getAllRecords(){
         ArrayList<khoTT> list = new ArrayList<khoTT>();
         try{        
