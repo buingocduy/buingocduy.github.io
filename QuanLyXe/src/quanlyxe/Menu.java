@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package quanlyxe;
+
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,37 +18,34 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.swing.JRViewer;
 import quanlyxe.xuly.ketnoi_sql;
+
 /**
  *
  * @author BND6699
  */
 public class Menu extends javax.swing.JFrame {
-    
-    public void setTenUser(String username){        
+
+    public void setTenUser(String username) {
         this.txt_username.setText(username);
-        
+
         String b = "admin";
-        
+
         boolean c = b.equals(username);
-        
+
         System.out.println(c);
-        if(c == true)
-        {
+        if (c == true) {
             btn_taikhoan.setEnabled(true);
-        } 
-        
-        if(c == false)
-        {
-            btn_taikhoan.setEnabled(false); 
+        }
+
+        if (c == false) {
+            btn_taikhoan.setEnabled(false);
         }
         System.out.println(username);
     }
-    
+
     public Menu() {
-        initComponents();      
+        initComponents();
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -276,17 +274,17 @@ public class Menu extends javax.swing.JFrame {
         Taikhoan taikhoan = new Taikhoan();
         //vi tri giua man hinh
         taikhoan.pack();
-        taikhoan.setLocationRelativeTo(null);        
+        taikhoan.setLocationRelativeTo(null);
         taikhoan.setVisible(true);
     }//GEN-LAST:event_btn_taikhoanActionPerformed
-    
+
     // Đăng xuất
     private void btn_dangnhaplaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangnhaplaiActionPerformed
         Dangnhap dangnhap = new Dangnhap();
         dangnhap.pack();
         dangnhap.setLocationRelativeTo(null);
         dangnhap.setVisible(true);
-        dispose(); 
+        dispose();
     }//GEN-LAST:event_btn_dangnhaplaiActionPerformed
 
     private void btn_sanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sanphamActionPerformed
@@ -298,7 +296,7 @@ public class Menu extends javax.swing.JFrame {
             // dispose();
             //setSize(frame);
             menusp.setVisible(true);
-  
+
             desktop.add(menusp);
             menusp.setSelected(true);
 
@@ -312,25 +310,25 @@ public class Menu extends javax.swing.JFrame {
         MenuBC menubc = new MenuBC();
         //vi tri giua man hinh
         menubc.pack();
-        menubc.setLocationRelativeTo(null);        
+        menubc.setLocationRelativeTo(null);
         menubc.setVisible(true);
     }//GEN-LAST:event_btn_baocaoActionPerformed
 
     private void btn_phieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_phieuActionPerformed
         MenuNX menunx;
-        
+
         try {
             menunx = new MenuNX();
             menunx.setTenUser(txt_username.getText());
-            
+
             menunx.setVisible(true);
-  
+
             desktop.add(menunx);
             menunx.setSelected(true);
 
         } catch (PropertyVetoException ex) {
             Logger.getLogger(MenuSP.class.getName()).log(Level.SEVERE, null, ex);
-        }       
+        }
     }//GEN-LAST:event_btn_phieuActionPerformed
 
     private void btn_nhacungcapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nhacungcapActionPerformed
@@ -338,25 +336,25 @@ public class Menu extends javax.swing.JFrame {
         Nhacungcap nhacungcap = new Nhacungcap();
         //vi tri giua man hinh
         nhacungcap.pack();
-        nhacungcap.setLocationRelativeTo(null);        
+        nhacungcap.setLocationRelativeTo(null);
         nhacungcap.setVisible(true);
     }//GEN-LAST:event_btn_nhacungcapActionPerformed
 
     private void btn_khachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_khachhangActionPerformed
-         //khách hàng
+        //khách hàng
         Khachhang khachhang = new Khachhang();
         //vi tri giua man hinh
         khachhang.pack();
-        khachhang.setLocationRelativeTo(null);        
+        khachhang.setLocationRelativeTo(null);
         khachhang.setVisible(true);
     }//GEN-LAST:event_btn_khachhangActionPerformed
 
     private void btn_khoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_khoActionPerformed
-         //Nhà kho
+        //Nhà kho
         Kho kho = new Kho();
         //vi tri giua man hinh
         kho.pack();
-        kho.setLocationRelativeTo(null);        
+        kho.setLocationRelativeTo(null);
         kho.setVisible(true);
     }//GEN-LAST:event_btn_khoActionPerformed
 
@@ -394,7 +392,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
     }
-  
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_baocao;
@@ -414,8 +412,5 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel txt_username;
     // End of variables declaration//GEN-END:variables
-   
-
-
 
 }

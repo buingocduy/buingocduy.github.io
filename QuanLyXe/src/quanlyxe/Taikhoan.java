@@ -20,18 +20,19 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author PC
+ * @author BND
  */
 public class Taikhoan extends javax.swing.JFrame {
 
     taikhoanXL userAccountService = new taikhoanXL();
+
     /**
      * Creates new form frmDangKyUser
      */
     public Taikhoan() {
         initComponents();
-        
-        showAllUserAccounts();                
+
+        showAllUserAccounts();
     }
 
     /**
@@ -391,22 +392,21 @@ public class Taikhoan extends javax.swing.JFrame {
         Date birthDay = jDateChooserBD.getDate();
         Date startDate = jDateStartDate.getDate();
 
-        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn tài khoảng "+username+" không?","Confirmation...",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn tài khoảng " + username + " không?", "Confirmation...",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        System.out.println("Xoa? =" +input);
+        System.out.println("Xoa? =" + input);
 
-        if(input == 0)
-        {
+        if (input == 0) {
             //Xoa
             //goi ham trong package "bookstore.dal"
             int rowEffected = userAccountService.DeleteRecord(username);
-            if(rowEffected > 0){
+            if (rowEffected > 0) {
                 showAllUserAccounts();
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
             }
-            else
-            JOptionPane.showMessageDialog(null, "Xóa thất bại");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -422,12 +422,11 @@ public class Taikhoan extends javax.swing.JFrame {
         Date startDate = jDateStartDate.getDate();
         //goi ham trong package "bookstore.dal"
         int rowEffected = userAccountService.UpdateRecord(username, password, hoten, email, phone, birthDay, startDate);
-        if(rowEffected > 0){
+        if (rowEffected > 0) {
             showAllUserAccounts();
             JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
-        }
-        else
-        JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+        } else
+            JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btn_tailaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tailaiActionPerformed
@@ -450,31 +449,30 @@ public class Taikhoan extends javax.swing.JFrame {
         String phone = txtPhone.getText().trim();
         Date birthDay = jDateChooserBD.getDate();
         Date startDate = jDateStartDate.getDate();
-        
+
         //goi ham trong package "bookstore.dal"
         int rowEffected = userAccountService.AddNewRecord(username, password, hoten, email, phone, birthDay, startDate);
-        if(rowEffected > 0){
+        if (rowEffected > 0) {
             showAllUserAccounts();
             JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
-        }            
-        else
+        } else {
             JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
+        }
 
     }//GEN-LAST:event_btnAddActionPerformed
 
-    
-    private void showSearchUserAccounts(){
+    private void showSearchUserAccounts() {
         String HoTen = txt_timkiem.getText().trim();
-        DefaultTableModel model = (DefaultTableModel)this.jTableUsers.getModel(); 
+        DefaultTableModel model = (DefaultTableModel) this.jTableUsers.getModel();
         model.setRowCount(0);
-                
+
         //load data
         ArrayList<taikhoanTT> list = userAccountService.getRecords(HoTen);
-               
+
         Object[] row = new Object[7];
-        
-        for(int i = 0; i < list.size(); i++){
-            
+
+        for (int i = 0; i < list.size(); i++) {
+
             row[0] = list.get(i).getUsername();
             row[1] = list.get(i).getPassword();
             row[2] = list.get(i).getHoten();
@@ -482,10 +480,10 @@ public class Taikhoan extends javax.swing.JFrame {
             row[4] = list.get(i).getPhone();
             row[5] = list.get(i).getNgaysinh();
             row[6] = list.get(i).getNgaybatdau();
-            
+
             model.addRow(row);
         }
-        
+
         ListSelectionModel cellSelectionModel = jTableUsers.getSelectionModel();
         cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Dang ky event click tren danh sach        
@@ -494,21 +492,21 @@ public class Taikhoan extends javax.swing.JFrame {
                 //goi ham show data chi tiet
                 gridSelectedChanged(e);
             }
-          });
+        });
     }
-    
-    private void showAllUserAccounts(){
-        
-        DefaultTableModel model = (DefaultTableModel)this.jTableUsers.getModel(); 
+
+    private void showAllUserAccounts() {
+
+        DefaultTableModel model = (DefaultTableModel) this.jTableUsers.getModel();
         model.setRowCount(0);
-                
+
         //load data
         ArrayList<taikhoanTT> list = userAccountService.getAllRecords();
-               
+
         Object[] row = new Object[7];
-        
-        for(int i = 0; i < list.size(); i++){
-            
+
+        for (int i = 0; i < list.size(); i++) {
+
             row[0] = list.get(i).getUsername();
             row[1] = list.get(i).getPassword();
             row[2] = list.get(i).getHoten();
@@ -516,10 +514,10 @@ public class Taikhoan extends javax.swing.JFrame {
             row[4] = list.get(i).getPhone();
             row[5] = list.get(i).getNgaysinh();
             row[6] = list.get(i).getNgaybatdau();
-            
+
             model.addRow(row);
         }
-        
+
         ListSelectionModel cellSelectionModel = jTableUsers.getSelectionModel();
         cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Dang ky event click tren danh sach        
@@ -528,9 +526,9 @@ public class Taikhoan extends javax.swing.JFrame {
                 //goi ham show data chi tiet
                 gridSelectedChanged(e);
             }
-          });
+        });
     }
-    
+
     public void gridSelectedChanged(ListSelectionEvent e) {
         String selectedData = null;
         String selectedID = null; //username
@@ -543,26 +541,26 @@ public class Taikhoan extends javax.swing.JFrame {
 
         System.out.println("selectedRow: " + selectedRow);
         System.out.println("selectedColumn: " + selectedColumn);
-        
-        if(selectedRow >=0 && selectedColumn >=0){
+
+        if (selectedRow >= 0 && selectedColumn >= 0) {
             selectedData = (String) jTableUsers.getValueAt(selectedRow, selectedColumn);
             selectedID = (String) jTableUsers.getValueAt(selectedRow, 0);
 
             System.out.println("Selected: " + selectedData + " , username: " + selectedID);
 
-            showDataDetail(selectedID, 
-                (String) jTableUsers.getValueAt(selectedRow, 1),
-                (String) jTableUsers.getValueAt(selectedRow, 2), 
-                (String) jTableUsers.getValueAt(selectedRow, 3),
-                (String) jTableUsers.getValueAt(selectedRow, 4), 
-                (Date) jTableUsers.getValueAt(selectedRow, 5), 
-                (Date) jTableUsers.getValueAt(selectedRow, 6));
+            showDataDetail(selectedID,
+                    (String) jTableUsers.getValueAt(selectedRow, 1),
+                    (String) jTableUsers.getValueAt(selectedRow, 2),
+                    (String) jTableUsers.getValueAt(selectedRow, 3),
+                    (String) jTableUsers.getValueAt(selectedRow, 4),
+                    (Date) jTableUsers.getValueAt(selectedRow, 5),
+                    (Date) jTableUsers.getValueAt(selectedRow, 6));
         }
     }
-    
+
     private void showDataDetail(String username, String password, String hoten, String email, String phone,
-            Date ngaySinh, Date ngayBatDau){
-        
+            Date ngaySinh, Date ngayBatDau) {
+
         txtUsername.setText(username);
         txtPassword.setText(password);
         txtFullName.setText(hoten);
@@ -571,12 +569,13 @@ public class Taikhoan extends javax.swing.JFrame {
         jDateChooserBD.setDate(ngaySinh);
         jDateStartDate.setDate(ngayBatDau);
     }
-    
+
     public void deleteAllRows(final DefaultTableModel model) {
-        for( int i = model.getRowCount() - 1; i > 0; i-- ) {
+        for (int i = model.getRowCount() - 1; i > 0; i--) {
             model.removeRow(i);
         }
     }
+
     /**
      * @param args the command line arguments
      */

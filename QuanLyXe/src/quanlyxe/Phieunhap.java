@@ -9,7 +9,6 @@ package quanlyxe;
  *
  * @author BND6699
  */
-
 import quanlyxe.thucthe.*;
 import quanlyxe.xuly.*;
 import com.microsoft.sqlserver.jdbc.StringUtils;
@@ -28,43 +27,40 @@ import javax.swing.plaf.basic.BasicListUI;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 
-
 public class Phieunhap extends javax.swing.JFrame {
 
     phieunhapXL phieuNhapServices = new phieunhapXL();
     nhacungcapXL nhacungcapXL = new nhacungcapXL();
     khoXL khoServices = new khoXL();
-    
+
     ArrayList<nhacungcapTT> dsNCC = new ArrayList<nhacungcapTT>();
     ArrayList<khoTT> dsKho = new ArrayList<khoTT>();
     ArrayList<phieunhapTT> dsPhieuNhap = new ArrayList<phieunhapTT>();
 
-    phieunhapTT selectedPhieuNhap= null;
-    
+    phieunhapTT selectedPhieuNhap = null;
+
     public Phieunhap() {
         initComponents();
-        
-        loadNCC();       
+
+        loadNCC();
         loadKho();
         showDataList();
     }
-    
-    public void setTenUser(String username){ 
+
+    public void setTenUser(String username) {
         this.txt_nguoilap.setText(username);
-        
+
         String b = "admin";
-        
+
         boolean c = b.equals(username);
-        
+
         System.out.println(c);
-        if(c == true)
-        {
+        if (c == true) {
             btnXoa.setEnabled(true);
-        } 
-        
-        if(c == false)
-        {
-            btnXoa.setEnabled(false); 
+        }
+
+        if (c == false) {
+            btnXoa.setEnabled(false);
         }
         System.out.println(username);
     }
@@ -323,7 +319,7 @@ public class Phieunhap extends javax.swing.JFrame {
         ct_phieunhap.showDataList(txt_MaPN.getText());
         ct_phieunhap.loadSanpham(nhacungcap.getMaNCC());
         this.dispose();
-                
+
         //vi tri giua man hinh va maximize
         ct_phieunhap.pack();
         ct_phieunhap.setLocationRelativeTo(null);
@@ -337,8 +333,8 @@ public class Phieunhap extends javax.swing.JFrame {
         Date ngayXuat = dtmNgayNhap.getDate();
         khoTT kho = (khoTT) cbxKho.getSelectedItem();
 
-        int rowEffected = phieuNhapServices .AddNewRecord(Username, nhacungcap.getMaNCC(), ngayXuat, Integer.valueOf(kho.getMaKho()));
-        if(rowEffected > 0){
+        int rowEffected = phieuNhapServices.AddNewRecord(Username, nhacungcap.getMaNCC(), ngayXuat, Integer.valueOf(kho.getMaKho()));
+        if (rowEffected > 0) {
             JOptionPane.showMessageDialog(null, "Thêm thành công!");
             showDataList();
         }
@@ -352,7 +348,7 @@ public class Phieunhap extends javax.swing.JFrame {
         khoTT kho = (khoTT) cbxKho.getSelectedItem();
 
         int rowEffected = phieuNhapServices.UpdateRecord(MaPN, Username, nhacungcap.getMaNCC(), ngayXuat, Integer.valueOf(kho.getMaKho()));
-        if(rowEffected > 0){
+        if (rowEffected > 0) {
             JOptionPane.showMessageDialog(null, "Sửa thành công!");
             showDataList();
         }
@@ -361,43 +357,42 @@ public class Phieunhap extends javax.swing.JFrame {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         String MaPN = txt_MaPN.getText().trim();
 
-        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa phiếu nhập "+MaPN+" ?", "Confirmation...",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa phiếu nhập " + MaPN + " ?", "Confirmation...",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        if(input == 0)
-        {
+        if (input == 0) {
 
             int rowEffected = phieuNhapServices.DeleteRecord(MaPN);
-            if(rowEffected > 0){
+            if (rowEffected > 0) {
                 showDataList();
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
             }
-            else
-            JOptionPane.showMessageDialog(null, "Xóa thất bại");
         }
     }//GEN-LAST:event_btnXoaActionPerformed
-    
-    private void showDataList(){
+
+    private void showDataList() {
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
         model.setRowCount(0);
-        
+
         ArrayList<phieunhapTT> list = phieuNhapServices.getAllRecords();
         dsPhieuNhap = list;
-        
+
         Object[] row = new Object[6];
-        
-        for(int i = 0; i < list.size(); i++){
+
+        for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getMaPN();
             row[1] = list.get(i).getUsername();
             row[2] = list.get(i).getMaNCC();
             row[3] = list.get(i).getNgayNhap();
             row[4] = list.get(i).getMaKho();
             model.addRow(row);
-            
+
         }
         ListSelectionModel cellSelectionModel = jTable1.getSelectionModel();
         cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
+
         cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -405,117 +400,117 @@ public class Phieunhap extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void gridSelectedChanged(ListSelectionEvent e){
-       String selectedData = null;
-       String selectedID = ""; 
-       
-       int[] selectedRows = jTable1.getSelectedRows();
-       int[] selectedColumns = jTable1.getSelectedColumns();
-        
-       int selectedRow = jTable1.getSelectedRow();
-       int selectedColumn = jTable1.getSelectedColumn();
-       
-       if(selectedRow >=0 && selectedColumn >=0){
-           selectedData = String.valueOf(jTable1.getValueAt(selectedRow, selectedColumn));
-           selectedID = (String) jTable1.getValueAt(selectedRow, 0);
-           
-           selectedPhieuNhap = findPhieuNhap(selectedID,dsPhieuNhap);
-    
-           System.out.println("Selected: " + selectedData + " , value: " + selectedID);
-               
+
+    public void gridSelectedChanged(ListSelectionEvent e) {
+        String selectedData = null;
+        String selectedID = "";
+
+        int[] selectedRows = jTable1.getSelectedRows();
+        int[] selectedColumns = jTable1.getSelectedColumns();
+
+        int selectedRow = jTable1.getSelectedRow();
+        int selectedColumn = jTable1.getSelectedColumn();
+
+        if (selectedRow >= 0 && selectedColumn >= 0) {
+            selectedData = String.valueOf(jTable1.getValueAt(selectedRow, selectedColumn));
+            selectedID = (String) jTable1.getValueAt(selectedRow, 0);
+
+            selectedPhieuNhap = findPhieuNhap(selectedID, dsPhieuNhap);
+
+            System.out.println("Selected: " + selectedData + " , value: " + selectedID);
+
             ShowDataDetail(selectedID,
                     (String) jTable1.getValueAt(selectedRow, 1),
                     (String) jTable1.getValueAt(selectedRow, 2),
                     (Date) jTable1.getValueAt(selectedRow, 3),
-                    (int) jTable1.getValueAt(selectedRow, 4));    
-       }
+                    (int) jTable1.getValueAt(selectedRow, 4));
+        }
     }
-    
-    private void ShowDataDetail(String MaPX, String Username, String MaNCC,Date NgayNhap,int MaKho){
+
+    private void ShowDataDetail(String MaPX, String Username, String MaNCC, Date NgayNhap, int MaKho) {
         txt_MaPN.setText(MaPX);
         txt_nguoilap.setText(Username);
-       
-        if(selectedPhieuNhap != null){
+
+        if (selectedPhieuNhap != null) {
             cbxNCC.setSelectedItem(findNCC(selectedPhieuNhap.getMaNCC(), dsNCC));
         }
-        
+
         dtmNgayNhap.setDate(NgayNhap);
-        
-        if(selectedPhieuNhap != null){
+
+        if (selectedPhieuNhap != null) {
             cbxKho.setSelectedItem(findKho(selectedPhieuNhap.getMaKho(), dsKho));
         }
     }
-    
-    private void loadKho(){
+
+    private void loadKho() {
         cbxKho.removeAllItems();
         dsKho = khoServices.getAllRecords();
-        for(khoTT kho : dsKho){
-           cbxKho.addItem(kho);
+        for (khoTT kho : dsKho) {
+            cbxKho.addItem(kho);
         }
-        cbxKho.setRenderer(new DefaultListCellRenderer(){
+        cbxKho.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); 
-                if(value instanceof khoTT){
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof khoTT) {
                     khoTT warehouse = (khoTT) value;
                     setText(warehouse.getTenKho());
                 }
                 return this;
             }
-              
+
         });
     }
-    
-    private void loadNCC(){
+
+    private void loadNCC() {
         cbxNCC.removeAllItems();
         dsNCC = nhacungcapXL.getAllRecords();
-        for(nhacungcapTT item : dsNCC){
-            cbxNCC.addItem(item);            
+        for (nhacungcapTT item : dsNCC) {
+            cbxNCC.addItem(item);
         }
-        
+
         //jcbAuthor = new JComboBox(new DefaultComboBoxModel(authors));
         cbxNCC.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if(value instanceof nhacungcapTT){
+                if (value instanceof nhacungcapTT) {
                     nhacungcapTT item = (nhacungcapTT) value;
                     setText(item.getMaNCC());
                 }
                 return this;
             }
-        } );
+        });
     }
-    
-    private khoTT findKho(int maKho,ArrayList<khoTT> warehouses){
-        for(khoTT item : warehouses){
-            if(item.getMaKho()== maKho){
+
+    private khoTT findKho(int maKho, ArrayList<khoTT> warehouses) {
+        for (khoTT item : warehouses) {
+            if (item.getMaKho() == maKho) {
                 return item;
             }
         }
         return null;
     }
-    
+
     public nhacungcapTT findNCC(String MaNCC, ArrayList<nhacungcapTT> danhsachncc) {
-      for (nhacungcapTT item : danhsachncc) {
-          if (item.getMaNCC().equals(MaNCC)) {
-              return item;
-          }
-      }
-      return null;
-    }
-    
-    private phieunhapTT findPhieuNhap(String maPN,ArrayList<phieunhapTT> phieuNhap){
-        for(phieunhapTT item : phieuNhap){
-            if(item.getMaPN()== maPN){
+        for (nhacungcapTT item : danhsachncc) {
+            if (item.getMaNCC().equals(MaNCC)) {
                 return item;
             }
         }
         return null;
     }
-    
-    
+
+    private phieunhapTT findPhieuNhap(String maPN, ArrayList<phieunhapTT> phieuNhap) {
+        for (phieunhapTT item : phieuNhap) {
+            if (item.getMaPN() == maPN) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+
     private void btnClose1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClose1ActionPerformed
         // Thoat form
         this.dispose();

@@ -1,6 +1,4 @@
-
 package quanlyxe;
-
 
 import java.beans.PropertyVetoException;
 import javax.swing.ImageIcon;
@@ -13,18 +11,19 @@ import javax.swing.JDesktopPane;
 public class MenuSP extends javax.swing.JInternalFrame {
 
     private JDesktopPane desktop;
+
     /**
      * Creates new form JIFTainguyen
      */
     public MenuSP() throws PropertyVetoException {
-        
+
         this.setFrameIcon(new ImageIcon("Image/login.png"));
-        javax.swing.plaf.InternalFrameUI gui  = this.getUI();  
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)gui).setNorthPane(null);
+        javax.swing.plaf.InternalFrameUI gui = this.getUI();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) gui).setNorthPane(null);
         initComponents();
-       
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -158,10 +157,10 @@ public class MenuSP extends javax.swing.JInternalFrame {
         Sanpham sanpham = new Sanpham();
         //vi tri giua man hinh
         sanpham.pack();
-        sanpham.setLocationRelativeTo(null);        
+        sanpham.setLocationRelativeTo(null);
         sanpham.setVisible(true);
- 
-        
+
+
     }//GEN-LAST:event_btn_sanphamActionPerformed
 
     private void btn_loaispActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loaispActionPerformed
@@ -169,9 +168,9 @@ public class MenuSP extends javax.swing.JInternalFrame {
         LoaiSP loaisp = new LoaiSP();
         //vi tri giua man hinh
         loaisp.pack();
-        loaisp.setLocationRelativeTo(null);        
+        loaisp.setLocationRelativeTo(null);
         loaisp.setVisible(true);
- 
+
     }//GEN-LAST:event_btn_loaispActionPerformed
 
     private void btn_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thoatActionPerformed
@@ -192,16 +191,14 @@ public class MenuSP extends javax.swing.JInternalFrame {
 
     /**
      * @return the desktop
-     * 
+     *
      */
     public JDesktopPane getDesktop() {
         return desktop;
     }
 
-    
     public void setDesktop(JDesktopPane desktop) {
         this.desktop = desktop;
     }
 
-  
 }

@@ -5,7 +5,6 @@
  */
 package quanlyxe;
 
-
 import quanlyxe.thucthe.*;
 import quanlyxe.xuly.*;
 import com.microsoft.sqlserver.jdbc.StringUtils;
@@ -24,73 +23,70 @@ import javax.swing.plaf.basic.BasicListUI;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 
-
 /**
  *
  * @author Bui Ngoc Duy
  */
 public class Phieuxuat extends javax.swing.JFrame {
+
     phieuxuatXL phieuXuatServices = new phieuxuatXL();
     khachhangXL customerServices = new khachhangXL();
     khoXL khoServices = new khoXL();
-    
+
     ArrayList<khachhangTT> dsKhachHang = new ArrayList<khachhangTT>();
     ArrayList<khoTT> dsKho = new ArrayList<khoTT>();
     ArrayList<phieuxuatTT> dsPhieuXuat = new ArrayList<phieuxuatTT>();
 
-    phieuxuatTT selectedPhieuXuat= null;
-    
-    public Phieuxuat(){
+    phieuxuatTT selectedPhieuXuat = null;
+
+    public Phieuxuat() {
         initComponents();
 
         loadKhachHang();
         loadKho();
-        
+
         showDataList();
     }
 
-    public void setTenUser(String username){ 
+    public void setTenUser(String username) {
         this.txt_nguoilap.setText(username);
-        
+
         String b = "admin";
-        
+
         boolean c = b.equals(username);
-        
+
         System.out.println(c);
-        if(c == true)
-        {
+        if (c == true) {
             btnXoa.setEnabled(true);
-        } 
-        
-        if(c == false)
-        {
-            btnXoa.setEnabled(false); 
+        }
+
+        if (c == false) {
+            btnXoa.setEnabled(false);
         }
         System.out.println(username);
     }
 
-    
-    private void showDataList(){
+    private void showDataList() {
         DefaultTableModel model = (DefaultTableModel) this.tblPhieuXuat.getModel();
         model.setRowCount(0);
-        
+
         ArrayList<phieuxuatTT> list = phieuXuatServices.getAllRecords();
         dsPhieuXuat = list;
-        
+
         Object[] row = new Object[6];
-        
-        for(int i = 0; i < list.size(); i++){
+
+        for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getMaPX();
             row[1] = list.get(i).getUsername();
             row[2] = list.get(i).getMaKH();
             row[3] = list.get(i).getNgayXuat();
             row[4] = list.get(i).getMaKho();
             model.addRow(row);
-            
+
         }
         ListSelectionModel cellSelectionModel = tblPhieuXuat.getSelectionModel();
         cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
+
         cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -98,116 +94,115 @@ public class Phieuxuat extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void gridSelectedChanged(ListSelectionEvent e){
-       String selectedData = null;
-       String selectedID = ""; 
-       
-       int[] selectedRows = tblPhieuXuat.getSelectedRows();
-       int[] selectedColumns = tblPhieuXuat.getSelectedColumns();
-        
-       int selectedRow = tblPhieuXuat.getSelectedRow();
-       int selectedColumn = tblPhieuXuat.getSelectedColumn();
-       
-       if(selectedRow >=0 && selectedColumn >=0){
-           selectedData = String.valueOf(tblPhieuXuat.getValueAt(selectedRow, selectedColumn));
-           selectedID = (String) tblPhieuXuat.getValueAt(selectedRow, 0);
-           
-           selectedPhieuXuat = findPhieuXuat(selectedID,dsPhieuXuat);
-    
-           System.out.println("Selected: " + selectedData + " , value: " + selectedID);
-               
+
+    public void gridSelectedChanged(ListSelectionEvent e) {
+        String selectedData = null;
+        String selectedID = "";
+
+        int[] selectedRows = tblPhieuXuat.getSelectedRows();
+        int[] selectedColumns = tblPhieuXuat.getSelectedColumns();
+
+        int selectedRow = tblPhieuXuat.getSelectedRow();
+        int selectedColumn = tblPhieuXuat.getSelectedColumn();
+
+        if (selectedRow >= 0 && selectedColumn >= 0) {
+            selectedData = String.valueOf(tblPhieuXuat.getValueAt(selectedRow, selectedColumn));
+            selectedID = (String) tblPhieuXuat.getValueAt(selectedRow, 0);
+
+            selectedPhieuXuat = findPhieuXuat(selectedID, dsPhieuXuat);
+
+            System.out.println("Selected: " + selectedData + " , value: " + selectedID);
+
             ShowDataDetail(selectedID,
                     (String) tblPhieuXuat.getValueAt(selectedRow, 1),
                     (int) tblPhieuXuat.getValueAt(selectedRow, 2),
                     (Date) tblPhieuXuat.getValueAt(selectedRow, 3),
-                    (int) tblPhieuXuat.getValueAt(selectedRow, 4));    
-       }
+                    (int) tblPhieuXuat.getValueAt(selectedRow, 4));
+        }
     }
-    
-    private void ShowDataDetail(String maPX, String userID, int maKH,Date ngayXuat,int maKho){
+
+    private void ShowDataDetail(String maPX, String userID, int maKH, Date ngayXuat, int maKho) {
         txtMaPX.setText(maPX);
         txt_nguoilap.setText(userID);
-       
-        if(selectedPhieuXuat != null){
+
+        if (selectedPhieuXuat != null) {
             cbxKhachHang.setSelectedItem(findKhachHang(selectedPhieuXuat.getMaKH(), dsKhachHang));
         }
-        
+
         dtmNgayXuat.setDate(ngayXuat);
-        
-        if(selectedPhieuXuat != null){
+
+        if (selectedPhieuXuat != null) {
             cbxKho.setSelectedItem(findKho(selectedPhieuXuat.getMaKho(), dsKho));
         }
     }
-    
-    private void loadKho(){
+
+    private void loadKho() {
         cbxKho.removeAllItems();
         dsKho = khoServices.getAllRecords();
-        for(khoTT kho : dsKho){
-           cbxKho.addItem(kho);
+        for (khoTT kho : dsKho) {
+            cbxKho.addItem(kho);
         }
-        cbxKho.setRenderer(new DefaultListCellRenderer(){
+        cbxKho.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); 
-                if(value instanceof khoTT){
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof khoTT) {
                     khoTT warehouse = (khoTT) value;
                     setText(warehouse.getTenKho());
                 }
                 return this;
             }
-              
+
         });
     }
-   
-    
-    private void loadKhachHang(){
+
+    private void loadKhachHang() {
         cbxKhachHang.removeAllItems();
         dsKhachHang = customerServices.getAllRecords();
-        for(khachhangTT khachHang : dsKhachHang){
+        for (khachhangTT khachHang : dsKhachHang) {
             cbxKhachHang.addItem(khachHang);
         }
-        cbxKhachHang.setRenderer(new DefaultListCellRenderer(){
+        cbxKhachHang.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); 
-                if(value instanceof khachhangTT){
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof khachhangTT) {
                     khachhangTT item = (khachhangTT) value;
                     setText(item.getTenKH());
                 }
                 return this;
             }
-              
+
         });
     }
-           
-    private phieuxuatTT findPhieuXuat(String maPX,ArrayList<phieuxuatTT> phieuXuats){
-        for(phieuxuatTT item : phieuXuats){
-            if(item.getMaPX()== maPX){
+
+    private phieuxuatTT findPhieuXuat(String maPX, ArrayList<phieuxuatTT> phieuXuats) {
+        for (phieuxuatTT item : phieuXuats) {
+            if (item.getMaPX() == maPX) {
                 return item;
             }
         }
         return null;
     }
-    
-    private khachhangTT findKhachHang(int maKH, ArrayList<khachhangTT> customers){
-        for(khachhangTT item : customers){
-            if(item.getMaKH()== maKH){
+
+    private khachhangTT findKhachHang(int maKH, ArrayList<khachhangTT> customers) {
+        for (khachhangTT item : customers) {
+            if (item.getMaKH() == maKH) {
                 return item;
             }
         }
         return null;
     }
-    
-    private khoTT findKho(int maKho,ArrayList<khoTT> warehouses){
-        for(khoTT item : warehouses){
-            if(item.getMaKho()== maKho){
+
+    private khoTT findKho(int maKho, ArrayList<khoTT> warehouses) {
+        for (khoTT item : warehouses) {
+            if (item.getMaKho() == maKho) {
                 return item;
             }
         }
         return null;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -475,18 +470,17 @@ public class Phieuxuat extends javax.swing.JFrame {
         String maPX = txtMaPX.getText().trim();
 
         int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa?", "Confirmation...",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        if(input == 0)
-        {
-      
+        if (input == 0) {
+
             int rowEffected = phieuXuatServices.DeleteRecord(maPX);
-            if(rowEffected > 0){
+            if (rowEffected > 0) {
                 showDataList();
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
             }
-            else
-            JOptionPane.showMessageDialog(null, "Xóa thất bại");
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -496,9 +490,9 @@ public class Phieuxuat extends javax.swing.JFrame {
         khachhangTT khachHang = (khachhangTT) cbxKhachHang.getSelectedItem();
         Date ngayXuat = dtmNgayXuat.getDate();
         khoTT kho = (khoTT) cbxKho.getSelectedItem();
-        
+
         int rowEffected = phieuXuatServices.UpdateRecord(maPX, User, khachHang.getMaKH(), ngayXuat, Integer.valueOf(kho.getMaKho()));
-        if(rowEffected > 0){
+        if (rowEffected > 0) {
             JOptionPane.showMessageDialog(null, "Sửa thành công!");
             showDataList();
         }
@@ -511,9 +505,9 @@ public class Phieuxuat extends javax.swing.JFrame {
         khachhangTT khachHang = (khachhangTT) cbxKhachHang.getSelectedItem();
         Date ngayXuat = dtmNgayXuat.getDate();
         khoTT kho = (khoTT) cbxKho.getSelectedItem();
-        
+
         int rowEffected = phieuXuatServices.AddNewRecord(User, khachHang.getMaKH(), ngayXuat, Integer.valueOf(kho.getMaKho()));
-        if(rowEffected > 0){
+        if (rowEffected > 0) {
             JOptionPane.showMessageDialog(null, "Thêm thành công!");
             showDataList();
         }
@@ -524,8 +518,8 @@ public class Phieuxuat extends javax.swing.JFrame {
         ct_phieuxuat.setMPX(txtMaPX.getText());
         ct_phieuxuat.showDataList(txtMaPX.getText());
         this.dispose();
-        
-         //vi tri giua man hinh va maximize
+
+        //vi tri giua man hinh va maximize
         ct_phieuxuat.pack();
         ct_phieuxuat.setLocationRelativeTo(null);
         ct_phieuxuat.setVisible(true);
@@ -599,9 +593,4 @@ public class Phieuxuat extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nguoilap;
     // End of variables declaration//GEN-END:variables
 
-    
-
-    
-
-    
 }

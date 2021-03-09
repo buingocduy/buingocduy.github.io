@@ -12,8 +12,9 @@ import java.util.Date;
  * @author vuhuynh
  */
 public class phieuxuatTT {
+
     private String MaPX;
-    private int MaKH,MaKho;
+    private int MaKH, MaKho;
     private String Username;
     private Date NgayXuat;
 
@@ -65,5 +66,4 @@ public class phieuxuatTT {
         this.NgayXuat = NgayXuat;
     }
 
-   
 }

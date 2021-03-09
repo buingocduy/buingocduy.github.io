@@ -17,95 +17,91 @@ import javax.swing.JOptionPane;
  * @author Bùi Ngọc Duy
  */
 public class khoXL {
-    
+
     //lay danh sach KHO
-    public ArrayList<khoTT> getAllRecords(){
+    public ArrayList<khoTT> getAllRecords() {
         ArrayList<khoTT> list = new ArrayList<khoTT>();
-        try{        
+        try {
             hienthi_sql acc = new hienthi_sql();
             ResultSet rs = acc.Query("SELECT * FROM Kho");
 
-            while(rs.next()){
-                khoTT kho = new khoTT(rs.getInt("MaKho"), rs.getString("TenKho"), rs.getString("DiaChi"),rs.getString("Phone"));
+            while (rs.next()) {
+                khoTT kho = new khoTT(rs.getInt("MaKho"), rs.getString("TenKho"), rs.getString("DiaChi"), rs.getString("Phone"));
                 list.add(kho);
-            }            
-        }
-        catch(Exception e){
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return list;
     }
-    
+
     //lay danh sach kho
-    public ArrayList<khoTT> getRecords(String Makho){
+    public ArrayList<khoTT> getRecords(String Makho) {
         ArrayList<khoTT> list = new ArrayList<khoTT>();
-        try{        
+        try {
             hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("SELECT * FROM Kho WHERE Makho = N'"+ Makho +"'");
+            ResultSet rs = acc.Query("SELECT * FROM Kho WHERE Makho = N'" + Makho + "'");
 
-            while(rs.next()){
-                khoTT kho = new khoTT(rs.getInt("MaKho"), rs.getString("TenKho"), rs.getString("DiaChi"),rs.getString("Phone"));
+            while (rs.next()) {
+                khoTT kho = new khoTT(rs.getInt("MaKho"), rs.getString("TenKho"), rs.getString("DiaChi"), rs.getString("Phone"));
                 list.add(kho);
-            }            
-        }
-        catch(Exception e){
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return list;
     }
-    
+
     //Tao moi
-    public int AddNewRecord(String ten, String address, String phone){
+    public int AddNewRecord(String ten, String address, String phone) {
         int rowCount = 0;
-        try{
+        try {
 
             hienthi_sql acc = new hienthi_sql();
-            String sql = "INSERT INTO Kho (TenKho,DiaChi,Phone) VALUES(N'" + ten +"'" +
-                    ",N'" + address +"'" +                    
-                    ", '" + phone +"')";                    
-            
+            String sql = "INSERT INTO Kho (TenKho,DiaChi,Phone) VALUES(N'" + ten + "'"
+                    + ",N'" + address + "'"
+                    + ", '" + phone + "')";
+
             System.out.println(sql);
-            
+
             rowCount = acc.Update(sql);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return rowCount;
     }
+
     //Cap nhat
-    public int UpdateRecord(String makho, String ten, String address, String phone){
+    public int UpdateRecord(String makho, String ten, String address, String phone) {
         int rowCount = 0;
-        try{
-          
+        try {
+
             hienthi_sql acc = new hienthi_sql();
-            String sql = "UPDATE Kho SET TenKho =N'" + ten +"'" +
-                    ", DiaChi   =N'"    + address   +"'" +
-                    ", Phone    ='"     + phone     +"'" +
-                    " WHERE MaKho = " + makho +"";
-            
+            String sql = "UPDATE Kho SET TenKho =N'" + ten + "'"
+                    + ", DiaChi   =N'" + address + "'"
+                    + ", Phone    ='" + phone + "'"
+                    + " WHERE MaKho = " + makho + "";
+
             System.out.println(sql);
             rowCount = acc.Update(sql);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return rowCount;
     }
-    
+
     //Cap nhat
-    public int DeleteRecord(String Makho){
+    public int DeleteRecord(String Makho) {
         int rowCount = 0;
-        try{
-                
+        try {
+
             hienthi_sql acc = new hienthi_sql();
-            String sql = "DELETE FROM Kho WHERE MaKho = " + Makho +"";
-            
+            String sql = "DELETE FROM Kho WHERE MaKho = " + Makho + "";
+
             System.out.println(sql);
-            
+
             rowCount = acc.Update(sql);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return rowCount;

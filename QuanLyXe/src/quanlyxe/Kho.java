@@ -20,14 +20,11 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author PC
+ * @author BND
  */
 public class Kho extends javax.swing.JFrame {
 
     khoXL KhoService = new khoXL();
-    /**
-     * Creates new form frmDangKyUser
-     */
     public Kho() {
         initComponents();
         

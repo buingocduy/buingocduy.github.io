@@ -25,39 +25,38 @@ import javax.swing.table.DefaultTableModel;
  * @author vuhuynh
  */
 public class CT_Phieunhap extends javax.swing.JFrame {
-  
+
     ct_phieunhapTT selectedPhieunhapCT = null;
     ct_phieunhapXL phieunhapCTServices = new ct_phieunhapXL();
-    
+
     sanphamXL sanphamServices = new sanphamXL();
-    phieunhapXL  phieunhapServices = new phieunhapXL();
-            
+    phieunhapXL phieunhapServices = new phieunhapXL();
+
     ArrayList<sanphamTT> dsSanpham = new ArrayList<sanphamTT>();
     ArrayList<ct_phieunhapTT> dsPhieunhapCT = new ArrayList<ct_phieunhapTT>();
     ArrayList<phieunhapTT> dsPN = new ArrayList<phieunhapTT>();
-    
+
     public CT_Phieunhap() {
-        initComponents();             
+        initComponents();
     }
-    
-     public void setMPX(String MaPN){        
-        this.txt_mapn.setText(MaPN);     
+
+    public void setMPX(String MaPN) {
+        this.txt_mapn.setText(MaPN);
     }
-    
 
     public void showDataList(String MaPN) {
         DefaultTableModel model = (DefaultTableModel) this.tblPhieuNhapCT.getModel();
         model.setRowCount(0);
-        
-        ArrayList<ct_phieunhapTT> list = phieunhapCTServices.getRecords(MaPN); 
+
+        ArrayList<ct_phieunhapTT> list = phieunhapCTServices.getRecords(MaPN);
         dsPhieunhapCT = list;
-       
+
         Locale localeEN = new Locale("en", "EN");
-        NumberFormat en = NumberFormat.getInstance(localeEN);     
-       
+        NumberFormat en = NumberFormat.getInstance(localeEN);
+
         Object[] row = new Object[6];
-        
-        for(int i = 0; i < list.size(); i++){
+
+        for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getMaCTPN();
             row[1] = list.get(i).getMaPN();
             row[2] = list.get(i).getMaSP();
@@ -66,90 +65,90 @@ public class CT_Phieunhap extends javax.swing.JFrame {
             model.addRow(row);
         }
         ListSelectionModel cellSelectionModel = tblPhieuNhapCT.getSelectionModel();
-        cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);    
-        
-         cellSelectionModel.addListSelectionListener(new ListSelectionListener(){
-         @Override
+        cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
             public void valueChanged(ListSelectionEvent e) {
                 gridSelectedChanged(e);
             }
         });
-         
+
     }
-    
-    public void gridSelectedChanged(ListSelectionEvent e){
+
+    public void gridSelectedChanged(ListSelectionEvent e) {
         String selectedData = null;
         String selectedID = "";
-        
+
         int[] selectedRows = tblPhieuNhapCT.getSelectedRows();
         int[] selectedColumns = tblPhieuNhapCT.getSelectedColumns();
-        
+
         int selectedRow = tblPhieuNhapCT.getSelectedRow();
         int selectedColumn = tblPhieuNhapCT.getSelectedColumn();
-        
-        if(selectedRow >=0 && selectedColumn >=0){
+
+        if (selectedRow >= 0 && selectedColumn >= 0) {
             selectedData = String.valueOf(tblPhieuNhapCT.getValueAt(selectedRow, selectedColumn));
             selectedID = (String) tblPhieuNhapCT.getValueAt(selectedRow, 0);
-            selectedPhieunhapCT = findCTPhieunhap(selectedID,dsPhieunhapCT);
-        
+            selectedPhieunhapCT = findCTPhieunhap(selectedID, dsPhieunhapCT);
+
             ShowDataDetail(selectedID,
-                    (String) tblPhieuNhapCT.getValueAt(selectedRow,1),
-                    (String) tblPhieuNhapCT.getValueAt(selectedRow,2),
-                    (long) tblPhieuNhapCT.getValueAt(selectedRow,3),
-                    (String) tblPhieuNhapCT.getValueAt(selectedRow,4));
+                    (String) tblPhieuNhapCT.getValueAt(selectedRow, 1),
+                    (String) tblPhieuNhapCT.getValueAt(selectedRow, 2),
+                    (long) tblPhieuNhapCT.getValueAt(selectedRow, 3),
+                    (String) tblPhieuNhapCT.getValueAt(selectedRow, 4));
         }
     }
-    
-    private void ShowDataDetail(String MaCTPN,String MaPN, String MaSP, long SoLuong, String DonGia){
+
+    private void ShowDataDetail(String MaCTPN, String MaPN, String MaSP, long SoLuong, String DonGia) {
         txt_mactpn.setText(MaCTPN);
         txt_mapn.setText(MaPN);
-        
-        if(selectedPhieunhapCT != null){
-           txt_masp.setSelectedItem(findSanpham(selectedPhieunhapCT.getMaSP(), dsSanpham));
+
+        if (selectedPhieunhapCT != null) {
+            txt_masp.setSelectedItem(findSanpham(selectedPhieunhapCT.getMaSP(), dsSanpham));
         }
-   
+
         txtSoLuong.setText(String.valueOf(SoLuong));
         txtDonGia.setText(DonGia);
     }
-    
-    public void loadSanpham(String MaNCC){
+
+    public void loadSanpham(String MaNCC) {
         txt_masp.removeAllItems();
         dsSanpham = sanphamServices.getSP(MaNCC);
-        for(sanphamTT item : dsSanpham){
-            txt_masp.addItem(item);            
-        }        
+        for (sanphamTT item : dsSanpham) {
+            txt_masp.addItem(item);
+        }
         //jcbAuthor = new JComboBox(new DefaultComboBoxModel(authors));
         txt_masp.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if(value instanceof sanphamTT){
+                if (value instanceof sanphamTT) {
                     sanphamTT sanpham = (sanphamTT) value;
                     setText(String.valueOf(sanpham.getName()));
                 }
                 return this;
             }
-        } );
-    }
-    
-    public sanphamTT findSanpham(String ID, ArrayList<sanphamTT> sanpham) {
-      for (sanphamTT item : sanpham) {
-          if(item.getID().equals(ID)) {
-              return item;
-          }
-      }
-      return null;
+        });
     }
 
-    public ct_phieunhapTT findCTPhieunhap (String MACTPN, ArrayList<ct_phieunhapTT> ct_phieunhap) {
-      for (ct_phieunhapTT item : ct_phieunhap) {
-          if(item.getMaCTPN().equals(MACTPN)) {
-              return item;
-          }
-      }
-      return null;
+    public sanphamTT findSanpham(String ID, ArrayList<sanphamTT> sanpham) {
+        for (sanphamTT item : sanpham) {
+            if (item.getID().equals(ID)) {
+                return item;
+            }
+        }
+        return null;
     }
-     
+
+    public ct_phieunhapTT findCTPhieunhap(String MACTPN, ArrayList<ct_phieunhapTT> ct_phieunhap) {
+        for (ct_phieunhapTT item : ct_phieunhap) {
+            if (item.getMaCTPN().equals(MACTPN)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -394,10 +393,10 @@ public class CT_Phieunhap extends javax.swing.JFrame {
     private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
         Phieunhap phieunhap = new Phieunhap();
         this.dispose();
-        
+
         //vi tri giua man hinh
         phieunhap.pack();
-        phieunhap.setLocationRelativeTo(null);        
+        phieunhap.setLocationRelativeTo(null);
         phieunhap.setVisible(true);
     }//GEN-LAST:event_btnDongActionPerformed
 
@@ -405,13 +404,11 @@ public class CT_Phieunhap extends javax.swing.JFrame {
         String MaPN = txt_mapn.getText().trim();
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
         int SoLuong = Integer.valueOf(txtSoLuong.getText().trim());
-        
-        String DG = txtDonGia.getText().trim().replaceAll("\\.","").replaceAll(",","");
-        long DonGia = Integer.valueOf(DG);
-        
+        long DonGia = Long.valueOf(txtDonGia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
+
         int rowEffected = phieunhapCTServices.AddNewRecord(MaPN, masp.getID(), SoLuong, DonGia);
-        if(rowEffected > 0){
-        JOptionPane.showMessageDialog(null, "Thêm thành công!");
+        if (rowEffected > 0) {
+            JOptionPane.showMessageDialog(null, "Thêm thành công!");
             showDataList(MaPN);
         }
     }//GEN-LAST:event_btnThemActionPerformed
@@ -419,21 +416,20 @@ public class CT_Phieunhap extends javax.swing.JFrame {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         String MaCTPN = txt_mactpn.getText().trim();
         String MaPN = txt_mapn.getText().trim();
-        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa chi tiết phiếu xuất "+MaCTPN+" ?", "Confirmation...",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa chi tiết phiếu xuất " + MaCTPN + " ?", "Confirmation...",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        if(input == 0)
-        {
-      
+        if (input == 0) {
+
             int rowEffected = phieunhapCTServices.DeleteRecord(MaCTPN);
-            if(rowEffected > 0){
+            if (rowEffected > 0) {
                 showDataList(MaPN);
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
             }
-            else
-            JOptionPane.showMessageDialog(null, "Xóa thất bại");
         }
-        
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -441,24 +437,21 @@ public class CT_Phieunhap extends javax.swing.JFrame {
         String MaPN = txt_mapn.getText().trim();
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
         int SoLuong = Integer.valueOf(txtSoLuong.getText().trim());
-        
-        String DG = txtDonGia.getText().trim().replaceAll("\\.","").replaceAll(",","");
-        long DonGia = Integer.valueOf(DG);
-        
+        long DonGia = Long.valueOf(txtDonGia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
+
         int rowEffected = phieunhapCTServices.UpdateRecord(MaCTPN, MaPN, masp.getID(), SoLuong, DonGia);
-        if(rowEffected > 0){
+        if (rowEffected > 0) {
             JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
             showDataList(MaPN);
-        }
-        else
-        JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+        } else
+            JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
     }//GEN-LAST:event_btnSuaActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -483,7 +476,6 @@ public class CT_Phieunhap extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CT_Phieunhap().setVisible(true);
@@ -514,5 +506,4 @@ public class CT_Phieunhap extends javax.swing.JFrame {
     private javax.swing.JComboBox<sanphamTT> txt_masp;
     // End of variables declaration//GEN-END:variables
 
-    
 }

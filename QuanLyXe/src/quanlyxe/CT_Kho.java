@@ -27,15 +27,14 @@ public class CT_Kho extends javax.swing.JFrame {
 
     ct_khoTT selectedCTKho = null;
     ct_khoXL ct_khoservices = new ct_khoXL();
-    
+
     sanphamXL sanphamService = new sanphamXL();
     khoXL khoService = new khoXL();
-    
+
     ArrayList<sanphamTT> dsSanpham = new ArrayList<>();
     ArrayList<ct_khoTT> dsCTKho = new ArrayList<>();
-    ArrayList<khoTT> dsKho= new ArrayList<>();
-    
-    
+    ArrayList<khoTT> dsKho = new ArrayList<>();
+
     public CT_Kho() {
         initComponents();
         loadSanpham();
@@ -260,67 +259,65 @@ public class CT_Kho extends javax.swing.JFrame {
         // Thoat form
         Kho kho = new Kho();
         this.dispose();
-        
+
         //vi tri giua man hinh
         kho.pack();
-        kho.setLocationRelativeTo(null);        
+        kho.setLocationRelativeTo(null);
         kho.setVisible(true);
     }//GEN-LAST:event_btnCloseActionPerformed
 
-    
-    private void loadSanpham(){
+    private void loadSanpham() {
         txt_masp.removeAllItems();
         dsSanpham = sanphamService.getAllRecords();
-        for(sanphamTT item : dsSanpham){
-            txt_masp.addItem(item);            
+        for (sanphamTT item : dsSanpham) {
+            txt_masp.addItem(item);
         }
-        
+
         //jcbAuthor = new JComboBox(new DefaultComboBoxModel(authors));
         txt_masp.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if(value instanceof sanphamTT){
+                if (value instanceof sanphamTT) {
                     sanphamTT sanpham = (sanphamTT) value;
                     setText(String.valueOf(sanpham.getName()));
                 }
                 return this;
             }
-        } );
+        });
     }
-     
+
     public ct_khoTT findCTKho(String ctMaKho, ArrayList<ct_khoTT> ct_KhoTT) {
-      for (ct_khoTT item : ct_KhoTT) {
-          if(item.getCTMaKho().equals(ctMaKho)) {
-              return item;
-          }
-      }
-      return null;
+        for (ct_khoTT item : ct_KhoTT) {
+            if (item.getCTMaKho().equals(ctMaKho)) {
+                return item;
+            }
+        }
+        return null;
     }
-    
+
     public sanphamTT findSanpham(String ID, ArrayList<sanphamTT> sanpham) {
-      for (sanphamTT item : sanpham) {
-          if(item.getID().equals(ID)) {
-              return item;
-          }
-      }
-      return null;
+        for (sanphamTT item : sanpham) {
+            if (item.getID().equals(ID)) {
+                return item;
+            }
+        }
+        return null;
     }
-    
-    
-    private void showDataDetail(String CTMaKho, String MaKho, String MaSP, long Soluong){
-        
-        txt_mactkho.setText(CTMaKho);        
+
+    private void showDataDetail(String CTMaKho, String MaKho, String MaSP, long Soluong) {
+
+        txt_mactkho.setText(CTMaKho);
         txt_makho.setText(MaKho);
-        
-        if(selectedCTKho != null){ 
+
+        if (selectedCTKho != null) {
             txt_masp.setSelectedItem(findSanpham(selectedCTKho.getMaSP(), dsSanpham));
-        }         
-        
+        }
+
         txt_soluong.setText(String.valueOf(Soluong));
     }
-    
-     public void gridSelectedChanged(ListSelectionEvent e) {
+
+    public void gridSelectedChanged(ListSelectionEvent e) {
         String selectedData = null;
         String selectedID = "";  //Mã chi tiết hóa đơn
 
@@ -332,43 +329,42 @@ public class CT_Kho extends javax.swing.JFrame {
 
         System.out.println("selectedRow: " + selectedRow);
         System.out.println("selectedColumn: " + selectedColumn);
-        
-        if(selectedRow >=0 && selectedColumn >=0){
+
+        if (selectedRow >= 0 && selectedColumn >= 0) {
             selectedData = String.valueOf(jTableData.getValueAt(selectedRow, selectedColumn));
             selectedID = (String) jTableData.getValueAt(selectedRow, 0);
             //Find chi tiết hóa đơn
             selectedCTKho = findCTKho(selectedID, dsCTKho);
-            
-            System.out.println("Selected: " + selectedData + " , MaHoaDon: " + selectedID);    
-            
-            
-            showDataDetail(selectedID, 
-                (String) jTableData.getValueAt(selectedRow, 1),
-                (String) jTableData.getValueAt(selectedRow, 2),   
-                (long) jTableData.getValueAt(selectedRow,3));  
+
+            System.out.println("Selected: " + selectedData + " , MaHoaDon: " + selectedID);
+
+            showDataDetail(selectedID,
+                    (String) jTableData.getValueAt(selectedRow, 1),
+                    (String) jTableData.getValueAt(selectedRow, 2),
+                    (long) jTableData.getValueAt(selectedRow, 3));
         }
     }
-    
-    public void showDataList(String MaKho){
-    
-        DefaultTableModel model = (DefaultTableModel)this.jTableData.getModel(); 
+
+    public void showDataList(String MaKho) {
+
+        DefaultTableModel model = (DefaultTableModel) this.jTableData.getModel();
         model.setRowCount(0);
-                
+
         //load data
         ArrayList<ct_khoTT> list = ct_khoservices.getAllRecords(MaKho);
         dsCTKho = list;
-        
+
         Object[] row = new Object[7];
-        
-        for(int i = 0; i < list.size(); i++){
-            
+
+        for (int i = 0; i < list.size(); i++) {
+
             row[0] = list.get(i).getCTMaKho();
             row[1] = list.get(i).getMaKho();
             row[2] = list.get(i).getMaSP();
-            row[3] = list.get(i).getSoLuong();            
+            row[3] = list.get(i).getSoLuong();
             model.addRow(row);
         }
-        
+
         ListSelectionModel cellSelectionModel = jTableData.getSelectionModel();
         cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Dang ky event click tren danh sach        
@@ -377,45 +373,43 @@ public class CT_Kho extends javax.swing.JFrame {
                 //goi ham show data chi tiet
                 gridSelectedChanged(e);
             }
-          });
+        });
     }
-    
-    
+
+
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // Cap Nhat record
-        String CTMaKho  = txt_mactkho.getText().trim();
+        String CTMaKho = txt_mactkho.getText().trim();
         String MaKho = txt_makho.getText().trim();
         sanphamTT MaSP = (sanphamTT) txt_masp.getSelectedItem();
         long Soluong = Long.valueOf(txt_soluong.getText().trim());
 
         int rowEffected = ct_khoservices.UpdateRecord(CTMaKho, MaKho, MaSP.getID(), Soluong);
-        if(rowEffected > 0){
+        if (rowEffected > 0) {
             showDataList(MaKho);
             JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
-        }
-        else
-        JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+        } else
+            JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         //Xoa Record
 
-        String CTMaKho  = txt_mactkho.getText().trim();
+        String CTMaKho = txt_mactkho.getText().trim();
         String MaKho = txt_makho.getText().trim();
-        
-        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa chi tiết kho "+CTMaKho+" không?", "Confirmation...",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        if(input == 0)
-        {
+        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa chi tiết kho " + CTMaKho + " không?", "Confirmation...",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (input == 0) {
             //Xoa
             int rowEffected = ct_khoservices.DeleteRecord(CTMaKho);
-            if(rowEffected > 0){
+            if (rowEffected > 0) {
                 showDataList(MaKho);
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
             }
-            else
-            JOptionPane.showMessageDialog(null, "Xóa thất bại");
         }
 
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -427,12 +421,11 @@ public class CT_Kho extends javax.swing.JFrame {
         long Soluong = Long.valueOf(txt_soluong.getText().trim());
 
         int rowEffected = ct_khoservices.AddNewRecord(MaKho, MaSP.getID(), Soluong);
-        if(rowEffected > 0){
+        if (rowEffected > 0) {
             showDataList(MaKho);
             JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
-        }
-        else
-        JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
+        } else
+            JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void txt_maspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_maspActionPerformed

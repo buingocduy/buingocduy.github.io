@@ -47,6 +47,7 @@ CREATE TABLE sanpham(
 	MaSP varchar (10) NOT NULL,
 	TenSP nvarchar (100) NOT NULL,	
 	Maloai varchar(10) NOT NULL,
+	GiaBan bigint,
 	MaNCC varchar(10) NOT NULL,
 	NamSanXuat varchar(10) NOT NULL,
 	Primary key(MaSP))
@@ -193,7 +194,7 @@ insert into taikhoan values ('admin','123','admin',6/6/1999,'admin@gmail.com',09
 go
 
 /*Loại xe*/
-insert into loaixe values ('XM',N'Xe số')
+insert into loaixe values ('XS',N'Xe số')
 insert into loaixe values ('XCT',N'Xe côn tay')
 insert into loaixe values ('XTG',N'Xe tay ga')
 go
@@ -212,12 +213,12 @@ insert into khachhang values (N'Trần Văn Kỳ',N'475A Điện Biên Phủ, P.
 go
 
 /*Sản phẩm*/
-insert into sanpham values ('WINX','WINNER X','XCT','HONDA','2020')
-insert into sanpham values ('EX','EXCITER 150','XCT','YAMAHA','2020')
-insert into sanpham values ('RAI','RAIDER 150','XCT','SUZUKI','2020')
-insert into sanpham values ('VS','VISION 110','XTG','HONDA','2020')
-insert into sanpham values ('FG','FREEGO 125','XTG','YAMAHA','2020')
-insert into sanpham values ('GD','GD 110','XCT','SUZUKI','2020')
+insert into sanpham values ('WINX','WINNER X','XCT','41000000','HONDA','2020')
+insert into sanpham values ('EX','EXCITER 150','XCT','50000000','YAMAHA','2020')
+insert into sanpham values ('RAI','RAIDER 150','XCT','50000000','SUZUKI','2020')
+insert into sanpham values ('VS','VISION 110','XTG','30000000','HONDA','2020')
+insert into sanpham values ('FG','FREEGO 125','XTG','30000000','YAMAHA','2020')
+insert into sanpham values ('GD','GD 110','XCT','22000000','SUZUKI','2020')
 go
 
 /*Hóa đơn*/

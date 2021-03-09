@@ -10,9 +10,10 @@ package quanlyxe.thucthe;
  * @author Bui Ngoc Duy
  */
 public class ct_phieuxuatTT {
-    private String MaCTPX,MaPX;
+
+    private String MaCTPX, MaPX;
     private String MaSP;
-    private long SoLuong,DonGia;
+    private long SoLuong, DonGia;
 
     public ct_phieuxuatTT(String MaCTPX, String MaPX, String MaSP, long SoLuong, long DonGia) {
         this.MaCTPX = MaCTPX;
@@ -62,8 +63,4 @@ public class ct_phieuxuatTT {
         this.DonGia = DonGia;
     }
 
-    
-   
-    
-    
 }

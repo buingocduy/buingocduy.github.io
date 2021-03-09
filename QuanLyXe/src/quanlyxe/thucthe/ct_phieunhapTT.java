@@ -10,9 +10,10 @@ package quanlyxe.thucthe;
  * @author BND6699
  */
 public class ct_phieunhapTT {
-    private String MaCTPN,MaPN;
+
+    private String MaCTPN, MaPN;
     private String MaSP;
-    private long SoLuong,DonGia;   
+    private long SoLuong, DonGia;
 
     public ct_phieunhapTT(String MaCTPN, String MaPN, String MaSP, long SoLuong, long DonGia) {
         this.MaCTPN = MaCTPN;
@@ -61,6 +62,5 @@ public class ct_phieunhapTT {
     public void setDonGia(long DonGia) {
         this.DonGia = DonGia;
     }
-    
-    
+
 }

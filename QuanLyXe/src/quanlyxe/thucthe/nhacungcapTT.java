@@ -12,6 +12,7 @@ import java.util.Date;
  * @author Bùi Ngọc Duy
  */
 public class nhacungcapTT {
+
     private String MaNCC, TenNCC, DiaChi, Email, Phone;
 
     public nhacungcapTT(String MaNCC, String TenNCC, String DiaChi, String Email, String Phone) {
@@ -62,6 +63,4 @@ public class nhacungcapTT {
         this.Phone = Phone;
     }
 
-    
-   
 }

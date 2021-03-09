@@ -12,6 +12,7 @@ import java.util.Date;
  * @author BND6699
  */
 public class taikhoanTT {
+
     private String username, password, hoten, email, phone;
     private Date ngaysinh, ngaybatdau;
 
@@ -52,7 +53,5 @@ public class taikhoanTT {
     public Date getNgaybatdau() {
         return ngaybatdau;
     }
-    
-    
 
 }

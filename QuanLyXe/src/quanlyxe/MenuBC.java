@@ -122,22 +122,21 @@ public class MenuBC extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_doanhsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_doanhsoActionPerformed
-     
+
         Date startDate = ngaybatdau.getDate();
         Date endDate = ngaykethuc.getDate();
-        
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
-   
-        if(startDate == null | endDate == null) 
-        {
-           JOptionPane.showMessageDialog(null, "Hãy chọn ngày bắt đầu và kết thúc");
-        } else {
-            String strngaybd = formatter.format(startDate); 
-            String strngaytk = formatter.format(endDate); 
-            Baocao baocao = new Baocao();
-            baocao.showDataList(strngaybd,strngaytk);
 
-                 //vi tri giua man hinh va maximize
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        if (startDate == null | endDate == null) {
+            JOptionPane.showMessageDialog(null, "Hãy chọn ngày bắt đầu và kết thúc");
+        } else {
+            String strngaybd = formatter.format(startDate);
+            String strngaytk = formatter.format(endDate);
+            Baocao baocao = new Baocao();
+            baocao.showDataList(strngaybd, strngaytk);
+
+            //vi tri giua man hinh va maximize
             baocao.pack();
             baocao.setLocationRelativeTo(null);
             baocao.setVisible(true);

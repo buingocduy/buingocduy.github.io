@@ -21,8 +21,6 @@ public class QuanLyXe {
         dangnhap.pack();
         dangnhap.setLocationRelativeTo(null);
         dangnhap.setVisible(true);
-        
-   
     }
-    
+
 }

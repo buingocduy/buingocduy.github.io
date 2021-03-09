@@ -12,6 +12,7 @@ import java.util.Date;
  * @author BND6699
  */
 public class hoadonTT {
+
     String MaHoaDon;
     Date Ngay;
     int MaKH;
@@ -76,5 +77,4 @@ public class hoadonTT {
         this.UserID = UserID;
     }
 
-    
 }

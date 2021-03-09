@@ -15,82 +15,76 @@ import quanlyxe.thucthe.*;
  * @author BND6699
  */
 public class ct_khoXL {
-    
-     //lay danh sach CT_KHO
-    public ArrayList<ct_khoTT> getAllRecords(String MaKho){
-        ArrayList<ct_khoTT> list = new ArrayList<ct_khoTT>();
-        try{        
-            hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("SELECT * FROM ct_kho where MaKho = '"+MaKho+"'");
 
-            while(rs.next()){
-                ct_khoTT ct_khoTT = new ct_khoTT(rs.getString("CTMaKho"), rs.getString("MaKho"), rs.getString("MaSP"),rs.getLong("Soluong"));
+    //lay danh sach CT_KHO
+    public ArrayList<ct_khoTT> getAllRecords(String MaKho) {
+        ArrayList<ct_khoTT> list = new ArrayList<ct_khoTT>();
+        try {
+            hienthi_sql acc = new hienthi_sql();
+            ResultSet rs = acc.Query("SELECT * FROM ct_kho where MaKho = '" + MaKho + "'");
+
+            while (rs.next()) {
+                ct_khoTT ct_khoTT = new ct_khoTT(rs.getString("CTMaKho"), rs.getString("MaKho"), rs.getString("MaSP"), rs.getLong("Soluong"));
                 list.add(ct_khoTT);
-            }            
-        }
-        catch(Exception e){
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return list;
     }
-       
+
     //Tao moi
-    public int AddNewRecord(String MaKho, String MaSP, long Soluong){
+    public int AddNewRecord(String MaKho, String MaSP, long Soluong) {
         int rowCount = 0;
-        try{
+        try {
 
             hienthi_sql acc = new hienthi_sql();
-            String sql = "INSERT INTO ct_kho (MaKho,MaSP,Soluong) VALUES('"+ MaKho +"'" +
-                    ",'" + MaSP +"'" +                    
-                    ",'" + Soluong +"')";                    
-            
+            String sql = "INSERT INTO ct_kho (MaKho,MaSP,Soluong) VALUES('" + MaKho + "'"
+                    + ",'" + MaSP + "'"
+                    + ",'" + Soluong + "')";
+
             System.out.println(sql);
-            
+
             rowCount = acc.Update(sql);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return rowCount;
     }
-    
+
     //Cap nhat
-    public int UpdateRecord(String CTMaKho, String MaKho, String MaSP, long Soluong){
+    public int UpdateRecord(String CTMaKho, String MaKho, String MaSP, long Soluong) {
         int rowCount = 0;
-        try{
-          
+        try {
+
             hienthi_sql acc = new hienthi_sql();
-            String sql = "UPDATE ct_kho SET MaKho ='" + MaKho +"'" +
-                    ", MaSP   ='"    + MaSP   +"'" +
-                    ", Soluong    ='"     + Soluong     +"'" +
-                    " WHERE CTMaKho = " + CTMaKho +"";
-            
+            String sql = "UPDATE ct_kho SET MaKho ='" + MaKho + "'"
+                    + ", MaSP   ='" + MaSP + "'"
+                    + ", Soluong    ='" + Soluong + "'"
+                    + " WHERE CTMaKho = " + CTMaKho + "";
+
             System.out.println(sql);
             rowCount = acc.Update(sql);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return rowCount;
     }
-    
+
     //Cap nhat
-    public int DeleteRecord(String CTMaKho){
+    public int DeleteRecord(String CTMaKho) {
         int rowCount = 0;
-        try{
-                
+        try {
+
             hienthi_sql acc = new hienthi_sql();
-            String sql = "DELETE FROM ct_kho WHERE CTMaKho = '" + CTMaKho +"'";
-            
+            String sql = "DELETE FROM ct_kho WHERE CTMaKho = '" + CTMaKho + "'";
+
             System.out.println(sql);
-            
+
             rowCount = acc.Update(sql);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return rowCount;
     }
 }
-    
-

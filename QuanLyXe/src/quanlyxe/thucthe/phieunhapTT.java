@@ -12,6 +12,7 @@ import java.util.Date;
  * @author BND6699
  */
 public class phieunhapTT {
+
     private String MaPN, Username, MaNCC;
     private Date NgayNhap;
     private int MaKho;
@@ -63,6 +64,5 @@ public class phieunhapTT {
     public void setMaKho(int MaKho) {
         this.MaKho = MaKho;
     }
-    
-    
+
 }

@@ -22,14 +22,14 @@ public class Baocao extends javax.swing.JFrame {
 
     hoadonTT selectedHoaDon = null;
     baocaoXL baocaoservices = new baocaoXL();
-    
+
     taikhoanXL userService = new taikhoanXL();
     khachhangXL CusService = new khachhangXL();
-    
+
     ArrayList<khachhangTT> dskh = new ArrayList<>();
     ArrayList<taikhoanTT> dsuser = new ArrayList<>();
     ArrayList<hoadonTT> dsHoaDon = new ArrayList<>();
-    
+
     public Baocao() {
         initComponents();
     }
@@ -128,34 +128,32 @@ public class Baocao extends javax.swing.JFrame {
             }
         });
     }
-    
-  
-    public void showDataList(String startDate, String endDate){
-        
-        DefaultTableModel model = (DefaultTableModel)this.jTable1.getModel(); 
+
+    public void showDataList(String startDate, String endDate) {
+
+        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
         model.setRowCount(0);
-                
+
         //load data
         ArrayList<hoadonTT> list = baocaoservices.getRecords(startDate, endDate);
         dsHoaDon = list;
-        
+
         Object[] row = new Object[7];
-        
-        for(int i = 0; i < list.size(); i++){
-            
+
+        for (int i = 0; i < list.size(); i++) {
+
             row[0] = list.get(i).getMaHoaDon();
             row[1] = list.get(i).getNgay();
             row[2] = list.get(i).getMaKH();
             row[3] = list.get(i).getHinhThucTT();
             row[4] = list.get(i).getTongTien();
             row[5] = list.get(i).getUserID();
-            
+
             model.addRow(row);
-        } 
+        }
     }
-    
-   
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;

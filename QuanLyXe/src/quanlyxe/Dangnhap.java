@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import quanlyxe.xuly.hienthi_sql;
 
 import java.sql.ResultSet;
+
 /**
  *
  * @author BND6699
@@ -20,7 +21,7 @@ public class Dangnhap extends javax.swing.JFrame {
      */
     public Dangnhap() {
         initComponents();
-            this.getRootPane().setDefaultButton(btnDangNhap);
+        this.getRootPane().setDefaultButton(btnDangNhap);
     }
 
     /**
@@ -124,18 +125,17 @@ public class Dangnhap extends javax.swing.JFrame {
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             String username = txtUsername.getText().trim();
             String pass = new String(txtPassword.getPassword()).trim();
 
-            if(username.isEmpty() || pass.isEmpty()){
+            if (username.isEmpty() || pass.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "tài khoản hoặc mật khẩu không hợp lệ");
                 return;
-            }
-            else{
+            } else {
                 hienthi_sql acc = new hienthi_sql();
-                ResultSet rs = acc.Query("select * from taikhoan where username='" + username +"' and password='" + pass +"'");
-                if(rs.next()){
+                ResultSet rs = acc.Query("select * from taikhoan where username='" + username + "' and password='" + pass + "'");
+                if (rs.next()) {
                     JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
                     //close form
                     this.dispose();
@@ -149,12 +149,11 @@ public class Dangnhap extends javax.swing.JFrame {
                     menu.setLocationRelativeTo(null);
                     menu.setVisible(true);
                     //frMain.setExtendedState(frMain.MAXIMIZED_BOTH);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Đăng nhập thất bại");
                 }
-                else
-                JOptionPane.showMessageDialog(null, "Đăng nhập thất bại");
             }
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed

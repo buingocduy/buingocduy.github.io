@@ -16,20 +16,17 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Nguyen Xuan Vinh
+ * @author BND
  */
 public class LoaiSP extends javax.swing.JFrame {
 
     loaixeXL loaixe = new loaixeXL();
-    /**
-     * Creates new form frmAuthor
-     */
+
     public LoaiSP() {
         initComponents();
-        
+
         //set form title
         this.setTitle("Quản lý thông tin loại xe");
-        //show list tác giả
         showDataList();;
     }
 
@@ -316,58 +313,57 @@ public class LoaiSP extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-                  
+
         String categoryID = txtID.getText().trim();
         String categoyName = txtCategoryName.getText().trim();
-        
+
         //goi ham trong package "quanglyxe.xyly"
-        int rowEffected = loaixe.AddNewRecord(categoryID,categoyName);
-        if(rowEffected > 0){
+        int rowEffected = loaixe.AddNewRecord(categoryID, categoyName);
+        if (rowEffected > 0) {
             showDataList();
             JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
         }
-        else
-        JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
-        
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-               
+
         String categoryID = txtID.getText().trim();
         String categoryName = txtCategoryName.getText().trim();
-        
+
         //goi ham trong package "quanglyxe.xyly"
         int rowEffected = loaixe.UpdateRecord(categoryID, categoryName);
-        if(rowEffected > 0){
+        if (rowEffected > 0) {
             showDataList();
             JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
         }
-        else
-        JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
-        
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-      
+
         String categoryID = txtID.getText().trim();
 
-        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa loại xe "+categoryID+" không?", "Confirmation...",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa loại xe " + categoryID + " không?", "Confirmation...",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        System.out.println("Delete data? =" +input);
+        System.out.println("Delete data? =" + input);
 
-        if(input == 0)
-        {
+        if (input == 0) {
             //goi ham trong package "quanglyxe.xyly"
             int rowEffected = loaixe.DeleteRecord(categoryID);
-            if(rowEffected > 0){
+            if (rowEffected > 0) {
                 showDataList();
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
             }
-            else
-            JOptionPane.showMessageDialog(null, "Xóa thất bại");
         }
-        
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
@@ -384,25 +380,25 @@ public class LoaiSP extends javax.swing.JFrame {
         //Load bộ dữ liệu tìm kiếm
         showSearchDataList();
     }//GEN-LAST:event_btn_timkiemActionPerformed
-    
-    private void showSearchDataList(){
+
+    private void showSearchDataList() {
         String Tenloai = txt_timkiem.getText().trim();
-        DefaultTableModel model = (DefaultTableModel)this.jTableData.getModel(); 
+        DefaultTableModel model = (DefaultTableModel) this.jTableData.getModel();
         model.setRowCount(0);
-                
+
         //load data
         ArrayList<loaixeTT> list = loaixe.getRecords(Tenloai);
-               
+
         Object[] row = new Object[7];
-        
-        for(int i = 0; i < list.size(); i++){
-            
+
+        for (int i = 0; i < list.size(); i++) {
+
             row[0] = list.get(i).getMaloai();
             row[1] = list.get(i).getTenloai();
-                                    
+
             model.addRow(row);
         }
-        
+
         ListSelectionModel cellSelectionModel = jTableData.getSelectionModel();
         cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Dang ky event click tren danh sach        
@@ -411,27 +407,27 @@ public class LoaiSP extends javax.swing.JFrame {
                 //goi ham show data chi tiet
                 gridSelectedChanged(e);
             }
-          });
+        });
     }
-    
-    private void showDataList(){
-        
-        DefaultTableModel model = (DefaultTableModel)this.jTableData.getModel(); 
+
+    private void showDataList() {
+
+        DefaultTableModel model = (DefaultTableModel) this.jTableData.getModel();
         model.setRowCount(0);
-                
+
         //load data
         ArrayList<loaixeTT> list = loaixe.getAllRecords();
-               
+
         Object[] row = new Object[7];
-        
-        for(int i = 0; i < list.size(); i++){
-            
+
+        for (int i = 0; i < list.size(); i++) {
+
             row[0] = list.get(i).getMaloai();
             row[1] = list.get(i).getTenloai();
-                                    
+
             model.addRow(row);
         }
-        
+
         ListSelectionModel cellSelectionModel = jTableData.getSelectionModel();
         cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Dang ky event click tren danh sach        
@@ -440,9 +436,9 @@ public class LoaiSP extends javax.swing.JFrame {
                 //goi ham show data chi tiet
                 gridSelectedChanged(e);
             }
-          });
+        });
     }
-    
+
     public void gridSelectedChanged(ListSelectionEvent e) {
         String selectedData = null;
         String selectedID = ""; //username
@@ -455,26 +451,26 @@ public class LoaiSP extends javax.swing.JFrame {
 
         System.out.println("selectedRow: " + selectedRow);
         System.out.println("selectedColumn: " + selectedColumn);
-        
-        if(selectedRow >=0 && selectedColumn >=0){
+
+        if (selectedRow >= 0 && selectedColumn >= 0) {
             selectedData = String.valueOf(jTableData.getValueAt(selectedRow, selectedColumn));
             selectedID = (String) jTableData.getValueAt(selectedRow, 0);
 
             System.out.println("Selected: " + selectedData + " , username: " + selectedID);
 
-            showDataDetail(selectedID, 
-                (String) jTableData.getValueAt(selectedRow, 1)
-                );                
+            showDataDetail(selectedID,
+                    (String) jTableData.getValueAt(selectedRow, 1)
+            );
         }
     }
-    
-    private void showDataDetail(String categoryID, String categoryName){
-        
-        txtID.setText(categoryID);        
+
+    private void showDataDetail(String categoryID, String categoryName) {
+
+        txtID.setText(categoryID);
         txtCategoryName.setText(categoryName);
-                
+
     }
-    
+
     /**
      * @param args the command line arguments
      */

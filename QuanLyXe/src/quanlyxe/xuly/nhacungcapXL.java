@@ -14,102 +14,99 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Vinh
+ * @author Bùi Ngọc Duy
  */
 public class nhacungcapXL {
+
     //lay danh sach toàn bộ UserAccount
-    public ArrayList<nhacungcapTT> getAllRecords(){
+    public ArrayList<nhacungcapTT> getAllRecords() {
         ArrayList<nhacungcapTT> list = new ArrayList<nhacungcapTT>();
-        try{        
+        try {
             hienthi_sql acc = new hienthi_sql();
             ResultSet rs = acc.Query("SELECT * FROM nhacungcap");
 
-            while(rs.next()){
-                nhacungcapTT ncc = new nhacungcapTT(rs.getString("MaNCC"), rs.getString("TenNCC"), 
-                        rs.getString("DiaChi"), rs.getString("Email"),rs.getString("SDT"));
+            while (rs.next()) {
+                nhacungcapTT ncc = new nhacungcapTT(rs.getString("MaNCC"), rs.getString("TenNCC"),
+                        rs.getString("DiaChi"), rs.getString("Email"), rs.getString("SDT"));
                 list.add(ncc);
-            }            
-        }
-        catch(Exception e){
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return list;
     }
-    
-    // lấy danh sách theo tìm kiếm
-    public ArrayList<nhacungcapTT> getRecords(String MaNCC){
-        ArrayList<nhacungcapTT> list = new ArrayList<nhacungcapTT>();
-        try{        
-            hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("SELECT * FROM nhacungcap WHERE MaNCC = '"+MaNCC+"'");
 
-            while(rs.next()){
-                nhacungcapTT ncc = new nhacungcapTT(rs.getString("MaNCC"), rs.getString("TenNCC"), 
-                        rs.getString("DiaChi"), rs.getString("Email"),rs.getString("SDT"));
+    // lấy danh sách theo tìm kiếm
+    public ArrayList<nhacungcapTT> getRecords(String MaNCC) {
+        ArrayList<nhacungcapTT> list = new ArrayList<nhacungcapTT>();
+        try {
+            hienthi_sql acc = new hienthi_sql();
+            ResultSet rs = acc.Query("SELECT * FROM nhacungcap WHERE MaNCC = '" + MaNCC + "'");
+
+            while (rs.next()) {
+                nhacungcapTT ncc = new nhacungcapTT(rs.getString("MaNCC"), rs.getString("TenNCC"),
+                        rs.getString("DiaChi"), rs.getString("Email"), rs.getString("SDT"));
                 list.add(ncc);
-            }            
-        }
-        catch(Exception e){
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return list;
     }
-    
+
     //Tao moi
-    public int AddNewRecord(String MaNCC, String tenNCC, String diaChi, String email, String phone){
+    public int AddNewRecord(String MaNCC, String tenNCC, String diaChi, String email, String phone) {
         int rowCount = 0;
-        try{
-                
+        try {
+
             hienthi_sql acc = new hienthi_sql();
-            String sql = "INSERT INTO nhacungcap (MaNCC,TenNCC, DiaChi, Email, SDT) VALUES(N'"+ MaNCC +"'"+
-                    ",N'" + tenNCC       +"'" + 
-                    ",N'" + diaChi       +"'" +
-                    ", '" + email        +"'" +                    
-                    ", '" + phone        +"'" +")";                    
-            
+            String sql = "INSERT INTO nhacungcap (MaNCC,TenNCC, DiaChi, Email, SDT) VALUES(N'" + MaNCC + "'"
+                    + ",N'" + tenNCC + "'"
+                    + ",N'" + diaChi + "'"
+                    + ", '" + email + "'"
+                    + ", '" + phone + "'" + ")";
+
             System.out.println(sql);
-            
+
             rowCount = acc.Update(sql);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return rowCount;
     }
+
     //Cap nhat
-    public int UpdateRecord(String MaNCC, String tenNCC, String diaChi, String email, String phone){
+    public int UpdateRecord(String MaNCC, String tenNCC, String diaChi, String email, String phone) {
         int rowCount = 0;
-        try{
-    
+        try {
+
             hienthi_sql acc = new hienthi_sql();
-            String sql = "UPDATE nhacungcap SET TenNCC=N'" + tenNCC + "'" +
-                    ", DiaChi =N'"      + diaChi +"'" +
-                    ", Email = '"       + email +"'" +
-                    ", SDT = '"       + phone +"'" +        
-                    " WHERE MaNCC = '"   + MaNCC + "'" ;
-            
+            String sql = "UPDATE nhacungcap SET TenNCC=N'" + tenNCC + "'"
+                    + ", DiaChi =N'" + diaChi + "'"
+                    + ", Email = '" + email + "'"
+                    + ", SDT = '" + phone + "'"
+                    + " WHERE MaNCC = '" + MaNCC + "'";
+
             System.out.println(sql);
             rowCount = acc.Update(sql);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return rowCount;
     }
-    
+
     //Cap nhat
-    public int DeleteRecord(String MaNCC){
+    public int DeleteRecord(String MaNCC) {
         int rowCount = 0;
-        try{
-                
+        try {
+
             hienthi_sql acc = new hienthi_sql();
-            String sql = "DELETE FROM nhacungcap WHERE MaNCC = '" + MaNCC +"'";
-            
+            String sql = "DELETE FROM nhacungcap WHERE MaNCC = '" + MaNCC + "'";
+
             System.out.println(sql);
-            
+
             rowCount = acc.Update(sql);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return rowCount;

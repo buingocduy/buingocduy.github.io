@@ -10,6 +10,7 @@ package quanlyxe.thucthe;
  * @author BND6699
  */
 public class ct_khoTT {
+
     String CTMaKho, MaKho, MaSP;
     long SoLuong;
 
@@ -51,6 +52,5 @@ public class ct_khoTT {
     public void setSoLuong(long SoLuong) {
         this.SoLuong = SoLuong;
     }
-            
-    
+
 }

@@ -1,6 +1,4 @@
-
 package quanlyxe;
-
 
 import java.beans.PropertyVetoException;
 import javax.swing.ImageIcon;
@@ -8,27 +6,28 @@ import javax.swing.JDesktopPane;
 
 /**
  *
- * @author 10520_000
+ * @author BND
  */
 public class MenuNX extends javax.swing.JInternalFrame {
 
     private JDesktopPane desktop;
+
     /**
      * Creates new form JIFTainguyen
      */
     public MenuNX() throws PropertyVetoException {
-        
+
         this.setFrameIcon(new ImageIcon("Image/login.png"));
-        javax.swing.plaf.InternalFrameUI gui  = this.getUI();  
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)gui).setNorthPane(null);
+        javax.swing.plaf.InternalFrameUI gui = this.getUI();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) gui).setNorthPane(null);
         initComponents();
-       
+
     }
-    
-    public void setTenUser(String username){        
+
+    public void setTenUser(String username) {
         this.txt_username.setText(username);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -182,23 +181,23 @@ public class MenuNX extends javax.swing.JInternalFrame {
         // Phiếu xuất
         Phieuxuat phieuxuat = new Phieuxuat();
         phieuxuat.setTenUser(txt_username.getText());
-            
+
         //vi tri giua man hinh
         phieuxuat.pack();
-        phieuxuat.setLocationRelativeTo(null);        
-        phieuxuat.setVisible(true);     
+        phieuxuat.setLocationRelativeTo(null);
+        phieuxuat.setVisible(true);
     }//GEN-LAST:event_btn_phieuxuatActionPerformed
 
     private void btn_phieunhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_phieunhapActionPerformed
         // Phiếu nhập
         Phieunhap phieunhap = new Phieunhap();
         phieunhap.setTenUser(txt_username.getText());
-            
+
         //vi tri giua man hinh
         phieunhap.pack();
-        phieunhap.setLocationRelativeTo(null);        
-        phieunhap.setVisible(true);  
- 
+        phieunhap.setLocationRelativeTo(null);
+        phieunhap.setVisible(true);
+
     }//GEN-LAST:event_btn_phieunhapActionPerformed
 
     private void btn_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thoatActionPerformed
@@ -210,10 +209,10 @@ public class MenuNX extends javax.swing.JInternalFrame {
         // Hóa đơn
         Hoadon hoadon = new Hoadon();
         hoadon.setTenUser(txt_username.getText());
-            
+
         //vi tri giua man hinh
         hoadon.pack();
-        hoadon.setLocationRelativeTo(null);        
+        hoadon.setLocationRelativeTo(null);
         hoadon.setVisible(true);
     }//GEN-LAST:event_btn_hoadonActionPerformed
 
@@ -232,16 +231,14 @@ public class MenuNX extends javax.swing.JInternalFrame {
 
     /**
      * @return the desktop
-     * 
+     *
      */
     public JDesktopPane getDesktop() {
         return desktop;
     }
 
-    
     public void setDesktop(JDesktopPane desktop) {
         this.desktop = desktop;
     }
 
-  
 }

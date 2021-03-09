@@ -22,17 +22,17 @@ import javax.swing.table.DefaultTableModel;
 public class Khachhang extends javax.swing.JFrame {
 
     khachhangXL custService = new khachhangXL();
+
     /**
      * Creates new form frmKhachHang
      */
     public Khachhang() {
         initComponents();
-        
+
         this.setTitle("Quản lý thông tin khách hàng");
         //load danh sach 
         showDataList();
-        
-        
+
     }
 
     /**
@@ -343,89 +343,86 @@ public class Khachhang extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // Tao Moi
-        String maKH = txtMaKH.getText().trim();        
+        String maKH = txtMaKH.getText().trim();
         String tenKH = txtTenKH.getText().trim();
         String diachi = txtDiaChi.getText().trim();
         String email = txtEmail.getText().trim();
         String phone = txtPhone.getText().trim();
-        
+
         //goi ham trong package "bookstore.dal"
         int rowEffected = custService.AddNewRecord(tenKH, diachi, email, phone);
-        if(rowEffected > 0){
+        if (rowEffected > 0) {
             showDataList();
             JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
-        }
-        else
-        JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
+        } else
+            JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // Cap Nhat record
-        String maKH = txtMaKH.getText().trim();        
+        String maKH = txtMaKH.getText().trim();
         String tenKH = txtTenKH.getText().trim();
         String diachi = txtDiaChi.getText().trim();
         String email = txtEmail.getText().trim();
         String phone = txtPhone.getText().trim();
         //goi ham trong package "bookstore.dal"
         int rowEffected = custService.UpdateRecord(Integer.valueOf(maKH), tenKH, diachi, email, phone);
-        if(rowEffected > 0){
+        if (rowEffected > 0) {
             showDataList();
             JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
-        }
-        else
-        JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+        } else
+            JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
     }//GEN-LAST:event_btnUpdateActionPerformed
-    
+
     //Xoa
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 
-        String maKH = txtMaKH.getText().trim();        
+        String maKH = txtMaKH.getText().trim();
         String tenKH = txtTenKH.getText().trim();
         String diachi = txtDiaChi.getText().trim();
         String email = txtEmail.getText().trim();
         String phone = txtPhone.getText().trim();
 
-        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa khách hàng "+tenKH+" này không?", "Confirmation...",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa khách hàng " + tenKH + " này không?", "Confirmation...",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        System.out.println("Delete data? =" +input);
+        System.out.println("Delete data? =" + input);
 
-        if(input == 0)
-        {
+        if (input == 0) {
             //Xoa
             //goi ham trong package "bookstore.dal"
             int rowEffected = custService.DeleteRecord(Integer.valueOf(maKH));
-            if(rowEffected > 0){
+            if (rowEffected > 0) {
                 showDataList();
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
             }
-            else
-            JOptionPane.showMessageDialog(null, "Xóa thất bại");
         }
 
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void showDataList(){
-        
-        DefaultTableModel model = (DefaultTableModel)this.jTableData.getModel(); 
+    private void showDataList() {
+
+        DefaultTableModel model = (DefaultTableModel) this.jTableData.getModel();
         model.setRowCount(0);
-                
+
         //load data
         ArrayList<khachhangTT> list = custService.getAllRecords();
-               
+
         Object[] row = new Object[7];
-        
-        for(int i = 0; i < list.size(); i++){
-            
+
+        for (int i = 0; i < list.size(); i++) {
+
             row[0] = list.get(i).getMaKH();
             row[1] = list.get(i).getTenKH();
             row[2] = list.get(i).getDiaChi();
             row[3] = list.get(i).getEmail();
             row[4] = list.get(i).getPhone();
-                        
+
             model.addRow(row);
         }
-        
+
         ListSelectionModel cellSelectionModel = jTableData.getSelectionModel();
         cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Dang ky event click tren danh sach        
@@ -434,30 +431,30 @@ public class Khachhang extends javax.swing.JFrame {
                 //goi ham show data chi tiet
                 gridSelectedChanged(e);
             }
-          });
+        });
     }
-    
-    private void showSearchDataList(){
+
+    private void showSearchDataList() {
         String Phone = txt_timkiem1.getText().trim();
-        DefaultTableModel model = (DefaultTableModel)this.jTableData.getModel(); 
+        DefaultTableModel model = (DefaultTableModel) this.jTableData.getModel();
         model.setRowCount(0);
-                
+
         //load data
         ArrayList<khachhangTT> list = custService.getRecords(Phone);
-               
+
         Object[] row = new Object[7];
-        
-        for(int i = 0; i < list.size(); i++){
-            
+
+        for (int i = 0; i < list.size(); i++) {
+
             row[0] = list.get(i).getMaKH();
             row[1] = list.get(i).getTenKH();
             row[2] = list.get(i).getDiaChi();
             row[3] = list.get(i).getEmail();
             row[4] = list.get(i).getPhone();
-                        
+
             model.addRow(row);
         }
-        
+
         ListSelectionModel cellSelectionModel = jTableData.getSelectionModel();
         cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Dang ky event click tren danh sach        
@@ -466,9 +463,9 @@ public class Khachhang extends javax.swing.JFrame {
                 //goi ham show data chi tiet
                 gridSelectedChanged(e);
             }
-          });
+        });
     }
-    
+
     public void gridSelectedChanged(ListSelectionEvent e) {
         String selectedData = null;
         int selectedID = 0; //username
@@ -481,30 +478,30 @@ public class Khachhang extends javax.swing.JFrame {
 
         System.out.println("selectedRow: " + selectedRow);
         System.out.println("selectedColumn: " + selectedColumn);
-        
-        if(selectedRow >=0 && selectedColumn >=0){
+
+        if (selectedRow >= 0 && selectedColumn >= 0) {
             selectedData = String.valueOf(jTableData.getValueAt(selectedRow, selectedColumn));
             selectedID = (int) jTableData.getValueAt(selectedRow, 0);
 
             System.out.println("Selected: " + selectedData + " , username: " + selectedID);
 
-            showDataDetail(selectedID, 
-                (String) jTableData.getValueAt(selectedRow, 1),
-                (String) jTableData.getValueAt(selectedRow, 2), 
-                (String) jTableData.getValueAt(selectedRow, 3),
-                (String) jTableData.getValueAt(selectedRow, 4));                
+            showDataDetail(selectedID,
+                    (String) jTableData.getValueAt(selectedRow, 1),
+                    (String) jTableData.getValueAt(selectedRow, 2),
+                    (String) jTableData.getValueAt(selectedRow, 3),
+                    (String) jTableData.getValueAt(selectedRow, 4));
         }
     }
-    
-    private void showDataDetail(int maKH, String tenKH, String diaChi, String email, String phone){
-        
-        txtMaKH.setText(""+ maKH);        
+
+    private void showDataDetail(int maKH, String tenKH, String diaChi, String email, String phone) {
+
+        txtMaKH.setText("" + maKH);
         txtTenKH.setText(tenKH);
         txtDiaChi.setText(diaChi);
         txtEmail.setText(email);
-        txtPhone.setText(phone);        
+        txtPhone.setText(phone);
     }
-        
+
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         // Thoat form
         this.dispose();

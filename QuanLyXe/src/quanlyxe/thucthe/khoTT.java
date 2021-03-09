@@ -12,6 +12,7 @@ import java.util.Date;
  * @author Bui Ngoc Duy
  */
 public class khoTT {
+
     private int MaKho;
     private String TenKho, DiaChi, Phone;
 
@@ -54,7 +55,4 @@ public class khoTT {
         this.Phone = Phone;
     }
 
-    
-    
-  
 }

@@ -6,16 +6,21 @@
 package quanlyxe.thucthe;
 
 /**
- * Xem / Xoa / Sua Sach
+ * Xem / Xoa / Sua 
+ *
  * @author Bùi Ngọc Duy
  */
 public class sanphamTT {
-    String ID, Name, categoryID, supplierID, publishingYear;
-    
-    public sanphamTT(String ID, String Name, String categoryID, String supplierID, String publishingYear) {
+
+    String ID, Name, categoryID;
+    long Price;
+    String supplierID, publishingYear;
+
+    public sanphamTT(String ID, String Name, String categoryID, long Price, String supplierID, String publishingYear) {
         this.ID = ID;
         this.Name = Name;
         this.categoryID = categoryID;
+        this.Price = Price;
         this.supplierID = supplierID;
         this.publishingYear = publishingYear;
     }
@@ -44,6 +49,14 @@ public class sanphamTT {
         this.categoryID = categoryID;
     }
 
+    public long getPrice() {
+        return Price;
+    }
+
+    public void setPrice(long Price) {
+        this.Price = Price;
+    }
+
     public String getSupplierID() {
         return supplierID;
     }
@@ -60,5 +73,4 @@ public class sanphamTT {
         this.publishingYear = publishingYear;
     }
 
-    
 }

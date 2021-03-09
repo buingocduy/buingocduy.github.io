@@ -10,6 +10,7 @@ package quanlyxe.thucthe;
  * @author Bùi Ngọc Duy
  */
 public class khachhangTT {
+
     int maKH;
     String tenKH, diaChi, email, phone;
 

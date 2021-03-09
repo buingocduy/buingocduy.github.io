@@ -7,9 +7,11 @@ package quanlyxe.thucthe;
 
 /**
  * Loại sản phẩm
+ *
  * @author Bùi Ngọc Duy
  */
 public class loaixeTT {
+
     String Maloai;
     String Tenloai;
 
@@ -34,5 +36,4 @@ public class loaixeTT {
         this.Tenloai = Tenloai;
     }
 
-    
 }

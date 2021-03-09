@@ -10,7 +10,8 @@ package quanlyxe.thucthe;
  * @author BND6699
  */
 public class ct_hoadonTT {
-    String MaCTHoaDon,MaHoaDon,MaSP;
+
+    String MaCTHoaDon, MaHoaDon, MaSP;
     long SoLuong;
     long Dongia;
 
@@ -62,6 +63,4 @@ public class ct_hoadonTT {
         this.Dongia = Dongia;
     }
 
-    
-    
 }

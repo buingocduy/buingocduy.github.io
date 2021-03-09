@@ -28,28 +28,26 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
     ct_hoadonTT selectedCTHoaDon = null;
     ct_hoadonXL ct_hoadonservices = new ct_hoadonXL();
-    
+
     sanphamXL sanphamService = new sanphamXL();
     hoadonXL hoadonService = new hoadonXL();
-    
+
     ArrayList<sanphamTT> dsSanpham = new ArrayList<>();
     ArrayList<ct_hoadonTT> dsCTHoaDon = new ArrayList<>();
     ArrayList<hoadonTT> dsHoaDon = new ArrayList<>();
-    
-    public void setMHD(String MaHD){        
-        this.txt_mahoadon.setText(MaHD);     
+
+    public void setMHD(String MaHD) {
+        this.txt_mahoadon.setText(MaHD);
     }
-    
+
     public CT_Hoadon() {
         
         initComponents();
-        
+        txt_soluong.setText("1");
         //load danh san pham     
         loadSanpham();
         
-        txt_soluong.setText("1");
-        txt_dongia.setText("0");     
-    }    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -235,6 +233,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
             }
         });
 
+        txt_dongia.setAutoscrolls(false);
         txt_dongia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_dongiaActionPerformed(evt);
@@ -350,71 +349,69 @@ public class CT_Hoadon extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- 
-    private void loadSanpham(){
+    private void loadSanpham() {
         txt_masp.removeAllItems();
         dsSanpham = sanphamService.getAllRecords();
-        for(sanphamTT item : dsSanpham){
-            txt_masp.addItem(item);            
+        for (sanphamTT item : dsSanpham) {
+            txt_masp.addItem(item);
         }
-        
+
         //jcbAuthor = new JComboBox(new DefaultComboBoxModel(authors));
         txt_masp.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if(value instanceof sanphamTT){
+                if (value instanceof sanphamTT) {
                     sanphamTT sanpham = (sanphamTT) value;
                     setText(String.valueOf(sanpham.getName()));
                 }
                 return this;
             }
-        } );
-    }
-     
-    public ct_hoadonTT findCTHoaDon(String MaCTHoaDon, ArrayList<ct_hoadonTT> cT_HoaDons) {
-      for (ct_hoadonTT item : cT_HoaDons) {
-          if(item.getMaCTHoaDon().equals(MaCTHoaDon)) {
-              return item;
-          }
-      }
-      return null;
-    }
-    
-    public sanphamTT findSanpham(String ID, ArrayList<sanphamTT> sanpham) {
-      for (sanphamTT item : sanpham) {
-          if(item.getID().equals(ID)) {
-              return item;
-          }
-      }
-      return null;
+        });
     }
 
-    
-    private void showDataDetail(String MaCTHoaDon, String MaHoaDon, String MaSP, long SoLuong, String Dongia){
-        
-        txt_macthoadon.setText(MaCTHoaDon);        
+    public ct_hoadonTT findCTHoaDon(String MaCTHoaDon, ArrayList<ct_hoadonTT> cT_HoaDons) {
+        for (ct_hoadonTT item : cT_HoaDons) {
+            if (item.getMaCTHoaDon().equals(MaCTHoaDon)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public sanphamTT findSanpham(String ID, ArrayList<sanphamTT> sanpham) {
+        for (sanphamTT item : sanpham) {
+            if (item.getID().equals(ID)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    private void showDataDetail(String MaCTHoaDon, String MaHoaDon, String MaSP, long SoLuong, String Dongia) {
+
+        txt_macthoadon.setText(MaCTHoaDon);
         txt_mahoadon.setText(MaHoaDon);
-        
-        if( selectedCTHoaDon != null){ 
+
+        if (selectedCTHoaDon != null) {
             txt_masp.setSelectedItem(findSanpham(selectedCTHoaDon.getMaSP(), dsSanpham));
-        }    
-        
+        }
+
         Locale localeEN = new Locale("en", "EN");
-        NumberFormat en = NumberFormat.getInstance(localeEN);     
-             
+        NumberFormat en = NumberFormat.getInstance(localeEN);
+
         txt_soluong.setText(String.valueOf(SoLuong));
         txt_dongia.setText(Dongia);
-        
-        long dg = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
+
+        long dg = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
         long sl = Long.valueOf(txt_soluong.getText().trim());
-        long tg = dg * sl;    
+        long tg = dg * sl;
         String str2 = en.format(tg);
-         
+
         txt_tonggia.setText(str2);
     }
-    
-     public void gridSelectedChanged(ListSelectionEvent e) {
+
+    public void gridSelectedChanged(ListSelectionEvent e) {
         String selectedData = null;
         String selectedID = "";  //Mã chi tiết hóa đơn
 
@@ -426,50 +423,48 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
         System.out.println("selectedRow: " + selectedRow);
         System.out.println("selectedColumn: " + selectedColumn);
-        
-        if(selectedRow >=0 && selectedColumn >=0){
+
+        if (selectedRow >= 0 && selectedColumn >= 0) {
             selectedData = String.valueOf(jTableData.getValueAt(selectedRow, selectedColumn));
             selectedID = (String) jTableData.getValueAt(selectedRow, 0);
             //Find chi tiết hóa đơn
             selectedCTHoaDon = findCTHoaDon(selectedID, dsCTHoaDon);
-            
-            System.out.println("Selected: " + selectedData + " , MaHoaDon: " + selectedID);    
-            
-            
-            showDataDetail(selectedID, 
-                (String) jTableData.getValueAt(selectedRow, 1),
-                (String) jTableData.getValueAt(selectedRow, 2),   
-                (long) jTableData.getValueAt(selectedRow, 3),              
-                (String) jTableData.getValueAt(selectedRow, 4));  
+
+            System.out.println("Selected: " + selectedData + " , MaHoaDon: " + selectedID);
+
+            showDataDetail(selectedID,
+                    (String) jTableData.getValueAt(selectedRow, 1),
+                    (String) jTableData.getValueAt(selectedRow, 2),
+                    (long) jTableData.getValueAt(selectedRow, 3),
+                    (String) jTableData.getValueAt(selectedRow, 4));
         }
     }
-    
-    public void showDataList(String MaHD){
-    
-        DefaultTableModel model = (DefaultTableModel)this.jTableData.getModel(); 
+
+    public void showDataList(String MaHD) {
+
+        DefaultTableModel model = (DefaultTableModel) this.jTableData.getModel();
         model.setRowCount(0);
-                
+
         //load data
         ArrayList<ct_hoadonTT> list = ct_hoadonservices.getAllRecords(MaHD);
         dsCTHoaDon = list;
-        
+
         Locale localeEN = new Locale("en", "EN");
-        NumberFormat en = NumberFormat.getInstance(localeEN);     
-       
-        
+        NumberFormat en = NumberFormat.getInstance(localeEN);
+
         Object[] row = new Object[7];
-        
-        for(int i = 0; i < list.size(); i++){
-            
+
+        for (int i = 0; i < list.size(); i++) {
+
             row[0] = list.get(i).getMaCTHoaDon();
             row[1] = list.get(i).getMaHoaDon();
             row[2] = list.get(i).getMaSP();
             row[3] = list.get(i).getSoLuong();
             row[4] = en.format(list.get(i).getDongia());
-            
+
             model.addRow(row);
         }
-        
+
         ListSelectionModel cellSelectionModel = jTableData.getSelectionModel();
         cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Dang ky event click tren danh sach        
@@ -478,30 +473,27 @@ public class CT_Hoadon extends javax.swing.JFrame {
                 //goi ham show data chi tiet
                 gridSelectedChanged(e);
             }
-          });
+        });
     }
-    
-    
-      
+
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // Tao Moi     
         String MaCTHoaDon = txt_macthoadon.getText().trim();
         String MaHD = txt_mahoadon.getText().trim();
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
-        long DonGia = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
+        long DonGia = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
         int SoLuong = Integer.valueOf(txt_soluong.getText().trim());
 
         //goi ham trong package "bookstore.dal"
         int rowEffected = ct_hoadonservices.AddNewRecord(MaHD, masp.getID(), SoLuong, DonGia);
-        if(rowEffected > 0){
+        if (rowEffected > 0) {
             JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
             showDataList(MaHD);
             Hoadon hoadon = new Hoadon();
             hoadon.showDataList();
-        }
-        else
-        JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
+        } else
+            JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -509,17 +501,17 @@ public class CT_Hoadon extends javax.swing.JFrame {
         String MaCTHoaDon = txt_macthoadon.getText().trim();
         String MaHD = txt_mahoadon.getText().trim();
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
-        long DonGia = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
+        long DonGia = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
         int SoLuong = Integer.valueOf(txt_soluong.getText().trim());
 
         //goi ham trong package "bookstore.dal"
         int rowEffected = ct_hoadonservices.UpdateRecord(MaCTHoaDon, MaHD, masp.getID(), SoLuong, DonGia);
-        if(rowEffected > 0){
+        if (rowEffected > 0) {
             showDataList(MaHD);
             JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
         }
-        else
-        JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -528,23 +520,22 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
         String MaCTHoaDon = txt_macthoadon.getText().trim();
         String MaHD = txt_mahoadon.getText().trim();
-        
-        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa chi tiết hóa đơn "+MaCTHoaDon+" không?", "Confirmation...",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        System.out.println("Delete data? =" +input);
+        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa chi tiết hóa đơn " + MaCTHoaDon + " không?", "Confirmation...",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        if(input == 0)
-        {
+        System.out.println("Delete data? =" + input);
+
+        if (input == 0) {
             //Xoa
             //goi ham trong package "bookstore.dal"
-            int rowEffected = ct_hoadonservices.DeleteRecord(MaCTHoaDon,MaHD);
-            if(rowEffected > 0){
+            int rowEffected = ct_hoadonservices.DeleteRecord(MaCTHoaDon, MaHD);
+            if (rowEffected > 0) {
                 showDataList(MaHD);
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
             }
-            else
-            JOptionPane.showMessageDialog(null, "Xóa thất bại");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -552,51 +543,68 @@ public class CT_Hoadon extends javax.swing.JFrame {
         // Hóa đơn
         Hoadon hoadon = new Hoadon();
         this.dispose();
-        
+
         //vi tri giua man hinh
         hoadon.pack();
-        hoadon.setLocationRelativeTo(null);        
+        hoadon.setLocationRelativeTo(null);
         hoadon.setVisible(true);
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void txt_maspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_maspActionPerformed
-        // TODO add your handling code here:
+        sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
+        System.out.println(masp.getName() + "-" + masp.getPrice());
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);
+
+        long giaban = masp.getPrice();
+        String str1 = en.format(giaban);
+        txt_dongia.setText(str1);
+
+        long dg = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
+        long sl = Long.valueOf(txt_soluong.getText().trim());
+        long tg = sl * dg;
+
+        if (tg > 1000000000) {
+            JOptionPane.showMessageDialog(null, "Tổng tiền tối đa 1 tỷ!");
+        } else {
+            long tien = tg;
+            String str2 = en.format(tien);
+            txt_tonggia.setText(str2);
+        }
     }//GEN-LAST:event_txt_maspActionPerformed
 
     private void txt_tonggiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tonggiaActionPerformed
-    
+
     }//GEN-LAST:event_txt_tonggiaActionPerformed
 
     private void txt_soluongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_soluongActionPerformed
-        long dg = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
+        long dg = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
         long sl = Long.valueOf(txt_soluong.getText().trim());
         long tg = sl * dg;
-        
-        if(tg > 1000000000)
-        {
-            JOptionPane.showMessageDialog(null, "Tổng tiền tối đa 1 tỷ!"); 
-        } else {  
+
+        if (tg > 1000000000) {
+            JOptionPane.showMessageDialog(null, "Tổng tiền tối đa 1 tỷ!");
+        } else {
             long tien = tg;
             Locale localeEN = new Locale("en", "EN");
-            NumberFormat en = NumberFormat.getInstance(localeEN);     
+            NumberFormat en = NumberFormat.getInstance(localeEN);
             String str1 = en.format(tien);
 
             txt_tonggia.setText(str1);
-        }     
+        }
     }//GEN-LAST:event_txt_soluongActionPerformed
 
     private void txt_dongiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dongiaActionPerformed
-        long dg = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.","").replaceAll(",",""));
+        long dg = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
         long sl = Long.valueOf(txt_soluong.getText().trim());
         long tg = sl * dg;
-        
-        if(tg > 1000000000)
-        {
-            JOptionPane.showMessageDialog(null, "Tổng tiền tối đa 1 tỷ!"); 
-        } else {  
+
+        if (tg > 1000000000) {
+            JOptionPane.showMessageDialog(null, "Tổng tiền tối đa 1 tỷ!");
+        } else {
             long tien = tg;
             Locale localeEN = new Locale("en", "EN");
-            NumberFormat en = NumberFormat.getInstance(localeEN);     
+            NumberFormat en = NumberFormat.getInstance(localeEN);
             String str1 = en.format(tien);
 
             txt_tonggia.setText(str1);
@@ -608,18 +616,17 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
         String MaCTHoaDon = txt_macthoadon.getText().trim();
         String MaHD = txt_mahoadon.getText().trim();
-        
-        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa toàn bộ hóa đơn "+MaHD+" không?", "Confirmation...",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        System.out.println("Delete data? =" +input);
+        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa toàn bộ hóa đơn " + MaHD + " không?", "Confirmation...",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        if(input == 0)
-        {
+        System.out.println("Delete data? =" + input);
+
+        if (input == 0) {
             //Xoa
             //goi ham trong package "bookstore.dal"
             int rowEffected = ct_hoadonservices.DeleteAll(MaHD);
-            if(rowEffected > 0){
+            if (rowEffected > 0) {
                 showDataList(MaHD);
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
                 Hoadon hoadon = new Hoadon();
@@ -627,14 +634,14 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
                 //vi tri giua man hinh
                 hoadon.pack();
-                hoadon.setLocationRelativeTo(null);        
+                hoadon.setLocationRelativeTo(null);
                 hoadon.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
             }
-            else
-            JOptionPane.showMessageDialog(null, "Xóa thất bại");
         }
     }//GEN-LAST:event_btn_xoahetActionPerformed
-       
+
     /**
      * @param args the command line arguments
      */
