@@ -305,6 +305,12 @@ delete from kho where MaKho = '1'
 
 select * from ct_hoadon where MaHoaDon = '1'
 
+select 'TongTien'=SUM(TongTien) 
+from hoadon 
+where Ngay between '2021-02-07' and '2021-02-09' 
+
+
+SELECT 'TongTien'=SUM(TongTien) FROM hoadon WHERE Ngay between '2021-02-07' and '2021-02-09' group by Ngay
 
 select Ngay, MaSP, SoLuong, MaKH, HinhThucTT, TongTien, Username 
 from ct_hoadon, hoadon

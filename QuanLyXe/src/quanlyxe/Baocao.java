@@ -5,8 +5,10 @@
  */
 package quanlyxe;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -29,6 +31,7 @@ public class Baocao extends javax.swing.JFrame {
     ArrayList<khachhangTT> dskh = new ArrayList<>();
     ArrayList<taikhoanTT> dsuser = new ArrayList<>();
     ArrayList<hoadonTT> dsHoaDon = new ArrayList<>();
+    ArrayList<tongtienTT> dsTongTien = new ArrayList<>();
 
     public Baocao() {
         initComponents();
@@ -45,6 +48,8 @@ public class Baocao extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txt_tongtien = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setTitle("Báo cáo doanh số");
@@ -65,8 +70,15 @@ public class Baocao extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(5).setMaxWidth(65);
         }
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Tổng tiền đã bán được:");
+
+        txt_tongtien.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txt_tongtien.setForeground(new java.awt.Color(255, 51, 0));
+        txt_tongtien.setText("0");
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/Excel-icon.png"))); // NOI18N
-        jButton1.setText("Xuất ra excel");
+        jButton1.setText("Xuất ra Excel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,6 +88,11 @@ public class Baocao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_tongtien)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)))
@@ -85,8 +102,12 @@ public class Baocao extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txt_tongtien))
+                .addGap(17, 17, 17)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -129,15 +150,18 @@ public class Baocao extends javax.swing.JFrame {
         });
     }
 
-    public void showDataList(String startDate, String endDate) {
+    public void showDataList(String strngaybd, String strngaytk) {
 
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
         model.setRowCount(0);
 
         //load data
-        ArrayList<hoadonTT> list = baocaoservices.getRecords(startDate, endDate);
+        ArrayList<hoadonTT> list = baocaoservices.getRecords(strngaybd, strngaytk);
         dsHoaDon = list;
-
+        
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);
+    
         Object[] row = new Object[7];
 
         for (int i = 0; i < list.size(); i++) {
@@ -146,17 +170,34 @@ public class Baocao extends javax.swing.JFrame {
             row[1] = list.get(i).getNgay();
             row[2] = list.get(i).getMaKH();
             row[3] = list.get(i).getHinhThucTT();
-            row[4] = list.get(i).getTongTien();
+            row[4] = en.format(list.get(i).getTongTien());
             row[5] = list.get(i).getUserID();
 
             model.addRow(row);
         }
     }
+    
+    public void showTong(String strngaybd, String strngaytk) {
+        //load data
+        ArrayList<tongtienTT> list = baocaoservices.getTong(strngaybd, strngaytk);
+        dsTongTien = list;
+        
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);
 
+        
+        for (int i = 0; i < list.size(); i++) 
+        {
+            txt_tongtien.setText(String.valueOf(en.format(list.get(i).getTongTien()))+" đ");
+            System.out.println(list.get(i).getTongTien());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel txt_tongtien;
     // End of variables declaration//GEN-END:variables
 }

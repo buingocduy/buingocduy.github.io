@@ -19,7 +19,7 @@ public class MenuBC extends javax.swing.JFrame {
      * Creates new form MenuBC
      */
     public MenuBC() {
-        initComponents();
+        initComponents();     
 
     }
 
@@ -135,7 +135,8 @@ public class MenuBC extends javax.swing.JFrame {
             String strngaytk = formatter.format(endDate);
             Baocao baocao = new Baocao();
             baocao.showDataList(strngaybd, strngaytk);
-
+            baocao.showTong(strngaybd, strngaytk);
+            
             //vi tri giua man hinh va maximize
             baocao.pack();
             baocao.setLocationRelativeTo(null);
