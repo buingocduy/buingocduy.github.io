@@ -194,6 +194,12 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
 
         jLabel3.setText("Mã sản phẩm");
 
+        txt_masp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_maspActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Số Lượng");
 
         jLabel5.setText("Đơn Giá");
@@ -454,6 +460,17 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         } else
             JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
     }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void txt_maspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_maspActionPerformed
+        sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
+        System.out.println(masp.getName() + "-" + masp.getPrice());
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);
+
+        long giaban = masp.getPrice();
+        String str1 = en.format(giaban);
+        txtDonGia.setText(str1);
+    }//GEN-LAST:event_txt_maspActionPerformed
 
     /**
      * @param args the command line arguments

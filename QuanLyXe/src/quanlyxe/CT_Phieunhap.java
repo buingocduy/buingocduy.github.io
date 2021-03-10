@@ -187,6 +187,12 @@ public class CT_Phieunhap extends javax.swing.JFrame {
 
         jLabel3.setText("Mã sản phẩm");
 
+        txt_masp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_maspActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Số Lượng");
 
         jLabel5.setText("Đơn Giá");
@@ -446,6 +452,10 @@ public class CT_Phieunhap extends javax.swing.JFrame {
         } else
             JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
     }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void txt_maspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_maspActionPerformed
+
+    }//GEN-LAST:event_txt_maspActionPerformed
 
     /**
      * @param args the command line arguments
