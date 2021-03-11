@@ -5,19 +5,35 @@
  */
 package quanlyxe.thucthe;
 
-import java.util.Date;
-
 /**
  *
  * @author BND6699
  */
-public class tongtienTT {
+public class ct_baocaoTT {
+    String TenSP;
+    long DonGia,SoLuong,TongTien;
 
-    long SoLuong,TongTien;
-
-    public tongtienTT(long SoLuong, long TongTien) {
+    public ct_baocaoTT(String TenSP, long DonGia, long SoLuong, long TongTien) {
+        this.TenSP = TenSP;
+        this.DonGia = DonGia;
         this.SoLuong = SoLuong;
         this.TongTien = TongTien;
+    }
+
+    public String getTenSP() {
+        return TenSP;
+    }
+
+    public void setTenSP(String TenSP) {
+        this.TenSP = TenSP;
+    }
+
+    public long getDonGia() {
+        return DonGia;
+    }
+
+    public void setDonGia(long DonGia) {
+        this.DonGia = DonGia;
     }
 
     public long getSoLuong() {
@@ -35,7 +51,7 @@ public class tongtienTT {
     public void setTongTien(long TongTien) {
         this.TongTien = TongTien;
     }
-    
+
     
     
 }

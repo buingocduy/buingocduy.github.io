@@ -5,36 +5,34 @@
  */
 package quanlyxe.xuly;
 
-/**
- *
- * @author BND6699
- */
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import quanlyxe.thucthe.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class baocaoXL {
+/**
+ *
+ * @author BND6699
+ */
+public class ct_baocaoXL {
 
     //lay danh sach Baocao
-    public ArrayList<hoadonTT> getRecords(String strngaybd, String strngaytk) {
-        ArrayList<hoadonTT> list = new ArrayList<hoadonTT>();
+    public ArrayList<ct_baocaoTT> getRecords(String strngaybd, String strngaytk) {
+        ArrayList<ct_baocaoTT> list = new ArrayList<ct_baocaoTT>();
         try {
             hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("SELECT * FROM hoadon WHERE Ngay between '" + strngaybd + "' and '" + strngaytk + "' ");
+            ResultSet rs = acc.Query("select TenSP,DonGia,'SoLuong'=SUM(SoLuong),'TongTien'=(DonGia * SUM(SoLuong)) from ct_hoadon,hoadon,sanpham  where ct_hoadon.MaHoaDon = hoadon.MaHoaDon and sanpham.MaSP = ct_hoadon.MaSP and Ngay between '" + strngaybd + "' and '" + strngaytk + "' Group by TenSP,DonGia");
 
             while (rs.next()) {
-                hoadonTT hd = new hoadonTT(rs.getString("MaHoaDon"), rs.getDate("Ngay"), rs.getInt("MaKH"), rs.getString("HinhThucTT"), rs.getLong("TongTien"), rs.getString("Username"));
-                list.add(hd);
+                ct_baocaoTT ctbc = new ct_baocaoTT(rs.getString("TenSP"), rs.getLong("DonGia"), rs.getLong("SoLuong"),rs.getLong("TongTien"));
+                list.add(ctbc);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return list;
     }
-
+    
     public ArrayList<tongtienTT> getTong(String strngaybd, String strngaytk) {
         ArrayList<tongtienTT> list = new ArrayList<tongtienTT>();
         try {

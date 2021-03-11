@@ -10,6 +10,8 @@ import quanlyxe.xuly.*;
 import com.microsoft.sqlserver.jdbc.StringUtils;
 import java.awt.Component;
 import java.lang.reflect.Array;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
@@ -22,6 +24,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.basic.BasicListUI;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -72,14 +76,16 @@ public class Phieuxuat extends javax.swing.JFrame {
 
         ArrayList<phieuxuatTT> list = phieuXuatServices.getAllRecords();
         dsPhieuXuat = list;
-
+        
+        SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
+               
         Object[] row = new Object[6];
 
         for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getMaPX();
             row[1] = list.get(i).getUsername();
             row[2] = list.get(i).getMaKH();
-            row[3] = list.get(i).getNgayXuat();
+            row[3] = formatter2.format(list.get(i).getNgayXuat());
             row[4] = list.get(i).getMaKho();
             model.addRow(row);
 
@@ -90,12 +96,16 @@ public class Phieuxuat extends javax.swing.JFrame {
         cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                gridSelectedChanged(e);
+                try {
+                    gridSelectedChanged(e);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Phieuxuat.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
-    public void gridSelectedChanged(ListSelectionEvent e) {
+    public void gridSelectedChanged(ListSelectionEvent e) throws ParseException {
         String selectedData = null;
         String selectedID = "";
 
@@ -116,12 +126,16 @@ public class Phieuxuat extends javax.swing.JFrame {
             ShowDataDetail(selectedID,
                     (String) tblPhieuXuat.getValueAt(selectedRow, 1),
                     (int) tblPhieuXuat.getValueAt(selectedRow, 2),
-                    (Date) tblPhieuXuat.getValueAt(selectedRow, 3),
+                    (String) tblPhieuXuat.getValueAt(selectedRow, 3),
                     (int) tblPhieuXuat.getValueAt(selectedRow, 4));
         }
     }
 
-    private void ShowDataDetail(String maPX, String userID, int maKH, Date ngayXuat, int maKho) {
+    private void ShowDataDetail(String maPX, String userID, int maKH, String ngayXuat, int maKho) throws ParseException {
+        String stringDate1 = ngayXuat;
+        SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
+        Date date1 = formatter1.parse(stringDate1);
+            
         txtMaPX.setText(maPX);
         txt_nguoilap.setText(userID);
 
@@ -129,7 +143,7 @@ public class Phieuxuat extends javax.swing.JFrame {
             cbxKhachHang.setSelectedItem(findKhachHang(selectedPhieuXuat.getMaKH(), dsKhachHang));
         }
 
-        dtmNgayXuat.setDate(ngayXuat);
+        dtmNgayXuat.setDate(date1);
 
         if (selectedPhieuXuat != null) {
             cbxKho.setSelectedItem(findKho(selectedPhieuXuat.getMaKho(), dsKho));

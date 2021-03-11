@@ -309,12 +309,16 @@ select 'TongTien'=SUM(TongTien)
 from hoadon 
 where Ngay between '2021-02-07' and '2021-02-09' 
 
+SELECT 'TongTien'=SUM(TongTien) FROM hoadon WHERE Ngay between '2021-02-07' and '2021-02-07'
 
-SELECT 'TongTien'=SUM(TongTien) FROM hoadon WHERE Ngay between '2021-02-07' and '2021-02-09' group by Ngay
+select TenSP,DonGia,'SoLuong'=SUM(SoLuong),'TongTien'=(DonGia * SUM(SoLuong))
+from ct_hoadon,hoadon,sanpham  
+where ct_hoadon.MaHoaDon = hoadon.MaHoaDon and sanpham.MaSP = ct_hoadon.MaSP and hoadon.Ngay between '2021-02-07' and '2021-02-07' 
+Group by TenSP,DonGia
 
-select Ngay, MaSP, SoLuong, MaKH, HinhThucTT, TongTien, Username 
-from ct_hoadon, hoadon
-where hoadon.MaHoaDon = ct_hoadon.MaHoaDon and Ngay between '2021-02-07' and '2021-02-09'  
+select 'SoLuong'=SUM(SoLuong), 'TongTien'=SUM(TongTien)
+from ct_hoadon,hoadon
+where ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '2021-02-07' and '2021-02-07' 
 
 select * from hoadon where  Ngay between '2021-02-07' and '2021-02-09' 
 

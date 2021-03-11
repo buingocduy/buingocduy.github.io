@@ -17,8 +17,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Hoadon extends javax.swing.JFrame {
 
@@ -419,11 +423,14 @@ public class Hoadon extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_makhActionPerformed
 
-    private void showDataDetail(String MaHoaDon, Date Ngay, int MaKH, String HinhThucTT, String TongTien, String UserID) {
-
+    private void showDataDetail(String MaHoaDon, String Ngay, int MaKH, String HinhThucTT, String TongTien, String UserID) throws ParseException {
+        String stringDate1 = Ngay;
+        SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
+        Date date1 = formatter1.parse(stringDate1);
+        
         txt_mahoadon.setText(MaHoaDon);
-        txt_ngaylap.setDate(Ngay);
-
+        txt_ngaylap.setDate(date1);
+        
         if (selectedHoaDon != null) {
             txt_makh.setSelectedItem(findCustomer(Integer.valueOf(selectedHoaDon.getMaKH()), dskh));
         }
@@ -433,7 +440,7 @@ public class Hoadon extends javax.swing.JFrame {
         txt_tongtien.setText(TongTien);
     }
 
-    public void gridSelectedChanged(ListSelectionEvent e) {
+    public void gridSelectedChanged(ListSelectionEvent e) throws ParseException {
         String selectedData = null;
         String selectedID = "";  //Mã hóa đơn
 
@@ -455,7 +462,7 @@ public class Hoadon extends javax.swing.JFrame {
             System.out.println("Selected: " + selectedData + " , MaHoaDon: " + selectedID);
 
             showDataDetail(selectedID,
-                    (Date) jTableData.getValueAt(selectedRow, 1),
+                    (String) jTableData.getValueAt(selectedRow,1),
                     (int) jTableData.getValueAt(selectedRow, 2),
                     (String) jTableData.getValueAt(selectedRow, 3),
                     (String) jTableData.getValueAt(selectedRow, 4),
@@ -486,7 +493,7 @@ public class Hoadon extends javax.swing.JFrame {
 
         Locale localeEN = new Locale("en", "EN");
         NumberFormat en = NumberFormat.getInstance(localeEN);
-
+        
         Object[] row = new Object[7];
 
         for (int i = 0; i < list.size(); i++) {
@@ -506,8 +513,12 @@ public class Hoadon extends javax.swing.JFrame {
         //Dang ky event click tren danh sach        
         cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
-                //goi ham show data chi tiet
-                gridSelectedChanged(e);
+                try {
+                    //goi ham show data chi tiet
+                    gridSelectedChanged(e);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Hoadon.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -523,13 +534,15 @@ public class Hoadon extends javax.swing.JFrame {
 
         Locale localeEN = new Locale("en", "EN");
         NumberFormat en = NumberFormat.getInstance(localeEN);
-
+        
+        SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
+        
         Object[] row = new Object[7];
 
         for (int i = 0; i < list.size(); i++) {
 
             row[0] = list.get(i).getMaHoaDon();
-            row[1] = list.get(i).getNgay();
+            row[1] = formatter2.format(list.get(i).getNgay());
             row[2] = list.get(i).getMaKH();
             row[3] = list.get(i).getHinhThucTT();
             row[4] = en.format(list.get(i).getTongTien());
@@ -543,8 +556,12 @@ public class Hoadon extends javax.swing.JFrame {
         //Dang ky event click tren danh sach        
         cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
-                //goi ham show data chi tiet
-                gridSelectedChanged(e);
+                try {
+                    //goi ham show data chi tiet
+                    gridSelectedChanged(e);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Hoadon.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

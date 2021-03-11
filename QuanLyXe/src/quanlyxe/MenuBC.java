@@ -32,6 +32,7 @@ public class MenuBC extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         ngaybatdau = new com.toedter.calendar.JDateChooser();
         ngaykethuc = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
@@ -39,6 +40,9 @@ public class MenuBC extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         btn_doanhso = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        cb_DSB = new javax.swing.JRadioButton();
+        cb_CTDSB = new javax.swing.JRadioButton();
 
         setTitle("Báo cáo");
         setResizable(false);
@@ -62,10 +66,10 @@ public class MenuBC extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(127, 127, 127)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(56, 56, 56))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,12 +80,37 @@ public class MenuBC extends javax.swing.JFrame {
         );
 
         btn_doanhso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report2.png"))); // NOI18N
-        btn_doanhso.setText("Doanh số bán");
+        btn_doanhso.setText("Xem");
         btn_doanhso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_doanhsoActionPerformed(evt);
             }
         });
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Chọn"));
+
+        buttonGroup1.add(cb_DSB);
+        cb_DSB.setText("Danh số bán");
+
+        buttonGroup1.add(cb_CTDSB);
+        cb_CTDSB.setText("Chi tiết doanh số bán");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(cb_DSB)
+            .addComponent(cb_CTDSB)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cb_DSB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cb_CTDSB)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,23 +118,24 @@ public class MenuBC extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(ngaykethuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ngaybatdau, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_doanhso, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                    .addComponent(btn_doanhso))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ngaybatdau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -113,36 +143,71 @@ public class MenuBC extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ngaykethuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_doanhso, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_doanhsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_doanhsoActionPerformed
-
+        
         Date startDate = ngaybatdau.getDate();
         Date endDate = ngaykethuc.getDate();
-
+        
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
-        if (startDate == null | endDate == null) {
+        SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
+        
+  
+        if (startDate == null | endDate == null) 
+        {
             JOptionPane.showMessageDialog(null, "Hãy chọn ngày bắt đầu và kết thúc");
-        } else {
+        }
+        
+        else if(cb_DSB.isSelected() == true) //Xem doanh số
+        {
             String strngaybd = formatter.format(startDate);
             String strngaytk = formatter.format(endDate);
+            
+            String tungay = formatter2.format(startDate);
+            String denngay = formatter2.format(endDate);
+            
             Baocao baocao = new Baocao();
             baocao.showDataList(strngaybd, strngaytk);
             baocao.showTong(strngaybd, strngaytk);
+            baocao.setNgay(tungay, denngay);
             
             //vi tri giua man hinh va maximize
             baocao.pack();
             baocao.setLocationRelativeTo(null);
             baocao.setVisible(true);
+        }   
+        
+        else if(cb_CTDSB.isSelected() == true)// Xem chi tiết doanh số
+        {
+            String strngaybd = formatter.format(startDate);
+            String strngaytk = formatter.format(endDate);
+            
+            String tungay = formatter2.format(startDate);
+            String denngay = formatter2.format(endDate);
+            
+            CT_Baocao ctbaocao = new CT_Baocao();
+            ctbaocao.showDataList(strngaybd, strngaytk);
+            ctbaocao.showTong(strngaybd, strngaytk);
+            ctbaocao.setNgay(tungay, denngay);
+            
+            //vi tri giua man hinh va maximize
+            ctbaocao.pack();
+            ctbaocao.setLocationRelativeTo(null);
+            ctbaocao.setVisible(true);
         }
-
+        else
+        {
+           JOptionPane.showMessageDialog(null, "Hãy chọn 1 trong 2 cái để xem");
+        }     
     }//GEN-LAST:event_btn_doanhsoActionPerformed
 
     /**
@@ -182,10 +247,14 @@ public class MenuBC extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_doanhso;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton cb_CTDSB;
+    private javax.swing.JRadioButton cb_DSB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private com.toedter.calendar.JDateChooser ngaybatdau;
     private com.toedter.calendar.JDateChooser ngaykethuc;
     // End of variables declaration//GEN-END:variables
