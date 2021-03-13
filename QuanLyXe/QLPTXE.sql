@@ -236,11 +236,11 @@ insert into Kho values (N'Kho SUZUKI',N'439 Hậu Giang P11, Q6, TP.HCM','077774
 go
 
 /*CT_Kho*/
-insert into ct_kho values (1,'WINX',10)
-insert into ct_kho values (1,'VS',10)
-insert into ct_kho values (2,'EX',10)
-insert into ct_kho values (2,'FG',10)
-insert into ct_kho values (3,'RAI',10)
+insert into ct_kho values (1,'WINX',9)
+insert into ct_kho values (1,'VS',9)
+insert into ct_kho values (2,'EX',9)
+insert into ct_kho values (2,'FG',9)
+insert into ct_kho values (3,'RAI',9)
 insert into ct_kho values (3,'GD',10)
 go
 
@@ -300,7 +300,8 @@ select * from ct_phieuxuat
 go
 
 
-/*
+Select Soluong From ct_kho Where MaSP = 'EX' 
+
 delete from kho where MaKho = '1'	
 
 select * from ct_hoadon where MaHoaDon = '1'

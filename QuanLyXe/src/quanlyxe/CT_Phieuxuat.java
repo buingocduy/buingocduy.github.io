@@ -35,14 +35,15 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
     ArrayList<sanphamTT> dsSanpham = new ArrayList<sanphamTT>();
     ArrayList<ct_phieuxuatTT> dsPhieuXuatCT = new ArrayList<ct_phieuxuatTT>();
     ArrayList<phieuxuatTT> dsPX = new ArrayList<phieuxuatTT>();
-
+    ArrayList<soluongTT> dsSoluong = new ArrayList<>();
+    
     /**
      * Creates new form frmPhieuXuatCT
      */
     public CT_Phieuxuat() {
         initComponents();
-        loadSanpham();
-
+        loadSanpham();   
+        txtSoLuong.setText("1");
     }
 
     public void setMPX(String MaPX) {
@@ -155,6 +156,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         }
         return null;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,6 +178,8 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         txt_mactpx = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txt_soluongcon = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanelHeader = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -214,6 +218,12 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
 
         jLabel2.setText("Mã phiêu xuất");
 
+        txt_soluongcon.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txt_soluongcon.setForeground(new java.awt.Color(255, 51, 0));
+        txt_soluongcon.setText("000");
+
+        jLabel6.setText("Số lượng còn:");
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
@@ -239,12 +249,16 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
                             .addComponent(txt_mapx)
                             .addComponent(txt_masp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txt_mactpx, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(144, 144, 144))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_soluongcon)
+                .addGap(32, 32, 32))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_mactpx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -255,7 +269,9 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_masp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(txt_soluongcon)
+                    .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,7 +280,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         jPanelHeader.setBackground(java.awt.SystemColor.activeCaption);
@@ -463,15 +479,31 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
 
     private void txt_maspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_maspActionPerformed
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
+        
+        showSoluong(masp.getID());
+        
         System.out.println(masp.getName() + "-" + masp.getPrice());
+        
         Locale localeEN = new Locale("en", "EN");
         NumberFormat en = NumberFormat.getInstance(localeEN);
-
+        
         long giaban = masp.getPrice();
         String str1 = en.format(giaban);
         txtDonGia.setText(str1);
+
     }//GEN-LAST:event_txt_maspActionPerformed
 
+    public void showSoluong(String MaSP) {
+        //load data
+        ArrayList<soluongTT> list = phieuXuatCTServices.getSoluong(MaSP);
+        dsSoluong = list;
+        
+        for (int i = 0; i < list.size(); i++) {
+            txt_soluongcon.setText(String.valueOf((list.get(i).getSoLuong())));
+            System.out.println(list.get(i).getSoLuong());
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -518,6 +550,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel1;
@@ -529,6 +562,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
     private javax.swing.JTextField txt_mactpx;
     private javax.swing.JTextField txt_mapx;
     private javax.swing.JComboBox<sanphamTT> txt_masp;
+    private javax.swing.JLabel txt_soluongcon;
     // End of variables declaration//GEN-END:variables
 
 }
