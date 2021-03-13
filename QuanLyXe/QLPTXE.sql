@@ -55,7 +55,7 @@ go
 
 --KHO
 CREATE TABLE kho
-	(MaKho int IDENTITY(1,1) NOT NULL,
+	(MaKho char (50) NOT NULL,
 	TenKho nvarchar (50) NOT NULL,
 	DiaChi nvarchar (200) NULL,
 	Phone varchar (30) NULL,
@@ -65,7 +65,7 @@ go
 --CHI TIẾT KHO
 CREATE TABLE ct_kho(
 	CTMaKho int IDENTITY(1,1) NOT NULL,
-	MaKho int not null,
+	MaKho char(50) not null,
 	MaSP varchar(10) NOT NULL,
 	Soluong int,
 	Primary key (CTMaKho)
@@ -98,7 +98,7 @@ CREATE TABLE phieunhap(
 	Username varchar(100) NOT NULL,
 	MaNCC varchar(10),
 	NgayNhap date NOT NULL,
-	MaKho int NOT NULL,
+	MaKho char(50) NOT NULL,
     Primary key (MaPN))
 go
 
@@ -118,7 +118,7 @@ CREATE TABLE phieuxuat(
 	Username varchar(100) NOT NULL,
 	MaKH int NOT NULL,
 	NgayXuat date NOT NULL,
-	MaKho int NOT NULL,
+	MaKho char(50) NOT NULL,
 	Primary key (MaPX))
 go
 
@@ -230,18 +230,18 @@ insert into hoadon values ('2021-02-07',1,N'TIỀN MẶT',50000000,'admin')
 go
 
 /*Kho*/
-insert into Kho values (N'Kho HONDA',N'439 Hậu Giang P11, Q6, TP.HCM','0777747747')
-insert into Kho values (N'Kho YAMAHA',N'439 Hậu Giang P11, Q6, TP.HCM','0777747747')
-insert into Kho values (N'Kho SUZUKI',N'439 Hậu Giang P11, Q6, TP.HCM','0777747747')
+insert into Kho values ('HONDA',N'Kho HONDA',N'439 Hậu Giang P11, Q6, TP.HCM','0777747747')
+insert into Kho values ('YAMAHA',N'Kho YAMAHA',N'439 Hậu Giang P11, Q6, TP.HCM','0777747747')
+insert into Kho values ('SUZUKI',N'Kho SUZUKI',N'439 Hậu Giang P11, Q6, TP.HCM','0777747747')
 go
 
 /*CT_Kho*/
-insert into ct_kho values (1,'WINX',9)
-insert into ct_kho values (1,'VS',9)
-insert into ct_kho values (2,'EX',9)
-insert into ct_kho values (2,'FG',9)
-insert into ct_kho values (3,'RAI',9)
-insert into ct_kho values (3,'GD',10)
+insert into ct_kho values ('HONDA','WINX',9)
+insert into ct_kho values ('HONDA','VS',9)
+insert into ct_kho values ('YAMAHA','EX',9)
+insert into ct_kho values ('YAMAHA','FG',9)
+insert into ct_kho values ('SUZUKI','RAI',9)
+insert into ct_kho values ('SUZUKI','GD',10)
 go
 
 /*CT_Hóa đơn*/
@@ -254,9 +254,9 @@ go
 
 
 /*PHIẾU NHẬP*/
-insert into phieunhap values ('DUY','HONDA','2020-02-07',1)
-insert into phieunhap values ('DUY','YAMAHA','2020-02-07',2)
-insert into phieunhap values ('DUY','SUZUKI','2020-02-07',3)
+insert into phieunhap values ('DUY','HONDA','2020-02-07','HONDA')
+insert into phieunhap values ('DUY','YAMAHA','2020-02-07','YAMAHA')
+insert into phieunhap values ('DUY','SUZUKI','2020-02-07','SUZUKI')
 go
 
 /*CT PHIẾU NHẬP*/
@@ -269,11 +269,11 @@ insert into ct_phieunhap values (3,'GD',10,15000000)
 go
 
 /*PHIẾU XUẤT*/
-insert into phieuxuat values ('DUY',1,'2021-02-07',2)
-insert into phieuxuat values ('DUY',2,'2021-02-07',2)
-insert into phieuxuat values ('DUY',3,'2021-02-07',1)
-insert into phieuxuat values ('DUY',4,'2021-02-07',1)
-insert into phieuxuat values ('DUY',1,'2021-02-07',3)
+insert into phieuxuat values ('DUY',1,'2021-02-07','YAMAHA')
+insert into phieuxuat values ('DUY',2,'2021-02-07','YAMAHA')
+insert into phieuxuat values ('DUY',3,'2021-02-07','HONDA')
+insert into phieuxuat values ('DUY',4,'2021-02-07','HONDA')
+insert into phieuxuat values ('DUY',1,'2021-02-07','SUZUKI')
 go
 
 /*CT PHIẾU XUẤT*/
@@ -299,6 +299,18 @@ select * from phieuxuat
 select * from ct_phieuxuat
 go
 
+/*
+Update ct_kho SET Soluong = 
+
+(select 'Soluongnhap'=Sum(SoLuong)
+from ct_phieunhap
+where MaSP = 'EX') 
+-
+(select 'Soluongxuat'=Sum(SoLuong)
+from ct_phieuxuat
+where MaSP = 'EX')
+
+Where MaSP = 'EX'
 
 Select Soluong From ct_kho Where MaSP = 'EX' 
 

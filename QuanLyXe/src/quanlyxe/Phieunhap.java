@@ -439,11 +439,11 @@ public class Phieunhap extends javax.swing.JFrame {
                     (String) jTable1.getValueAt(selectedRow, 1),
                     (String) jTable1.getValueAt(selectedRow, 2),
                     (String) jTable1.getValueAt(selectedRow, 3),
-                    (int) jTable1.getValueAt(selectedRow, 4));
+                    (String) jTable1.getValueAt(selectedRow, 4));
         }
     }
 
-    private void ShowDataDetail(String MaPX, String Username, String MaNCC, String NgayNhap, int MaKho) throws ParseException {
+    private void ShowDataDetail(String MaPX, String Username, String MaNCC, String NgayNhap, String MaKho) throws ParseException {
         String stringDate1 = NgayNhap;
         SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
         Date date1 = formatter1.parse(stringDate1);
@@ -503,9 +503,9 @@ public class Phieunhap extends javax.swing.JFrame {
         });
     }
 
-    private khoTT findKho(int maKho, ArrayList<khoTT> warehouses) {
+    private khoTT findKho(String maKho, ArrayList<khoTT> warehouses) {
         for (khoTT item : warehouses) {
-            if (item.getMaKho() == maKho) {
+            if (item.getMaKho().equals(maKho)) {
                 return item;
             }
         }

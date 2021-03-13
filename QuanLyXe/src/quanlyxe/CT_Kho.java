@@ -37,7 +37,6 @@ public class CT_Kho extends javax.swing.JFrame {
 
     public CT_Kho() {
         initComponents();
-        loadSanpham();
     }
 
     /**
@@ -97,13 +96,19 @@ public class CT_Kho extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        txt_mactkho.setEnabled(false);
+
+        txt_makho.setEnabled(false);
+
+        txt_soluong.setEnabled(false);
+
         jLabel1.setText("Mã chi tiết kho");
 
         jLabel2.setText("Mã kho");
 
         jLabel3.setText("Mã sản phẩm");
 
-        jLabel4.setText("Số lượng");
+        jLabel4.setText("Số lượng còn");
 
         txt_masp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +162,7 @@ public class CT_Kho extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã chi tiết kho", "Mã kho", "Mã sản phẩm", "Số lượng"
+                "Mã chi tiết kho", "Mã kho", "Mã sản phẩm", "Số lượng còn"
             }
         ));
         jScrollPane1.setViewportView(jTableData);
@@ -266,9 +271,9 @@ public class CT_Kho extends javax.swing.JFrame {
         kho.setVisible(true);
     }//GEN-LAST:event_btnCloseActionPerformed
 
-    private void loadSanpham() {
+    public void loadSanpham(String MaKho) {
         txt_masp.removeAllItems();
-        dsSanpham = sanphamService.getAllRecords();
+        dsSanpham = sanphamService.getSP(MaKho);
         for (sanphamTT item : dsSanpham) {
             txt_masp.addItem(item);
         }

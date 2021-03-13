@@ -26,7 +26,7 @@ public class khoXL {
             ResultSet rs = acc.Query("SELECT * FROM Kho");
 
             while (rs.next()) {
-                khoTT kho = new khoTT(rs.getInt("MaKho"), rs.getString("TenKho"), rs.getString("DiaChi"), rs.getString("Phone"));
+                khoTT kho = new khoTT(rs.getString("MaKho"), rs.getString("TenKho"), rs.getString("DiaChi"), rs.getString("Phone"));
                 list.add(kho);
             }
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class khoXL {
             ResultSet rs = acc.Query("SELECT * FROM Kho WHERE Makho = N'" + Makho + "'");
 
             while (rs.next()) {
-                khoTT kho = new khoTT(rs.getInt("MaKho"), rs.getString("TenKho"), rs.getString("DiaChi"), rs.getString("Phone"));
+                khoTT kho = new khoTT(rs.getString("MaKho"), rs.getString("TenKho"), rs.getString("DiaChi"), rs.getString("Phone"));
                 list.add(kho);
             }
         } catch (Exception e) {
@@ -53,12 +53,13 @@ public class khoXL {
     }
 
     //Tao moi
-    public int AddNewRecord(String ten, String address, String phone) {
+    public int AddNewRecord(String makho, String ten, String address, String phone) {
         int rowCount = 0;
         try {
 
             hienthi_sql acc = new hienthi_sql();
-            String sql = "INSERT INTO Kho (TenKho,DiaChi,Phone) VALUES(N'" + ten + "'"
+            String sql = "INSERT INTO Kho (MaKho,TenKho,DiaChi,Phone) VALUES('"+makho+"'"
+                    + "N'" + ten + "'"
                     + ",N'" + address + "'"
                     + ", '" + phone + "')";
 
@@ -80,7 +81,7 @@ public class khoXL {
             String sql = "UPDATE Kho SET TenKho =N'" + ten + "'"
                     + ", DiaChi   =N'" + address + "'"
                     + ", Phone    ='" + phone + "'"
-                    + " WHERE MaKho = " + makho + "";
+                    + " WHERE MaKho = '" + makho + "'";
 
             System.out.println(sql);
             rowCount = acc.Update(sql);
@@ -96,7 +97,7 @@ public class khoXL {
         try {
 
             hienthi_sql acc = new hienthi_sql();
-            String sql = "DELETE FROM Kho WHERE MaKho = " + Makho + "";
+            String sql = "DELETE FROM Kho WHERE MaKho = '" + Makho + "'";
 
             System.out.println(sql);
 

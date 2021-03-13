@@ -15,9 +15,9 @@ public class phieunhapTT {
 
     private String MaPN, Username, MaNCC;
     private Date NgayNhap;
-    private int MaKho;
+    private String MaKho;
 
-    public phieunhapTT(String MaPN, String Username, String MaNCC, Date NgayNhap, int MaKho) {
+    public phieunhapTT(String MaPN, String Username, String MaNCC, Date NgayNhap, String MaKho) {
         this.MaPN = MaPN;
         this.Username = Username;
         this.MaNCC = MaNCC;
@@ -57,11 +57,11 @@ public class phieunhapTT {
         this.NgayNhap = NgayNhap;
     }
 
-    public int getMaKho() {
+    public String getMaKho() {
         return MaKho;
     }
 
-    public void setMaKho(int MaKho) {
+    public void setMaKho(String MaKho) {
         this.MaKho = MaKho;
     }
 

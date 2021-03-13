@@ -127,11 +127,11 @@ public class Phieuxuat extends javax.swing.JFrame {
                     (String) tblPhieuXuat.getValueAt(selectedRow, 1),
                     (int) tblPhieuXuat.getValueAt(selectedRow, 2),
                     (String) tblPhieuXuat.getValueAt(selectedRow, 3),
-                    (int) tblPhieuXuat.getValueAt(selectedRow, 4));
+                    (String) tblPhieuXuat.getValueAt(selectedRow, 4));
         }
     }
 
-    private void ShowDataDetail(String maPX, String userID, int maKH, String ngayXuat, int maKho) throws ParseException {
+    private void ShowDataDetail(String maPX, String userID, int maKH, String ngayXuat, String maKho) throws ParseException {
         String stringDate1 = ngayXuat;
         SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
         Date date1 = formatter1.parse(stringDate1);
@@ -208,9 +208,9 @@ public class Phieuxuat extends javax.swing.JFrame {
         return null;
     }
 
-    private khoTT findKho(int maKho, ArrayList<khoTT> warehouses) {
+    private khoTT findKho(String maKho, ArrayList<khoTT> warehouses) {
         for (khoTT item : warehouses) {
-            if (item.getMaKho() == maKho) {
+            if (item.getMaKho().equals(maKho)) {
                 return item;
             }
         }
@@ -528,9 +528,11 @@ public class Phieuxuat extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnChiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietActionPerformed
+        khoTT kho = (khoTT) cbxKho.getSelectedItem();
         CT_Phieuxuat ct_phieuxuat = new CT_Phieuxuat();
         ct_phieuxuat.setMPX(txtMaPX.getText());
         ct_phieuxuat.showDataList(txtMaPX.getText());
+        ct_phieuxuat.loadSanpham(kho.getMaKho());
         this.dispose();
 
         //vi tri giua man hinh va maximize

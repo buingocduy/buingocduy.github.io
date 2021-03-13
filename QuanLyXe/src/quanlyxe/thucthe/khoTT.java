@@ -13,21 +13,20 @@ import java.util.Date;
  */
 public class khoTT {
 
-    private int MaKho;
-    private String TenKho, DiaChi, Phone;
+    private String MaKho, TenKho, DiaChi, Phone;
 
-    public khoTT(int MaKho, String TenKho, String DiaChi, String Phone) {
+    public khoTT(String MaKho, String TenKho, String DiaChi, String Phone) {
         this.MaKho = MaKho;
         this.TenKho = TenKho;
         this.DiaChi = DiaChi;
         this.Phone = Phone;
     }
 
-    public int getMaKho() {
+    public String getMaKho() {
         return MaKho;
     }
 
-    public void setMaKho(int MaKho) {
+    public void setMaKho(String MaKho) {
         this.MaKho = MaKho;
     }
 
@@ -55,4 +54,5 @@ public class khoTT {
         this.Phone = Phone;
     }
 
+    
 }

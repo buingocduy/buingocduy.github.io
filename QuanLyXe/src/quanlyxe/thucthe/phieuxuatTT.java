@@ -14,11 +14,11 @@ import java.util.Date;
 public class phieuxuatTT {
 
     private String MaPX;
-    private int MaKH, MaKho;
-    private String Username;
+    private int MaKH;
+    private String MaKho, Username;
     private Date NgayXuat;
 
-    public phieuxuatTT(String MaPX, int MaKH, int MaKho, String Username, Date NgayXuat) {
+    public phieuxuatTT(String MaPX, int MaKH, String MaKho, String Username, Date NgayXuat) {
         this.MaPX = MaPX;
         this.MaKH = MaKH;
         this.MaKho = MaKho;
@@ -42,11 +42,11 @@ public class phieuxuatTT {
         this.MaKH = MaKH;
     }
 
-    public int getMaKho() {
+    public String getMaKho() {
         return MaKho;
     }
 
-    public void setMaKho(int MaKho) {
+    public void setMaKho(String MaKho) {
         this.MaKho = MaKho;
     }
 
@@ -66,4 +66,5 @@ public class phieuxuatTT {
         this.NgayXuat = NgayXuat;
     }
 
+    
 }

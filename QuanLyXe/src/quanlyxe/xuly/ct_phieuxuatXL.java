@@ -33,15 +33,15 @@ public class ct_phieuxuatXL {
         }
         return list;
     }
-    
-     //Hien thi
+
+    //Hien thi
     public ArrayList<soluongTT> getSoluong(String MaSP) {
         ArrayList<soluongTT> list = new ArrayList<soluongTT>();
         try {
             hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("Select MaSP, Soluong From ct_kho Where MaSP = '"+MaSP+"'");
+            ResultSet rs = acc.Query("Select MaSP, Soluong From ct_kho Where MaSP = '" + MaSP + "'");
             while (rs.next()) {
-                soluongTT soluongTT = new soluongTT( rs.getString("MaSP"), rs.getLong("SoLuong"));
+                soluongTT soluongTT = new soluongTT(rs.getString("MaSP"), rs.getLong("SoLuong"));
                 list.add(soluongTT);
             }
         } catch (Exception e) {
@@ -53,6 +53,7 @@ public class ct_phieuxuatXL {
     //Them
     public int AddNewRecord(String MaPX, String MaSP, long SoLuong, long DonGia) {
         int rowCount = 0;
+        int rowCount2 = 0;
         try {
             hienthi_sql acc = new hienthi_sql();
             String sql = "INSERT INTO ct_phieuxuat (MaPX, MaSP, SoLuong, DonGia) VALUES(" + MaPX
@@ -60,19 +61,26 @@ public class ct_phieuxuatXL {
                     + "'," + SoLuong
                     + "," + DonGia
                     + ")";
-            System.out.println(sql);
 
-            rowCount = acc.Update(sql);
+            String sql2 = "Update ct_kho SET Soluong = "
+                    + "(select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') - "
+                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '" + MaSP + "')"
+                    + "WHERE MaSP = '" + MaSP + "'";
+
+            System.out.println(sql);
+            System.out.println(sql2);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
 
-        return rowCount;
+        return rowCount & rowCount2;
     }
 
     //Sua
     public int UpdateRecord(String MaCTPX, String MaPX, String MaSP, long SoLuong, long DonGia) {
         int rowCount = 0;
+        int rowCount2 = 0;
         try {
             hienthi_sql acc = new hienthi_sql();
             String sql = "UPDATE ct_phieuxuat SET MaPX = '" + MaPX
@@ -81,25 +89,45 @@ public class ct_phieuxuatXL {
                     + "',DonGia = '" + DonGia
                     + "' WHERE MaCTPX = '" + MaCTPX + "'";
 
+            String sql2 = "Update ct_kho SET Soluong = "
+                    + "(select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') - "
+                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '" + MaSP + "')"
+                    + "WHERE MaSP = '" + MaSP + "'";
+
             System.out.println(sql);
+            System.out.println(sql2);
+
             rowCount = acc.Update(sql);
+            rowCount2 = acc.Update(sql2);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        return rowCount;
+        return rowCount & rowCount2;
     }
 
     //Xoa
-    public int DeleteRecord(String MaCTPX) {
+    public int DeleteRecord(String MaCTPX, String MaSP) {
         int rowCount = 0;
+        int rowCount2 = 0;
         try {
             hienthi_sql acc = new hienthi_sql();
             String sql = "DELETE FROM ct_phieuxuat WHERE MaCTPX = " + MaCTPX;
+
+            String sql2 = "Update ct_kho SET Soluong = "
+                    + "(select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') - "
+                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '" + MaSP + "')"
+                    + "WHERE MaSP = '" + MaSP + "'";
+
+            System.out.println(sql);
+            System.out.println(sql2);
+
             rowCount = acc.Update(sql);
+            rowCount2 = acc.Update(sql2);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        return rowCount;
+        return rowCount & rowCount2;
     }
 }

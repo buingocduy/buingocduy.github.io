@@ -25,7 +25,7 @@ public class phieuxuatXL {
             hienthi_sql acc = new hienthi_sql();
             ResultSet rs = acc.Query("SELECT * FROM phieuxuat");
             while (rs.next()) {
-                phieuxuatTT phieuXuat = new phieuxuatTT(rs.getString("MaPX"), rs.getInt("MaKH"), rs.getInt("MaKho"), rs.getString("Username"), rs.getDate("NgayXuat"));
+                phieuxuatTT phieuXuat = new phieuxuatTT(rs.getString("MaPX"), rs.getInt("MaKH"), rs.getString("MaKho"), rs.getString("Username"), rs.getDate("NgayXuat"));
                 list.add(phieuXuat);
             }
         } catch (Exception e) {
@@ -44,8 +44,8 @@ public class phieuxuatXL {
             String sql = "INSERT INTO phieuxuat (Username, MaKH, NgayXuat,MaKho) VALUES('" + userID
                     + "'," + maKH
                     + ",'" + strNgayXuat + "'"
-                    + "," + maKho
-                    + ")";
+                    + ",'" + maKho
+                    + "')";
             System.out.println(sql);
 
             rowCount = acc.Update(sql);
@@ -65,8 +65,8 @@ public class phieuxuatXL {
             String sql = "UPDATE phieuxuat SET Username ='" + userID
                     + "',MaKH =" + maKH
                     + ",NgayXuat ='" + strNgayXuat + "'"
-                    + ",MaKho =" + maKho
-                    + " WHERE MaPX = " + maPX;
+                    + ",MaKho ='" + maKho
+                    + "' WHERE MaPX = " + maPX;
             System.out.println(sql);
 
             rowCount = acc.Update(sql);

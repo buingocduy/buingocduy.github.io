@@ -193,9 +193,9 @@ public class CT_Phieunhap extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Số Lượng");
+        jLabel4.setText("Số lượng nhập");
 
-        jLabel5.setText("Đơn Giá");
+        jLabel5.setText("Đơn giá nhập");
 
         txt_mapn.setEnabled(false);
 
@@ -352,7 +352,7 @@ public class CT_Phieunhap extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã chi tiết phiếu nhập", "Mã phiếu nhập", "Mã sản phẩm", "Số lượng", "Đơn giá"
+                "Mã chi tiết phiếu nhập", "Mã phiếu nhập", "Mã sản phẩm", "Số lượng nhập", "Đơn giá nhập"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -422,12 +422,14 @@ public class CT_Phieunhap extends javax.swing.JFrame {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         String MaCTPN = txt_mactpn.getText().trim();
         String MaPN = txt_mapn.getText().trim();
+        sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
+        
         int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa chi tiết phiếu xuất " + MaCTPN + " ?", "Confirmation...",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (input == 0) {
 
-            int rowEffected = phieunhapCTServices.DeleteRecord(MaCTPN);
+            int rowEffected = phieunhapCTServices.DeleteRecord(MaCTPN, masp.getID());
             if (rowEffected > 0) {
                 showDataList(MaPN);
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");

@@ -41,8 +41,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
      * Creates new form frmPhieuXuatCT
      */
     public CT_Phieuxuat() {
-        initComponents();
-        loadSanpham();   
+        initComponents();  
         txtSoLuong.setText("1");
     }
 
@@ -119,9 +118,9 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         txtDonGia.setText(DonGia);
     }
 
-    private void loadSanpham() {
+    public void loadSanpham(String MaKho) {
         txt_masp.removeAllItems();
-        dsSanpham = sanphamServices.getAllRecords();
+        dsSanpham = sanphamServices.getSP(MaKho);
         for (sanphamTT item : dsSanpham) {
             txt_masp.addItem(item);
         }
@@ -204,9 +203,9 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Số Lượng");
+        jLabel4.setText("Số Lượng xuất");
 
-        jLabel5.setText("Đơn Giá");
+        jLabel5.setText("Đơn giá xuất");
 
         txt_mapx.setEnabled(false);
 
@@ -252,8 +251,8 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_soluongcon)
-                .addGap(32, 32, 32))
+                .addComponent(txt_soluongcon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,7 +375,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã chi tiết phiêu xuất", "Mã phiếu xuất", "Mã sản phẩm", "Số lượng", "Đơn giá"
+                "Mã chi tiết phiêu xuất", "Mã phiếu xuất", "Mã sản phẩm", "Số lượng xuất", "Đơn giá xuất"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -446,12 +445,14 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         String maCTPX = txt_mactpx.getText().trim();
         String maPX = txt_mapx.getText().trim();
+        sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
+        
         int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa chi tiết phiếu xuất " + maCTPX + " ?", "Confirmation...",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (input == 0) {
 
-            int rowEffected = phieuXuatCTServices.DeleteRecord(maCTPX);
+            int rowEffected = phieuXuatCTServices.DeleteRecord(maCTPX, masp.getID());
             if (rowEffected > 0) {
                 showDataList(maPX);
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");

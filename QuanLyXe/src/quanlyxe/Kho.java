@@ -90,7 +90,6 @@ public class Kho extends javax.swing.JFrame {
 
         txtMakho.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtMakho.setForeground(new java.awt.Color(255, 51, 0));
-        txtMakho.setEnabled(false);
 
         jLabel9.setText("Địa chỉ");
 
@@ -338,11 +337,12 @@ public class Kho extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // Tao Moi
+        String makho = txtMakho.getText().trim();
         String tenkho = txtTenKho.getText().trim();
         String address = txtAddress.getText().trim();
         String phone = txtPhone.getText().trim();
        
-        int rowEffected = KhoService.AddNewRecord(tenkho, address, phone);
+        int rowEffected = KhoService.AddNewRecord(makho, tenkho, address, phone);
         if(rowEffected > 0){
             showDataList();
             JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
@@ -353,7 +353,7 @@ public class Kho extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // Cap Nhat record
-        String makho     = txtMakho.getText().trim();
+        String makho = txtMakho.getText().trim();
         String tenkho = txtTenKho.getText().trim();
         String address = txtAddress.getText().trim();
         String phone = txtPhone.getText().trim();
@@ -369,8 +369,7 @@ public class Kho extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         //Xoa Record
-        
-        String makho     = txtMakho.getText().trim();
+        String makho = txtMakho.getText().trim();
         
         int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa kho"+makho+" không?", "Confirmation...",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -407,8 +406,10 @@ public class Kho extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btn_cthdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cthdActionPerformed
+        String MaKho = txtMakho.getText().trim();
         CT_Kho ct_kho = new CT_Kho();
         ct_kho.showDataList(txtMakho.getText());
+        ct_kho.loadSanpham(MaKho);
         this.dispose();
 
         //vi tri giua man hinh va maximize
@@ -484,7 +485,7 @@ public class Kho extends javax.swing.JFrame {
     
     public void gridSelectedChanged(ListSelectionEvent e) {
         String selectedData = null;
-        int selectedID = 0; //username
+        String selectedID = ""; 
 
         int[] selectedRows = jTableKho.getSelectedRows();
         int[] selectedColumns = jTableKho.getSelectedColumns();
@@ -497,12 +498,12 @@ public class Kho extends javax.swing.JFrame {
         
         if(selectedRow >=0 && selectedColumn >=0){
             //selectedData = String.valueOf(jTableKho.getValueAt(selectedRow, selectedColumn));
-            selectedID = (int) jTableKho.getValueAt(selectedRow, 0);
+            selectedID = (String) jTableKho.getValueAt(selectedRow, 0);
 
             System.out.println("Selected: "  + selectedID);
 
             showDataDetail( 
-                (int) jTableKho.getValueAt(selectedRow, 0),
+                (String) jTableKho.getValueAt(selectedRow, 0),
                 (String) jTableKho.getValueAt(selectedRow, 1),
                 (String) jTableKho.getValueAt(selectedRow, 2), 
                 (String) jTableKho.getValueAt(selectedRow, 3)); 
@@ -510,7 +511,7 @@ public class Kho extends javax.swing.JFrame {
         }
     }
     
-    private void showDataDetail(int makho, String tenkho, String address, String phone){
+    private void showDataDetail(String makho, String tenkho, String address, String phone){
         
         txtMakho.setText(String.valueOf(makho));
         txtTenKho.setText(tenkho);

@@ -37,6 +37,7 @@ public class ct_phieunhapXL {
     //Them
     public int AddNewRecord(String MaPX, String MaSP, long SoLuong, long DonGia) {
         int rowCount = 0;
+        int rowCount2 = 0;
         try {
             hienthi_sql acc = new hienthi_sql();
             String sql = "INSERT INTO ct_phieunhap (MaPN, MaSP, SoLuong, DonGiaNhap) VALUES(" + MaPX
@@ -44,19 +45,28 @@ public class ct_phieunhapXL {
                     + "'," + SoLuong
                     + "," + DonGia
                     + ")";
+            
+            String sql2 = "Update ct_kho SET Soluong = "
+                    + "(select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '"+MaSP+"') - "
+                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '"+MaSP+"')"
+                    + "WHERE MaSP = '" + MaSP + "'";
+            
             System.out.println(sql);
+            System.out.println(sql2);
 
             rowCount = acc.Update(sql);
+            rowCount2 = acc.Update(sql2);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
 
-        return rowCount;
+        return rowCount & rowCount2;
     }
 
     //Sua
     public int UpdateRecord(String MaCTPN, String MaPN, String MaSP, long SoLuong, long DonGia) {
         int rowCount = 0;
+        int rowCount2 = 0;
         try {
             hienthi_sql acc = new hienthi_sql();
             String sql = "UPDATE ct_phieunhap SET MaPN = '" + MaPN
@@ -64,26 +74,47 @@ public class ct_phieunhapXL {
                     + "',SoLuong = '" + SoLuong
                     + "',DonGiaNhap = '" + DonGia
                     + "' WHERE MaCTPN = '" + MaCTPN + "'";
-
+            
+            String sql2 = "Update ct_kho SET Soluong = "
+                    + "(select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '"+MaSP+"') - "
+                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '"+MaSP+"')"
+                    + "WHERE MaSP = '" + MaSP + "'";
+            
             System.out.println(sql);
+            System.out.println(sql2);
+
             rowCount = acc.Update(sql);
+            rowCount2 = acc.Update(sql2);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        return rowCount;
+        return rowCount & rowCount2;
     }
 
     //Xoa
-    public int DeleteRecord(String MaCTPN) {
+    public int DeleteRecord(String MaCTPN, String MaSP) {
         int rowCount = 0;
+        int rowCount2 = 0;
         try {
             hienthi_sql acc = new hienthi_sql();
             String sql = "DELETE FROM ct_phieunhap WHERE MaCTPN = " + MaCTPN;
+            
+            String sql2 = "Update ct_kho SET Soluong = "
+                    + "(select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '"+MaSP+"') - "
+                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '"+MaSP+"')"
+                    + "WHERE MaSP = '" + MaSP + "'";
+            
+            System.out.println(sql);
+            System.out.println(sql2);
+
             rowCount = acc.Update(sql);
+            rowCount2 = acc.Update(sql2);
+            
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        return rowCount;
+        return rowCount & rowCount2;
     }
 }
