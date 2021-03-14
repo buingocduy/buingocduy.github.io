@@ -29,7 +29,23 @@ public class ct_hoadonXL {
         }
         return list;
     }
-
+    
+    //Hien thi
+    public ArrayList<soluongTT> getSoluong(String MaSP) {
+        ArrayList<soluongTT> list = new ArrayList<soluongTT>();
+        try {
+            hienthi_sql acc = new hienthi_sql();
+            ResultSet rs = acc.Query("Select MaSP, Soluong From ct_kho Where MaSP = '" + MaSP + "'");
+            while (rs.next()) {
+                soluongTT soluongTT = new soluongTT(rs.getString("MaSP"), rs.getLong("SoLuong"));
+                list.add(soluongTT);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return list;
+    }
+    
     //Tao moi
     public int AddNewRecord(String MaHoaDon, String MaSP, int SoLuong, long DonGia) {
         int rowCount = 0;

@@ -300,15 +300,36 @@ select * from ct_phieuxuat
 go
 
 /*
+-- Hàm kiểm tra tồn tại
+IF EXISTS (SELECT * FROM ct_phieuxuat Where MaSP = 'EX') 
+BEGIN
+	Update ct_kho SET Soluong = 
+	 ((select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = 'EX') - 
+	 (select 'Soluongxuat' =Sum(SoLuong) from ct_phieuxuat where MaSP = 'EX')) 
+	 Where MaSP = 'EX'
+END
+ELSE 
+	 Update ct_kho SET Soluong = (select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = 'EX') Where MaSP = 'EX'
+
+
+-- Hàm kiểm tra tồn tại
+IF EXISTS (SELECT * FROM ct_kho Where MaSP = 'EX') 
+BEGIN
+	PRINT 'rowCount = 0'
+END
+ELSE 
+	INSERT INTO ct_kho (MaKho,MaSP,Soluong) VALUES('YAMAHA','EX','20')
+
+
 Update ct_kho SET Soluong = 
 
 (select 'Soluongnhap'=Sum(SoLuong)
 from ct_phieunhap
 where MaSP = 'EX') 
 -
-(select 'Soluongxuat'=Sum(SoLuong)
+(select 'Soluongxuat' =Sum(SoLuong)
 from ct_phieuxuat
-where MaSP = 'EX')
+where MaSP = 'EX') 
 
 Where MaSP = 'EX'
 

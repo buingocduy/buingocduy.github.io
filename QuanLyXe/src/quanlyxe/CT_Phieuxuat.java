@@ -36,13 +36,13 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
     ArrayList<ct_phieuxuatTT> dsPhieuXuatCT = new ArrayList<ct_phieuxuatTT>();
     ArrayList<phieuxuatTT> dsPX = new ArrayList<phieuxuatTT>();
     ArrayList<soluongTT> dsSoluong = new ArrayList<>();
-    
+
     /**
      * Creates new form frmPhieuXuatCT
      */
     public CT_Phieuxuat() {
-        initComponents();  
-        txtSoLuong.setText("1");
+        initComponents();
+        txtSoLuong.setText("0");
     }
 
     public void setMPX(String MaPX) {
@@ -155,7 +155,6 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         }
         return null;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -432,13 +431,21 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         String maPX = txt_mapx.getText().trim();
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
+        int SoLuongCon = Integer.valueOf(txt_soluongcon.getText().trim());
         int SoLuong = Integer.valueOf(txtSoLuong.getText().trim());
         long DonGia = Long.valueOf(txtDonGia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
 
-        int rowEffected = phieuXuatCTServices.AddNewRecord(maPX, masp.getID(), SoLuong, DonGia);
-        if (rowEffected > 0) {
-            JOptionPane.showMessageDialog(null, "Thêm thành công!");
-            showDataList(maPX);
+        if (SoLuong > SoLuongCon) {
+            JOptionPane.showMessageDialog(null, "Số lượng không đủ!");
+        } else {
+            int rowEffected = phieuXuatCTServices.AddNewRecord(maPX, masp.getID(), SoLuong, DonGia);
+            if (rowEffected > 0) {
+                showDataList(maPX);
+                showSoluong(masp.getID());
+                JOptionPane.showMessageDialog(null, "Thêm thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Thêm thất bại");
+            }
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -446,7 +453,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         String maCTPX = txt_mactpx.getText().trim();
         String maPX = txt_mapx.getText().trim();
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
-        
+
         int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa chi tiết phiếu xuất " + maCTPX + " ?", "Confirmation...",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
@@ -455,6 +462,7 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
             int rowEffected = phieuXuatCTServices.DeleteRecord(maCTPX, masp.getID());
             if (rowEffected > 0) {
                 showDataList(maPX);
+                showSoluong(masp.getID());
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
             } else {
                 JOptionPane.showMessageDialog(null, "Xóa thất bại");
@@ -467,27 +475,33 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         String maCTPX = txt_mactpx.getText().trim();
         String maPX = txt_mapx.getText().trim();
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
+        int SoLuongCon = Integer.valueOf(txt_soluongcon.getText().trim());
         int SoLuong = Integer.valueOf(txtSoLuong.getText().trim());
         long DonGia = Long.valueOf(txtDonGia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
 
-        int rowEffected = phieuXuatCTServices.UpdateRecord(maCTPX, maPX, masp.getID(), SoLuong, DonGia);
-        if (rowEffected > 0) {
-            JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
-            showDataList(maPX);
-        } else
-            JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+        if (SoLuong > SoLuongCon) {
+            JOptionPane.showMessageDialog(null, "Số lượng không đủ!");
+        } else {
+            int rowEffected = phieuXuatCTServices.UpdateRecord(maCTPX, maPX, masp.getID(), SoLuong, DonGia);
+            if (rowEffected > 0) {
+                JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
+                showDataList(maPX);
+                showSoluong(masp.getID());
+            } else {
+                JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+            }
+        }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void txt_maspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_maspActionPerformed
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
-        
         showSoluong(masp.getID());
-        
+
         System.out.println(masp.getName() + "-" + masp.getPrice());
-        
+
         Locale localeEN = new Locale("en", "EN");
         NumberFormat en = NumberFormat.getInstance(localeEN);
-        
+
         long giaban = masp.getPrice();
         String str1 = en.format(giaban);
         txtDonGia.setText(str1);
@@ -498,13 +512,13 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         //load data
         ArrayList<soluongTT> list = phieuXuatCTServices.getSoluong(MaSP);
         dsSoluong = list;
-        
+
         for (int i = 0; i < list.size(); i++) {
             txt_soluongcon.setText(String.valueOf((list.get(i).getSoLuong())));
             System.out.println(list.get(i).getSoLuong());
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */

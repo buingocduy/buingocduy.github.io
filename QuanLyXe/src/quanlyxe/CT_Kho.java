@@ -37,8 +37,13 @@ public class CT_Kho extends javax.swing.JFrame {
 
     public CT_Kho() {
         initComponents();
+        this.txt_soluong.setText("0");
     }
+    
+    public void setMaKho(String MaKho) {
+        this.txt_makho.setText(MaKho);
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -403,8 +408,8 @@ public class CT_Kho extends javax.swing.JFrame {
         String CTMaKho = txt_mactkho.getText().trim();
         String MaKho = txt_makho.getText().trim();
 
-        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa chi tiết kho " + CTMaKho + " không?", "Confirmation...",
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int input = JOptionPane.showConfirmDialog(null, "Bạn không nên xóa chỗ chứa " + CTMaKho + " !", "Cảnh báo...",
+                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (input == 0) {
             //Xoa

@@ -408,6 +408,7 @@ public class Kho extends javax.swing.JFrame {
     private void btn_cthdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cthdActionPerformed
         String MaKho = txtMakho.getText().trim();
         CT_Kho ct_kho = new CT_Kho();
+        ct_kho.setMaKho(txtMakho.getText());
         ct_kho.showDataList(txtMakho.getText());
         ct_kho.loadSanpham(MaKho);
         this.dispose();

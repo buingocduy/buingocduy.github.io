@@ -174,8 +174,8 @@
                   </Group>
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_nguoilap" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="7" max="32767" attributes="0"/>
                   <Component id="btn_cthd" min="-2" max="-2" attributes="0"/>

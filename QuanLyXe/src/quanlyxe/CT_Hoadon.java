@@ -35,18 +35,19 @@ public class CT_Hoadon extends javax.swing.JFrame {
     ArrayList<sanphamTT> dsSanpham = new ArrayList<>();
     ArrayList<ct_hoadonTT> dsCTHoaDon = new ArrayList<>();
     ArrayList<hoadonTT> dsHoaDon = new ArrayList<>();
+    ArrayList<soluongTT> dsSoluong = new ArrayList<>();
 
     public void setMHD(String MaHD) {
         this.txt_mahoadon.setText(MaHD);
     }
 
     public CT_Hoadon() {
-        
+
         initComponents();
         txt_soluong.setText("1");
         //load danh san pham     
         loadSanpham();
-        
+
     }
 
     /**
@@ -83,6 +84,8 @@ public class CT_Hoadon extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txt_mahoadon = new javax.swing.JTextField();
         btn_xoahet = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txt_soluongcon = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -259,6 +262,12 @@ public class CT_Hoadon extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("Số lượng còn:");
+
+        txt_soluongcon.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txt_soluongcon.setForeground(new java.awt.Color(255, 51, 0));
+        txt_soluongcon.setText("000");
+
         javax.swing.GroupLayout jPanelDetailLayout = new javax.swing.GroupLayout(jPanelDetail);
         jPanelDetail.setLayout(jPanelDetailLayout);
         jPanelDetailLayout.setHorizontalGroup(
@@ -280,7 +289,11 @@ public class CT_Hoadon extends javax.swing.JFrame {
                     .addComponent(txt_soluong)
                     .addComponent(txt_dongia)
                     .addComponent(txt_mahoadon))
-                .addGap(156, 156, 156))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_soluongcon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
             .addGroup(jPanelDetailLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_xoahet)
@@ -289,7 +302,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
         jPanelDetailLayout.setVerticalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_macthoadon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
@@ -298,9 +311,13 @@ public class CT_Hoadon extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txt_mahoadon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_masp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_soluongcon)
+                        .addComponent(jLabel8))
+                    .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_masp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_soluong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -482,18 +499,24 @@ public class CT_Hoadon extends javax.swing.JFrame {
         String MaCTHoaDon = txt_macthoadon.getText().trim();
         String MaHD = txt_mahoadon.getText().trim();
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
+        int SoLuongCon = Integer.valueOf(txt_soluongcon.getText().trim());
         long DonGia = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
         int SoLuong = Integer.valueOf(txt_soluong.getText().trim());
 
-        //goi ham trong package "bookstore.dal"
-        int rowEffected = ct_hoadonservices.AddNewRecord(MaHD, masp.getID(), SoLuong, DonGia);
-        if (rowEffected > 0) {
-            JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
-            showDataList(MaHD);
-            Hoadon hoadon = new Hoadon();
-            hoadon.showDataList();
-        } else
-            JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
+        if (SoLuong > SoLuongCon) {
+            JOptionPane.showMessageDialog(null, "Số lượng không đủ!");
+        } else {
+            int rowEffected = ct_hoadonservices.AddNewRecord(MaHD, masp.getID(), SoLuong, DonGia);
+            if (rowEffected > 0) {
+                JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
+                showDataList(MaHD);
+                Hoadon hoadon = new Hoadon();
+                hoadon.showDataList();
+                showSoluong(masp.getID());
+            } else {
+                JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
+            }
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -501,23 +524,28 @@ public class CT_Hoadon extends javax.swing.JFrame {
         String MaCTHoaDon = txt_macthoadon.getText().trim();
         String MaHD = txt_mahoadon.getText().trim();
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
+        int SoLuongCon = Integer.valueOf(txt_soluongcon.getText().trim());
         long DonGia = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
         int SoLuong = Integer.valueOf(txt_soluong.getText().trim());
 
-        //goi ham trong package "bookstore.dal"
-        int rowEffected = ct_hoadonservices.UpdateRecord(MaCTHoaDon, MaHD, masp.getID(), SoLuong, DonGia);
-        if (rowEffected > 0) {
-            showDataList(MaHD);
-            JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
+        if (SoLuong > SoLuongCon) {
+            JOptionPane.showMessageDialog(null, "Số lượng không đủ!");
         } else {
-            JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+            int rowEffected = ct_hoadonservices.UpdateRecord(MaCTHoaDon, MaHD, masp.getID(), SoLuong, DonGia);
+            if (rowEffected > 0) {
+                showDataList(MaHD);
+                showSoluong(masp.getID());
+                JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+            }
         }
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         //Xoa Record
-
+        sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
         String MaCTHoaDon = txt_macthoadon.getText().trim();
         String MaHD = txt_mahoadon.getText().trim();
 
@@ -532,6 +560,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
             int rowEffected = ct_hoadonservices.DeleteRecord(MaCTHoaDon, MaHD);
             if (rowEffected > 0) {
                 showDataList(MaHD);
+                showSoluong(masp.getID());
                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
             } else {
                 JOptionPane.showMessageDialog(null, "Xóa thất bại");
@@ -552,6 +581,8 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
     private void txt_maspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_maspActionPerformed
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
+        showSoluong(masp.getID());
+
         System.out.println(masp.getName() + "-" + masp.getPrice());
         Locale localeEN = new Locale("en", "EN");
         NumberFormat en = NumberFormat.getInstance(localeEN);
@@ -642,6 +673,17 @@ public class CT_Hoadon extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_xoahetActionPerformed
 
+    public void showSoluong(String MaSP) {
+        //load data
+        ArrayList<soluongTT> list = ct_hoadonservices.getSoluong(MaSP);
+        dsSoluong = list;
+
+        for (int i = 0; i < list.size(); i++) {
+            txt_soluongcon.setText(String.valueOf((list.get(i).getSoLuong())));
+            System.out.println(list.get(i).getSoLuong());
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -689,6 +731,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelDetail;
@@ -702,6 +745,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
     private javax.swing.JTextField txt_mahoadon;
     private javax.swing.JComboBox<sanphamTT> txt_masp;
     private javax.swing.JTextField txt_soluong;
+    private javax.swing.JLabel txt_soluongcon;
     private javax.swing.JTextField txt_tonggia;
     // End of variables declaration//GEN-END:variables
 }

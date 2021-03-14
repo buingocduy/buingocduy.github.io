@@ -46,10 +46,15 @@ public class ct_phieunhapXL {
                     + "," + DonGia
                     + ")";
             
-            String sql2 = "Update ct_kho SET Soluong = "
-                    + "(select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '"+MaSP+"') - "
-                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '"+MaSP+"')"
-                    + "WHERE MaSP = '" + MaSP + "'";
+            String sql2 = "IF EXISTS (SELECT * FROM ct_phieuxuat Where MaSP = '" + MaSP + "') "
+                    + "BEGIN "
+                    + "Update ct_kho SET Soluong = "
+                    + "((select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') - "
+                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '" + MaSP + "')) "
+                    + "WHERE MaSP = '" + MaSP + "' "
+                    + "END "
+                    + "ELSE  Update ct_kho SET Soluong = (select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') Where MaSP = '" + MaSP + "'";
+
             
             System.out.println(sql);
             System.out.println(sql2);
@@ -75,10 +80,15 @@ public class ct_phieunhapXL {
                     + "',DonGiaNhap = '" + DonGia
                     + "' WHERE MaCTPN = '" + MaCTPN + "'";
             
-            String sql2 = "Update ct_kho SET Soluong = "
-                    + "(select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '"+MaSP+"') - "
-                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '"+MaSP+"')"
-                    + "WHERE MaSP = '" + MaSP + "'";
+            String sql2 = "IF EXISTS (SELECT * FROM ct_phieuxuat Where MaSP = '" + MaSP + "') "
+                    + "BEGIN "
+                    + "Update ct_kho SET Soluong = "
+                    + "((select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') - "
+                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '" + MaSP + "')) "
+                    + "WHERE MaSP = '" + MaSP + "' "
+                    + "END "
+                    + "ELSE  Update ct_kho SET Soluong = (select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') Where MaSP = '" + MaSP + "'";
+
             
             System.out.println(sql);
             System.out.println(sql2);
@@ -100,10 +110,15 @@ public class ct_phieunhapXL {
             hienthi_sql acc = new hienthi_sql();
             String sql = "DELETE FROM ct_phieunhap WHERE MaCTPN = " + MaCTPN;
             
-            String sql2 = "Update ct_kho SET Soluong = "
-                    + "(select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '"+MaSP+"') - "
-                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '"+MaSP+"')"
-                    + "WHERE MaSP = '" + MaSP + "'";
+            String sql2 = "IF EXISTS (SELECT * FROM ct_phieuxuat Where MaSP = '" + MaSP + "') "
+                    + "BEGIN "
+                    + "Update ct_kho SET Soluong = "
+                    + "((select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') - "
+                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '" + MaSP + "')) "
+                    + "WHERE MaSP = '" + MaSP + "' "
+                    + "END "
+                    + "ELSE  Update ct_kho SET Soluong = (select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') Where MaSP = '" + MaSP + "'";
+
             
             System.out.println(sql);
             System.out.println(sql2);
