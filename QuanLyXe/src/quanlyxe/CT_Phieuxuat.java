@@ -170,14 +170,14 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         txt_masp = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txtSoLuong = new javax.swing.JTextField();
-        txtDonGia = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txt_mapx = new javax.swing.JTextField();
-        txt_mactpx = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txt_soluongcon = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        txt_mactpx = new javax.swing.JLabel();
+        txt_mapx = new javax.swing.JLabel();
+        txtDonGia = new javax.swing.JLabel();
         jPanelHeader = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -204,17 +204,11 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
 
         jLabel4.setText("Số Lượng xuất");
 
-        jLabel5.setText("Đơn giá xuất");
+        jLabel5.setText("Đơn giá xuất:");
 
-        txt_mapx.setEnabled(false);
+        jLabel1.setText("Mã chi tiết phiếu xuất:");
 
-        txt_mactpx.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txt_mactpx.setForeground(new java.awt.Color(255, 51, 0));
-        txt_mactpx.setEnabled(false);
-
-        jLabel1.setText("Mã chi tiết phiếu xuất");
-
-        jLabel2.setText("Mã phiêu xuất");
+        jLabel2.setText("Mã phiêu xuất:");
 
         txt_soluongcon.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txt_soluongcon.setForeground(new java.awt.Color(255, 51, 0));
@@ -222,11 +216,21 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
 
         jLabel6.setText("Số lượng còn:");
 
+        txt_mactpx.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_mactpx.setForeground(new java.awt.Color(255, 51, 0));
+        txt_mactpx.setText("000");
+
+        txt_mapx.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_mapx.setText("000");
+
+        txtDonGia.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtDonGia.setText("000");
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+            .addGroup(jPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelLayout.createSequentialGroup()
@@ -234,19 +238,19 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtSoLuong)
-                            .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDonGia)))
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_mapx)
-                            .addComponent(txt_masp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_mactpx, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_masp, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_mactpx)
+                            .addComponent(txt_mapx))))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -255,15 +259,15 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_mactpx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(txt_mactpx))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_mapx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(txt_mapx))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_masp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,9 +280,9 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(22, 22, 22))
+                    .addComponent(jLabel5)
+                    .addComponent(txtDonGia))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jPanelHeader.setBackground(java.awt.SystemColor.activeCaption);
@@ -575,10 +579,10 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelHeader;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblPhieuXuatCT;
-    private javax.swing.JTextField txtDonGia;
+    private javax.swing.JLabel txtDonGia;
     private javax.swing.JTextField txtSoLuong;
-    private javax.swing.JTextField txt_mactpx;
-    private javax.swing.JTextField txt_mapx;
+    private javax.swing.JLabel txt_mactpx;
+    private javax.swing.JLabel txt_mapx;
     private javax.swing.JComboBox<sanphamTT> txt_masp;
     private javax.swing.JLabel txt_soluongcon;
     // End of variables declaration//GEN-END:variables

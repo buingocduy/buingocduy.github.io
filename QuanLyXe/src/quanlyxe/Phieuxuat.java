@@ -225,7 +225,6 @@ public class Phieuxuat extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jPanelDetail = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtMaPX = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -233,8 +232,9 @@ public class Phieuxuat extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cbxKhachHang = new javax.swing.JComboBox<>();
         cbxKho = new javax.swing.JComboBox<>();
-        txt_nguoilap = new javax.swing.JTextField();
         btnChiTiet = new javax.swing.JButton();
+        txt_nguoilap = new javax.swing.JLabel();
+        txtMaPX = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
@@ -277,13 +277,9 @@ public class Phieuxuat extends javax.swing.JFrame {
 
         jPanelDetail.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setText("Mã phiếu xuất");
+        jLabel1.setText("Mã phiếu xuất:");
 
-        txtMaPX.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txtMaPX.setForeground(new java.awt.Color(255, 51, 0));
-        txtMaPX.setEnabled(false);
-
-        jLabel2.setText("Người Xuất");
+        jLabel2.setText("Người Xuất:");
 
         jLabel3.setText("Khách Hàng");
 
@@ -293,8 +289,6 @@ public class Phieuxuat extends javax.swing.JFrame {
 
         jLabel4.setText("Kho");
 
-        txt_nguoilap.setEnabled(false);
-
         btnChiTiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report.png"))); // NOI18N
         btnChiTiet.setText("Xem chi tiết");
         btnChiTiet.addActionListener(new java.awt.event.ActionListener() {
@@ -303,44 +297,56 @@ public class Phieuxuat extends javax.swing.JFrame {
             }
         });
 
+        txt_nguoilap.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_nguoilap.setText("null");
+
+        txtMaPX.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtMaPX.setForeground(new java.awt.Color(255, 51, 0));
+        txtMaPX.setText("000");
+
         javax.swing.GroupLayout jPanelDetailLayout = new javax.swing.GroupLayout(jPanelDetail);
         jPanelDetail.setLayout(jPanelDetailLayout);
         jPanelDetailLayout.setHorizontalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDetailLayout.createSequentialGroup()
-                .addContainerGap(133, Short.MAX_VALUE)
+                .addContainerGap(134, Short.MAX_VALUE)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
                         .addComponent(btnChiTiet)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
                         .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel6)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_nguoilap)
                             .addComponent(cbxKhachHang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(dtmNgayXuat, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                            .addComponent(cbxKho, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtMaPX))
-                        .addGap(157, 157, 157))))
+                            .addComponent(cbxKho, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(141, 141, 141))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
+                        .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_nguoilap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtMaPX, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                        .addGap(330, 330, 330))))
         );
         jPanelDetailLayout.setVerticalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMaPX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(txtMaPX))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_nguoilap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(17, 17, 17)
+                    .addComponent(jLabel2)
+                    .addComponent(txt_nguoilap))
+                .addGap(20, 20, 20)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -403,7 +409,7 @@ public class Phieuxuat extends javax.swing.JFrame {
                     .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnClose1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                    .addComponent(btnClose1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -609,8 +615,8 @@ public class Phieuxuat extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelHeader;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblPhieuXuat;
-    private javax.swing.JTextField txtMaPX;
-    private javax.swing.JTextField txt_nguoilap;
+    private javax.swing.JLabel txtMaPX;
+    private javax.swing.JLabel txt_nguoilap;
     // End of variables declaration//GEN-END:variables
 
 }

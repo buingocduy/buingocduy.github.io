@@ -165,10 +165,10 @@ public class CT_Phieunhap extends javax.swing.JFrame {
         txtSoLuong = new javax.swing.JTextField();
         txtDonGia = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txt_mapn = new javax.swing.JTextField();
-        txt_mactpn = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txt_mactpn = new javax.swing.JLabel();
+        txt_mapn = new javax.swing.JLabel();
         jPanelHeader = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -197,20 +197,22 @@ public class CT_Phieunhap extends javax.swing.JFrame {
 
         jLabel5.setText("Đơn giá nhập");
 
-        txt_mapn.setEnabled(false);
+        jLabel1.setText("Mã chi tiết phiếu nhập:");
+
+        jLabel2.setText("Mã phiếu nhập:");
 
         txt_mactpn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_mactpn.setForeground(new java.awt.Color(255, 51, 0));
+        txt_mactpn.setText("000");
 
-        jLabel1.setText("Mã chi tiết phiếu nhập");
-
-        jLabel2.setText("Mã phiếu nhập");
+        txt_mapn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_mapn.setText("000");
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+            .addGroup(jPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelLayout.createSequentialGroup()
@@ -224,26 +226,26 @@ public class CT_Phieunhap extends javax.swing.JFrame {
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_mapn)
-                            .addComponent(txt_masp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_mactpn, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(144, 144, 144))
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_masp, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_mactpn)
+                            .addComponent(txt_mapn))))
+                .addGap(134, 134, 134))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(36, 36, 36)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_mactpn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(txt_mactpn))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_mapn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(txt_mapn))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_masp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,7 +258,7 @@ public class CT_Phieunhap extends javax.swing.JFrame {
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanelHeader.setBackground(java.awt.SystemColor.activeCaption);
@@ -518,8 +520,8 @@ public class CT_Phieunhap extends javax.swing.JFrame {
     private javax.swing.JTable tblPhieuNhapCT;
     private javax.swing.JTextField txtDonGia;
     private javax.swing.JTextField txtSoLuong;
-    private javax.swing.JTextField txt_mactpn;
-    private javax.swing.JTextField txt_mapn;
+    private javax.swing.JLabel txt_mactpn;
+    private javax.swing.JLabel txt_mapn;
     private javax.swing.JComboBox<sanphamTT> txt_masp;
     // End of variables declaration//GEN-END:variables
 
