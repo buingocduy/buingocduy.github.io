@@ -440,11 +440,14 @@ public class CT_Phieuxuat extends javax.swing.JFrame {
         } else {
             int rowEffected = phieuXuatCTServices.AddNewRecord(maPX, masp.getID(), SoLuong, DonGia);
             if (rowEffected > 0) {
-                showDataList(maPX);
-                showSoluong(masp.getID());
-                JOptionPane.showMessageDialog(null, "Thêm thành công!");
+                int rowEffected2 = phieuXuatCTServices.AddNewRecord2(maPX, masp.getID(), SoLuong, DonGia);
+                if (rowEffected2 > 0) {
+                    showDataList(maPX);
+                    showSoluong(masp.getID());
+                    JOptionPane.showMessageDialog(null, "Thêm thành công!");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Thêm thất bại");
+                JOptionPane.showMessageDialog(null, "Thêm thất bại (Do sai hoặc đã tồn tại)");
             }
         }
     }//GEN-LAST:event_btnThemActionPerformed

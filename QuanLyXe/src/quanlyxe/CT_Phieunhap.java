@@ -409,13 +409,18 @@ public class CT_Phieunhap extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         String MaPN = txt_mapn.getText().trim();
         sanphamTT masp = (sanphamTT) txt_masp.getSelectedItem();
-        int SoLuong = Integer.valueOf(txtSoLuong.getText().trim());
+        long SoLuong = Long.valueOf(txtSoLuong.getText().trim());
         long DonGia = Long.valueOf(txtDonGia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
 
         int rowEffected = phieunhapCTServices.AddNewRecord(MaPN, masp.getID(), SoLuong, DonGia);
-        if (rowEffected > 0) {
-            JOptionPane.showMessageDialog(null, "Thêm thành công!");
-            showDataList(MaPN);
+        if (rowEffected > 0) {          
+            int rowEffected2 = phieunhapCTServices.AddNewRecord2(MaPN, masp.getID(), SoLuong, DonGia);
+            if(rowEffected2 > 0){
+                JOptionPane.showMessageDialog(null, "Thêm thành công!");   
+                showDataList(MaPN); 
+            } 
+        } else {
+            JOptionPane.showMessageDialog(null, "Tạo mới thất bại (Do sai hoặc đã tồn tại)");
         }
     }//GEN-LAST:event_btnThemActionPerformed
 

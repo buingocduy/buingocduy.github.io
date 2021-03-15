@@ -35,7 +35,7 @@ public class phieunhapXL {
     }
 
     //Them
-    public int AddNewRecord(String Username, String MaNCC, Date ngaynhap, int maKho) {
+    public int AddNewRecord(String Username, String MaNCC, Date ngaynhap, String maKho) {
         int rowCount = 0;
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -57,7 +57,7 @@ public class phieunhapXL {
     }
 
     //Sua
-    public int UpdateRecord(String MaPN, String Username, String MaNCC, Date ngaynhap, int maKho) {
+    public int UpdateRecord(String MaPN, String Username, String MaNCC, Date ngaynhap, String maKho) {
         int rowCount = 0;
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

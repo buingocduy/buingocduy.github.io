@@ -435,7 +435,7 @@ public class CT_Kho extends javax.swing.JFrame {
             showDataList(MaKho);
             JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
         } else
-            JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
+            JOptionPane.showMessageDialog(null, "Tạo mới thất bại (Do sai hoặc đã tồn tại)");
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void txt_maspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_maspActionPerformed

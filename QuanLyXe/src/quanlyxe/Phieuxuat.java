@@ -76,9 +76,9 @@ public class Phieuxuat extends javax.swing.JFrame {
 
         ArrayList<phieuxuatTT> list = phieuXuatServices.getAllRecords();
         dsPhieuXuat = list;
-        
+
         SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
-               
+
         Object[] row = new Object[6];
 
         for (int i = 0; i < list.size(); i++) {
@@ -135,7 +135,7 @@ public class Phieuxuat extends javax.swing.JFrame {
         String stringDate1 = ngayXuat;
         SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
         Date date1 = formatter1.parse(stringDate1);
-            
+
         txtMaPX.setText(maPX);
         txt_nguoilap.setText(userID);
 
@@ -505,10 +505,12 @@ public class Phieuxuat extends javax.swing.JFrame {
         Date ngayXuat = dtmNgayXuat.getDate();
         khoTT kho = (khoTT) cbxKho.getSelectedItem();
 
-        int rowEffected = phieuXuatServices.UpdateRecord(maPX, User, khachHang.getMaKH(), ngayXuat, Integer.valueOf(kho.getMaKho()));
+        int rowEffected = phieuXuatServices.UpdateRecord(maPX, User, khachHang.getMaKH(), ngayXuat, kho.getMaKho());
         if (rowEffected > 0) {
             JOptionPane.showMessageDialog(null, "Sửa thành công!");
             showDataList();
+        } else {
+            JOptionPane.showMessageDialog(null, "Sửa thất bại");
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -520,10 +522,12 @@ public class Phieuxuat extends javax.swing.JFrame {
         Date ngayXuat = dtmNgayXuat.getDate();
         khoTT kho = (khoTT) cbxKho.getSelectedItem();
 
-        int rowEffected = phieuXuatServices.AddNewRecord(User, khachHang.getMaKH(), ngayXuat, Integer.valueOf(kho.getMaKho()));
+        int rowEffected = phieuXuatServices.AddNewRecord(User, khachHang.getMaKH(), ngayXuat, kho.getMaKho());
         if (rowEffected > 0) {
             JOptionPane.showMessageDialog(null, "Thêm thành công!");
             showDataList();
+        } else {
+            JOptionPane.showMessageDialog(null, "Thêm thất bại");
         }
     }//GEN-LAST:event_btnThemActionPerformed
 

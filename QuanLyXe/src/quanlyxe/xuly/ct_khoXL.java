@@ -39,17 +39,22 @@ public class ct_khoXL {
         try {
 
             hienthi_sql acc = new hienthi_sql();
-            String sql = "INSERT INTO ct_kho (MaKho,MaSP,Soluong) VALUES('" + MaKho + "'"
+            String sql = "IF EXISTS (SELECT * FROM ct_kho Where MaSP = '" + MaSP + "') "
+                    + "BEGIN PRINT 'DA TON TAI' "
+                    + "END "
+                    + "ELSE "
+                    + "INSERT INTO ct_kho (MaKho,MaSP,Soluong) VALUES('" + MaKho + "'"
                     + ",'" + MaSP + "'"
                     + ",'" + Soluong + "')";
 
             System.out.println(sql);
 
             rowCount = acc.Update(sql);
+     
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        return rowCount;
+        return rowCount;       
     }
 
     //Cap nhat

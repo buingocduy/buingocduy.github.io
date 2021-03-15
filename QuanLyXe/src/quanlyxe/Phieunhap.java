@@ -343,10 +343,12 @@ public class Phieunhap extends javax.swing.JFrame {
         Date ngayXuat = dtmNgayNhap.getDate();
         khoTT kho = (khoTT) cbxKho.getSelectedItem();
 
-        int rowEffected = phieuNhapServices.AddNewRecord(Username, nhacungcap.getMaNCC(), ngayXuat, Integer.valueOf(kho.getMaKho()));
+        int rowEffected = phieuNhapServices.AddNewRecord(Username, nhacungcap.getMaNCC(), ngayXuat, kho.getMaKho());
         if (rowEffected > 0) {
             JOptionPane.showMessageDialog(null, "Thêm thành công!");
             showDataList();
+        } else {
+            JOptionPane.showMessageDialog(null, "Thêm thất bại");
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -357,10 +359,12 @@ public class Phieunhap extends javax.swing.JFrame {
         Date ngayXuat = dtmNgayNhap.getDate();
         khoTT kho = (khoTT) cbxKho.getSelectedItem();
 
-        int rowEffected = phieuNhapServices.UpdateRecord(MaPN, Username, nhacungcap.getMaNCC(), ngayXuat, Integer.valueOf(kho.getMaKho()));
+        int rowEffected = phieuNhapServices.UpdateRecord(MaPN, Username, nhacungcap.getMaNCC(), ngayXuat, kho.getMaKho());
         if (rowEffected > 0) {
             JOptionPane.showMessageDialog(null, "Sửa thành công!");
             showDataList();
+        } else {
+            JOptionPane.showMessageDialog(null, "Sửa thất bại");
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -388,9 +392,9 @@ public class Phieunhap extends javax.swing.JFrame {
 
         ArrayList<phieunhapTT> list = phieuNhapServices.getAllRecords();
         dsPhieuNhap = list;
- 
+
         SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
-        
+
         Object[] row = new Object[6];
 
         for (int i = 0; i < list.size(); i++) {
@@ -447,7 +451,7 @@ public class Phieunhap extends javax.swing.JFrame {
         String stringDate1 = NgayNhap;
         SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
         Date date1 = formatter1.parse(stringDate1);
-        
+
         txt_MaPN.setText(MaPX);
         txt_nguoilap.setText(Username);
 

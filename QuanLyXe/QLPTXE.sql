@@ -313,12 +313,11 @@ ELSE
 
 
 -- Hàm kiểm tra tồn tại
-IF EXISTS (SELECT * FROM ct_kho Where MaSP = 'EX') 
+IF EXISTS (SELECT * FROM ct_phieunhap Where MaPN = 4 AND MaSP = 'VS') 
 BEGIN
-	PRINT 'rowCount = 0'
+	PRINT 'DA TON TAI'
 END
-ELSE 
-	INSERT INTO ct_kho (MaKho,MaSP,Soluong) VALUES('YAMAHA','EX','20')
+ELSE INSERT INTO ct_phieunhap(MaPN,MaSP,Soluong,DonGiaNhap) VALUES ('4','VS','20','3000000')
 
 
 Update ct_kho SET Soluong = 

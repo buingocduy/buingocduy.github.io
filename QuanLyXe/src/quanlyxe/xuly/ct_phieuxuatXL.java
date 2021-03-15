@@ -53,30 +53,49 @@ public class ct_phieuxuatXL {
     //Them
     public int AddNewRecord(String MaPX, String MaSP, long SoLuong, long DonGia) {
         int rowCount = 0;
-        int rowCount2 = 0;
         try {
             hienthi_sql acc = new hienthi_sql();
-            String sql = "INSERT INTO ct_phieuxuat (MaPX, MaSP, SoLuong, DonGia) VALUES(" + MaPX
+
+            String sql = "IF EXISTS (SELECT * FROM ct_phieuxuat Where MaPX = '" + MaPX + "' and  MaSP = '" + MaSP + "') "
+                    + "BEGIN PRINT 'DA TON TAI' "
+                    + "END "
+                    + "ELSE "
+                    + "INSERT INTO ct_phieuxuat (MaPX, MaSP, SoLuong, DonGia) VALUES(" + MaPX
                     + ",'" + MaSP
                     + "'," + SoLuong
                     + "," + DonGia
                     + ")";
+
+            System.out.println(sql);
+
+            rowCount = acc.Update(sql);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+        return rowCount;
+    }
+
+    //Them
+    public int AddNewRecord2(String MaPX, String MaSP, long SoLuong, long DonGia) {
+        int rowCount2 = 0;
+        try {
+            hienthi_sql acc = new hienthi_sql();
 
             String sql2 = "Update ct_kho SET Soluong = "
                     + "((select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') - "
                     + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '" + MaSP + "'))"
                     + "WHERE MaSP = '" + MaSP + "'";
 
-            System.out.println(sql);
             System.out.println(sql2);
-            
-            rowCount = acc.Update(sql);
+
             rowCount2 = acc.Update(sql2);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
 
-        return rowCount & rowCount2;
+        return rowCount2;
     }
 
     //Sua

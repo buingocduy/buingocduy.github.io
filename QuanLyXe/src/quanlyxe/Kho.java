@@ -348,7 +348,7 @@ public class Kho extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
         }            
         else
-            JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
+            JOptionPane.showMessageDialog(null, "Tạo mới thất bại (Do sai hoặc đã tồn tại)");
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
