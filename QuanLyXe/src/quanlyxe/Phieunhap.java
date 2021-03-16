@@ -11,7 +11,7 @@ package quanlyxe;
  */
 import quanlyxe.thucthe.*;
 import quanlyxe.xuly.*;
-import com.microsoft.sqlserver.jdbc.StringUtils;
+import com.microsoft.sqlserver.jdbc.*;
 import java.awt.Component;
 import java.lang.reflect.Array;
 import java.text.ParseException;

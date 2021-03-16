@@ -8,12 +8,13 @@ package quanlyxe;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 import quanlyxe.thucthe.*;
 import quanlyxe.xuly.*;
 
@@ -49,7 +50,7 @@ public class Baocao extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btn_Excel = new javax.swing.JButton();
         btn_in = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txt_tongtien = new javax.swing.JLabel();
@@ -78,8 +79,13 @@ public class Baocao extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(5).setMaxWidth(65);
         }
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/Excel-icon.png"))); // NOI18N
-        jButton1.setText("Xuất ra Excel");
+        btn_Excel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/Excel-icon.png"))); // NOI18N
+        btn_Excel.setText("Xuất ra Excel");
+        btn_Excel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ExcelActionPerformed(evt);
+            }
+        });
 
         btn_in.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/new.png"))); // NOI18N
         btn_in.setText("In ra");
@@ -165,7 +171,7 @@ public class Baocao extends javax.swing.JFrame {
                         .addGap(636, 636, 636)
                         .addComponent(btn_in)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(btn_Excel))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,13 +195,25 @@ public class Baocao extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btn_Excel)
                     .addComponent(btn_in))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_ExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExcelActionPerformed
+        try {
+            ketnoi_sql myCon = new ketnoi_sql();
+            String reportPath = "C:\\Temp\\Sample_report.jrxml";
+            JasperReport jr = JasperCompileManager.compileReport(reportPath);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, myCon.getConnection());
+            JasperViewer.viewReport(jp);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_ExcelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,6 +248,10 @@ public class Baocao extends javax.swing.JFrame {
                 new Baocao().setVisible(true);
             }
         });
+    }
+
+    public void In(String strngaybd, String strngaytk) {
+
     }
 
     public void showDataList(String strngaybd, String strngaytk) {
@@ -276,8 +298,8 @@ public class Baocao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Excel;
     private javax.swing.JButton btn_in;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

@@ -7,7 +7,7 @@ package quanlyxe;
 
 import quanlyxe.thucthe.*;
 import quanlyxe.xuly.*;
-import com.microsoft.sqlserver.jdbc.StringUtils;
+import com.microsoft.sqlserver.jdbc.*;
 import java.awt.Component;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -606,14 +606,13 @@ public class Sanpham extends javax.swing.JFrame {
 
             System.out.println("Selected: " + selectedData + " , value: " + selectedID);
 
-            if (!StringUtils.isEmpty(selectedID)) {
-                showDataDetail(selectedID,
+            showDataDetail(selectedID,
                         (String) jTableData.getValueAt(selectedRow, 1),
                         (String) jTableData.getValueAt(selectedRow, 2),
                         (String) jTableData.getValueAt(selectedRow, 3),
                         (String) jTableData.getValueAt(selectedRow, 4),
                         (String) jTableData.getValueAt(selectedRow, 5));
-            }
+            
 
         }
     }

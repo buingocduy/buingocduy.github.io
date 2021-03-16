@@ -20,6 +20,7 @@ public class ketnoi_sql {
             url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName + ";sslProtocol=TLSv1.2;";
         }
         System.out.println("ket noi thanh cong");
+        System.out.println(url);
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         return DriverManager.getConnection(url, userID, password);
     }

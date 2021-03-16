@@ -5,19 +5,11 @@
  */
 package quanlyxe;
 
-import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.beans.PropertyVetoException;
-import java.util.HashMap;
-import java.util.Map;
-import javax.swing.*;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.swing.JRViewer;
-import quanlyxe.xuly.ketnoi_sql;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -45,6 +37,7 @@ public class Menu extends javax.swing.JFrame {
 
     public Menu() {
         initComponents();
+        txt_ngay.setText(String.valueOf(String.valueOf(java.time.LocalDate.now())));
     }
 
     /**
@@ -72,6 +65,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txt_username = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        txt_ngay = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
 
@@ -228,6 +222,8 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel3.setText("Người dùng:");
 
+        txt_ngay.setText("jLabel4");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,7 +234,9 @@ public class Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(txt_ngay))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -259,9 +257,12 @@ public class Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btn_dangnhaplai)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txt_username)
-                                .addComponent(jLabel3))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txt_ngay)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txt_username)
+                                    .addComponent(jLabel3)))))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -410,6 +411,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel txt_ngay;
     private javax.swing.JLabel txt_username;
     // End of variables declaration//GEN-END:variables
 
