@@ -299,7 +299,16 @@ select * from phieuxuat
 select * from ct_phieuxuat
 go
 
-/*
+
+--Kiểm tra số lượng
+select TenSP,
+sum(ct_phieunhap.SoLuong) as 'SLDN',
+sum(ct_phieuxuat.SoLuong) as 'SLDX',
+(sum(ct_phieunhap.SoLuong) - sum(ct_phieuxuat.SoLuong)) as 'SLC'
+from sanpham,ct_phieunhap,ct_phieuxuat
+where sanpham.MaSP = ct_phieunhap.MaSP and sanpham.MaSP = ct_phieuxuat.MaSP 
+group by TenSP
+
 -- Hàm kiểm tra tồn tại
 IF EXISTS (SELECT * FROM ct_phieuxuat Where MaSP = 'EX') 
 BEGIN
@@ -336,7 +345,9 @@ Select Soluong From ct_kho Where MaSP = 'EX'
 
 delete from kho where MaKho = '1'	
 
-select * from ct_hoadon where MaHoaDon = '1'
+select MaHoaDon,Ngay,MaKH,HinhThucTT,TongTien,Username
+from hoadon
+
 
 select 'TongTien'=SUM(TongTien) 
 from hoadon 

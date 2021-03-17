@@ -9,18 +9,38 @@ import quanlyxe.thucthe.*;
 import quanlyxe.xuly.*;
 import com.microsoft.sqlserver.jdbc.*;
 import java.awt.Component;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.swing.JRViewer;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -90,6 +110,8 @@ public class Sanpham extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         btn_tailai = new javax.swing.JButton();
         cb_chon = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        btn_in = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Quản lý thông tin sách");
@@ -359,6 +381,37 @@ public class Sanpham extends javax.swing.JFrame {
         );
 
         jTabbedPane5.addTab("Tìm kiếm", jPanel1);
+
+        jPanel3.setBackground(new java.awt.Color(153, 180, 209));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btn_in.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/print.png"))); // NOI18N
+        btn_in.setText("In thống kê");
+        btn_in.setIconTextGap(10);
+        btn_in.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_in, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(btn_in, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(170, Short.MAX_VALUE))
+        );
+
+        jTabbedPane5.addTab("In", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -650,6 +703,29 @@ public class Sanpham extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cb_chonActionPerformed
 
+    private void btn_inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inActionPerformed
+        try {
+            ketnoi_sql sql = new ketnoi_sql();
+                   
+            JasperDesign jd = JRXmlLoader.load("G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\ThongKeSLSP.jrxml");
+            String query  = "select TenSP,sum(ct_phieunhap.SoLuong) as 'SLDN',sum(ct_phieuxuat.SoLuong) as 'SLDX',(sum(ct_phieunhap.SoLuong) - sum(ct_phieuxuat.SoLuong)) as 'SLC' "
+                            + "from sanpham,ct_phieunhap,ct_phieuxuat "
+                            + "where sanpham.MaSP = ct_phieunhap.MaSP and sanpham.MaSP = ct_phieuxuat.MaSP "
+                            + "group by TenSP ";
+            
+            JRDesignQuery updateQuery = new JRDesignQuery();
+            updateQuery.setText(query);
+            
+            jd.setQuery(updateQuery);
+            
+            JasperReport jreport = JasperCompileManager.compileReport(jd);
+            JasperPrint jprint = JasperFillManager.fillReport(jreport, null, sql.getConnection());
+                    
+        } catch (Exception ex) {
+            Logger.getLogger(Sanpham.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+    }//GEN-LAST:event_btn_inActionPerformed
+
     public sanphamTT findSP(String MaSP, ArrayList<sanphamTT> SanphamTT) {
         for (sanphamTT item : SanphamTT) {
             if (item.getID().equalsIgnoreCase(MaSP)) {
@@ -718,6 +794,7 @@ public class Sanpham extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btn_in;
     private javax.swing.JButton btn_tailai;
     private javax.swing.JButton btn_timkiem;
     private javax.swing.JComboBox<String> cb_chon;
@@ -731,6 +808,7 @@ public class Sanpham extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelDetail;
     private javax.swing.JPanel jPanelHeader;
     private javax.swing.JScrollPane jScrollPane1;
