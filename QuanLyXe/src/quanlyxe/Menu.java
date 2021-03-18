@@ -37,7 +37,13 @@ public class Menu extends javax.swing.JFrame {
 
     public Menu() {
         initComponents();
-        txt_ngay.setText(String.valueOf(String.valueOf(java.time.LocalDate.now())));
+
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = formatter.format(date);
+        System.out.println(strDate);
+     
+        txt_ngay.setText(strDate);
     }
 
     /**
@@ -222,7 +228,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel3.setText("Người dùng:");
 
-        txt_ngay.setText("jLabel4");
+        txt_ngay.setText("dd/MM/yyyy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

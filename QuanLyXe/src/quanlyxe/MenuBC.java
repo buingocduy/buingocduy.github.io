@@ -5,9 +5,23 @@
  */
 package quanlyxe;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import quanlyxe.xuly.ketnoi_sql;
 
 /**
  *
@@ -43,6 +57,11 @@ public class MenuBC extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         cb_DSB = new javax.swing.JRadioButton();
         cb_CTDSB = new javax.swing.JRadioButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        btn_thongkesanpham = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         setTitle("Báo cáo");
         setResizable(false);
@@ -111,6 +130,34 @@ public class MenuBC extends javax.swing.JFrame {
                 .addComponent(cb_CTDSB)
                 .addContainerGap())
         );
+
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/cp.png"))); // NOI18N
+
+        btn_thongkesanpham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report1.png"))); // NOI18N
+        btn_thongkesanpham.setText("Xuất thống kê sản phẩm");
+        btn_thongkesanpham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_thongkesanphamMouseClicked(evt);
+            }
+        });
+        btn_thongkesanpham.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_thongkesanphamActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btn_thongkesanpham);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/people.png"))); // NOI18N
+
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report1.png"))); // NOI18N
+        jMenu3.setText("Xuất thông tin khách hàng");
+        jMenu2.add(jMenu3);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -209,6 +256,28 @@ public class MenuBC extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, "Hãy chọn 1 trong 2 cái để xem");
         }     
     }//GEN-LAST:event_btn_doanhsoActionPerformed
+    
+    //Xuất thống kê sản phẩm
+    private void btn_thongkesanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongkesanphamActionPerformed
+
+    }//GEN-LAST:event_btn_thongkesanphamActionPerformed
+
+    private void btn_thongkesanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_thongkesanphamMouseClicked
+         try {
+            ketnoi_sql sql = new ketnoi_sql();
+                   
+            JasperDesign jd = JRXmlLoader.load("G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\ThongKeSLSP.jrxml");       
+            JasperReport jr = JasperCompileManager.compileReport("G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\ThongKeSLSP.jrxml");  
+            JasperPrint jp = JasperFillManager.fillReport(jr, new HashMap(), sql.getConnection());
+            JasperViewer.viewReport(jp);
+            JasperExportManager.exportReportToPdfFile( jp,"G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\ThongKeSLSP.pdf");
+                    
+        } catch (ClassNotFoundException | SQLException | JRException e) {
+            JOptionPane.showMessageDialog(null, "Cannot show report" + e.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(Sanpham.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+    }//GEN-LAST:event_btn_thongkesanphamMouseClicked
 
     /**
      * @param args the command line arguments
@@ -247,12 +316,17 @@ public class MenuBC extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_doanhso;
+    private javax.swing.JMenu btn_thongkesanpham;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton cb_CTDSB;
     private javax.swing.JRadioButton cb_DSB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private com.toedter.calendar.JDateChooser ngaybatdau;

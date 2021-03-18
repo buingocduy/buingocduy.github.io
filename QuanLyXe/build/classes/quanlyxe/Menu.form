@@ -352,7 +352,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="txt_ngay">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel4"/>
+        <Property name="text" type="java.lang.String" value="dd/MM/yyyy"/>
       </Properties>
     </Component>
   </SubComponents>
