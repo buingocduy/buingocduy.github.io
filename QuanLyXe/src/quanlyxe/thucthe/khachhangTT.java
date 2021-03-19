@@ -11,34 +11,56 @@ package quanlyxe.thucthe;
  */
 public class khachhangTT {
 
-    int maKH;
-    String tenKH, diaChi, email, phone;
+    String phone, tenKH, diaChi, email;
+    long TongTienDaMua;
 
-    public khachhangTT(int maKH, String tenKH, String diaChi, String email, String phone) {
-        this.maKH = maKH;
+    public khachhangTT(String phone, String tenKH, String diaChi, String email, long TongTienDaMua) {
+        this.phone = phone;
         this.tenKH = tenKH;
         this.diaChi = diaChi;
         this.email = email;
-        this.phone = phone;
+        this.TongTienDaMua = TongTienDaMua;
     }
 
-    public int getMaKH() {
-        return maKH;
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getTenKH() {
         return tenKH;
     }
 
+    public void setTenKH(String tenKH) {
+        this.tenKH = tenKH;
+    }
+
     public String getDiaChi() {
         return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getPhone() {
-        return phone;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public long getTongTienDaMua() {
+        return TongTienDaMua;
+    }
+
+    public void setTongTienDaMua(long TongTienDaMua) {
+        this.TongTienDaMua = TongTienDaMua;
+    }
+
+    
 }

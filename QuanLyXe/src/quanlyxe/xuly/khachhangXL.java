@@ -26,7 +26,7 @@ public class khachhangXL {
             ResultSet rs = acc.Query("SELECT * FROM khachhang");
 
             while (rs.next()) {
-                khachhangTT cust = new khachhangTT(rs.getInt("MaKH"), rs.getString("TenKH"), rs.getString("DiaChi"), rs.getString("Email"), rs.getString("Phone"));
+                khachhangTT cust = new khachhangTT(rs.getString("SDT"),rs.getString("TenKH"), rs.getString("DiaChi"), rs.getString("Email"), rs.getLong("TongTienDaMua"));
                 list.add(cust);
             }
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class khachhangXL {
             ResultSet rs = acc.Query("SELECT * FROM khachhang where Phone = " + Phone + "");
 
             while (rs.next()) {
-                khachhangTT cust = new khachhangTT(rs.getInt("MaKH"), rs.getString("TenKH"), rs.getString("DiaChi"), rs.getString("Email"), rs.getString("Phone"));
+                khachhangTT cust = new khachhangTT(rs.getString("SDT"),rs.getString("TenKH"), rs.getString("DiaChi"), rs.getString("Email"), rs.getLong("TongTienDaMua"));
                 list.add(cust);
             }
         } catch (Exception e) {
@@ -53,15 +53,16 @@ public class khachhangXL {
     }
 
     //Thêm
-    public int AddNewRecord(String tenKH, String diaChi, String email, String phone) {
+    public int AddNewRecord(String phone, String tenKH, String diaChi, String email, long TongTienDaMua) {
         int rowCount = 0;
         try {
 
             hienthi_sql acc = new hienthi_sql();
-            String sql = "INSERT INTO khachhang (TenKH, DiaChi, Email, Phone) VALUES(N'" + tenKH + "'"
+            String sql = "INSERT INTO khachhang (SDT, TenKH, DiaChi, Email, TongTienDaMua) VALUES('" + phone + "'"
+                    + ",N'" + tenKH + "'"
                     + ",N'" + diaChi + "'"
                     + ", '" + email + "'"
-                    + ", '" + phone + "'" + ")";
+                    + ", " +TongTienDaMua + " )";
 
             System.out.println(sql);
 
@@ -73,16 +74,16 @@ public class khachhangXL {
     }
 
     //Sửa
-    public int UpdateRecord(int maKH, String tenKH, String diaChi, String email, String phone) {
+    public int UpdateRecord(String phone, String tenKH, String diaChi, String email, long TongTienDaMua) {
         int rowCount = 0;
         try {
 
             hienthi_sql acc = new hienthi_sql();
             String sql = "UPDATE khachhang SET TenKH=N'" + tenKH + "'"
                     + ", DiaChi =N'" + diaChi + "'"
-                    + ", Email  = '" + email + "'"
-                    + ", Phone  = '" + phone + "'"
-                    + " WHERE MaKH = " + maKH;
+                    + ", Email  = '" + email + "'"   
+                    + ", TongTienDaMua  = " + TongTienDaMua + ""   
+                    + " WHERE SDT = '" + phone +"'";
 
             System.out.println(sql);
             rowCount = acc.Update(sql);
@@ -93,12 +94,12 @@ public class khachhangXL {
     }
 
     //Xóa
-    public int DeleteRecord(int maKH) {
+    public int DeleteRecord(String phone) {
         int rowCount = 0;
         try {
 
             hienthi_sql acc = new hienthi_sql();
-            String sql = "DELETE FROM khachhang WHERE MaKH = " + maKH;
+            String sql = "DELETE FROM khachhang WHERE SDT = '" + phone +"'";
 
             System.out.println(sql);
 

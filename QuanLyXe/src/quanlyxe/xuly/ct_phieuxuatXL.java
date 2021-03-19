@@ -25,7 +25,7 @@ public class ct_phieuxuatXL {
             hienthi_sql acc = new hienthi_sql();
             ResultSet rs = acc.Query("SELECT * FROM ct_phieuxuat WHERE MaPX = '" + MaPX + "'");
             while (rs.next()) {
-                ct_phieuxuatTT phieuXuatCT = new ct_phieuxuatTT(rs.getString("MaCTPX"), rs.getString("MaPX"), rs.getString("MaSP"), rs.getLong("SoLuong"), rs.getLong("DonGia"));
+                ct_phieuxuatTT phieuXuatCT = new ct_phieuxuatTT(rs.getString("MaCTPX"), rs.getString("MaPX"),  rs.getString("MaKho"), rs.getString("MaSP"), rs.getLong("SoLuong"));
                 list.add(phieuXuatCT);
             }
         } catch (Exception e) {
@@ -51,7 +51,7 @@ public class ct_phieuxuatXL {
     }
 
     //Them
-    public int AddNewRecord(String MaPX, String MaSP, long SoLuong, long DonGia) {
+    public int AddNewRecord(String MaPX, String MaKho, String MaSP, long SoLuong) {
         int rowCount = 0;
         try {
             hienthi_sql acc = new hienthi_sql();
@@ -60,10 +60,10 @@ public class ct_phieuxuatXL {
                     + "BEGIN PRINT 'DA TON TAI' "
                     + "END "
                     + "ELSE "
-                    + "INSERT INTO ct_phieuxuat (MaPX, MaSP, SoLuong, DonGia) VALUES(" + MaPX
-                    + ",'" + MaSP
+                    + "INSERT INTO ct_phieuxuat (MaPX, MaKho, MaSP, SoLuong) VALUES(" + MaPX
+                    + ",'" + MaKho
+                    + "','" + MaSP
                     + "'," + SoLuong
-                    + "," + DonGia
                     + ")";
 
             System.out.println(sql);
@@ -78,7 +78,7 @@ public class ct_phieuxuatXL {
     }
 
     //Them
-    public int AddNewRecord2(String MaPX, String MaSP, long SoLuong, long DonGia) {
+    public int AddNewRecord2(String MaPX, String MaKho, String MaSP, long SoLuong) {
         int rowCount2 = 0;
         try {
             hienthi_sql acc = new hienthi_sql();
@@ -99,15 +99,15 @@ public class ct_phieuxuatXL {
     }
 
     //Sua
-    public int UpdateRecord(String MaCTPX, String MaPX, String MaSP, long SoLuong, long DonGia) {
+    public int UpdateRecord(String MaCTPX,  String MaKho, String MaPX, String MaSP, long SoLuong) {
         int rowCount = 0;
         int rowCount2 = 0;
         try {
             hienthi_sql acc = new hienthi_sql();
             String sql = "UPDATE ct_phieuxuat SET MaPX = '" + MaPX
+                    + "',MaKho ='" + MaKho
                     + "',MaSP ='" + MaSP
                     + "',SoLuong = '" + SoLuong
-                    + "',DonGia = '" + DonGia
                     + "' WHERE MaCTPX = '" + MaCTPX + "'";
 
             String sql2 = "Update ct_kho SET Soluong = "

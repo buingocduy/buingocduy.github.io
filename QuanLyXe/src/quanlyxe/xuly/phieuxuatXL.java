@@ -25,7 +25,7 @@ public class phieuxuatXL {
             hienthi_sql acc = new hienthi_sql();
             ResultSet rs = acc.Query("SELECT * FROM phieuxuat");
             while (rs.next()) {
-                phieuxuatTT phieuXuat = new phieuxuatTT(rs.getString("MaPX"), rs.getInt("MaKH"), rs.getString("MaKho"), rs.getString("Username"), rs.getDate("NgayXuat"));
+                phieuxuatTT phieuXuat = new phieuxuatTT(rs.getString("MaPX"), rs.getString("Username"), rs.getDate("NgayXuat"));
                 list.add(phieuXuat);
             }
         } catch (Exception e) {
@@ -35,17 +35,15 @@ public class phieuxuatXL {
     }
 
     //Them
-    public int AddNewRecord(String userID, int maKH, Date ngayXuat, String maKho) {
+    public int AddNewRecord(String userID, Date ngayXuat) {
         int rowCount = 0;
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             String strNgayXuat = formatter.format(ngayXuat);
             hienthi_sql acc = new hienthi_sql();
-            String sql = "INSERT INTO phieuxuat (Username, MaKH, NgayXuat,MaKho) VALUES('" + userID
-                    + "'," + maKH
-                    + ",'" + strNgayXuat + "'"
-                    + ",'" + maKho
-                    + "')";
+            String sql = "INSERT INTO phieuxuat (Username, NgayXuat) VALUES('" + userID
+                    + "','" + strNgayXuat + "')";
+            
             System.out.println(sql);
 
             rowCount = acc.Update(sql);
@@ -56,17 +54,17 @@ public class phieuxuatXL {
     }
 
     //Sua
-    public int UpdateRecord(int maPX, String userID, int maKH, Date ngayXuat, String maKho) {
+    public int UpdateRecord(int maPX, String userID, Date ngayXuat) {
         int rowCount = 0;
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             String strNgayXuat = formatter.format(ngayXuat);
+            
             hienthi_sql acc = new hienthi_sql();
-            String sql = "UPDATE phieuxuat SET Username ='" + userID
-                    + "',MaKH =" + maKH
-                    + ",NgayXuat ='" + strNgayXuat + "'"
-                    + ",MaKho ='" + maKho
-                    + "' WHERE MaPX = " + maPX;
+            String sql = "UPDATE phieuxuat SET Username ='" + userID            
+                    + "',NgayXuat ='" + strNgayXuat + "'"   
+                    + " WHERE MaPX = " + maPX;
+            
             System.out.println(sql);
 
             rowCount = acc.Update(sql);

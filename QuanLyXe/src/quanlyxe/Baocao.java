@@ -69,7 +69,7 @@ public class Baocao extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã hóa đơn", "Ngày lập", "Mã khách hàng", "Hình thức thanh toán", "Tổng tiền", "Người lập"
+                "Mã hóa đơn", "Ngày lập", "Số điện thoại", "Hình thức thanh toán", "Tổng tiền", "Người lập"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -274,11 +274,12 @@ public class Baocao extends javax.swing.JFrame {
 
             row[0] = list.get(i).getMaHoaDon();
             row[1] = formatter2.format(list.get(i).getNgay());
-            row[2] = list.get(i).getMaKH();
+            row[2] = list.get(i).getSDT();
             row[3] = list.get(i).getHinhThucTT();
             row[4] = en.format(list.get(i).getTongTien());
             row[5] = list.get(i).getUserID();
-
+            row[6] = list.get(i).getGhiChu();
+            
             model.addRow(row);
         }
     }

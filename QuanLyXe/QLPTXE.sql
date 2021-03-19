@@ -34,12 +34,12 @@ go
 
 --KHÁCH HÀNG
 Create table khachhang
-(MaKH int IDENTITY(1,1) NOT NULL,
+(SDT varchar(50) NOT NULL,
 	TenKH nvarchar(100) NOT NULL,
 	DiaChi nvarchar(100) NULL,
-	Email varchar(50) NULL,
-	Phone varchar(50) NULL,
-	Primary key(MaKH))
+	Email varchar(50) NULL,	
+	TongTienDaMua bigint NOT NULL,
+	Primary key(SDT))
 go
 
 --SẢN PHẨM
@@ -75,10 +75,11 @@ CREATE TABLE ct_kho(
 CREATE TABLE hoadon(
 	MaHoaDon int IDENTITY(1,1) NOT NULL,	
 	Ngay  date  NOT NULL,
-	MaKH  int NOT NULL,
+	SDT varchar (50) NOT NULL,
 	HinhThucTT nvarchar (30) NOT NULL,
 	TongTien bigint NOT NULL,
-	Username varchar (100) NOT NULL,
+	Username varchar(100),
+	GhiChu NTEXT,
 	Primary key(MaHoaDon))
 go
 
@@ -116,9 +117,7 @@ go
 CREATE TABLE phieuxuat(
 	MaPX int IDENTITY(1,1) NOT NULL,
 	Username varchar(100) NOT NULL,
-	MaKH int NOT NULL,
 	NgayXuat date NOT NULL,
-	MaKho char(50) NOT NULL,
 	Primary key (MaPX))
 go
 
@@ -126,9 +125,9 @@ go
 CREATE TABLE ct_phieuxuat(
 	MaCTPX int IDENTITY(1,1) NOT NULL,
 	MaPX int NOT NULL,
+	MaKho char(50) NOT NULL,
 	MaSP varchar(10) NOT NULL,
 	SoLuong int NOT NULL,
-	DonGia int NOT NULL,
 	Primary key (MaCTPX))
 go
 
@@ -147,8 +146,6 @@ add constraint FK_ctk_k foreign key(MaKho) references kho(MaKho)
 go
 
 --Ràng buộc HÓA ĐƠN
-alter table hoadon
-add constraint FK_hd_kh foreign key(MaKH) references khachhang(MaKH)
 alter table hoadon
 add constraint FK_hd_tk foreign key(Username) references taikhoan(Username)
 go
@@ -176,8 +173,6 @@ go
 
 --Ràng buộc PHIẾU XUẤT
 alter table phieuxuat
-add constraint FK_px_k foreign key(MaKho) references kho(MaKho)
-alter table phieuxuat
 add constraint FK_px_tk foreign key(Username) references taikhoan(Username)
 go
 
@@ -186,6 +181,8 @@ alter table ct_phieuxuat
 add constraint FK_ctpx_px foreign key(MaPX) references phieuxuat(MaPX)
 alter table ct_phieuxuat
 add constraint FK_ctpx_tk foreign key(MaSP) references sanpham(MaSP)
+alter table ct_phieuxuat
+add constraint FK_ctpx_k foreign key(MaKho) references kho(MaKho)
 go
 
 /*Tài khoảng*/
@@ -206,10 +203,10 @@ insert into nhacungcap values ('SUZUKI',N'Công ty TNHH Việt Nam Suzuki',N'Đ�
 go
 
 /*Khách hàng*/
-insert into khachhang values (N'Bùi Ngọc Duy',N'439B/4 Hậu Giang P11, Q6, TP.HCM','buingocduy1999@gmail.com','0904596810')
-insert into khachhang values (N'Phan Hồng Tuấn',N'475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM','phanhongtuan@gmail.com','0904596810')
-insert into khachhang values (N'Huỳnh Lưu Trọng Vũ',N'475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM','huynhluutrongvu@gmail.com','0904596810')
-insert into khachhang values (N'Trần Văn Kỳ',N'475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM','tranvanky@gmail.com','0904596810')
+insert into khachhang values ('0904596810',N'Bùi Ngọc Duy',N'439B/4 Hậu Giang P11, Q6, TP.HCM','buingocduy1999@gmail.com',100000000)
+insert into khachhang values ('0902343263',N'Phan Hồng Tuấn',N'475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM','phanhongtuan@gmail.com',30000000)
+insert into khachhang values ('0000000000',N'Huỳnh Lưu Trọng Vũ',N'475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM','huynhluutrongvu@gmail.com',41000000)
+insert into khachhang values ('0948803218',N'Trần Văn Kỳ',N'475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM','tranvanky@gmail.com',30000000)
 go
 
 /*Sản phẩm*/
@@ -222,11 +219,11 @@ insert into sanpham values ('GD','GD 110','XCT','22000000','SUZUKI','2020')
 go
 
 /*Hóa đơn*/
-insert into hoadon values ('2021-02-07',1,N'TIỀN MẶT',50000000,'admin')
-insert into hoadon values ('2021-02-07',2,N'TIỀN MẶT',30000000,'admin')
-insert into hoadon values ('2021-02-07',3,N'TIỀN MẶT',41000000,'admin')
-insert into hoadon values ('2021-02-07',4,N'TIỀN MẶT',30000000,'admin')
-insert into hoadon values ('2021-02-07',1,N'TIỀN MẶT',50000000,'admin')
+insert into hoadon values ('2021-02-07','0904596810',N'TIỀN MẶT',50000000,'DUY',N'D')
+insert into hoadon values ('2021-02-07','0902343263',N'TIỀN MẶT',30000000,'DUY',N'D')
+insert into hoadon values ('2021-02-07','0000000000',N'TIỀN MẶT',41000000,'DUY',N'D')
+insert into hoadon values ('2021-02-07','0948803218',N'TIỀN MẶT',30000000,'DUY',N'D')
+insert into hoadon values ('2021-02-07','0904596810',N'TIỀN MẶT',50000000,'DUY',N'D')
 go
 
 /*Kho*/
@@ -269,19 +266,19 @@ insert into ct_phieunhap values (3,'GD',10,15000000)
 go
 
 /*PHIẾU XUẤT*/
-insert into phieuxuat values ('DUY',1,'2021-02-07','YAMAHA')
-insert into phieuxuat values ('DUY',2,'2021-02-07','YAMAHA')
-insert into phieuxuat values ('DUY',3,'2021-02-07','HONDA')
-insert into phieuxuat values ('DUY',4,'2021-02-07','HONDA')
-insert into phieuxuat values ('DUY',1,'2021-02-07','SUZUKI')
+insert into phieuxuat values ('DUY','2021-02-07')
+insert into phieuxuat values ('DUY','2021-02-07')
+insert into phieuxuat values ('DUY','2021-02-07')
+insert into phieuxuat values ('DUY','2021-02-07')
+insert into phieuxuat values ('DUY','2021-02-07')
 go
 
 /*CT PHIẾU XUẤT*/
-insert into ct_phieuxuat values (1,'EX',1,50000000)
-insert into ct_phieuxuat values (2,'FG',1,30000000)
-insert into ct_phieuxuat values (3,'WINX',1,41000000)
-insert into ct_phieuxuat values (4,'VS',1,30000000)
-insert into ct_phieuxuat values (5,'RAI',1,50000000)
+insert into ct_phieuxuat values (1,'YAMAHA','EX',1)
+insert into ct_phieuxuat values (2,'YAMAHA','FG',1)
+insert into ct_phieuxuat values (3,'HONDA','WINX',1)
+insert into ct_phieuxuat values (4,'HONDA','VS',1)
+insert into ct_phieuxuat values (5,'SUZUKI','RAI',1)
 go
 
 select * from taikhoan
@@ -299,6 +296,11 @@ select * from phieuxuat
 select * from ct_phieuxuat
 go
 
+
+/*
+select distinct Makho,Ngay,phieuxuat.MaKH,HinhThucTT,TongTien,phieuxuat.Username 
+from hoadon,phieuxuat
+where hoadon.Username = taikhoan.Username and phieuxuat.Username = taikhoan.Username
 
 --Kiểm tra số lượng
 select TenSP,

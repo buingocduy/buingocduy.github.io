@@ -12,15 +12,15 @@ package quanlyxe.thucthe;
 public class ct_phieuxuatTT {
 
     private String MaCTPX, MaPX;
-    private String MaSP;
-    private long SoLuong, DonGia;
+    private String MaKho, MaSP;
+    private long SoLuong;
 
-    public ct_phieuxuatTT(String MaCTPX, String MaPX, String MaSP, long SoLuong, long DonGia) {
+    public ct_phieuxuatTT(String MaCTPX, String MaPX, String MaKho, String MaSP, long SoLuong) {
         this.MaCTPX = MaCTPX;
         this.MaPX = MaPX;
+        this.MaKho = MaKho;
         this.MaSP = MaSP;
         this.SoLuong = SoLuong;
-        this.DonGia = DonGia;
     }
 
     public String getMaCTPX() {
@@ -39,6 +39,14 @@ public class ct_phieuxuatTT {
         this.MaPX = MaPX;
     }
 
+    public String getMaKho() {
+        return MaKho;
+    }
+
+    public void setMaKho(String MaKho) {
+        this.MaKho = MaKho;
+    }
+
     public String getMaSP() {
         return MaSP;
     }
@@ -55,12 +63,5 @@ public class ct_phieuxuatTT {
         this.SoLuong = SoLuong;
     }
 
-    public long getDonGia() {
-        return DonGia;
-    }
-
-    public void setDonGia(long DonGia) {
-        this.DonGia = DonGia;
-    }
-
+    
 }

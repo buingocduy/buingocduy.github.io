@@ -35,20 +35,12 @@ public class Phieuxuat extends javax.swing.JFrame {
 
     phieuxuatXL phieuXuatServices = new phieuxuatXL();
     khachhangXL customerServices = new khachhangXL();
-    khoXL khoServices = new khoXL();
-
-    ArrayList<khachhangTT> dsKhachHang = new ArrayList<khachhangTT>();
-    ArrayList<khoTT> dsKho = new ArrayList<khoTT>();
+  
     ArrayList<phieuxuatTT> dsPhieuXuat = new ArrayList<phieuxuatTT>();
-
     phieuxuatTT selectedPhieuXuat = null;
 
     public Phieuxuat() {
         initComponents();
-
-        loadKhachHang();
-        loadKho();
-
         showDataList();
     }
 
@@ -84,9 +76,8 @@ public class Phieuxuat extends javax.swing.JFrame {
         for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getMaPX();
             row[1] = list.get(i).getUsername();
-            row[2] = list.get(i).getMaKH();
-            row[3] = formatter2.format(list.get(i).getNgayXuat());
-            row[4] = list.get(i).getMaKho();
+            row[2] = formatter2.format(list.get(i).getNgayXuat());
+       
             model.addRow(row);
 
         }
@@ -125,69 +116,20 @@ public class Phieuxuat extends javax.swing.JFrame {
 
             ShowDataDetail(selectedID,
                     (String) tblPhieuXuat.getValueAt(selectedRow, 1),
-                    (int) tblPhieuXuat.getValueAt(selectedRow, 2),
-                    (String) tblPhieuXuat.getValueAt(selectedRow, 3),
-                    (String) tblPhieuXuat.getValueAt(selectedRow, 4));
+                    (String) tblPhieuXuat.getValueAt(selectedRow, 2));
         }
     }
 
-    private void ShowDataDetail(String maPX, String userID, int maKH, String ngayXuat, String maKho) throws ParseException {
+    private void ShowDataDetail(String maPX, String userID, String ngayXuat) throws ParseException {
         String stringDate1 = ngayXuat;
         SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
         Date date1 = formatter1.parse(stringDate1);
 
         txtMaPX.setText(maPX);
         txt_nguoilap.setText(userID);
-
-        if (selectedPhieuXuat != null) {
-            cbxKhachHang.setSelectedItem(findKhachHang(selectedPhieuXuat.getMaKH(), dsKhachHang));
-        }
-
         dtmNgayXuat.setDate(date1);
 
-        if (selectedPhieuXuat != null) {
-            cbxKho.setSelectedItem(findKho(selectedPhieuXuat.getMaKho(), dsKho));
-        }
-    }
 
-    private void loadKho() {
-        cbxKho.removeAllItems();
-        dsKho = khoServices.getAllRecords();
-        for (khoTT kho : dsKho) {
-            cbxKho.addItem(kho);
-        }
-        cbxKho.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof khoTT) {
-                    khoTT warehouse = (khoTT) value;
-                    setText(warehouse.getTenKho());
-                }
-                return this;
-            }
-
-        });
-    }
-
-    private void loadKhachHang() {
-        cbxKhachHang.removeAllItems();
-        dsKhachHang = customerServices.getAllRecords();
-        for (khachhangTT khachHang : dsKhachHang) {
-            cbxKhachHang.addItem(khachHang);
-        }
-        cbxKhachHang.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof khachhangTT) {
-                    khachhangTT item = (khachhangTT) value;
-                    setText(item.getTenKH());
-                }
-                return this;
-            }
-
-        });
     }
 
     private phieuxuatTT findPhieuXuat(String maPX, ArrayList<phieuxuatTT> phieuXuats) {
@@ -198,25 +140,7 @@ public class Phieuxuat extends javax.swing.JFrame {
         }
         return null;
     }
-
-    private khachhangTT findKhachHang(int maKH, ArrayList<khachhangTT> customers) {
-        for (khachhangTT item : customers) {
-            if (item.getMaKH() == maKH) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    private khoTT findKho(String maKho, ArrayList<khoTT> warehouses) {
-        for (khoTT item : warehouses) {
-            if (item.getMaKho().equals(maKho)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -226,12 +150,8 @@ public class Phieuxuat extends javax.swing.JFrame {
         jPanelDetail = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         dtmNgayXuat = new com.toedter.calendar.JDateChooser();
-        jLabel4 = new javax.swing.JLabel();
-        cbxKhachHang = new javax.swing.JComboBox<>();
-        cbxKho = new javax.swing.JComboBox<>();
         btnChiTiet = new javax.swing.JButton();
         txt_nguoilap = new javax.swing.JLabel();
         txtMaPX = new javax.swing.JLabel();
@@ -281,13 +201,9 @@ public class Phieuxuat extends javax.swing.JFrame {
 
         jLabel2.setText("Người Xuất:");
 
-        jLabel3.setText("Khách Hàng");
-
         jLabel6.setText("Ngày Xuất Kho");
 
         dtmNgayXuat.setDateFormatString("dd/MM/yyyy");
-
-        jLabel4.setText("Kho");
 
         btnChiTiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report.png"))); // NOI18N
         btnChiTiet.setText("Xem chi tiết");
@@ -315,15 +231,9 @@ public class Phieuxuat extends javax.swing.JFrame {
                         .addComponent(btnChiTiet)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
-                        .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel4))
+                        .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbxKhachHang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dtmNgayXuat, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                            .addComponent(cbxKho, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(dtmNgayXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(141, 141, 141))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
                         .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +248,7 @@ public class Phieuxuat extends javax.swing.JFrame {
         jPanelDetailLayout.setVerticalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(73, Short.MAX_VALUE)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtMaPX))
@@ -346,19 +256,11 @@ public class Phieuxuat extends javax.swing.JFrame {
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_nguoilap))
-                .addGap(20, 20, 20)
-                .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbxKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dtmNgayXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbxKho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(9, 9, 9)
+                .addGap(47, 47, 47)
                 .addComponent(btnChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -431,11 +333,11 @@ public class Phieuxuat extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã Phiếu Xuất", "Người Xuất", "Khách Hàng", "Ngày Xuất", "Kho"
+                "Mã Phiếu Xuất", "Người Xuất", "Ngày Xuất"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -449,8 +351,6 @@ public class Phieuxuat extends javax.swing.JFrame {
             tblPhieuXuat.getColumnModel().getColumn(0).setResizable(false);
             tblPhieuXuat.getColumnModel().getColumn(1).setResizable(false);
             tblPhieuXuat.getColumnModel().getColumn(2).setResizable(false);
-            tblPhieuXuat.getColumnModel().getColumn(3).setResizable(false);
-            tblPhieuXuat.getColumnModel().getColumn(4).setResizable(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -485,7 +385,8 @@ public class Phieuxuat extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Xóa
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         String maPX = txtMaPX.getText().trim();
 
@@ -503,15 +404,15 @@ public class Phieuxuat extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnXoaActionPerformed
-
+    
+    //Sửa
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         int maPX = Integer.parseInt(txtMaPX.getText().trim());
         String User = txt_nguoilap.getText().trim();
-        khachhangTT khachHang = (khachhangTT) cbxKhachHang.getSelectedItem();
         Date ngayXuat = dtmNgayXuat.getDate();
-        khoTT kho = (khoTT) cbxKho.getSelectedItem();
+ 
 
-        int rowEffected = phieuXuatServices.UpdateRecord(maPX, User, khachHang.getMaKH(), ngayXuat, kho.getMaKho());
+        int rowEffected = phieuXuatServices.UpdateRecord(maPX, User, ngayXuat);
         if (rowEffected > 0) {
             JOptionPane.showMessageDialog(null, "Sửa thành công!");
             showDataList();
@@ -519,16 +420,16 @@ public class Phieuxuat extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Sửa thất bại");
         }
     }//GEN-LAST:event_btnSuaActionPerformed
-
+    
+    //Thêm
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
 
         String soPX = txtMaPX.getText().trim();
         String User = txt_nguoilap.getText().trim();
-        khachhangTT khachHang = (khachhangTT) cbxKhachHang.getSelectedItem();
         Date ngayXuat = dtmNgayXuat.getDate();
-        khoTT kho = (khoTT) cbxKho.getSelectedItem();
 
-        int rowEffected = phieuXuatServices.AddNewRecord(User, khachHang.getMaKH(), ngayXuat, kho.getMaKho());
+
+        int rowEffected = phieuXuatServices.AddNewRecord(User, ngayXuat);
         if (rowEffected > 0) {
             JOptionPane.showMessageDialog(null, "Thêm thành công!");
             showDataList();
@@ -538,11 +439,10 @@ public class Phieuxuat extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnChiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietActionPerformed
-        khoTT kho = (khoTT) cbxKho.getSelectedItem();
+
         CT_Phieuxuat ct_phieuxuat = new CT_Phieuxuat();
         ct_phieuxuat.setMPX(txtMaPX.getText());
         ct_phieuxuat.showDataList(txtMaPX.getText());
-        ct_phieuxuat.loadSanpham(kho.getMaKho());
         this.dispose();
 
         //vi tri giua man hinh va maximize
@@ -601,13 +501,9 @@ public class Phieuxuat extends javax.swing.JFrame {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JComboBox<khachhangTT> cbxKhachHang;
-    private javax.swing.JComboBox<khoTT> cbxKho;
     private com.toedter.calendar.JDateChooser dtmNgayXuat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
