@@ -26,7 +26,7 @@ public class baocaoXL {
             ResultSet rs = acc.Query("SELECT * FROM hoadon WHERE Ngay between '" + strngaybd + "' and '" + strngaytk + "' ");
 
             while (rs.next()) {
-                hoadonTT hd = new hoadonTT(rs.getString("MaHoaDon"), rs.getDate("Ngay"),rs.getString("SDT"), rs.getString("HinhThucTT"), rs.getLong("TongTien"), rs.getString("Username"), rs.getString("GhiChu"));
+                hoadonTT hd = new hoadonTT(rs.getString("MaHoaDon"), rs.getDate("Ngay"),rs.getString("SDT"),rs.getLong("TongTien"), rs.getString("Username"), rs.getString("GhiChu"));
                 list.add(hd);
             }
         } catch (Exception e) {

@@ -69,14 +69,14 @@ public class Baocao extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã hóa đơn", "Ngày lập", "Số điện thoại", "Hình thức thanh toán", "Tổng tiền", "Người lập"
+                "Mã hóa đơn", "Ngày lập", "Số điện thoại", "Tổng tiền", "Người lập", "Ghi chú"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(3).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(5).setMinWidth(65);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(65);
+            jTable1.getColumnModel().getColumn(4).setMinWidth(65);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(65);
+            jTable1.getColumnModel().getColumn(5).setMinWidth(100);
         }
 
         btn_Excel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/Excel-icon.png"))); // NOI18N
@@ -275,10 +275,9 @@ public class Baocao extends javax.swing.JFrame {
             row[0] = list.get(i).getMaHoaDon();
             row[1] = formatter2.format(list.get(i).getNgay());
             row[2] = list.get(i).getSDT();
-            row[3] = list.get(i).getHinhThucTT();
-            row[4] = en.format(list.get(i).getTongTien());
-            row[5] = list.get(i).getUserID();
-
+            row[3] = en.format(list.get(i).getTongTien());
+            row[4] = list.get(i).getUserID();
+            row[5] = list.get(i).getGhiChu();
             
             model.addRow(row);
         }

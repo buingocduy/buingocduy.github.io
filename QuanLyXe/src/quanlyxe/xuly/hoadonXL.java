@@ -22,7 +22,7 @@ public class hoadonXL {
             ResultSet rs = acc.Query("SELECT * FROM hoadon");
 
             while (rs.next()) {
-                hoadonTT hd = new hoadonTT(rs.getString("MaHoaDon"), rs.getDate("Ngay"),rs.getString("SDT"), rs.getString("HinhThucTT"), rs.getLong("TongTien"), rs.getString("Username"), rs.getString("GhiChu"));
+                hoadonTT hd = new hoadonTT(rs.getString("MaHoaDon"), rs.getDate("Ngay"),rs.getString("SDT"),rs.getLong("TongTien"), rs.getString("Username"), rs.getString("GhiChu"));
                 list.add(hd);
             }
         } catch (Exception e) {
@@ -39,7 +39,7 @@ public class hoadonXL {
             ResultSet rs = acc.Query("SELECT * FROM hoadon WHERE " + lua + " = '" + tim + "'");
 
             while (rs.next()) {
-                hoadonTT hd = new hoadonTT(rs.getString("MaHoaDon"), rs.getDate("Ngay"),rs.getString("SDT"), rs.getString("HinhThucTT"), rs.getLong("TongTien"), rs.getString("Username"), rs.getString("GhiChu"));
+                hoadonTT hd = new hoadonTT(rs.getString("MaHoaDon"), rs.getDate("Ngay"),rs.getString("SDT"),rs.getLong("TongTien"), rs.getString("Username"), rs.getString("GhiChu"));
                 list.add(hd);
             }
         } catch (Exception e) {
@@ -49,16 +49,15 @@ public class hoadonXL {
     }
 
     //Tao moi
-    public int AddNewRecord(Date Ngay, String SDT, String HinhThucTT, long TongTien, String Username, String GhiChu) {
+    public int AddNewRecord(Date Ngay, String SDT, long TongTien, String Username, String GhiChu) {
         int rowCount = 0;
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             String strngay = formatter.format(Ngay);
 
             hienthi_sql acc = new hienthi_sql();
-            String sql = "INSERT INTO hoadon (Ngay, SDT, HinhThucTT, TongTien, Username, GhiChu) VALUES('" + strngay + "'"
-                    + ",'" + SDT + "'"
-                    + ",N'" + HinhThucTT + "'"
+            String sql = "INSERT INTO hoadon (Ngay, SDT, TongTien, Username, GhiChu) VALUES('" + strngay + "'"
+                    + ",'" + SDT + "'" 
                     + "," + TongTien + ""
                     + ",'" + Username + "'"
                     + ",N'"+ GhiChu + "')";
@@ -73,7 +72,7 @@ public class hoadonXL {
     }
 
     //Cap nhat
-    public int UpdateRecord(String MaHoaDon, Date Ngay, String SDT, String HinhThucTT, long TongTien, String Username, String GhiChu) {
+    public int UpdateRecord(String MaHoaDon, Date Ngay, String SDT, long TongTien, String Username, String GhiChu) {
         int rowCount = 0;
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -82,7 +81,6 @@ public class hoadonXL {
             hienthi_sql acc = new hienthi_sql();
             String sql = "UPDATE hoadon SET Ngay ='" + strngay + "'"
                     + ", SDT = '" + SDT + "'"
-                    + ", HinhThucTT = N'" + HinhThucTT + "'"
                     + ", TongTien =" + TongTien + ""
                     + ", Username ='" + Username + "'"
                     + ", GhiChu = N'" + GhiChu + "'"

@@ -75,8 +75,7 @@ CREATE TABLE ct_kho(
 CREATE TABLE hoadon(
 	MaHoaDon int IDENTITY(1,1) NOT NULL,	
 	Ngay  date  NOT NULL,
-	SDT varchar (50) NOT NULL,
-	HinhThucTT nvarchar (30) NOT NULL,
+	SDT varchar(50) NOT NULL,
 	TongTien bigint NOT NULL,
 	Username varchar(100),
 	GhiChu NTEXT,
@@ -149,6 +148,9 @@ go
 alter table hoadon
 add constraint FK_hd_tk foreign key(Username) references taikhoan(Username)
 go
+alter table hoadon
+add constraint FK_hd_kh foreign key(SDT) references khachhang(SDT)
+go
 
 --Ràng buộc CHI TIẾT HÓA ĐƠN
 alter table ct_hoadon
@@ -219,11 +221,11 @@ insert into sanpham values ('GD','GD 110','XCT','22000000','SUZUKI','2020')
 go
 
 /*Hóa đơn*/
-insert into hoadon values ('2021-02-07','0904596810',N'TIỀN MẶT',50000000,'DUY',N'D')
-insert into hoadon values ('2021-02-07','0902343263',N'TIỀN MẶT',30000000,'DUY',N'D')
-insert into hoadon values ('2021-02-07','0000000000',N'TIỀN MẶT',41000000,'DUY',N'D')
-insert into hoadon values ('2021-02-07','0948803218',N'TIỀN MẶT',30000000,'DUY',N'D')
-insert into hoadon values ('2021-02-07','0904596810',N'TIỀN MẶT',50000000,'DUY',N'D')
+insert into hoadon values ('2021-02-07','0904596810',50000000,'DUY',N'D')
+insert into hoadon values ('2021-02-07','0902343263',30000000,'DUY',N'D')
+insert into hoadon values ('2021-02-07','0000000000',41000000,'DUY',N'D')
+insert into hoadon values ('2021-02-07','0948803218',30000000,'DUY',N'D')
+insert into hoadon values ('2021-02-07','0904596810',50000000,'DUY',N'D')
 go
 
 /*Kho*/

@@ -16,16 +16,14 @@ public class hoadonTT {
     String MaHoaDon;
     Date Ngay;
     String SDT;
-    String HinhThucTT;
     long TongTien;
     String UserID;
     String GhiChu;
 
-    public hoadonTT(String MaHoaDon, Date Ngay, String SDT, String HinhThucTT, long TongTien, String UserID, String GhiChu) {
+    public hoadonTT(String MaHoaDon, Date Ngay, String SDT, long TongTien, String UserID, String GhiChu) {
         this.MaHoaDon = MaHoaDon;
         this.Ngay = Ngay;
         this.SDT = SDT;
-        this.HinhThucTT = HinhThucTT;
         this.TongTien = TongTien;
         this.UserID = UserID;
         this.GhiChu = GhiChu;
@@ -55,14 +53,6 @@ public class hoadonTT {
         this.SDT = SDT;
     }
 
-    public String getHinhThucTT() {
-        return HinhThucTT;
-    }
-
-    public void setHinhThucTT(String HinhThucTT) {
-        this.HinhThucTT = HinhThucTT;
-    }
-
     public long getTongTien() {
         return TongTien;
     }
@@ -86,7 +76,5 @@ public class hoadonTT {
     public void setGhiChu(String GhiChu) {
         this.GhiChu = GhiChu;
     }
-
-    
 
 }
