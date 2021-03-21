@@ -167,10 +167,10 @@ public class Banhang extends javax.swing.JFrame {
         jPanelHeader1.setLayout(jPanelHeader1Layout);
         jPanelHeader1Layout.setHorizontalGroup(
             jPanelHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelHeader1Layout.createSequentialGroup()
-                .addGap(298, 298, 298)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHeader1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(307, 307, 307))
         );
         jPanelHeader1Layout.setVerticalGroup(
             jPanelHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,7 +513,7 @@ public class Banhang extends javax.swing.JFrame {
         int SoLuong = Integer.valueOf(txt_soluong.getText().trim());
         String kho = txt_kho.getText().trim();
 
-        if (SoLuong >= SoLuongCon) {
+        if (SoLuong > SoLuongCon || SoLuong <= 0) {
             JOptionPane.showMessageDialog(null, "Số lượng không đủ!");
         } else {
             int rowEffected1 = ct_hoadonservices.AddNewRecord(MaHD, masp.getID(), SoLuong, DonGia);
@@ -524,6 +524,7 @@ public class Banhang extends javax.swing.JFrame {
                     int rowEffected3 = phieuXuatCTServices.AddNewRecord2(maPX, kho, masp.getID(), SoLuong);
                     if (rowEffected3 > 0) {
                         showDataList(maPX);
+                        showTong(MaHD);
                         showSoluong(masp.getID());
                         JOptionPane.showMessageDialog(null, "Thêm thành công!");
                     }
@@ -683,6 +684,7 @@ public class Banhang extends javax.swing.JFrame {
                 for (int i = 0; i < list.size(); i++) {
                     int getMHD = Integer.valueOf(list.get(i).getMaHoaDon());
                     int MHD = getMHD + 1;
+                    System.out.println(list.get(i).getMaHoaDon());
                     txt_ma.setText(String.valueOf(MHD));
                     System.out.println(MHD);
                     showDataList(String.valueOf(MHD));

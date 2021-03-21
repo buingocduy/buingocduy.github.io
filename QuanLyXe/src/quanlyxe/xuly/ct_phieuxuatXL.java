@@ -127,7 +127,7 @@ public class ct_phieuxuatXL {
         return rowCount & rowCount2;
     }
 
-    //Xoa
+    //Xóa từng chi tiết phiếu xuất
     public int DeleteRecord(String MaCTPX, String MaSP) {
         int rowCount = 0;
         int rowCount2 = 0;
@@ -156,7 +156,7 @@ public class ct_phieuxuatXL {
         return rowCount & rowCount2;
     }
 
-    //Xóa
+    //Xóa toàn bộ
     public int DeleteAll(String MaPX, String MaSP) {
         int rowCount = 0;
         int rowCount2 = 0;
@@ -187,30 +187,5 @@ public class ct_phieuxuatXL {
             JOptionPane.showMessageDialog(null, e);
         }
         return rowCount & rowCount2 & rowCount3;
-    }
-
-    //Xóa
-    public int Delete(String MaPX, String MaSP) {
-        int rowCount3 = 0;
-        try {
-
-            hienthi_sql acc = new hienthi_sql();
-
-            String sql3 = "IF EXISTS (SELECT * FROM ct_phieuxuat Where MaSP = '" + MaSP + "') "
-                    + "BEGIN "
-                    + "Update ct_kho SET Soluong = "
-                    + "((select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') - "
-                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '" + MaSP + "')) "
-                    + "WHERE MaSP = '" + MaSP + "' "
-                    + "END "
-                    + "ELSE  Update ct_kho SET Soluong = (select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') Where MaSP = '" + MaSP + "'";
-
-            System.out.println(sql3);
-
-            rowCount3 = acc.Update(sql3);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return rowCount3;
     }
 }

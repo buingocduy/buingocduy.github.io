@@ -45,21 +45,19 @@ public class CT_Hoadon extends javax.swing.JFrame {
     public void setTenUser(String user) {
         this.txt_nguoilap.setText(user);
 
-        String masp = txt_masp.getText();
         String b = "admin";
 
         boolean c = b.equals(user);
 
         System.out.println(c);
         if (c == true) {
-            btn_xoahet.setEnabled(true);
+            btn_xoadulieu.setEnabled(true);
         }
 
         if (c == false) {
-            btn_xoahet.setEnabled(false);
+            btn_xoadulieu.setEnabled(false);
         }
         System.out.println(user);
-
     }
 
     public CT_Hoadon() {
@@ -91,7 +89,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btn_xoahet = new javax.swing.JButton();
+        btn_xoadulieu = new javax.swing.JButton();
         txt_macthoadon = new javax.swing.JLabel();
         txt_mahoadon = new javax.swing.JLabel();
         txt_tonggia = new javax.swing.JLabel();
@@ -99,7 +97,6 @@ public class CT_Hoadon extends javax.swing.JFrame {
         txt_masp = new javax.swing.JLabel();
         txt_soluong = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
-        btn_xoa = new javax.swing.JToggleButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,7 +134,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
                 .addComponent(txt_nguoilap)
                 .addGap(197, 197, 197)
                 .addComponent(jLabel2)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelHeader1Layout.setVerticalGroup(
             jPanelHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,11 +174,12 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
         jLabel1.setText("Thành tiền:");
 
-        btn_xoahet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/deldata.png"))); // NOI18N
-        btn_xoahet.setText("Xóa có dữ liệu");
-        btn_xoahet.addActionListener(new java.awt.event.ActionListener() {
+        btn_xoadulieu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/deldata.png"))); // NOI18N
+        btn_xoadulieu.setText("Xóa có dữ liệu");
+        btn_xoadulieu.setEnabled(false);
+        btn_xoadulieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_xoahetActionPerformed(evt);
+                btn_xoadulieuActionPerformed(evt);
             }
         });
 
@@ -213,14 +211,6 @@ public class CT_Hoadon extends javax.swing.JFrame {
             }
         });
 
-        btn_xoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/deldata.png"))); // NOI18N
-        btn_xoa.setText("Xóa Null ");
-        btn_xoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_xoaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelDetailLayout = new javax.swing.GroupLayout(jPanelDetail);
         jPanelDetail.setLayout(jPanelDetailLayout);
         jPanelDetailLayout.setHorizontalGroup(
@@ -229,24 +219,18 @@ public class CT_Hoadon extends javax.swing.JFrame {
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDetailLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btn_xoahet)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_xoa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_xoadulieu)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 391, Short.MAX_VALUE)
                         .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelDetailLayout.createSequentialGroup()
+                        .addGap(111, 111, 111)
                         .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelDetailLayout.createSequentialGroup()
-                                .addGap(111, 111, 111)
-                                .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6)))
-                            .addGroup(jPanelDetailLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_macthoadon)
@@ -289,9 +273,8 @@ public class CT_Hoadon extends javax.swing.JFrame {
                     .addComponent(txt_tonggia))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_xoahet)
-                    .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_xoadulieu)
+                    .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -303,8 +286,8 @@ public class CT_Hoadon extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
-                    .addComponent(jPanelDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanelDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -346,10 +329,12 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
         txt_masp.setText(MaSP);
 
+        String b = "admin";
+
         if (MaSP.equals("null")) {
-            btn_xoahet.setEnabled(false);
+            btn_xoadulieu.setEnabled(false);
         } else {
-            btn_xoahet.setEnabled(true);
+            btn_xoadulieu.setEnabled(true);
         }
 
         Locale localeEN = new Locale("en", "EN");
@@ -445,94 +430,48 @@ public class CT_Hoadon extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     // Xóa toàn bộ dữ liệu của 1 hóa đơn
-    private void btn_xoahetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoahetActionPerformed
-        String user = txt_nguoilap.getText();
-
-        String MaCTHoaDon = txt_macthoadon.getText().trim();
-        String MaHD = txt_mahoadon.getText().trim();
-
-        String MaPX = txt_mahoadon.getText().trim();
+    private void btn_xoadulieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoadulieuActionPerformed
         String MaSP = txt_masp.getText().trim();
+        
+        if (MaSP.equals("Null")) {
+            JOptionPane.showMessageDialog(null, "Chọn sản phẩm mới xóa được");
+        } else {
+            String user = txt_nguoilap.getText();
 
-        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa toàn bộ hóa đơn " + MaHD + " không?", "Confirmation...",
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            String MaCTHoaDon = txt_macthoadon.getText().trim();
+            String MaHD = txt_mahoadon.getText().trim();
+            
+            String MaCTPX = txt_macthoadon.getText().trim();
+            String MaPX = txt_mahoadon.getText().trim();
 
-        System.out.println("Delete data? =" + input);
-        Hoadon hoadon = new Hoadon();
+            int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn sản phẩm " + MaSP + " không?", "Confirmation...",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        if (input == 0) {
-            //Xoa
-            int rowEffected = ct_hoadonservices.DeleteAll(MaHD);
-            int rowEffected2 = phieuXuatCTServices.DeleteAll(MaPX, MaSP);
-            int rowEffected3 = phieuXuatCTServices.Delete(MaPX, MaSP);
+            System.out.println("Delete data? =" + input);
+            Hoadon hoadon = new Hoadon();
 
-            if (rowEffected > 0) {
-                if (rowEffected2 > 0) {
-                    this.dispose();
-                    //vi tri giua man hinh
-                    hoadon.pack();
-                    hoadon.setLocationRelativeTo(null);
-                    hoadon.setVisible(true);
-                    if (rowEffected3 > 0) {
+            if (input == 0) {
+                //Xoa
+                int rowEffected = ct_hoadonservices.DeleteRecord(MaCTHoaDon, MaHD);
+                int rowEffected2 = phieuXuatCTServices.DeleteRecord(MaCTPX, MaSP);
+
+                if (rowEffected > 0) {
+                    if (rowEffected2 > 0) {
                         JOptionPane.showMessageDialog(null, "Xóa thành công!");
-                        hoadon.setTenUser(user, user);
-                        hoadon.showDataList();
-                        this.dispose();
-                        //vi tri giua man hinh
-                        hoadon.pack();
-                        hoadon.setLocationRelativeTo(null);
-                        hoadon.setVisible(true);
+                        showDataList(MaHD);
+                        this.txt_macthoadon.setText("000");
+                        this.txt_mahoadon.setText("000");
+                        this.txt_masp.setText("Null");
+                        this.txt_soluong.setText("000");
+                        this.txt_dongia.setText("000");
+                        this.txt_tonggia.setText("000");                      
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Xóa thất bại");
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Xóa thất bại");
             }
         }
-    }//GEN-LAST:event_btn_xoahetActionPerformed
-
-    private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
-        String user = txt_nguoilap.getText();
-        String MaCTHoaDon = txt_macthoadon.getText().trim();
-        String MaHD = txt_mahoadon.getText().trim();
-
-        String MaPX = txt_mahoadon.getText().trim();
-        String MaSP = txt_masp.getText().trim();
-
-        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa toàn bộ hóa đơn " + MaHD + " không?", "Confirmation...",
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-        System.out.println("Delete data? =" + input);
-        Hoadon hoadon = new Hoadon();
-
-        if (input == 0) {
-            //Xoa
-            int rowEffected = ct_hoadonservices.DeleteAll(MaHD);
-            int rowEffected2 = phieuXuatCTServices.DeleteAll(MaPX, MaSP);
-            int rowEffected3 = phieuXuatCTServices.Delete(MaPX, MaSP);
-
-            if (rowEffected > 0) {
-                if (rowEffected2 > 0) {
-                    this.dispose();
-                    //vi tri giua man hinh
-                    hoadon.pack();
-                    hoadon.setLocationRelativeTo(null);
-                    hoadon.setVisible(true);
-                    if (rowEffected3 > 0) {
-                        JOptionPane.showMessageDialog(null, "Xóa thành công!");
-                        hoadon.setTenUser(user, user);
-                        hoadon.showDataList();
-                        this.dispose();
-                        //vi tri giua man hinh
-                        hoadon.pack();
-                        hoadon.setLocationRelativeTo(null);
-                        hoadon.setVisible(true);
-                    }
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Xóa thất bại");
-            }
-        }
-    }//GEN-LAST:event_btn_xoaActionPerformed
+    }//GEN-LAST:event_btn_xoadulieuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -579,8 +518,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
-    private javax.swing.JToggleButton btn_xoa;
-    private javax.swing.JButton btn_xoahet;
+    private javax.swing.JButton btn_xoadulieu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

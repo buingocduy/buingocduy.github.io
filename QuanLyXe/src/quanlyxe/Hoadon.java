@@ -28,24 +28,37 @@ public class Hoadon extends javax.swing.JFrame {
 
     hoadonTT selectedHoaDon = null;
     hoadonXL hoadonservices = new hoadonXL();
-    ct_hoadonXL ct_hoadonservices = new ct_hoadonXL();
+    phieuxuatXL phieuxuatServices = new phieuxuatXL();
 
     taikhoanXL userService = new taikhoanXL();
 
     ArrayList<taikhoanTT> dsuser = new ArrayList<>();
     ArrayList<hoadonTT> dsHoaDon = new ArrayList<>();
 
-    public Hoadon() {
-        initComponents();
-
-        //load danh sach 
-        showDataList();
-        txt_tongtien.setText("0");
-    }
-
     public void setTenUser(String username, String user) {
         this.txt_nguoilap.setText(username);
         this.txt_user.setText(user);
+
+        String b = "admin";
+
+        boolean c = b.equals(user);
+
+        System.out.println(user);
+        System.out.println(c);
+
+        if (c == true) {
+            btn_xoa.setEnabled(true);
+        }
+
+        if (c == false) {
+            btn_xoa.setEnabled(false);
+        }
+    }
+
+    public Hoadon() {
+        initComponents();
+        showDataList();
+        txt_tongtien.setText("0");
     }
 
     /**
@@ -81,6 +94,7 @@ public class Hoadon extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnUpdate = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
+        btn_xoa = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btn_timkiem = new javax.swing.JButton();
         txt_timkiem = new javax.swing.JTextField();
@@ -277,6 +291,14 @@ public class Hoadon extends javax.swing.JFrame {
             }
         });
 
+        btn_xoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/del.png"))); // NOI18N
+        btn_xoa.setText("Xóa");
+        btn_xoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xoaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -285,7 +307,8 @@ public class Hoadon extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                    .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                    .addComponent(btn_xoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -293,7 +316,9 @@ public class Hoadon extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -506,7 +531,7 @@ public class Hoadon extends javax.swing.JFrame {
 
         Locale localeEN = new Locale("en", "EN");
         NumberFormat en = NumberFormat.getInstance(localeEN);
-        
+
         SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
 
         Object[] row = new Object[7];
@@ -589,6 +614,45 @@ public class Hoadon extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cb_chonActionPerformed
 
+    //Xóa 
+    private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
+        String MaHD = txt_mahoadon.getText().trim();
+        
+        if (MaHD.equals("000")) {
+            JOptionPane.showMessageDialog(null, "Chọn hóa đơn rồi mới xóa được");
+        } else {
+            String user = txt_nguoilap.getText();
+
+            String MaPX = txt_mahoadon.getText().trim();
+
+            int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa toàn bộ hóa đơn " + MaHD + " không?", "Confirmation...",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            System.out.println("Delete data? =" + input);
+
+            if (input == 0) {
+                //Xoa
+                int rowEffected = hoadonservices.DeleteRecord(MaHD);
+                int rowEffected2 = phieuxuatServices.DeleteRecord(MaPX);
+
+                if (rowEffected > 0) {
+                    if (rowEffected2 > 0) {
+                        JOptionPane.showMessageDialog(null, "Xóa thành công!");
+                        showDataList();
+                        this.txt_mahoadon.setText("000");
+                        this.txt_sdt.setText("000");
+                        this.txt_tongtien.setText("000");
+                        this.txt_ngaylap.setText("00/00/0000");
+                        this.txt_ghichu.setText("");
+                        this.txt_nguoilap.setText(txt_user.getText());
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Xóa thất bại (Phải xóa chi chi tiết trước)");
+                }
+            }
+        }
+    }//GEN-LAST:event_btn_xoaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -636,9 +700,11 @@ public class Hoadon extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JButton btn_cthd;
     private javax.swing.JButton btn_tailai;
     private javax.swing.JButton btn_timkiem;
+    private javax.swing.JButton btn_xoa;
     private javax.swing.JComboBox<String> cb_chon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

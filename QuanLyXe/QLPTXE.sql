@@ -295,6 +295,14 @@ select * from phieuxuat
 select * from ct_phieuxuat
 go
 
+IF EXISTS (SELECT * FROM ct_hoadon Where MaHoaDon = '3')
+BEGIN
+	UPDATE hoadon SET TongTien = (select 'TongTien'=sum(SoLuong * DonGia) from ct_hoadon where MaHoaDon = '3' Group by MaHoaDon) WHERE MaHoaDon = '3'
+END	 
+ELSE 
+	UPDATE hoadon SET TongTien = '0'
+
+
 /*
 Delete From ct_hoadon where MaCTHoaDon = '1' and MaSP = 'EX'
 
