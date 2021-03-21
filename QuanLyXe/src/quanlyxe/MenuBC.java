@@ -133,7 +133,7 @@ public class MenuBC extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/cp.png"))); // NOI18N
 
-        btn_thongkesanpham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report1.png"))); // NOI18N
+        btn_thongkesanpham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/print.png"))); // NOI18N
         btn_thongkesanpham.setText("Xuất thống kê sản phẩm");
         btn_thongkesanpham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -151,7 +151,7 @@ public class MenuBC extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/people.png"))); // NOI18N
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report1.png"))); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/print.png"))); // NOI18N
         jMenu3.setText("Xuất thông tin khách hàng");
         jMenu2.add(jMenu3);
 

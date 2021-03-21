@@ -39,10 +39,28 @@ public class CT_Phieunhap extends javax.swing.JFrame {
     public CT_Phieunhap() {
         initComponents();
     }
+    
+    public void setTenUser(String username) {
+        this.txt_nguoilap.setText(username);
 
+        String b = "admin";
+
+        boolean c = b.equals(username);
+
+        System.out.println(c);
+        if (c == true) {
+            btnXoa.setEnabled(true);
+        }
+
+        if (c == false) {
+            btnXoa.setEnabled(false);
+        }
+        System.out.println(username);
+    }
+    
     public void setMPX(String MaPN) {
         this.txt_mapn.setText(MaPN);
-    }
+    }   
 
     public void showDataList(String MaPN) {
         DefaultTableModel model = (DefaultTableModel) this.tblPhieuNhapCT.getModel();
@@ -171,6 +189,7 @@ public class CT_Phieunhap extends javax.swing.JFrame {
         txt_mapn = new javax.swing.JLabel();
         jPanelHeader = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
+        txt_nguoilap = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
@@ -258,11 +277,12 @@ public class CT_Phieunhap extends javax.swing.JFrame {
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jPanelHeader.setBackground(java.awt.SystemColor.activeCaption);
         jPanelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelHeader.setPreferredSize(new java.awt.Dimension(618, 74));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 51, 0));
@@ -270,21 +290,30 @@ public class CT_Phieunhap extends javax.swing.JFrame {
         jLabel9.setText("CHI TIẾT PHIẾU NHẬP KHO");
         jLabel9.setIconTextGap(10);
 
+        txt_nguoilap.setText("Null");
+
         javax.swing.GroupLayout jPanelHeaderLayout = new javax.swing.GroupLayout(jPanelHeader);
         jPanelHeader.setLayout(jPanelHeaderLayout);
         jPanelHeaderLayout.setHorizontalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHeaderLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(txt_nguoilap)
+                .addGap(223, 223, 223)
                 .addComponent(jLabel9)
-                .addGap(249, 249, 249))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelHeaderLayout.setVerticalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHeaderLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel9)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHeaderLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHeaderLayout.createSequentialGroup()
+                        .addComponent(txt_nguoilap)
+                        .addContainerGap())))
         );
 
         jPanel1.setBackground(new java.awt.Color(153, 180, 209));
@@ -371,7 +400,7 @@ public class CT_Phieunhap extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,13 +415,13 @@ public class CT_Phieunhap extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -400,6 +429,7 @@ public class CT_Phieunhap extends javax.swing.JFrame {
 
     private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
         Phieunhap phieunhap = new Phieunhap();
+        phieunhap.setTenUser(txt_nguoilap.getText());
         this.dispose();
 
         //vi tri giua man hinh
@@ -523,6 +553,7 @@ public class CT_Phieunhap extends javax.swing.JFrame {
     private javax.swing.JLabel txt_mactpn;
     private javax.swing.JLabel txt_mapn;
     private javax.swing.JComboBox<sanphamTT> txt_masp;
+    private javax.swing.JLabel txt_nguoilap;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -75,8 +75,8 @@ CREATE TABLE ct_kho(
 CREATE TABLE hoadon(
 	MaHoaDon int IDENTITY(1,1) NOT NULL,	
 	Ngay  date  NOT NULL,
-	SDT varchar(50) NOT NULL,
-	TongTien bigint NOT NULL,
+	SDT varchar(50),
+	TongTien bigint,
 	Username varchar(100),
 	GhiChu NTEXT,
 	Primary key(MaHoaDon))
@@ -147,9 +147,6 @@ go
 --Ràng buộc HÓA ĐƠN
 alter table hoadon
 add constraint FK_hd_tk foreign key(Username) references taikhoan(Username)
-go
-alter table hoadon
-add constraint FK_hd_kh foreign key(SDT) references khachhang(SDT)
 go
 
 --Ràng buộc CHI TIẾT HÓA ĐƠN
@@ -298,8 +295,13 @@ select * from phieuxuat
 select * from ct_phieuxuat
 go
 
-
 /*
+Delete From ct_hoadon where MaCTHoaDon = '1' and MaSP = 'EX'
+
+select MaCTHoaDon,ct_hoadon.MaSP,''=TenSP,SoLuong,DonGia
+from ct_hoadon,sanpham 
+where ct_hoadon.MaSP = sanpham.MaSP and MaHoaDon = '5'
+
 select distinct Makho,Ngay,phieuxuat.MaKH,HinhThucTT,TongTien,phieuxuat.Username 
 from hoadon,phieuxuat
 where hoadon.Username = taikhoan.Username and phieuxuat.Username = taikhoan.Username
@@ -332,6 +334,7 @@ BEGIN
 END
 ELSE INSERT INTO ct_phieunhap(MaPN,MaSP,Soluong,DonGiaNhap) VALUES ('4','VS','20','3000000')
 
+select * from ct_kho
 
 Update ct_kho SET Soluong = 
 
@@ -393,4 +396,7 @@ from ct_hoadon
 where MaHoaDon = '12'
 Group by MaHoaDon)
 where MaHoaDon = '12'
+
+UPDATE hoadon 
+SET SDT = '09090909', GhiChu = 'AE' WHERE MaHoaDon = '6'
 */

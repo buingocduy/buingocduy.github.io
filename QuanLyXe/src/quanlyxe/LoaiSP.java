@@ -71,7 +71,7 @@ public class LoaiSP extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("THÔNG TIN LOẠI XE");
+        jLabel1.setText("LOẠI XE");
         jLabel1.setIconTextGap(10);
 
         javax.swing.GroupLayout jPanelHeaderLayout = new javax.swing.GroupLayout(jPanelHeader);
@@ -79,16 +79,16 @@ public class LoaiSP extends javax.swing.JFrame {
         jPanelHeaderLayout.setHorizontalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHeaderLayout.createSequentialGroup()
-                .addGap(131, 131, 131)
+                .addGap(128, 128, 128)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelHeaderLayout.setVerticalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHeaderLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(26, 26, 26))
+                .addGap(25, 25, 25))
         );
 
         jPanelDetail.setBorder(javax.swing.BorderFactory.createEtchedBorder());

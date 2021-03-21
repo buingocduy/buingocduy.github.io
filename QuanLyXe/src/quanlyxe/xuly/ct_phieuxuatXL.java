@@ -25,7 +25,7 @@ public class ct_phieuxuatXL {
             hienthi_sql acc = new hienthi_sql();
             ResultSet rs = acc.Query("SELECT * FROM ct_phieuxuat WHERE MaPX = '" + MaPX + "'");
             while (rs.next()) {
-                ct_phieuxuatTT phieuXuatCT = new ct_phieuxuatTT(rs.getString("MaCTPX"), rs.getString("MaPX"),  rs.getString("MaKho"), rs.getString("MaSP"), rs.getLong("SoLuong"));
+                ct_phieuxuatTT phieuXuatCT = new ct_phieuxuatTT(rs.getString("MaCTPX"), rs.getString("MaPX"), rs.getString("MaKho"), rs.getString("MaSP"), rs.getLong("SoLuong"));
                 list.add(phieuXuatCT);
             }
         } catch (Exception e) {
@@ -99,7 +99,7 @@ public class ct_phieuxuatXL {
     }
 
     //Sua
-    public int UpdateRecord(String MaCTPX,  String MaKho, String MaPX, String MaSP, long SoLuong) {
+    public int UpdateRecord(String MaCTPX, String MaKho, String MaPX, String MaSP, long SoLuong) {
         int rowCount = 0;
         int rowCount2 = 0;
         try {
@@ -154,5 +154,63 @@ public class ct_phieuxuatXL {
             JOptionPane.showMessageDialog(null, e);
         }
         return rowCount & rowCount2;
+    }
+
+    //Xóa
+    public int DeleteAll(String MaPX, String MaSP) {
+        int rowCount = 0;
+        int rowCount2 = 0;
+        int rowCount3 = 0;
+        try {
+
+            hienthi_sql acc = new hienthi_sql();
+            String sql = "DELETE FROM ct_phieuxuat WHERE MaPX = " + MaPX;
+            String sql2 = "DELETE FROM phieuxuat WHERE MaPX = " + MaPX;
+
+            String sql3 = "IF EXISTS (SELECT * FROM ct_phieuxuat Where MaSP = '" + MaSP + "') "
+                    + "BEGIN "
+                    + "Update ct_kho SET Soluong = "
+                    + "((select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') - "
+                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '" + MaSP + "')) "
+                    + "WHERE MaSP = '" + MaSP + "' "
+                    + "END "
+                    + "ELSE  Update ct_kho SET Soluong = (select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') Where MaSP = '" + MaSP + "'";
+
+            System.out.println(sql);
+            System.out.println(sql2);
+            System.out.println(sql3);
+
+            rowCount = acc.Update(sql);
+            rowCount2 = acc.Update(sql2);
+            rowCount3 = acc.Update(sql3);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return rowCount & rowCount2 & rowCount3;
+    }
+
+    //Xóa
+    public int Delete(String MaPX, String MaSP) {
+        int rowCount3 = 0;
+        try {
+
+            hienthi_sql acc = new hienthi_sql();
+
+            String sql3 = "IF EXISTS (SELECT * FROM ct_phieuxuat Where MaSP = '" + MaSP + "') "
+                    + "BEGIN "
+                    + "Update ct_kho SET Soluong = "
+                    + "((select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') - "
+                    + "(select 'Soluongxuat'=Sum(SoLuong) from ct_phieuxuat where MaSP = '" + MaSP + "')) "
+                    + "WHERE MaSP = '" + MaSP + "' "
+                    + "END "
+                    + "ELSE  Update ct_kho SET Soluong = (select 'Soluongnhap'=Sum(SoLuong) from ct_phieunhap where MaSP = '" + MaSP + "') Where MaSP = '" + MaSP + "'";
+
+            System.out.println(sql3);
+
+            rowCount3 = acc.Update(sql3);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return rowCount3;
     }
 }

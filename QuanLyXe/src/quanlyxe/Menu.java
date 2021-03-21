@@ -64,6 +64,7 @@ public class Menu extends javax.swing.JFrame {
         btn_baocao = new javax.swing.JButton();
         btn_taikhoan = new javax.swing.JButton();
         btn_kho = new javax.swing.JButton();
+        btn_banhang = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btn_dangnhaplai = new javax.swing.JButton();
@@ -111,7 +112,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btn_phieu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_phieu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/ban.png"))); // NOI18N
+        btn_phieu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/list.png"))); // NOI18N
         btn_phieu.setText("Phiếu nhập, xuất, hóa đơn");
         btn_phieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +147,15 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        btn_banhang.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_banhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/ban.png"))); // NOI18N
+        btn_banhang.setText("Bán hàng");
+        btn_banhang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_banhangActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -159,13 +169,14 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(btn_phieu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
                     .addComponent(btn_baocao, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
                     .addComponent(btn_taikhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                    .addComponent(btn_kho, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_kho, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_banhang, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(btn_kho, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_sanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,10 +187,12 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btn_phieu, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(btn_banhang, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btn_baocao, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_taikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -365,6 +378,17 @@ public class Menu extends javax.swing.JFrame {
         kho.setVisible(true);
     }//GEN-LAST:event_btn_khoActionPerformed
 
+    private void btn_banhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_banhangActionPerformed
+        //Nhà kho
+        Banhang banhang = new Banhang();
+        String user = txt_username.getText().trim();
+        banhang.setTenUser(user);
+        //vi tri giua man hinh
+        banhang.pack();
+        banhang.setLocationRelativeTo(null);
+        banhang.setVisible(true);
+    }//GEN-LAST:event_btn_banhangActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -402,6 +426,7 @@ public class Menu extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_banhang;
     private javax.swing.JButton btn_baocao;
     private javax.swing.JButton btn_dangnhaplai;
     private javax.swing.JButton btn_khachhang;

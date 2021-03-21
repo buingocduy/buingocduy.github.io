@@ -89,24 +89,24 @@ public class Taikhoan extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 51, 51));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("THÔNG TIN TÀI KHOẢN");
+        jLabel9.setText("TÀI KHOẢN");
         jLabel9.setIconTextGap(10);
 
         javax.swing.GroupLayout jPanelHeaderLayout = new javax.swing.GroupLayout(jPanelHeader);
         jPanelHeader.setLayout(jPanelHeaderLayout);
         jPanelHeaderLayout.setHorizontalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHeaderLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanelHeaderLayout.createSequentialGroup()
+                .addGap(268, 268, 268)
                 .addComponent(jLabel9)
-                .addGap(192, 192, 192))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelHeaderLayout.setVerticalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelHeaderLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHeaderLayout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jLabel9)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         jPanelDetail.setBorder(javax.swing.BorderFactory.createEtchedBorder());

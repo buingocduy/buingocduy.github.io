@@ -30,6 +30,24 @@ public class ct_hoadonXL {
         return list;
     }
     
+    public ArrayList<banhangTT> getRecords(String MaHD) {
+        ArrayList<banhangTT> list = new ArrayList<banhangTT>();
+        try {
+            hienthi_sql acc = new hienthi_sql();
+            ResultSet rs = acc.Query("select MaCTHoaDon, 'MaSP'=ct_hoadon.MaSP, TenSP, SoLuong, DonGia "
+                    + " from ct_hoadon, sanpham  "
+                    + " where ct_hoadon.MaSP = sanpham.MaSP and MaHoaDon = '" + MaHD + "'");
+
+            while (rs.next()) {
+                banhangTT banhang = new banhangTT(rs.getString("MaCTHoaDon"), rs.getString("MaSP"),  rs.getString("TenSP"), rs.getLong("SoLuong"), rs.getLong("DonGia"));
+                list.add(banhang);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return list;
+    }
+    
     //Hien thi
     public ArrayList<soluongTT> getSoluong(String MaSP) {
         ArrayList<soluongTT> list = new ArrayList<soluongTT>();
@@ -53,7 +71,11 @@ public class ct_hoadonXL {
         try {
 
             hienthi_sql acc = new hienthi_sql();
-            String sql = "INSERT INTO ct_hoadon (MaHoaDon, MaSP, SoLuong, DonGia) VALUES('" + MaHoaDon + "'"
+            String sql = "IF EXISTS (SELECT * FROM ct_hoadon Where MaHoaDon = '" + MaHoaDon + "' and  MaSP = '" + MaSP + "') "
+                    + "BEGIN PRINT 'DA TON TAI' "
+                    + "END "
+                    + "ELSE "
+                    + " INSERT INTO ct_hoadon (MaHoaDon, MaSP, SoLuong, DonGia) VALUES('" + MaHoaDon + "'"
                     + ",'" + MaSP + "'"
                     + ",'" + SoLuong + "'"
                     + ",'" + DonGia + "')";
@@ -136,7 +158,8 @@ public class ct_hoadonXL {
             String sql2 = "DELETE FROM hoadon WHERE MaHoaDon = " + MaHoaDon;
 
             System.out.println(sql);
-
+            System.out.println(sql2);
+             
             rowCount = acc.Update(sql);
             rowCount2 = acc.Update(sql2);
         } catch (Exception e) {

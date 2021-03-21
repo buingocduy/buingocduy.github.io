@@ -99,17 +99,17 @@ public class Sanpham extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("QUẢN LÝ THÔNG TIN SẢN PHẨM");
+        jLabel1.setText("SẢN PHẨM");
         jLabel1.setIconTextGap(10);
 
         javax.swing.GroupLayout jPanelHeaderLayout = new javax.swing.GroupLayout(jPanelHeader);
         jPanelHeader.setLayout(jPanelHeaderLayout);
         jPanelHeaderLayout.setHorizontalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHeaderLayout.createSequentialGroup()
-                .addContainerGap(213, Short.MAX_VALUE)
+            .addGroup(jPanelHeaderLayout.createSequentialGroup()
+                .addGap(189, 189, 189)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(198, 198, 198))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelHeaderLayout.setVerticalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +143,7 @@ public class Sanpham extends javax.swing.JFrame {
         jPanelDetailLayout.setHorizontalGroup(
             jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDetailLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(138, Short.MAX_VALUE)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelDetailLayout.createSequentialGroup()
                         .addComponent(jLabel4)

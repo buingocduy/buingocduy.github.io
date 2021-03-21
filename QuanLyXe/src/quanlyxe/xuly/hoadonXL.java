@@ -47,6 +47,24 @@ public class hoadonXL {
         }
         return list;
     }
+    
+    //Tổng
+    public ArrayList<hoadonTT> getTong(String MaHoaDon) {
+        ArrayList<hoadonTT> list = new ArrayList<hoadonTT>();
+        try {
+            hienthi_sql acc = new hienthi_sql();
+            ResultSet rs = acc.Query("SELECT * FROM hoadon Where MaHoaDon = '"+MaHoaDon+"'");
+
+            while (rs.next()) {
+                hoadonTT hd = new hoadonTT(rs.getString("MaHoaDon"), rs.getDate("Ngay"),rs.getString("SDT"),rs.getLong("TongTien"), rs.getString("Username"), rs.getString("GhiChu"));
+                list.add(hd);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return list;
+    }
 
     //Tao moi
     public int AddNewRecord(Date Ngay, String SDT, long TongTien, String Username, String GhiChu) {
@@ -93,7 +111,25 @@ public class hoadonXL {
         }
         return rowCount;
     }
+    
+    //Cap nhat
+    public int Update(String MaHoaDon, String SDT, String GhiChu) {
+        int rowCount = 0;
+        try {
 
+            hienthi_sql acc = new hienthi_sql();
+            String sql = "UPDATE hoadon SET SDT = '" + SDT + "'"
+                    + ", GhiChu = N'" + GhiChu + "'"
+                    + " WHERE MaHoaDon = '" + MaHoaDon + "'";
+
+            System.out.println(sql);
+            rowCount = acc.Update(sql);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return rowCount;
+    }
+    
     //Xóa
     public int DeleteRecord(String MaHoaDon) {
         int rowCount = 0;

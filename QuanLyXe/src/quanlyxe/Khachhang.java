@@ -81,7 +81,7 @@ public class Khachhang extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
-        jLabel1.setText("QUẢN LÝ THÔNG TIN KHÁCH HÀNG");
+        jLabel1.setText("KHÁCH HÀNG");
         jLabel1.setIconTextGap(10);
 
         javax.swing.GroupLayout jPanelHeaderLayout = new javax.swing.GroupLayout(jPanelHeader);
@@ -91,14 +91,14 @@ public class Khachhang extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHeaderLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(230, 230, 230))
+                .addGap(36, 36, 36))
         );
         jPanelHeaderLayout.setVerticalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHeaderLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+            .addGroup(jPanelHeaderLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addGap(27, 27, 27))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jPanelDetail.setBorder(javax.swing.BorderFactory.createEtchedBorder());

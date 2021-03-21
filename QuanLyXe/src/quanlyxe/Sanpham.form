@@ -72,10 +72,10 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="213" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="406" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -99,7 +99,7 @@
               <Color blue="0" green="33" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="QU&#x1ea2;N L&#xdd; TH&#xd4;NG TIN S&#x1ea2;N PH&#x1ea8;M"/>
+            <Property name="text" type="java.lang.String" value="S&#x1ea2;N PH&#x1ea8;M"/>
             <Property name="iconTextGap" type="int" value="10"/>
           </Properties>
         </Component>
@@ -118,7 +118,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="138" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>

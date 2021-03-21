@@ -94,7 +94,7 @@ public class MenuNX extends javax.swing.JInternalFrame {
         });
 
         btn_phieunhap.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_phieunhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/list.png"))); // NOI18N
+        btn_phieunhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/report1.png"))); // NOI18N
         btn_phieunhap.setText("Phiếu nhập");
         btn_phieunhap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_phieunhap.addActionListener(new java.awt.event.ActionListener() {
@@ -113,28 +113,27 @@ public class MenuNX extends javax.swing.JInternalFrame {
             }
         });
 
-        txt_username.setText("jLabel1");
+        txt_username.setText("Null");
 
         javax.swing.GroupLayout jPanelDanhMucLayout = new javax.swing.GroupLayout(jPanelDanhMuc);
         jPanelDanhMuc.setLayout(jPanelDanhMucLayout);
         jPanelDanhMucLayout.setHorizontalGroup(
             jPanelDanhMucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDanhMucLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelDanhMucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_phieuxuat, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                    .addComponent(btn_phieunhap, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_hoadon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(jPanelDanhMucLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabelTieuDe)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanelDanhMucLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txt_username)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelDanhMucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_phieuxuat, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                    .addComponent(btn_phieunhap, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_hoadon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDanhMucLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txt_username)))
+                .addContainerGap())
         );
         jPanelDanhMucLayout.setVerticalGroup(
             jPanelDanhMucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,9 +145,9 @@ public class MenuNX extends javax.swing.JInternalFrame {
                 .addComponent(btn_phieuxuat)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_hoadon)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(txt_username)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_thoat)
                 .addContainerGap())
         );
@@ -170,7 +169,7 @@ public class MenuNX extends javax.swing.JInternalFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanelDanhMuc, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                    .addComponent(jPanelDanhMuc, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -208,7 +207,7 @@ public class MenuNX extends javax.swing.JInternalFrame {
     private void btn_hoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hoadonActionPerformed
         // Hóa đơn
         Hoadon hoadon = new Hoadon();
-        hoadon.setTenUser(txt_username.getText());
+        hoadon.setTenUser(txt_username.getText(),txt_username.getText());
 
         //vi tri giua man hinh
         hoadon.pack();
