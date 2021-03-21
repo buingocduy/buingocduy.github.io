@@ -285,6 +285,7 @@ public class Banhang extends javax.swing.JFrame {
 
         btn_thanhtoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/chi.png"))); // NOI18N
         btn_thanhtoan.setText("Thanh toán");
+        btn_thanhtoan.setEnabled(false);
         btn_thanhtoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_thanhtoanActionPerformed(evt);
@@ -293,6 +294,7 @@ public class Banhang extends javax.swing.JFrame {
 
         btn_them.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/backup.png"))); // NOI18N
         btn_them.setText("Thêm");
+        btn_them.setEnabled(false);
         btn_them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_themActionPerformed(evt);
@@ -436,6 +438,7 @@ public class Banhang extends javax.swing.JFrame {
 
         btn_xoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/xoa.png"))); // NOI18N
         btn_xoa.setText("Xóa sản phẩm");
+        btn_xoa.setEnabled(false);
         btn_xoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_xoaActionPerformed(evt);
@@ -527,6 +530,7 @@ public class Banhang extends javax.swing.JFrame {
                         showTong(MaHD);
                         showSoluong(masp.getID());
                         JOptionPane.showMessageDialog(null, "Thêm thành công!");
+                        btn_thanhtoan.setEnabled(true);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Thêm thất bại (Do sai hoặc đã tồn tại)");
@@ -681,20 +685,20 @@ public class Banhang extends javax.swing.JFrame {
         if (rowEffected1 > 0) {
             if (rowEffected1 > 0) {
                 JOptionPane.showMessageDialog(null, "Tạo thành công!");
-                for (int i = 0; i < list.size(); i++) {
-                    int getMHD = Integer.valueOf(list.get(i).getMaHoaDon());
-                    int MHD = getMHD + 1;
-                    System.out.println(list.get(i).getMaHoaDon());
-                    txt_ma.setText(String.valueOf(MHD));
-                    System.out.println(MHD);
-                    showDataList(String.valueOf(MHD));
-                    showTong(MaHoaDon);
-                    txt_tongtien.setText("0");
-                    txt_so.setText("0");
-                    btn_them.setEnabled(true);
-                    btn_xoa.setEnabled(true);
-                    btn_inhoadon.setEnabled(false);
-                }
+                showData();
+
+                int MHD = Integer.valueOf(MaHoaDon);
+                int MHDnew = MHD + 1;
+                showDataList(String.valueOf(MHDnew));
+                System.out.println("Hóa đơn mới: " + MHDnew);
+
+                showTong(MaHoaDon);
+                txt_tongtien.setText("0");
+                txt_so.setText("0");
+                btn_them.setEnabled(true);
+                btn_xoa.setEnabled(true);
+                btn_inhoadon.setEnabled(false);
+                btn_thanhtoan.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Tạo thất bại");
             }
@@ -731,27 +735,31 @@ public class Banhang extends javax.swing.JFrame {
 
     private void btn_thanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thanhtoanActionPerformed
 
-        Date date = new Date();
-        ArrayList<hoadonTT> list = hoadonServices.getAllRecords();
-        dsHoaDon = list;
-
-        String soPX = txt_ma.getText().trim();
-        String User = txt_tennhanvien.getText().trim();
-
-        String MaHoaDon = txt_ma.getText().trim();
-        String GhiChu = txt_ghichu.getText().trim();
         String SDT = txt_sdt.getText().trim();
-        String TT = txt_tongtien.getText().trim().replaceAll("\\.", "").replaceAll(",", "");
-        long TongTien = Integer.valueOf(TT);
-
-        int rowEffected = hoadonServices.UpdateRecord(MaHoaDon, date, SDT, TongTien, User, GhiChu);
-        if (rowEffected > 0) {
-            JOptionPane.showMessageDialog(null, "Thanh toán thành công!");
-            btn_them.setEnabled(false);
-            btn_xoa.setEnabled(false);
-            btn_inhoadon.setEnabled(true);
+        if (SDT.equals("")) {
+            JOptionPane.showMessageDialog(null, "Điền số điện thoại");
         } else {
-            JOptionPane.showMessageDialog(null, "Thanh toán thất bại");
+            Date date = new Date();
+            ArrayList<hoadonTT> list = hoadonServices.getAllRecords();
+            dsHoaDon = list;
+
+            String soPX = txt_ma.getText().trim();
+            String User = txt_tennhanvien.getText().trim();
+
+            String MaHoaDon = txt_ma.getText().trim();
+            String GhiChu = txt_ghichu.getText().trim();
+            String TT = txt_tongtien.getText().trim().replaceAll("\\.", "").replaceAll(",", "");
+            long TongTien = Integer.valueOf(TT);
+
+            int rowEffected = hoadonServices.UpdateRecord(MaHoaDon, date, SDT, TongTien, User, GhiChu);
+            if (rowEffected > 0) {
+                JOptionPane.showMessageDialog(null, "Thanh toán thành công!");
+                btn_them.setEnabled(false);
+                btn_xoa.setEnabled(false);
+                btn_inhoadon.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Thanh toán thất bại");
+            }
         }
     }//GEN-LAST:event_btn_thanhtoanActionPerformed
 
