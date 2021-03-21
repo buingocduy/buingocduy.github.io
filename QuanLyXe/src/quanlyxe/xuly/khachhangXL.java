@@ -40,7 +40,7 @@ public class khachhangXL {
         ArrayList<khachhangTT> list = new ArrayList<khachhangTT>();
         try {
             hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("SELECT * FROM khachhang where Phone = " + Phone + "");
+            ResultSet rs = acc.Query("SELECT * FROM khachhang where SDT = " + Phone + "");
 
             while (rs.next()) {
                 khachhangTT cust = new khachhangTT(rs.getString("SDT"),rs.getString("TenKH"), rs.getString("DiaChi"), rs.getString("Email"), rs.getLong("TongTienDaMua"));

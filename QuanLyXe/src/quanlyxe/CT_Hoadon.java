@@ -86,14 +86,12 @@ public class CT_Hoadon extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btn_xoadulieu = new javax.swing.JButton();
         txt_macthoadon = new javax.swing.JLabel();
         txt_mahoadon = new javax.swing.JLabel();
-        txt_tonggia = new javax.swing.JLabel();
-        txt_dongia = new javax.swing.JLabel();
+        txt_thanhtien = new javax.swing.JLabel();
         txt_masp = new javax.swing.JLabel();
         txt_soluong = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
@@ -153,7 +151,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã chi tiết hóa đơn", "Mã hóa đơn", "Mã sản phẩm", "Số lượng", "Đơn giá"
+                "Mã chi tiết hóa đơn", "Mã hóa đơn", "Mã sản phẩm", "Số lượng", "Thành tiền"
             }
         ));
         jTableData.setColumnSelectionAllowed(true);
@@ -167,8 +165,6 @@ public class CT_Hoadon extends javax.swing.JFrame {
         jLabel3.setText("Mã hóa đơn:");
 
         jLabel6.setText("Mã sản phẩm");
-
-        jLabel7.setText("Đơn giá:");
 
         jLabel9.setText("Mã chi tiết hóa đơn:");
 
@@ -190,11 +186,8 @@ public class CT_Hoadon extends javax.swing.JFrame {
         txt_mahoadon.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_mahoadon.setText("000");
 
-        txt_tonggia.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txt_tonggia.setText("000");
-
-        txt_dongia.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txt_dongia.setText("000");
+        txt_thanhtien.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_thanhtien.setText("000");
 
         txt_masp.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txt_masp.setText("Null");
@@ -227,7 +220,6 @@ public class CT_Hoadon extends javax.swing.JFrame {
                         .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel7)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6)
                             .addComponent(jLabel1))
@@ -235,8 +227,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
                         .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_macthoadon)
                             .addComponent(txt_mahoadon)
-                            .addComponent(txt_tonggia)
-                            .addComponent(txt_dongia)
+                            .addComponent(txt_thanhtien)
                             .addComponent(txt_masp)
                             .addComponent(txt_soluong))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -265,13 +256,9 @@ public class CT_Hoadon extends javax.swing.JFrame {
                     .addComponent(txt_soluong))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txt_dongia))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txt_tonggia))
-                .addGap(18, 18, 18)
+                    .addComponent(txt_thanhtien)
+                    .addComponent(jLabel1))
+                .addGap(44, 44, 44)
                 .addGroup(jPanelDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_xoadulieu)
                     .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -322,7 +309,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
         return null;
     }
 
-    private void showDataDetail(String MaCTHoaDon, String MaHoaDon, String MaSP, long SoLuong, String Dongia) {
+    private void showDataDetail(String MaCTHoaDon, String MaHoaDon, String MaSP, long SoLuong, String ThanhTien) {
 
         txt_macthoadon.setText(MaCTHoaDon);
         txt_mahoadon.setText(MaHoaDon);
@@ -337,18 +324,8 @@ public class CT_Hoadon extends javax.swing.JFrame {
             btn_xoadulieu.setEnabled(true);
         }
 
-        Locale localeEN = new Locale("en", "EN");
-        NumberFormat en = NumberFormat.getInstance(localeEN);
-
+        txt_thanhtien.setText(ThanhTien);
         txt_soluong.setText(String.valueOf(SoLuong));
-        txt_dongia.setText(Dongia);
-
-        long dg = Long.valueOf(txt_dongia.getText().trim().replaceAll("\\.", "").replaceAll(",", ""));
-        long sl = Long.valueOf(txt_soluong.getText().trim());
-        long tg = dg * sl;
-        String str2 = en.format(tg);
-
-        txt_tonggia.setText(str2);
     }
 
     public void gridSelectedChanged(ListSelectionEvent e) {
@@ -400,7 +377,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
             row[1] = list.get(i).getMaHoaDon();
             row[2] = list.get(i).getMaSP();
             row[3] = list.get(i).getSoLuong();
-            row[4] = en.format(list.get(i).getDongia());
+            row[4] = en.format(list.get(i).getThanhTien());
 
             model.addRow(row);
         }
@@ -432,7 +409,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
     // Xóa toàn bộ dữ liệu của 1 hóa đơn
     private void btn_xoadulieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoadulieuActionPerformed
         String MaSP = txt_masp.getText().trim();
-        
+
         if (MaSP.equals("Null")) {
             JOptionPane.showMessageDialog(null, "Chọn sản phẩm mới xóa được");
         } else {
@@ -440,7 +417,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
 
             String MaCTHoaDon = txt_macthoadon.getText().trim();
             String MaHD = txt_mahoadon.getText().trim();
-            
+
             String MaCTPX = txt_macthoadon.getText().trim();
             String MaPX = txt_mahoadon.getText().trim();
 
@@ -463,8 +440,7 @@ public class CT_Hoadon extends javax.swing.JFrame {
                         this.txt_mahoadon.setText("000");
                         this.txt_masp.setText("Null");
                         this.txt_soluong.setText("000");
-                        this.txt_dongia.setText("000");
-                        this.txt_tonggia.setText("000");                      
+                        this.txt_thanhtien.setText("000");
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Xóa thất bại");
@@ -524,7 +500,6 @@ public class CT_Hoadon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelDetail;
     private javax.swing.JPanel jPanelHeader1;
@@ -532,12 +507,11 @@ public class CT_Hoadon extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableData;
-    private javax.swing.JLabel txt_dongia;
     private javax.swing.JLabel txt_macthoadon;
     private javax.swing.JLabel txt_mahoadon;
     private javax.swing.JLabel txt_masp;
     private javax.swing.JLabel txt_nguoilap;
     private javax.swing.JLabel txt_soluong;
-    private javax.swing.JLabel txt_tonggia;
+    private javax.swing.JLabel txt_thanhtien;
     // End of variables declaration//GEN-END:variables
 }

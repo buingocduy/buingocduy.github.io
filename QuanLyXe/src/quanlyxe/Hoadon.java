@@ -617,11 +617,12 @@ public class Hoadon extends javax.swing.JFrame {
     //Xóa 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
         String MaHD = txt_mahoadon.getText().trim();
-        
+
         if (MaHD.equals("000")) {
             JOptionPane.showMessageDialog(null, "Chọn hóa đơn rồi mới xóa được");
         } else {
             String user = txt_nguoilap.getText();
+            String SDT = txt_sdt.getText();
 
             String MaPX = txt_mahoadon.getText().trim();
 
@@ -632,21 +633,27 @@ public class Hoadon extends javax.swing.JFrame {
 
             if (input == 0) {
                 //Xoa
-                int rowEffected = hoadonservices.DeleteRecord(MaHD);
+                int rowEffected = hoadonservices.DeleteRecord(MaHD, SDT);
                 int rowEffected2 = phieuxuatServices.DeleteRecord(MaPX);
+                int rowEffected3 = hoadonservices.DeleteRecord2(MaHD, SDT);
 
                 if (rowEffected > 0) {
+                    showDataList();
                     if (rowEffected2 > 0) {
-                        JOptionPane.showMessageDialog(null, "Xóa thành công!");
                         showDataList();
-                        this.txt_mahoadon.setText("000");
-                        this.txt_sdt.setText("000");
-                        this.txt_tongtien.setText("000");
-                        this.txt_ngaylap.setText("00/00/0000");
-                        this.txt_ghichu.setText("");
-                        this.txt_nguoilap.setText(txt_user.getText());
+                        if (rowEffected3 > 0) {
+                            JOptionPane.showMessageDialog(null, "Xóa thành công!");
+                            showDataList();
+                            this.txt_mahoadon.setText("000");
+                            this.txt_sdt.setText("000");
+                            this.txt_tongtien.setText("000");
+                            this.txt_ngaylap.setText("00/00/0000");
+                            this.txt_ghichu.setText("");
+                            this.txt_nguoilap.setText(txt_user.getText());
+                        }
                     }
                 } else {
+                    showDataList();
                     JOptionPane.showMessageDialog(null, "Xóa thất bại (Phải xóa chi chi tiết trước)");
                 }
             }

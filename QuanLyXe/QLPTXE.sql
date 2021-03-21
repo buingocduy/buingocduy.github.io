@@ -88,7 +88,7 @@ CREATE TABLE ct_hoadon(
 	MaHoaDon int NOT NULL,
 	MaSP varchar(10) NOT NULL,
 	SoLuong int NOT NULL,
-	DonGia bigint NOT NULL,
+	ThanhTien bigint NOT NULL,
 	Primary key(MaCTHoaDon))
 go
 
@@ -295,12 +295,19 @@ select * from phieuxuat
 select * from ct_phieuxuat
 go
 
+/*
+select 'ThanhTien'=sum(ThanhTien)
+from ct_hoadon
+where MaHoaDon = '7'
+
 IF EXISTS (SELECT * FROM ct_hoadon Where MaHoaDon = '3')
 BEGIN
 	UPDATE hoadon SET TongTien = (select 'TongTien'=sum(SoLuong * DonGia) from ct_hoadon where MaHoaDon = '3' Group by MaHoaDon) WHERE MaHoaDon = '3'
 END	 
 ELSE 
 	UPDATE hoadon SET TongTien = '0'
+
+UPDATE khachhang SET TongTienDaMua = (select sum(TongTien) from hoadon where SDT = '0904596810') WHERE SDT = '0904596810'
 
 
 /*

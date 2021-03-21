@@ -148,7 +148,7 @@
                 <Column editable="true" title="M&#xe3; h&#xf3;a &#x111;&#x1a1;n" type="java.lang.Object"/>
                 <Column editable="true" title="M&#xe3; s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
                 <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
-                <Column editable="true" title="&#x110;&#x1a1;n gi&#xe1;" type="java.lang.Object"/>
+                <Column editable="true" title="Th&#xe0;nh ti&#x1ec1;n" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -213,7 +213,6 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel7" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -222,8 +221,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txt_macthoadon" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_mahoadon" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_tonggia" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_dongia" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_thanhtien" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_masp" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_soluong" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -262,15 +260,10 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_dongia" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txt_thanhtien" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_tonggia" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_xoadulieu" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnClose" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -294,11 +287,6 @@
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="text" type="java.lang.String" value="M&#xe3; s&#x1ea3;n ph&#x1ea9;m"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel7">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#x110;&#x1a1;n gi&#xe1;:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
@@ -342,15 +330,7 @@
             <Property name="text" type="java.lang.String" value="000"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="txt_tonggia">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="000"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="txt_dongia">
+        <Component class="javax.swing.JLabel" name="txt_thanhtien">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>

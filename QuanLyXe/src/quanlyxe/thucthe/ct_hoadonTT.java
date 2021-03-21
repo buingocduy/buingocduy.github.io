@@ -13,14 +13,14 @@ public class ct_hoadonTT {
 
     String MaCTHoaDon, MaHoaDon, MaSP;
     long SoLuong;
-    long Dongia;
+    long ThanhTien;
 
-    public ct_hoadonTT(String MaCTHoaDon, String MaHoaDon, String MaSP, long SoLuong, long Dongia) {
+    public ct_hoadonTT(String MaCTHoaDon, String MaHoaDon, String MaSP, long SoLuong, long ThanhTien) {
         this.MaCTHoaDon = MaCTHoaDon;
         this.MaHoaDon = MaHoaDon;
         this.MaSP = MaSP;
         this.SoLuong = SoLuong;
-        this.Dongia = Dongia;
+        this.ThanhTien = ThanhTien;
     }
 
     public String getMaCTHoaDon() {
@@ -55,12 +55,13 @@ public class ct_hoadonTT {
         this.SoLuong = SoLuong;
     }
 
-    public long getDongia() {
-        return Dongia;
+    public long getThanhTien() {
+        return ThanhTien;
     }
 
-    public void setDongia(long Dongia) {
-        this.Dongia = Dongia;
+    public void setThanhTien(long ThanhTien) {
+        this.ThanhTien = ThanhTien;
     }
 
+    
 }
