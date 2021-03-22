@@ -55,7 +55,9 @@ public class Banhang extends javax.swing.JFrame {
         loadSanpham();
         showData();
         txt_soluong.setText("1");
-
+        txt_sdt.setText("0");
+        txt_giamgia.setText("0");
+        
         String MaHD = txt_ma.getText().trim();
         showDataList(MaHD);
         showThanhTien(MaHD);
@@ -547,7 +549,7 @@ public class Banhang extends javax.swing.JFrame {
         String kho = txt_kho.getText().trim();
 
         if (SoLuong > SoLuongCon || SoLuong <= 0) {
-            JOptionPane.showMessageDialog(null, "Số lượng không đủ!");
+            JOptionPane.showMessageDialog(null, "Số lượng không đủ!","Thông báo",JOptionPane.WARNING_MESSAGE);
         } else {
             int rowEffected1 = ct_hoadonservices.AddNewRecord(MaHD, masp.getID(), SoLuong, Tien);
             int rowEffected2 = phieuXuatCTServices.AddNewRecord(maPX, kho, masp.getID(), SoLuong);
