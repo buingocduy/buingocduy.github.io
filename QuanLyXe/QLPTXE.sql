@@ -300,6 +300,11 @@ select * from ct_phieuxuat
 go
 
 /*
+select 'TongTien'=sum(ThanhTien),'GiamGia'=sum(ct_hoadon.ThanhTien - hoadon.TongTien)
+from ct_hoadon,hoadon
+WHERE ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '2021-03-23' and '2021-03-23'
+Group by hoadon.TongTien
+
 select * 
 from hoadon
 where SDT = '0772767594' or GhiChu like N'%0772767594%'
@@ -388,9 +393,9 @@ from ct_hoadon,hoadon,sanpham
 where ct_hoadon.MaHoaDon = hoadon.MaHoaDon and sanpham.MaSP = ct_hoadon.MaSP and hoadon.Ngay between '2021-02-07' and '2021-02-07' 
 Group by TenSP,DonGia
 
-select 'SoLuong'=SUM(SoLuong), 'TongTien'=SUM(TongTien)
+select 'SoLuong'=SUM(ct_hoadon.SoLuong), 'TongTien'=SUM(hoadon.TongTien)
 from ct_hoadon,hoadon
-where ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '2021-02-07' and '2021-02-07' 
+where ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '2021-03-01' and '2021-03-23' 
 
 select * from hoadon where  Ngay between '2021-02-07' and '2021-02-09' 
 

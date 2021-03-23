@@ -244,6 +244,7 @@ public class MenuBC extends javax.swing.JFrame {
             CT_Baocao ctbaocao = new CT_Baocao();
             ctbaocao.showDataList(strngaybd, strngaytk);
             ctbaocao.showTong(strngaybd, strngaytk);
+            ctbaocao.showGiam(strngaybd, strngaytk);
             ctbaocao.setNgay(tungay, denngay);
             
             //vi tri giua man hinh va maximize

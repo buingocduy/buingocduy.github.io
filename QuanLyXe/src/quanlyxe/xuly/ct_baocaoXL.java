@@ -21,10 +21,10 @@ public class ct_baocaoXL {
         ArrayList<ct_baocaoTT> list = new ArrayList<ct_baocaoTT>();
         try {
             hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("select TenSP,DonGia,'SoLuong'=SUM(SoLuong),'TongTien'=(DonGia * SUM(SoLuong)) from ct_hoadon,hoadon,sanpham  where ct_hoadon.MaHoaDon = hoadon.MaHoaDon and sanpham.MaSP = ct_hoadon.MaSP and Ngay between '" + strngaybd + "' and '" + strngaytk + "' Group by TenSP,DonGia");
+            ResultSet rs = acc.Query("select TenSP, GiaBan, 'SoLuong'=SUM(SoLuong), 'TongTien'=(SUM(SoLuong) * GiaBan) from ct_hoadon,hoadon,sanpham  where ct_hoadon.MaHoaDon = hoadon.MaHoaDon and sanpham.MaSP = ct_hoadon.MaSP and Ngay between '" + strngaybd + "' and '" + strngaytk + "' Group by TenSP,GiaBan");
 
             while (rs.next()) {
-                ct_baocaoTT ctbc = new ct_baocaoTT(rs.getString("TenSP"), rs.getLong("DonGia"), rs.getLong("SoLuong"),rs.getLong("TongTien"));
+                ct_baocaoTT ctbc = new ct_baocaoTT(rs.getString("TenSP"), rs.getLong("GiaBan"), rs.getLong("SoLuong"),rs.getLong("TongTien"));
                 list.add(ctbc);
             }
         } catch (Exception e) {
@@ -37,7 +37,26 @@ public class ct_baocaoXL {
         ArrayList<tongtienTT> list = new ArrayList<tongtienTT>();
         try {
             hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("SELECT 'SoLuong'=SUM(ct_hoadon.SoLuong), 'TongTien'=SUM(hoadon.TongTien) "
+            ResultSet rs = acc.Query("SELECT 'SoLuong'=SUM(ct_hoadon.SoLuong),'TongTien'=SUM(hoadon.TongTien) "
+                                + "FROM ct_hoadon,hoadon  "
+                                + "WHERE ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '" + strngaybd + "' and '" + strngaytk + "'");
+
+            while (rs.next()) {
+                tongtienTT hd = new tongtienTT(rs.getLong("SoLuong"),rs.getLong("TongTien"));
+                list.add(hd);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return list;
+    }
+    
+    public ArrayList<tongtienTT> getGiamgia(String strngaybd, String strngaytk) {
+        ArrayList<tongtienTT> list = new ArrayList<tongtienTT>();
+        try {
+            hienthi_sql acc = new hienthi_sql();
+            ResultSet rs = acc.Query("select 'SoLuong'=sum(ThanhTien),'TongTien'=sum(ct_hoadon.ThanhTien - hoadon.TongTien)"
                                 + "FROM ct_hoadon,hoadon  "
                                 + "WHERE ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '" + strngaybd + "' and '" + strngaytk + "'");
 

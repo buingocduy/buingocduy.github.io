@@ -24,7 +24,7 @@ public class CT_Baocao extends javax.swing.JFrame {
 
     ArrayList<ct_baocaoTT> dsCTbaocao = new ArrayList<>();
     ArrayList<tongtienTT> dsTongTien = new ArrayList<>();
-
+    
     public CT_Baocao() {
         initComponents();
     }
@@ -51,7 +51,7 @@ public class CT_Baocao extends javax.swing.JFrame {
         for (int i = 0; i < list.size(); i++) {
 
             row[0] = list.get(i).getTenSP();
-            row[1] = en.format(list.get(i).getDonGia());
+            row[1] = en.format(list.get(i).getGiaBan());
             row[2] = list.get(i).getSoLuong();
             row[3] = en.format(list.get(i).getTongTien());
             
@@ -61,15 +61,28 @@ public class CT_Baocao extends javax.swing.JFrame {
     
     public void showTong(String strngaybd, String strngaytk) {
         //load data
-        ArrayList<tongtienTT> list = ctbaocaoservices.getTong(strngaybd, strngaytk);
-        dsTongTien = list;
-
+        ArrayList<tongtienTT> list = ctbaocaoservices.getTong(strngaybd, strngaytk);        
+        dsTongTien = list;      
         Locale localeEN = new Locale("en", "EN");
         NumberFormat en = NumberFormat.getInstance(localeEN);
 
         for (int i = 0; i < list.size(); i++) {
             txt_tongtien.setText(String.valueOf(en.format(list.get(i).getTongTien())) + " đ");
             txt_tongsl.setText(String.valueOf(list.get(i).getSoLuong()));
+        }
+    }
+    
+    public void showGiam(String strngaybd, String strngaytk) {
+        //load data
+        ArrayList<tongtienTT> list = ctbaocaoservices.getGiamgia(strngaybd, strngaytk);        
+        dsTongTien = list;      
+        
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);
+
+        for (int i = 0; i < list.size(); i++) {
+            txt_truocgiam.setText(String.valueOf(en.format(list.get(i).getSoLuong())) + " đ");
+            txt_giamgia.setText(String.valueOf(en.format(list.get(i).getTongTien())) + " đ");
         }
     }
 
@@ -90,6 +103,10 @@ public class CT_Baocao extends javax.swing.JFrame {
         txt_tongtien = new javax.swing.JLabel();
         txt_tongsl = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txt_truocgiam = new javax.swing.JLabel();
+        txt_giamgia = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txt_den = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -134,6 +151,20 @@ public class CT_Baocao extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Số lượng đã bán được:");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Tổng tiền trước khi giảm:");
+
+        txt_truocgiam.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_truocgiam.setForeground(new java.awt.Color(255, 51, 0));
+        txt_truocgiam.setText("0");
+
+        txt_giamgia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_giamgia.setForeground(new java.awt.Color(255, 51, 0));
+        txt_giamgia.setText("0");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Tổng tiền giảm giá:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -148,7 +179,15 @@ public class CT_Baocao extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_tongtien)))
+                        .addComponent(txt_tongtien))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_truocgiam))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_giamgia)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -158,11 +197,19 @@ public class CT_Baocao extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_tongsl))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txt_truocgiam))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txt_giamgia))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(txt_tongtien))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -216,13 +263,13 @@ public class CT_Baocao extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_in)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_in, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -236,11 +283,12 @@ public class CT_Baocao extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btn_in))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_in)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -293,13 +341,17 @@ public class CT_Baocao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel txt_den;
+    private javax.swing.JLabel txt_giamgia;
     private javax.swing.JLabel txt_tongsl;
     private javax.swing.JLabel txt_tongtien;
+    private javax.swing.JLabel txt_truocgiam;
     private javax.swing.JLabel txt_tu;
     // End of variables declaration//GEN-END:variables
 }

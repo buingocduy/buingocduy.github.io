@@ -155,7 +155,7 @@
                 <Column editable="true" title="S&#x1ed1;" type="java.lang.Object"/>
                 <Column editable="true" title="M&#xe3; s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
                 <Column editable="true" title="T&#xea;n s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
-                <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1a1;ng" type="java.lang.Object"/>
+                <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
                 <Column editable="true" title="Th&#xe0;nh ti&#x1ec1;n" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -653,6 +653,9 @@
         <Property name="text" type="java.lang.String" value="In h&#xf3;a &#x111;&#x1a1;n"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_inhoadonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_thoat">
       <Properties>

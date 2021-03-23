@@ -6,11 +6,14 @@
 package quanlyxe;
 
 import java.awt.Component;
+import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +24,15 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import quanlyxe.xuly.*;
 import quanlyxe.thucthe.*;
 
@@ -193,7 +205,7 @@ public class Banhang extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Số", "Mã sản phẩm", "Tên sản phẩm", "Số lương", "Thành tiền"
+                "Số", "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Thành tiền"
             }
         ));
         jScrollPane1.setViewportView(jTableData);
@@ -458,6 +470,11 @@ public class Banhang extends javax.swing.JFrame {
         btn_inhoadon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/print.png"))); // NOI18N
         btn_inhoadon.setText("In hóa đơn");
         btn_inhoadon.setEnabled(false);
+        btn_inhoadon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inhoadonActionPerformed(evt);
+            }
+        });
 
         btn_thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/close1.png"))); // NOI18N
         btn_thoat.setText("Thoát");
@@ -823,6 +840,31 @@ public class Banhang extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_thanhtoanActionPerformed
 
+    private void btn_inhoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inhoadonActionPerformed
+        int MaHD = Integer.valueOf(txt_ma.getText().trim());
+        XuatHoaDon(MaHD);
+    }//GEN-LAST:event_btn_inhoadonActionPerformed
+    
+    public void XuatHoaDon(int MaHD)
+    {
+        try {
+            ketnoi_sql sql = new ketnoi_sql();
+            Hashtable map = new Hashtable();
+            JasperDesign jd = JRXmlLoader.load("G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatHoaDon.jrxml");       
+            JasperReport jr = JasperCompileManager.compileReport("G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatHoaDon.jrxml");  
+            
+            map.put("MaHoaDon",MaHD);
+            JasperPrint jp = JasperFillManager.fillReport(jr, map, sql.getConnection());
+            JasperViewer.viewReport(jp,false);     
+            JasperExportManager.exportReportToPdfFile(jp,"G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatHoaDon.pdf");
+                  
+        } catch (ClassNotFoundException | SQLException | JRException e) {
+            JOptionPane.showMessageDialog(null, "Cannot show report" + e.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(Sanpham.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }     
+    }
     /**
      * @param args the command line arguments
      */

@@ -11,11 +11,11 @@ package quanlyxe.thucthe;
  */
 public class ct_baocaoTT {
     String TenSP;
-    long DonGia,SoLuong,TongTien;
+    long GiaBan,SoLuong,TongTien;
 
-    public ct_baocaoTT(String TenSP, long DonGia, long SoLuong, long TongTien) {
+    public ct_baocaoTT(String TenSP, long GiaBan, long SoLuong, long TongTien) {
         this.TenSP = TenSP;
-        this.DonGia = DonGia;
+        this.GiaBan = GiaBan;
         this.SoLuong = SoLuong;
         this.TongTien = TongTien;
     }
@@ -28,12 +28,12 @@ public class ct_baocaoTT {
         this.TenSP = TenSP;
     }
 
-    public long getDonGia() {
-        return DonGia;
+    public long getGiaBan() {
+        return GiaBan;
     }
 
-    public void setDonGia(long DonGia) {
-        this.DonGia = DonGia;
+    public void setGiaBan(long GiaBan) {
+        this.GiaBan = GiaBan;
     }
 
     public long getSoLuong() {
@@ -52,6 +52,5 @@ public class ct_baocaoTT {
         this.TongTien = TongTien;
     }
 
-    
     
 }

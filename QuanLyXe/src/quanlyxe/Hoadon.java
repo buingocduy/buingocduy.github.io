@@ -8,6 +8,7 @@ package quanlyxe;
 import quanlyxe.thucthe.*;
 import quanlyxe.xuly.*;
 import java.awt.Component;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
@@ -20,9 +21,19 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Hashtable;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class Hoadon extends javax.swing.JFrame {
 
@@ -95,6 +106,7 @@ public class Hoadon extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         btn_xoa = new javax.swing.JButton();
+        btn_in = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btn_timkiem = new javax.swing.JButton();
         txt_timkiem = new javax.swing.JTextField();
@@ -299,6 +311,14 @@ public class Hoadon extends javax.swing.JFrame {
             }
         });
 
+        btn_in.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/print.png"))); // NOI18N
+        btn_in.setText("In");
+        btn_in.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -308,7 +328,8 @@ public class Hoadon extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                    .addComponent(btn_xoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_xoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_in, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -316,9 +337,11 @@ public class Hoadon extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addGap(13, 13, 13)
+                .addComponent(btn_in, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -404,7 +427,7 @@ public class Hoadon extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jPanelDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 469, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -467,7 +490,7 @@ public class Hoadon extends javax.swing.JFrame {
     }
 
     private void showSearchDataList() {
-        String lua = "";       
+        String lua = "";
         String tim = txt_timkiem.getText().trim();
         String chon = String.valueOf(cb_chon.getSelectedItem());
 
@@ -660,6 +683,35 @@ public class Hoadon extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_xoaActionPerformed
 
+    private void btn_inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inActionPerformed
+        int MaHD = Integer.valueOf(txt_mahoadon.getText().trim());
+        if (MaHD == 000) {
+            JOptionPane.showMessageDialog(null, "Phải chọn 1 hóa đơn thì mới in được");
+        } else {
+            XuatHoaDon(MaHD);
+        }
+    }//GEN-LAST:event_btn_inActionPerformed
+
+    public void XuatHoaDon(int MaHD) {
+        try {
+            ketnoi_sql sql = new ketnoi_sql();
+            Hashtable map = new Hashtable();
+            JasperDesign jd = JRXmlLoader.load("G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatHoaDon.jrxml");
+            JasperReport jr = JasperCompileManager.compileReport("G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatHoaDon.jrxml");
+
+            map.put("MaHoaDon", MaHD);
+            JasperPrint jp = JasperFillManager.fillReport(jr, map, sql.getConnection());
+            JasperViewer.viewReport(jp, false);
+            JasperExportManager.exportReportToPdfFile(jp, "G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatHoaDon.pdf");
+
+        } catch (ClassNotFoundException | SQLException | JRException e) {
+            JOptionPane.showMessageDialog(null, "Cannot show report" + e.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(Sanpham.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -708,6 +760,7 @@ public class Hoadon extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btn_cthd;
+    private javax.swing.JButton btn_in;
     private javax.swing.JButton btn_tailai;
     private javax.swing.JButton btn_timkiem;
     private javax.swing.JButton btn_xoa;
