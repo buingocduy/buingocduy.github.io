@@ -75,7 +75,7 @@ CREATE TABLE ct_kho(
 CREATE TABLE hoadon(
 	MaHoaDon int IDENTITY(1,1) NOT NULL,	
 	Ngay  date  NOT NULL,
-	SDT varchar(50),
+	SDT varchar(50) NOT NULL,
 	TongTien bigint,
 	Username varchar(100),
 	GhiChu NTEXT,
@@ -148,6 +148,9 @@ go
 alter table hoadon
 add constraint FK_hd_tk foreign key(Username) references taikhoan(Username)
 go
+alter table hoadon
+add constraint FK_hd_kh foreign key(SDT) references khachhang(SDT)
+go
 
 --Ràng buộc CHI TIẾT HÓA ĐƠN
 alter table ct_hoadon
@@ -202,6 +205,7 @@ insert into nhacungcap values ('SUZUKI',N'Công ty TNHH Việt Nam Suzuki',N'Đ�
 go
 
 /*Khách hàng*/
+insert into khachhang values ('0',N'ADMIN',N'NULL','NULL',0)
 insert into khachhang values ('0904596810',N'Bùi Ngọc Duy',N'439B/4 Hậu Giang P11, Q6, TP.HCM','buingocduy1999@gmail.com',100000000)
 insert into khachhang values ('0902343263',N'Phan Hồng Tuấn',N'475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM','phanhongtuan@gmail.com',30000000)
 insert into khachhang values ('0000000000',N'Huỳnh Lưu Trọng Vũ',N'475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM','huynhluutrongvu@gmail.com',41000000)
@@ -296,6 +300,10 @@ select * from ct_phieuxuat
 go
 
 /*
+select * 
+from hoadon
+where SDT = '0772767594' or GhiChu like N'%0772767594%'
+
 select 'ThanhTien'=sum(ThanhTien)
 from ct_hoadon
 where MaHoaDon = '7'
@@ -309,8 +317,6 @@ ELSE
 
 UPDATE khachhang SET TongTienDaMua = (select sum(TongTien) from hoadon where SDT = '0904596810') WHERE SDT = '0904596810'
 
-
-/*
 Delete From ct_hoadon where MaCTHoaDon = '1' and MaSP = 'EX'
 
 select MaCTHoaDon,ct_hoadon.MaSP,''=TenSP,SoLuong,DonGia

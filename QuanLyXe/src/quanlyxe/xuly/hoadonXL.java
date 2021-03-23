@@ -36,7 +36,7 @@ public class hoadonXL {
         ArrayList<hoadonTT> list = new ArrayList<hoadonTT>();
         try {
             hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("SELECT * FROM hoadon WHERE " + lua + " = '" + tim + "'");
+            ResultSet rs = acc.Query("SELECT * FROM hoadon WHERE " + lua + " = '" + tim + "' or GhiChu like N'%"+tim+"%'");
 
             while (rs.next()) {
                 hoadonTT hd = new hoadonTT(rs.getString("MaHoaDon"), rs.getDate("Ngay"), rs.getString("SDT"), rs.getLong("TongTien"), rs.getString("Username"), rs.getString("GhiChu"));
