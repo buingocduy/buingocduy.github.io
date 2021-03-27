@@ -65,7 +65,7 @@ public class WEBCAM extends javax.swing.JFrame {
         setSize(new Dimension(550, 550));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setTitle("WEBCAM");
+        setTitle("WEBCAM BND");
         setResizable(false);
         setVisible(true);
 
@@ -104,7 +104,6 @@ public class WEBCAM extends javax.swing.JFrame {
                 System.out.println(name+".jpg");
            
                 MENU menu = new MENU();
-                System.out.println(name);
                 menu.setHinh("G:\\BuiNgocDuy\\WEBCAM\\src\\images\\"+name+".jpg");
                 menu.pack();
                 menu.setLocationRelativeTo(null);

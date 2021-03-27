@@ -5,7 +5,6 @@
  */
 package webcam;
 
-import com.sun.istack.internal.logging.Logger;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +14,6 @@ import java.util.logging.Level;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import webcam.thuthe.*;
 import webcam.xuly.khachhang;
 
 /**
@@ -29,16 +27,26 @@ public class MENU extends javax.swing.JFrame {
     public void setHinh(String hinhanh) {
         System.out.println(hinhanh);
         this.txt_hinhanh.setText(hinhanh);
+        
+        BufferedImage image = null;
+
+        try {
+            image = ImageIO.read(new File(hinhanh));
+            ImageIcon icon = new ImageIcon(image.getScaledInstance(371, 438, image.SCALE_SMOOTH));
+            jLabel4.setIcon(icon);
+            System.out.println("lấy hình " + icon);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(MENU.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public MENU() {
         initComponents();
-
+        
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
         String strDate = formatter.format(date);
         System.out.println(strDate);
-
         txt_ngaygio.setText(strDate);
 
     }
@@ -60,20 +68,23 @@ public class MENU extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txt_ngaygio = new javax.swing.JLabel();
         btn_chuphinhtiep = new javax.swing.JButton();
-        btn_xemanh = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         btn_xem = new javax.swing.JButton();
 
-        setTitle("MENU");
+        setTitle("MENU BND");
         setResizable(false);
 
-        jLabel1.setText("hình ảnh:");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Hình ảnh:");
 
         txt_hinhanh.setText("0");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Họ và tên:");
 
+        btn_luu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_luu.setForeground(new java.awt.Color(255, 0, 0));
         btn_luu.setText("Lưu");
         btn_luu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,21 +92,17 @@ public class MENU extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Ngày giờ vào:");
 
         txt_ngaygio.setText("0");
 
+        btn_chuphinhtiep.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_chuphinhtiep.setForeground(new java.awt.Color(255, 0, 0));
         btn_chuphinhtiep.setText("Chụp hình tiếp");
         btn_chuphinhtiep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_chuphinhtiepActionPerformed(evt);
-            }
-        });
-
-        btn_xemanh.setText("Xem ảnh đã chụp");
-        btn_xemanh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_xemanhActionPerformed(evt);
             }
         });
 
@@ -117,10 +124,12 @@ public class MENU extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
+        btn_xem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_xem.setForeground(new java.awt.Color(255, 51, 0));
         btn_xem.setText("xem thống kê");
         btn_xem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,36 +143,40 @@ public class MENU extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
-                    .addComponent(btn_xemanh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_xem, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_chuphinhtiep, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_hovaten, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txt_hinhanh)
-                                    .addComponent(txt_ngaygio)
-                                    .addComponent(txt_hovaten, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(102, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btn_chuphinhtiep, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_xem)
-                        .addGap(20, 20, 20))))
+                                    .addComponent(txt_ngaygio))))
+                        .addContainerGap(63, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -175,7 +188,7 @@ public class MENU extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txt_hinhanh))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txt_hovaten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -184,15 +197,9 @@ public class MENU extends javax.swing.JFrame {
                         .addGap(43, 43, 43))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_xem, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_xemanh, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_chuphinhtiep, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_xem, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(btn_chuphinhtiep, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
 
@@ -202,21 +209,6 @@ public class MENU extends javax.swing.JFrame {
     private void btn_chuphinhtiepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chuphinhtiepActionPerformed
         this.dispose();
     }//GEN-LAST:event_btn_chuphinhtiepActionPerformed
-
-    private void btn_xemanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xemanhActionPerformed
-        String hinh = txt_hinhanh.getText().trim();
-        System.out.println(hinh);
-        BufferedImage image = null;
-
-        try {
-            image = ImageIO.read(new File(hinh));
-            ImageIcon icon = new ImageIcon(image.getScaledInstance(370, 370, image.SCALE_SMOOTH));
-            jLabel4.setIcon(icon);
-            System.out.println("lấy hình " + icon);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(MENU.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btn_xemanhActionPerformed
 
     private void btn_luuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_luuActionPerformed
         // Tao Moi
@@ -282,7 +274,6 @@ public class MENU extends javax.swing.JFrame {
     private javax.swing.JButton btn_chuphinhtiep;
     private javax.swing.JButton btn_luu;
     private javax.swing.JButton btn_xem;
-    private javax.swing.JButton btn_xemanh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

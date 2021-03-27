@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import webcam.thuthe.*;
-import quanlyxe.xuly.hienthi_sql;
+import webcam.xuly.hienthi_sql;
 
 public class khachhang {
 
@@ -67,13 +67,13 @@ public class khachhang {
     }
 
     //Xóa
-    public int DeleteRecord(String MaHoaDon) {
+    public int DeleteRecord(String STT) {
         int rowCount = 0;
         try {
 
             hienthi_sql acc = new hienthi_sql();
 
-            String sql = "DELETE FROM hoadon WHERE MaHoaDon = " + MaHoaDon;
+            String sql = "DELETE FROM khachhang WHERE STT = '"+STT+"'";
 
             System.out.println(sql);
 

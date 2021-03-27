@@ -13,6 +13,8 @@ Create table khachhang
 
 go
 
-insert into khachhang values (N'DUY','02/01/2021 05:21:22' , 'G:\BuiNgocDuy\WEBCAM\src\images\2021-36-27-04-36-03.jpg')
+insert into khachhang values (N'DUY','04/01/2021 05:21:22' , 'G:\BuiNgocDuy\WEBCAM\src\images\2021-36-27-04-36-03.jpg')
+
+DELETE FROM khachhang WHERE STT = '1'
 
 select * from khachhang where NGAYGIOVAO like '%02/01/2021%'

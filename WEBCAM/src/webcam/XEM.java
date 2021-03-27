@@ -15,12 +15,14 @@ import java.util.Locale;
 import java.util.logging.Level;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import webcam.xuly.khachhang;
 import webcam.thuthe.khachhangTT;
+
 /**
  *
  * @author BND6699
@@ -36,7 +38,7 @@ public class XEM extends javax.swing.JFrame {
         initComponents();
         showDataList();
     }
-    
+
     public void showDataList() {
 
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
@@ -54,24 +56,24 @@ public class XEM extends javax.swing.JFrame {
             row[1] = list.get(i).getHOTEN();
             row[2] = list.get(i).getNGAYGIOVAO();
             row[3] = list.get(i).getHINHANH();
-            
+
             model.addRow(row);
         }
-        
+
         ListSelectionModel cellSelectionModel = jTable1.getSelectionModel();
         cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
+
         cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 //goi ham show data chi tiet
                 gridSelectedChanged(e);
             }
-          });
+        });
     }
-    
-     public void gridSelectedChanged(ListSelectionEvent e) {
+
+    public void gridSelectedChanged(ListSelectionEvent e) {
         String selectedData = null;
-        String selectedID = ""; 
+        String selectedID = "";
 
         int[] selectedRows = jTable1.getSelectedRows();
         int[] selectedColumns = jTable1.getSelectedColumns();
@@ -81,28 +83,28 @@ public class XEM extends javax.swing.JFrame {
 
         System.out.println("selectedRow: " + selectedRow);
         System.out.println("selectedColumn: " + selectedColumn);
-        
-        if(selectedRow >=0 && selectedColumn >=0){
+
+        if (selectedRow >= 0 && selectedColumn >= 0) {
             //selectedData = String.valueOf(jTableKho.getValueAt(selectedRow, selectedColumn));
             selectedID = (String) jTable1.getValueAt(selectedRow, 0);
 
-            System.out.println("Selected: "  + selectedID);
+            System.out.println("Selected: " + selectedID);
 
-            showDataDetail( 
-                (String) jTable1.getValueAt(selectedRow, 0),
-                (String) jTable1.getValueAt(selectedRow, 1),
-                (String) jTable1.getValueAt(selectedRow, 2), 
-                (String) jTable1.getValueAt(selectedRow, 3)); 
-                
+            showDataDetail(
+                    (String) jTable1.getValueAt(selectedRow, 0),
+                    (String) jTable1.getValueAt(selectedRow, 1),
+                    (String) jTable1.getValueAt(selectedRow, 2),
+                    (String) jTable1.getValueAt(selectedRow, 3));
+
         }
     }
-    
-    private void showDataDetail(String STT, String HOTEN, String NGAYGIOVAO, String HINHANH){
-        
+
+    private void showDataDetail(String STT, String HOTEN, String NGAYGIOVAO, String HINHANH) {
+
         txt_stt.setText(String.valueOf(STT));
         txt_hoten.setText(HOTEN);
         txt_ngaygiovao.setText(NGAYGIOVAO);
-        
+
         BufferedImage image = null;
 
         try {
@@ -114,7 +116,7 @@ public class XEM extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MENU.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void showData(String Ngay) {
 
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
@@ -132,21 +134,21 @@ public class XEM extends javax.swing.JFrame {
             row[1] = list.get(i).getHOTEN();
             row[2] = list.get(i).getNGAYGIOVAO();
             row[3] = list.get(i).getHINHANH();
-            
+
             model.addRow(row);
         }
-        
+
         ListSelectionModel cellSelectionModel = jTable1.getSelectionModel();
         cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
+
         cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 //goi ham show data chi tiet
                 gridSelectedChanged(e);
             }
-          });
+        });
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -167,8 +169,12 @@ public class XEM extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btn_xem = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btn_xoa = new javax.swing.JButton();
 
-        setTitle("XEM");
+        setTitle("XEM BND");
         setResizable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -202,25 +208,53 @@ public class XEM extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        txt_hoten.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_hoten.setForeground(new java.awt.Color(255, 51, 0));
         txt_hoten.setText("jLabel1");
 
+        txt_stt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_stt.setForeground(new java.awt.Color(255, 51, 0));
         txt_stt.setText("jLabel2");
 
+        txt_ngaygiovao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_ngaygiovao.setForeground(new java.awt.Color(255, 51, 0));
         txt_ngaygiovao.setText("jLabel3");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Chọn ngày xem");
 
-        btn_xem.setText("xem");
+        btn_xem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_xem.setForeground(new java.awt.Color(255, 51, 0));
+        btn_xem.setText("Xem");
         btn_xem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_xemActionPerformed(evt);
             }
         });
 
-        jButton1.setText("tải lại");
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 51, 0));
+        jButton1.setText("Tải lại");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("STT:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Họ tên:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Ngày giờ vào:");
+
+        btn_xoa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_xoa.setText("Xóa");
+        btn_xoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xoaActionPerformed(evt);
             }
         });
 
@@ -231,22 +265,32 @@ public class XEM extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_hoten)
-                            .addComponent(txt_stt)
-                            .addComponent(txt_ngaygiovao)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel1))
+                                .addGap(173, 173, 173)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btn_xem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txt_ngayxem, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btn_xoa))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txt_ngayxem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_xem, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(80, 80, 80)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                                .addGap(45, 45, 45)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_hoten)
+                                    .addComponent(txt_stt)
+                                    .addComponent(txt_ngaygiovao))))
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -258,20 +302,28 @@ public class XEM extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
+                        .addGap(19, 19, 19)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_ngayxem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_xem, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_ngayxem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_xem, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_stt)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_stt)
+                            .addComponent(jLabel2))
                         .addGap(18, 18, 18)
-                        .addComponent(txt_hoten)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_hoten)
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
-                        .addComponent(txt_ngaygiovao)
-                        .addGap(6, 6, 6)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_ngaygiovao)
+                            .addComponent(jLabel4))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -281,13 +333,34 @@ public class XEM extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_xemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xemActionPerformed
-        String NGAY = txt_ngayxem.getText().trim();    
+        String NGAY = txt_ngayxem.getText().trim();
         showData(NGAY);
     }//GEN-LAST:event_btn_xemActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         showDataList();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
+        //Xoa Record
+        String STT = txt_stt.getText().trim();
+
+        int input = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa STT " + STT + " không?", "Confirmation...",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        System.out.println("Xoa? =" + input);
+
+        if (input == 0) {
+            //Xoa
+            int rowEffected = KHservices.DeleteRecord(STT);
+            if (rowEffected > 0) {
+                showDataList();
+                JOptionPane.showMessageDialog(null, "Xóa thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
+            }
+        }
+    }//GEN-LAST:event_btn_xoaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,8 +399,12 @@ public class XEM extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_xem;
+    private javax.swing.JButton btn_xoa;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
