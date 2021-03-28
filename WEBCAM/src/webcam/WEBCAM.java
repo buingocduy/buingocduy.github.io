@@ -100,11 +100,11 @@ public class WEBCAM extends javax.swing.JFrame {
                 }
                 JOptionPane.showMessageDialog(this, "Chụp hình thành công");
                         
-                Imgcodecs.imwrite("G:\\BuiNgocDuy\\WEBCAM\\src\\images\\" + name + ".jpg", image);
+                Imgcodecs.imwrite("D:\\BuiNgocDuy\\WEBCAM\\src\\images\\" + name + ".jpg", image);
                 System.out.println(name+".jpg");
            
                 MENU menu = new MENU();
-                menu.setHinh("G:\\BuiNgocDuy\\WEBCAM\\src\\images\\"+name+".jpg");
+                menu.setHinh("D:\\BuiNgocDuy\\WEBCAM\\src\\images\\"+name+".jpg");
                 menu.pack();
                 menu.setLocationRelativeTo(null);
                 menu.setVisible(true);
@@ -116,7 +116,7 @@ public class WEBCAM extends javax.swing.JFrame {
     
 
     public static void main(String[] args) {
-        String opencvpath = "G:\\BuiNgocDuy\\WEBCAM\\";
+        String opencvpath = "D:\\BuiNgocDuy\\WEBCAM\\";
         String libPath = System.getProperty("java.library.path");
         System.load(opencvpath + Core.NATIVE_LIBRARY_NAME + ".dll");
         System.out.println("load thành công");

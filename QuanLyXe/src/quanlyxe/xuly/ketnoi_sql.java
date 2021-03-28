@@ -26,7 +26,7 @@ public class ketnoi_sql {
     }
 
     //private final String serverName = "DESKTOP-46VDUF3\\SQLEXPRESS"; //cho laptop
-    private final String serverName = "DESKTOP-ACKLLQG\\SQLEXPRESS";
+    private final String serverName = "ADMIN\\SQLEXPRESS";
     private final String dbName = "QLXE";
     private final String portNumber = "1433";
     private final String instance = "";
