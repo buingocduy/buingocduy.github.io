@@ -8,11 +8,14 @@ package webcam;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Locale;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -20,12 +23,22 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import webcam.xuly.khachhang;
 import webcam.thuthe.khachhangTT;
+import webcam.xuly.ketnoi_sql;
 
 /**
  *
- * @author BND6699
+ * @author Bùi Ngọc Duy 06/06/1999
  */
 public class XEM extends javax.swing.JFrame {
 
@@ -48,14 +61,18 @@ public class XEM extends javax.swing.JFrame {
         ArrayList<khachhangTT> list = KHservices.getAllRecords();
         dsKH = list;
 
-        Object[] row = new Object[7];
+        Object[] row = new Object[10];
 
         for (int i = 0; i < list.size(); i++) {
 
             row[0] = list.get(i).getSTT();
             row[1] = list.get(i).getHOTEN();
-            row[2] = list.get(i).getNGAYGIOVAO();
-            row[3] = list.get(i).getHINHANH();
+            row[2] = list.get(i).getSDT();
+            row[3] = list.get(i).getNGAYVAO();
+            row[4] = list.get(i).getGIOVAO();
+            row[5] = list.get(i).getTENCONGTY();
+            row[6] = list.get(i).getLYDOVAO();
+            row[7] = list.get(i).getHINHANH();
 
             model.addRow(row);
         }
@@ -94,22 +111,30 @@ public class XEM extends javax.swing.JFrame {
                     (String) jTable1.getValueAt(selectedRow, 0),
                     (String) jTable1.getValueAt(selectedRow, 1),
                     (String) jTable1.getValueAt(selectedRow, 2),
-                    (String) jTable1.getValueAt(selectedRow, 3));
+                    (String) jTable1.getValueAt(selectedRow, 3),
+                    (String) jTable1.getValueAt(selectedRow, 4),
+                    (String) jTable1.getValueAt(selectedRow, 5),
+                    (String) jTable1.getValueAt(selectedRow, 6),
+                    (String) jTable1.getValueAt(selectedRow, 7));
 
         }
     }
 
-    private void showDataDetail(String STT, String HOTEN, String NGAYGIOVAO, String HINHANH) {
+    private void showDataDetail(String STT, String HOTEN, String SDT, String NGAYVAO, String GIOVAO, String TENCONGTY, String LYDOVAO, String HINHANH) {
 
         txt_stt.setText(String.valueOf(STT));
         txt_hoten.setText(HOTEN);
-        txt_ngaygiovao.setText(NGAYGIOVAO);
+        txt_sdt.setText(SDT);
+        txt_ngayvao.setText(NGAYVAO);
+         txt_giovao.setText(GIOVAO);
+        txt_tencongty.setText(TENCONGTY);
+        txt_lydovao.setText(LYDOVAO);
 
         BufferedImage image = null;
 
         try {
             image = ImageIO.read(new File(HINHANH));
-            ImageIcon icon = new ImageIcon(image.getScaledInstance(305, 256, image.SCALE_SMOOTH));
+            ImageIcon icon = new ImageIcon(image.getScaledInstance(305, 340, image.SCALE_SMOOTH));
             txt_hinhanh.setIcon(icon);
             System.out.println("lấy hình " + icon);
         } catch (IOException ex) {
@@ -126,14 +151,18 @@ public class XEM extends javax.swing.JFrame {
         ArrayList<khachhangTT> list = KHservices.getRecords(Ngay);
         dsKH = list;
 
-        Object[] row = new Object[7];
+        Object[] row = new Object[10];
 
         for (int i = 0; i < list.size(); i++) {
 
             row[0] = list.get(i).getSTT();
             row[1] = list.get(i).getHOTEN();
-            row[2] = list.get(i).getNGAYGIOVAO();
-            row[3] = list.get(i).getHINHANH();
+            row[2] = list.get(i).getSDT();
+            row[3] = list.get(i).getNGAYVAO();
+            row[4] = list.get(i).getGIOVAO();
+            row[5] = list.get(i).getTENCONGTY();
+            row[6] = list.get(i).getLYDOVAO();
+            row[7] = list.get(i).getHINHANH();
 
             model.addRow(row);
         }
@@ -164,7 +193,7 @@ public class XEM extends javax.swing.JFrame {
         txt_hinhanh = new javax.swing.JLabel();
         txt_hoten = new javax.swing.JLabel();
         txt_stt = new javax.swing.JLabel();
-        txt_ngaygiovao = new javax.swing.JLabel();
+        txt_ngayvao = new javax.swing.JLabel();
         txt_ngayxem = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btn_xem = new javax.swing.JButton();
@@ -173,8 +202,17 @@ public class XEM extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btn_xoa = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txt_tencongty = new javax.swing.JLabel();
+        txt_lydovao = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txt_sdt = new javax.swing.JLabel();
+        btn_in = new javax.swing.JButton();
+        txt_giovao = new javax.swing.JLabel();
 
-        setTitle("XEM BND");
+        setTitle("Quản lý xem dữ liệu");
+        setBackground(new java.awt.Color(153, 255, 0));
         setResizable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -182,12 +220,14 @@ public class XEM extends javax.swing.JFrame {
 
             },
             new String [] {
-                "STT", "Họ tên", "Ngày giờ vào", "Hình ảnh"
+                "STT", "Họ tên", "Số điện thoại", "Ngày vào", "Giờ vào", "Tên công ty", "Lý do vào", "Hình ảnh"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setForeground(new java.awt.Color(153, 255, 0));
 
         txt_hinhanh.setPreferredSize(new java.awt.Dimension(256, 246));
 
@@ -204,25 +244,26 @@ public class XEM extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txt_hinhanh, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                .addComponent(txt_hinhanh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         txt_hoten.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_hoten.setForeground(new java.awt.Color(255, 51, 0));
-        txt_hoten.setText("jLabel1");
+        txt_hoten.setText("0");
 
         txt_stt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_stt.setForeground(new java.awt.Color(255, 51, 0));
-        txt_stt.setText("jLabel2");
+        txt_stt.setText("0");
 
-        txt_ngaygiovao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txt_ngaygiovao.setForeground(new java.awt.Color(255, 51, 0));
-        txt_ngaygiovao.setText("jLabel3");
+        txt_ngayvao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_ngayvao.setForeground(new java.awt.Color(255, 51, 0));
+        txt_ngayvao.setText("0");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Chọn ngày xem");
 
+        btn_xem.setBackground(new java.awt.Color(204, 255, 0));
         btn_xem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_xem.setForeground(new java.awt.Color(255, 51, 0));
         btn_xem.setText("Xem");
@@ -232,6 +273,7 @@ public class XEM extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(204, 255, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 51, 0));
         jButton1.setText("Tải lại");
@@ -250,13 +292,50 @@ public class XEM extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Ngày giờ vào:");
 
+        btn_xoa.setBackground(new java.awt.Color(204, 255, 0));
         btn_xoa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_xoa.setForeground(new java.awt.Color(255, 0, 0));
         btn_xoa.setText("Xóa");
         btn_xoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_xoaActionPerformed(evt);
             }
         });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Tên công ty:");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Lý do vào:");
+
+        txt_tencongty.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_tencongty.setForeground(new java.awt.Color(255, 0, 0));
+        txt_tencongty.setText("0");
+
+        txt_lydovao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_lydovao.setForeground(new java.awt.Color(255, 0, 0));
+        txt_lydovao.setText("0");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("Số điện thoại:");
+
+        txt_sdt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_sdt.setForeground(new java.awt.Color(255, 0, 0));
+        txt_sdt.setText("0");
+
+        btn_in.setBackground(new java.awt.Color(204, 255, 0));
+        btn_in.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_in.setForeground(new java.awt.Color(255, 51, 0));
+        btn_in.setText("In");
+        btn_in.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inActionPerformed(evt);
+            }
+        });
+
+        txt_giovao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_giovao.setForeground(new java.awt.Color(255, 51, 0));
+        txt_giovao.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -265,31 +344,47 @@ public class XEM extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(173, 173, 173)
+                                .addGap(43, 43, 43)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(btn_xem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txt_ngayxem, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btn_xoa))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel3))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txt_hoten)
+                                            .addComponent(txt_stt)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(btn_xem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txt_ngayxem, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_hoten)
-                                    .addComponent(txt_stt)
-                                    .addComponent(txt_ngaygiovao))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txt_ngayvao, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txt_giovao))
+                                    .addComponent(txt_tencongty)
+                                    .addComponent(txt_lydovao)
+                                    .addComponent(txt_sdt))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_xoa, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                            .addComponent(btn_in, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -307,12 +402,14 @@ public class XEM extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_ngayxem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_xem, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_xem, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_in, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_stt)
                             .addComponent(jLabel2))
@@ -322,8 +419,21 @@ public class XEM extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_ngaygiovao)
-                            .addComponent(jLabel4))))
+                            .addComponent(jLabel7)
+                            .addComponent(txt_sdt))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_ngayvao)
+                            .addComponent(jLabel4)
+                            .addComponent(txt_giovao))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txt_tencongty))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txt_lydovao))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -362,6 +472,32 @@ public class XEM extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_xoaActionPerformed
 
+    private void btn_inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inActionPerformed
+        String NGAYVAO = txt_ngayxem.getText().trim();
+        XuatDS(NGAYVAO);
+        System.out.println(NGAYVAO);
+    }//GEN-LAST:event_btn_inActionPerformed
+
+    public void XuatDS(String NGAYVAO) {
+        try {
+            ketnoi_sql sql = new ketnoi_sql();
+            Hashtable map = new Hashtable();
+            JasperDesign jd = JRXmlLoader.load("D:\\WEBCAM\\src\\PDF\\newReport.jrxml");
+            JasperReport jr = JasperCompileManager.compileReport("D:\\WEBCAM\\src\\PDF\\newReport.jrxml");
+
+            map.put("NGAYVAO", NGAYVAO);
+            JasperPrint jp = JasperFillManager.fillReport(jr, map, sql.getConnection());
+            JasperViewer.viewReport(jp, false);
+            JasperExportManager.exportReportToPdfFile(jp, "D:\\WEBCAM\\src\\PDF\\newReport.pdf");
+
+        } catch (ClassNotFoundException | SQLException | JRException e) {
+            JOptionPane.showMessageDialog(null, "Cannot show report" + e.getMessage());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -398,6 +534,7 @@ public class XEM extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_in;
     private javax.swing.JButton btn_xem;
     private javax.swing.JButton btn_xoa;
     private javax.swing.JButton jButton1;
@@ -405,13 +542,20 @@ public class XEM extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel txt_giovao;
     private javax.swing.JLabel txt_hinhanh;
     private javax.swing.JLabel txt_hoten;
-    private javax.swing.JLabel txt_ngaygiovao;
+    private javax.swing.JLabel txt_lydovao;
+    private javax.swing.JLabel txt_ngayvao;
     private javax.swing.JTextField txt_ngayxem;
+    private javax.swing.JLabel txt_sdt;
     private javax.swing.JLabel txt_stt;
+    private javax.swing.JLabel txt_tencongty;
     // End of variables declaration//GEN-END:variables
 }

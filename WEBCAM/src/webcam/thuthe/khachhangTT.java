@@ -10,12 +10,16 @@ package webcam.thuthe;
  * @author BND6699
  */
 public class khachhangTT {
-    String STT,HOTEN,NGAYGIOVAO,HINHANH;
+    String STT,HOTEN,SDT,NGAYVAO,GIOVAO,TENCONGTY,LYDOVAO,HINHANH;
 
-    public khachhangTT(String STT, String HOTEN, String NGAYGIOVAO, String HINHANH) {
+    public khachhangTT(String STT, String HOTEN, String SDT, String NGAYVAO, String GIOVAO, String TENCONGTY, String LYDOVAO, String HINHANH) {
         this.STT = STT;
         this.HOTEN = HOTEN;
-        this.NGAYGIOVAO = NGAYGIOVAO;
+        this.SDT = SDT;
+        this.NGAYVAO = NGAYVAO;
+        this.GIOVAO = GIOVAO;
+        this.TENCONGTY = TENCONGTY;
+        this.LYDOVAO = LYDOVAO;
         this.HINHANH = HINHANH;
     }
 
@@ -35,12 +39,44 @@ public class khachhangTT {
         this.HOTEN = HOTEN;
     }
 
-    public String getNGAYGIOVAO() {
-        return NGAYGIOVAO;
+    public String getSDT() {
+        return SDT;
     }
 
-    public void setNGAYGIOVAO(String NGAYGIOVAO) {
-        this.NGAYGIOVAO = NGAYGIOVAO;
+    public void setSDT(String SDT) {
+        this.SDT = SDT;
+    }
+
+    public String getNGAYVAO() {
+        return NGAYVAO;
+    }
+
+    public void setNGAYVAO(String NGAYVAO) {
+        this.NGAYVAO = NGAYVAO;
+    }
+
+    public String getGIOVAO() {
+        return GIOVAO;
+    }
+
+    public void setGIOVAO(String GIOVAO) {
+        this.GIOVAO = GIOVAO;
+    }
+
+    public String getTENCONGTY() {
+        return TENCONGTY;
+    }
+
+    public void setTENCONGTY(String TENCONGTY) {
+        this.TENCONGTY = TENCONGTY;
+    }
+
+    public String getLYDOVAO() {
+        return LYDOVAO;
+    }
+
+    public void setLYDOVAO(String LYDOVAO) {
+        this.LYDOVAO = LYDOVAO;
     }
 
     public String getHINHANH() {
@@ -50,6 +86,8 @@ public class khachhangTT {
     public void setHINHANH(String HINHANH) {
         this.HINHANH = HINHANH;
     }
+
     
-    
+
+  
 }

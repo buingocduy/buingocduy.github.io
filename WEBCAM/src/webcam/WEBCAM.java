@@ -5,6 +5,7 @@
  */
 package webcam;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -23,7 +24,7 @@ import org.opencv.videoio.*;
 
 /**
  *
- * @author BND6699
+ * @author Bùi Ngọc Duy 06/06/1999
  */
 public class WEBCAM extends javax.swing.JFrame {
 
@@ -42,7 +43,10 @@ public class WEBCAM extends javax.swing.JFrame {
         add(cameraSrceen);
 
         btnCapture = new JButton("Chụp");
-        btnCapture.setBounds(225, 450, 100, 40);
+        btnCapture.setBounds(170, 450, 200, 40);
+        btnCapture.setForeground(Color.RED);
+        btnCapture.setFont(new java.awt.Font("Tahoma", 1, 14));
+        btnCapture.setBackground(new java.awt.Color(204, 255, 0));
         add(btnCapture);
 
         btnCapture.addActionListener(new ActionListener() {
@@ -65,7 +69,7 @@ public class WEBCAM extends javax.swing.JFrame {
         setSize(new Dimension(550, 550));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setTitle("WEBCAM BND");
+        setTitle("Phần mềm quản lý ra vào Công Ty Nhựa Rạng Đông");
         setResizable(false);
         setVisible(true);
 
@@ -100,11 +104,11 @@ public class WEBCAM extends javax.swing.JFrame {
                 }
                 JOptionPane.showMessageDialog(this, "Chụp hình thành công");
                         
-                Imgcodecs.imwrite("D:\\BuiNgocDuy\\WEBCAM\\src\\images\\" + name + ".jpg", image);
+                Imgcodecs.imwrite("D:\\WEBCAM\\src\\images\\" + name + ".jpg", image);
                 System.out.println(name+".jpg");
            
                 MENU menu = new MENU();
-                menu.setHinh("D:\\BuiNgocDuy\\WEBCAM\\src\\images\\"+name+".jpg");
+                menu.setHinh("D:\\WEBCAM\\src\\images\\"+name+".jpg");
                 menu.pack();
                 menu.setLocationRelativeTo(null);
                 menu.setVisible(true);
@@ -116,7 +120,7 @@ public class WEBCAM extends javax.swing.JFrame {
     
 
     public static void main(String[] args) {
-        String opencvpath = "D:\\BuiNgocDuy\\WEBCAM\\";
+        String opencvpath = "D:\\WEBCAM\\";
         String libPath = System.getProperty("java.library.path");
         System.load(opencvpath + Core.NATIVE_LIBRARY_NAME + ".dll");
         System.out.println("load thành công");
