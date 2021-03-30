@@ -20,7 +20,7 @@ public class khachhang {
             ResultSet rs = acc.Query("SELECT * FROM khachhang");
 
             while (rs.next()) {
-                khachhangTT hd = new khachhangTT(rs.getString("STT"), rs.getString("HOTEN"), rs.getString("SDT"), rs.getString("NGAYVAO"), rs.getString("GIOVAO"), rs.getString("TENCONGTY"), rs.getString("LYDOVAO"), rs.getString("HINHANH"));
+                khachhangTT hd = new khachhangTT(rs.getString("STT"), rs.getString("HOTEN"), rs.getString("SDT"), rs.getString("CMND"), rs.getString("NGAYVAO"), rs.getString("GIOVAO"), rs.getString("TENCONGTY"), rs.getString("LYDOVAO"), rs.getString("HINHANH"));
                 list.add(hd);
             }
         } catch (Exception e) {
@@ -29,14 +29,14 @@ public class khachhang {
         return list;
     }
 
-    public ArrayList<khachhangTT> getRecords(String NGAYVAO) {
+    public ArrayList<khachhangTT> getRecords(String TU, String DEN) {
         ArrayList<khachhangTT> list = new ArrayList<khachhangTT>();
         try {
             hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("select * from khachhang where NGAYVAO like '" + NGAYVAO + "'");
+            ResultSet rs = acc.Query("select * from khachhang where NGAYVAO between '"+TU+"' and '"+DEN+"'");
 
             while (rs.next()) {
-                khachhangTT hd = new khachhangTT(rs.getString("STT"), rs.getString("HOTEN"), rs.getString("SDT"), rs.getString("NGAYVAO"), rs.getString("GIOVAO"), rs.getString("TENCONGTY"), rs.getString("LYDOVAO"), rs.getString("HINHANH"));
+                khachhangTT hd = new khachhangTT(rs.getString("STT"), rs.getString("HOTEN"), rs.getString("SDT"), rs.getString("CMND"), rs.getString("NGAYVAO"), rs.getString("GIOVAO"), rs.getString("TENCONGTY"), rs.getString("LYDOVAO"), rs.getString("HINHANH"));
                 list.add(hd);
             }
         } catch (Exception e) {
@@ -46,12 +46,13 @@ public class khachhang {
     }
 
     //Tao moi
-    public int AddNewRecord(String HOTEN, String SDT, String NGAYVAO, String GIOVAO, String TENCONGTY, String LYDOVAO, String HINHANH) {
+    public int AddNewRecord(String HOTEN, String SDT, String CMND, String NGAYVAO, String GIOVAO, String TENCONGTY, String LYDOVAO, String HINHANH) {
         int rowCount = 0;
         try {
             hienthi_sql acc = new hienthi_sql();
-            String sql = "INSERT INTO khachhang (HOTEN, SDT, NGAYVAO, GIOVAO, TENCONGTY, LYDOVAO, HINHANH) VALUES(N'" + HOTEN + "'"
+            String sql = "INSERT INTO khachhang (HOTEN, SDT, CMND, NGAYVAO, GIOVAO, TENCONGTY, LYDOVAO, HINHANH) VALUES(N'" + HOTEN + "'"
                     + ",'" + SDT + "'"
+                    + ",'" + CMND + "'"
                     + ",'" + NGAYVAO + "'"
                     + ",'" + GIOVAO + "'"
                     + ",N'" + TENCONGTY + "'"

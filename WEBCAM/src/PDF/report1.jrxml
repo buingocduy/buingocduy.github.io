@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6939c290-5926-4a95-8719-4d1b85a96dbf">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="NGAYVAO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TU" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DEN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     khachhang."STT" AS khachhang_STT,
+     khachhang."HOTEN" AS khachhang_HOTEN,
+     khachhang."SDT" AS khachhang_SDT,
+     khachhang."CMND" AS khachhang_CMND,
+     khachhang."NGAYVAO" AS khachhang_NGAYVAO,
+     khachhang."GIOVAO" AS khachhang_GIOVAO,
+     khachhang."TENCONGTY" AS khachhang_TENCONGTY,
+     khachhang."LYDOVAO" AS khachhang_LYDOVAO,
+     khachhang."HINHANH" AS khachhang_HINHANH
+FROM
+     "dbo"."khachhang" khachhang
+WHERE
+     khachhang."NGAYVAO" between $P{TU} and $P{DEN}]]>
+	</queryString>
+	<field name="khachhang_STT" class="java.lang.Integer"/>
+	<field name="khachhang_HOTEN" class="java.lang.String"/>
+	<field name="khachhang_SDT" class="java.lang.String"/>
+	<field name="khachhang_CMND" class="java.lang.String"/>
+	<field name="khachhang_NGAYVAO" class="java.lang.String"/>
+	<field name="khachhang_GIOVAO" class="java.lang.String"/>
+	<field name="khachhang_TENCONGTY" class="java.lang.String"/>
+	<field name="khachhang_LYDOVAO" class="java.lang.String"/>
+	<field name="khachhang_HINHANH" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="100" splitType="Stretch">
+			<staticText>
+				<reportElement x="168" y="40" width="555" height="40" uuid="abdad5fe-1c9f-40ca-9bda-85c05bc5aa94"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DANH SÁCH KHÁCH RA VÀO CÔNG TY NHỰA RẠNG ĐÔNG]]></text>
+			</staticText>
+			<image>
+				<reportElement x="15" y="19" width="153" height="71" uuid="65f6faf5-8fa1-42b8-bde7-8a6e42979c35"/>
+				<imageExpression><![CDATA["D:\\BuiNgocDuy\\WEBCAM\\src\\logo\\rangdong.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="190" y="14" width="68" height="20" uuid="01a43ae0-5f41-41df-a5e0-a81240dfe5fd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Từ ngày:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="258" y="14" width="100" height="20" uuid="db5da093-f11b-4fe8-ae6b-becee16900f6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="592" y="14" width="100" height="20" uuid="f983deb7-b857-40c3-bf0b-3b18301ad385"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DEN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="524" y="14" width="68" height="20" uuid="72b5b59d-862d-463b-84f6-5b808cc40c3c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Đến ngày:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="738" y="15" width="64" height="20" uuid="ffe0e754-67ca-436a-af71-36f5213d1170"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Giờ vào]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="483" y="15" width="255" height="20" uuid="0b1d87d7-eea8-4666-9813-e2e24329cff1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[LÝ DO VÀO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="15" width="106" height="20" uuid="590f8271-d354-4081-8833-288153ae6cd8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[SỐ ĐIỆN THOẠI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="324" y="15" width="159" height="20" uuid="1c9dba32-fce1-4dc1-affb-7f9e9be6c511"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[TÊN CÔNG TY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="15" width="127" height="20" uuid="d68a62b0-2a08-4a1c-b3f2-9677797a8264"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[HỌ VÀ TÊN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="15" width="91" height="20" uuid="b06f6ba9-6185-434b-9de5-2bfd551eba49"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[CMND]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="48" width="802" height="1" uuid="25d1d49b-5e17-4227-a358-47a05a0b2227"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="324" y="0" width="159" height="20" uuid="fc05b727-1846-477f-b403-3f29c4f62981"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{khachhang_TENCONGTY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="127" height="20" uuid="be79bd94-f0b9-4a42-968b-4abcc9b0b44b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{khachhang_HOTEN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="233" y="0" width="91" height="20" uuid="250815d6-3479-4ac6-8583-182405b14445"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{khachhang_CMND}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="483" y="0" width="255" height="20" uuid="c94fd20d-82a3-4303-a555-0423117383d5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{khachhang_LYDOVAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="738" y="0" width="64" height="20" uuid="2e3762cf-5d79-4f5b-b44f-0cbb48d448d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{khachhang_GIOVAO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="802" height="1" uuid="f32bbdfa-1762-49da-ac31-139b31acfc1b"/>
+			</line>
+			<textField>
+				<reportElement x="127" y="1" width="106" height="20" uuid="7837efe6-fe26-4dd2-914d-4fda12c246eb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{khachhang_SDT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

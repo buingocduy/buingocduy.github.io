@@ -10,11 +10,12 @@ package webcam.thuthe;
  * @author BND6699
  */
 public class khachhangTT {
-    String STT,HOTEN,SDT,NGAYVAO,GIOVAO,TENCONGTY,LYDOVAO,HINHANH;
+    String STT,HOTEN,CMND,SDT,NGAYVAO,GIOVAO,TENCONGTY,LYDOVAO,HINHANH;
 
-    public khachhangTT(String STT, String HOTEN, String SDT, String NGAYVAO, String GIOVAO, String TENCONGTY, String LYDOVAO, String HINHANH) {
+    public khachhangTT(String STT, String HOTEN, String CMND, String SDT, String NGAYVAO, String GIOVAO, String TENCONGTY, String LYDOVAO, String HINHANH) {
         this.STT = STT;
         this.HOTEN = HOTEN;
+        this.CMND = CMND;
         this.SDT = SDT;
         this.NGAYVAO = NGAYVAO;
         this.GIOVAO = GIOVAO;
@@ -37,6 +38,14 @@ public class khachhangTT {
 
     public void setHOTEN(String HOTEN) {
         this.HOTEN = HOTEN;
+    }
+
+    public String getCMND() {
+        return CMND;
+    }
+
+    public void setCMND(String CMND) {
+        this.CMND = CMND;
     }
 
     public String getSDT() {
@@ -87,7 +96,7 @@ public class khachhangTT {
         this.HINHANH = HINHANH;
     }
 
-    
+ 
 
   
 }

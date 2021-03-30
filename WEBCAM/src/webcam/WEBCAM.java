@@ -100,7 +100,7 @@ public class WEBCAM extends javax.swing.JFrame {
             if (clicked) {
                 String name = "";
                 if (name.equals("")) {
-                    name = new SimpleDateFormat("yyyy-mm-dd-hh-mm-ss").format(new Date());
+                    name = new SimpleDateFormat("dd-mm-yyyy-hh-mm-ss").format(new Date());
                 }
                 JOptionPane.showMessageDialog(this, "Chụp hình thành công");
                         
