@@ -74,7 +74,7 @@ CREATE TABLE ct_kho(
 --HÓA ĐƠN
 CREATE TABLE hoadon(
 	MaHoaDon int IDENTITY(1,1) NOT NULL,	
-	Ngay  date  NOT NULL,
+	Ngay  datetime  NOT NULL,
 	SDT varchar(50) NOT NULL,
 	TongTien bigint,
 	Username varchar(100),
@@ -97,7 +97,7 @@ CREATE TABLE phieunhap(
 	MaPN int IDENTITY(1,1) NOT NULL,
 	Username varchar(100) NOT NULL,
 	MaNCC varchar(10),
-	NgayNhap date NOT NULL,
+	NgayNhap datetime NOT NULL,
 	MaKho char(50) NOT NULL,
     Primary key (MaPN))
 go
@@ -116,7 +116,7 @@ go
 CREATE TABLE phieuxuat(
 	MaPX int IDENTITY(1,1) NOT NULL,
 	Username varchar(100) NOT NULL,
-	NgayXuat date NOT NULL,
+	NgayXuat datetime NOT NULL,
 	Primary key (MaPX))
 go
 

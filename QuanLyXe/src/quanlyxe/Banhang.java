@@ -850,13 +850,13 @@ public class Banhang extends javax.swing.JFrame {
         try {
             ketnoi_sql sql = new ketnoi_sql();
             Hashtable map = new Hashtable();
-            JasperDesign jd = JRXmlLoader.load("G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatHoaDon.jrxml");       
-            JasperReport jr = JasperCompileManager.compileReport("G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatHoaDon.jrxml");  
+            JasperDesign jd = JRXmlLoader.load("D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatHoaDon.jrxml");       
+            JasperReport jr = JasperCompileManager.compileReport("D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatHoaDon.jrxml");  
             
             map.put("MaHoaDon",MaHD);
             JasperPrint jp = JasperFillManager.fillReport(jr, map, sql.getConnection());
             JasperViewer.viewReport(jp,false);     
-            JasperExportManager.exportReportToPdfFile(jp,"G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatHoaDon.pdf");
+            JasperExportManager.exportReportToPdfFile(jp,"D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatHoaDon.pdf");
                   
         } catch (ClassNotFoundException | SQLException | JRException e) {
             JOptionPane.showMessageDialog(null, "Cannot show report" + e.getMessage());

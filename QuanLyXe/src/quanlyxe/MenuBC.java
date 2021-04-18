@@ -267,11 +267,11 @@ public class MenuBC extends javax.swing.JFrame {
          try {
             ketnoi_sql sql = new ketnoi_sql();
                    
-            JasperDesign jd = JRXmlLoader.load("G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\ThongKeSLSP.jrxml");       
-            JasperReport jr = JasperCompileManager.compileReport("G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\ThongKeSLSP.jrxml");  
+            JasperDesign jd = JRXmlLoader.load("D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\ThongKeSP.jrxml");       
+            JasperReport jr = JasperCompileManager.compileReport("D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\ThongKeSP.jrxml");  
             JasperPrint jp = JasperFillManager.fillReport(jr, new HashMap(), sql.getConnection());
             JasperViewer.viewReport(jp,false);     
-            JasperExportManager.exportReportToPdfFile(jp,"G:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\ThongKeSLSP.pdf");
+            JasperExportManager.exportReportToPdfFile(jp,"D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\ThongKeSP.pdf");
                   
         } catch (ClassNotFoundException | SQLException | JRException e) {
             JOptionPane.showMessageDialog(null, "Cannot show report" + e.getMessage());
