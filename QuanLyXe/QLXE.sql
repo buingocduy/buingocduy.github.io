@@ -260,6 +260,7 @@ select * from phieuxuat;
 select * from ct_phieuxuat;
 
 
+select * from khachhang where SDT <> '0'
 
 Hàm kiểm tra tồn tại
 IF EXISTS (SELECT * FROM ct_phieuxuat Where MaSP = 'EX') 

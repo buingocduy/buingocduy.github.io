@@ -61,7 +61,7 @@ public class MenuBC extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         btn_thongkesanpham = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        btn_xuatKH = new javax.swing.JMenu();
 
         setTitle("Báo cáo");
         setResizable(false);
@@ -151,9 +151,14 @@ public class MenuBC extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/people.png"))); // NOI18N
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/print.png"))); // NOI18N
-        jMenu3.setText("Xuất thông tin khách hàng");
-        jMenu2.add(jMenu3);
+        btn_xuatKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/print.png"))); // NOI18N
+        btn_xuatKH.setText("Xuất thông tin khách hàng");
+        btn_xuatKH.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_xuatKHMouseClicked(evt);
+            }
+        });
+        jMenu2.add(btn_xuatKH);
 
         jMenuBar1.add(jMenu2);
 
@@ -281,6 +286,24 @@ public class MenuBC extends javax.swing.JFrame {
         }       
     }//GEN-LAST:event_btn_thongkesanphamMouseClicked
 
+    private void btn_xuatKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_xuatKHMouseClicked
+            try {
+            ketnoi_sql sql = new ketnoi_sql();
+                   
+            JasperDesign jd = JRXmlLoader.load("D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\ThongTinKH.jrxml");       
+            JasperReport jr = JasperCompileManager.compileReport("D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\ThongTinKH.jrxml");  
+            JasperPrint jp = JasperFillManager.fillReport(jr, new HashMap(), sql.getConnection());
+            JasperViewer.viewReport(jp,false);     
+            JasperExportManager.exportReportToPdfFile(jp,"D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\ThongTinKH.pdf");
+                  
+        } catch (ClassNotFoundException | SQLException | JRException e) {
+            JOptionPane.showMessageDialog(null, "Cannot show report" + e.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(Sanpham.class.getName()).log(Level.SEVERE, null, ex);
+            
+        } 
+    }//GEN-LAST:event_btn_xuatKHMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -319,6 +342,7 @@ public class MenuBC extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_doanhso;
     private javax.swing.JMenu btn_thongkesanpham;
+    private javax.swing.JMenu btn_xuatKH;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton cb_CTDSB;
     private javax.swing.JRadioButton cb_DSB;
@@ -327,7 +351,6 @@ public class MenuBC extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
