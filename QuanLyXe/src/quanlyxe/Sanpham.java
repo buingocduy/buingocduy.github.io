@@ -39,7 +39,7 @@ public class Sanpham extends javax.swing.JFrame {
         initComponents();
 
         this.setTitle("Quản lý thông tin sản phẩm");
-
+        txt_giaban.setText("0");
         //Load loại sản phẩm
         loadCategories();
 
@@ -402,11 +402,10 @@ public class Sanpham extends javax.swing.JFrame {
         int rowEffected = sanphamXL.AddNewRecord(ID, Name, loaixe.getMaloai(), giaban, ncc.getMaNCC(), namSX);
         if (rowEffected > 0) {
             JOptionPane.showMessageDialog(null, "Tạo mới thành công!");
-            showDataList();
+                showDataList();
         } else {
-            JOptionPane.showMessageDialog(null, "Tạo mới thất bại");
-        }
-
+            JOptionPane.showMessageDialog(null, "Tạo mới thất bại (Do nhập sai hoặc đã tồn tại mã sản phẩm)");
+        }     
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
