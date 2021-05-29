@@ -76,7 +76,7 @@ CREATE TABLE ct_hoadon(
 	MaHoaDon int NOT NULL,
 	MaSP varchar(10) NOT NULL,
 	SoLuong int NOT NULL,
-	DonGia bigint NOT NULL,
+	ThanhTien bigint NOT NULL,
 	Primary key(MaCTHoaDon));
 
 /*PHIẾU NHẬP*/
@@ -317,9 +317,16 @@ from ct_hoadon,hoadon
 where ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '2021-02-07' and '2021-02-07' 
 
 --tính tổng hoá đơn theo ngày
-select MaHoaDon, sum(TongTien) 
-from hoadon 
-where  Ngay between '2021-02-07' and '2021-02-09' 
+select * , 'tong'= (select 'TONG'=sum(TongTien) from hoadon where  Ngay between '2021-05-29' and '2021-05-30') 
+from hoadon
+where  Ngay between '2021-02-07' and '2021-05-29'
+
+select MaHoaDon,Ngay,SDT,TongTien,Username,GhiChu
+FROM hoadon
+where Ngay between '2021-02-07' and '2021-05-29'
+ 
+select 'TONG' = sum(TongTien) from hoadon where  Ngay between '2021-02-07' and '2021-02-09' 
+group by MaHoaDon,Ngay,SDT,TongTien,Username,GhiChu
 
 UPDATE ct_phieuxuat SET MaPX = '1',MaSP ='EX',SoLuong = '4',DonGia = '40000' WHERE MaCTPX = '1'
 
@@ -344,4 +351,32 @@ from ct_hoadon
 where MaHoaDon = '12'
 Group by MaHoaDon)
 where MaHoaDon = '12'
+
+--Tính tổng chi tiết hoá đơn từng sản phẩm theo ngày
+select TenSP, GiaBan, 'SoLuong'=SUM(SoLuong), 'TongTien'=(SUM(SoLuong) * GiaBan) 
+from ct_hoadon,hoadon,sanpham  
+where ct_hoadon.MaHoaDon = hoadon.MaHoaDon and sanpham.MaSP = ct_hoadon.MaSP and Ngay between '2021-05-29' and '2021-05-30' 
+Group by TenSP,GiaBan
+
+select TenSP, GiaBan, 'SoLuong'=SUM(SoLuong), 'TongTien'=(SUM(SoLuong) * GiaBan),
+"TongĐG" = (SELECT "TONGGG"= sum(TongTien)
+	FROM "dbo"."hoadon" hoadon
+	WHERE Ngay between '2021-05-29' and '2021-05-30' ),
+"TongCG" = (SELECT "TONGCG"= sum(ThanhTien)
+	 FROM ct_hoadon,hoadon
+	 WHERE ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '2021-05-29' and '2021-05-30'), 
+"TongSL" = (SELECT "TONGSL"= sum(SoLuong)
+            FROM hoadon,ct_hoadon
+            WHERE ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '2021-05-29' and '2021-05-30'), 
+"TongGG" = (
+	(SELECT "TONGCG"= sum(ThanhTien)
+	 FROM ct_hoadon,hoadon
+	 WHERE ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '2021-05-29' and '2021-05-30')
+-
+	(SELECT "TONGGG"= sum(TongTien)
+	FROM "dbo"."hoadon" hoadon
+	WHERE Ngay between '2021-05-29' and '2021-05-30' ))
+from ct_hoadon,hoadon,sanpham  
+where ct_hoadon.MaHoaDon = hoadon.MaHoaDon and sanpham.MaSP = ct_hoadon.MaSP and Ngay between '2021-05-29' and '2021-05-30'  
+Group by TenSP,GiaBan
 */

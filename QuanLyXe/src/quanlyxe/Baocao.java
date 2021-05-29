@@ -281,9 +281,6 @@ public class Baocao extends javax.swing.JFrame {
         });
     }
 
-    public void In(String strngaybd, String strngaytk) {
-
-    }
 
     public void showDataList(String strngaybd, String strngaytk) {
 

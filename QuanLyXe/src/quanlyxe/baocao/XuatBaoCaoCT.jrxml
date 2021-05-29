@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6e276b39-e2b6-42a8-a272-b6d65968b1d3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="TU" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DEN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SL" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select TenSP, GiaBan, 'SoLuong'=SUM(SoLuong), 'TongTien'=(SUM(SoLuong) * GiaBan),
+"TongĐG" = (SELECT "TONGGG"= sum(TongTien)
+	FROM "dbo"."hoadon" hoadon
+	WHERE Ngay between $P{TU} and $P{DEN}),
+"TongCG" = (SELECT "TONGCG"= sum(ThanhTien)
+	 FROM ct_hoadon,hoadon
+	 WHERE ct_hoadon.MaHoaDon = hoadon.MaHoaDon and 
+	 Ngay between $P{TU} and $P{DEN}),
+"TongSL" = (SELECT "TONGSL"= sum(SoLuong)
+            FROM hoadon,ct_hoadon
+            WHERE ct_hoadon.MaHoaDon = hoadon.MaHoaDon and  
+	  Ngay between $P{TU} and $P{DEN}),
+"TongGG" = ((SELECT "TONGCG"= sum(ThanhTien)
+	 FROM ct_hoadon,hoadon
+	 WHERE ct_hoadon.MaHoaDon = hoadon.MaHoaDon and 
+	 Ngay between $P{TU} and $P{DEN})
+	-
+	(SELECT "TONGGG"= sum(TongTien)
+	 FROM "dbo"."hoadon" hoadon
+	 WHERE Ngay between $P{TU} and $P{DEN}))  
+from ct_hoadon,hoadon,sanpham  
+where ct_hoadon.MaHoaDon = hoadon.MaHoaDon and sanpham.MaSP = ct_hoadon.MaSP and Ngay between $P{TU} and $P{DEN} 
+Group by TenSP,GiaBan
+]]>
+	</queryString>
+	<field name="TenSP" class="java.lang.String"/>
+	<field name="GiaBan" class="java.lang.Long"/>
+	<field name="SoLuong" class="java.lang.Integer"/>
+	<field name="TongTien" class="java.lang.Long"/>
+	<field name="TongĐG" class="java.lang.Long"/>
+	<field name="TongCG" class="java.lang.Long"/>
+	<field name="TongSL" class="java.lang.Integer"/>
+	<field name="TongGG" class="java.lang.Long"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="8c520ec1-3fbf-4e1a-b2b6-bcc7213a84b4"/>
+				<staticText>
+					<reportElement x="146" y="20" width="324" height="43" forecolor="#FFFFFF" uuid="80d85dd5-928b-4dda-a2e4-651e77b8ca7a"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[BÁO CÁO CHI TIẾT]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="134">
+			<textField>
+				<reportElement x="1" y="12" width="100" height="20" uuid="e1e001a3-5c50-4cd8-af71-9677d56e8f7a"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="12" width="100" height="20" uuid="55500434-1150-4408-a667-f2a97c375ea3"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DEN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="87" y="12" width="14" height="20" uuid="9dbb9119-4c72-45fd-bdf7-1c27f8e4edd8"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="450" y="74" width="100" height="20" uuid="85b8ef8a-ec89-4b56-912e-31b058b4667b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TongĐG}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="276" y="74" width="163" height="20" uuid="85b9a1e7-3117-4f1b-a5ae-a4b301013bc8"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng tiền:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="104" width="102" height="20" uuid="d57a882f-691f-4612-96d0-a98d5c25fd06"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TongSL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="450" y="12" width="102" height="20" uuid="69e4153c-9783-49b8-8736-c55c61b6bc28"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TongCG}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="276" y="12" width="163" height="20" uuid="971eaa0a-f04a-435d-b3ec-47345ac72097"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng tiền trước khi giảm giá:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="104" width="163" height="20" uuid="8c563d32-4ae6-4677-99d9-a84af290238b"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng số lượng đã bán:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="42" width="163" height="20" uuid="2c1a68e0-2724-47e3-823b-60dab3ac0076"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng tiền đã giảm:]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="450" y="42" width="102" height="20" uuid="05babde3-6b1f-402d-adf2-d2de171b292a"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TongGG}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="4181108a-77da-40e7-afc5-d265c4295270"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="18e2b6c1-852b-41b0-a575-293760067b90"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tên sản phẩm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="69eb9aae-3d54-40e6-aea6-5cfd4e57695e"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Giá bán]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="3d7d07c5-f271-4fc6-8a7c-e02e95f591ba"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số lượng bán]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="414" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="db8c6ebe-af24-4440-94af-11f8cb363111"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thành tiền]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="a498486a-7b53-4023-9fab-5bfd8a58c539"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="138" height="20" uuid="e09c5278-3864-49c9-a227-68d8dd977930"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TenSP}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="138" y="0" width="138" height="20" uuid="f9c97453-dcb8-4835-97b8-a91651b7032b"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GiaBan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="276" y="0" width="138" height="20" uuid="fbee28b4-e17a-4f11-8fa8-f112b5c6118b"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SoLuong}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="414" y="0" width="138" height="20" uuid="00783fb6-af51-4853-955c-7ccc82aa1bc7"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TongTien}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="31">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="872d3f62-ceb4-485d-a14e-48d3ef909b9b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="6bc0ea44-1624-4488-b5fa-2bd8393a22d7"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="ac5b39e9-6784-4cf6-a49f-d7a1d4fa773d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

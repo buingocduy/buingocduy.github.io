@@ -7,11 +7,14 @@ package quanlyxe;
 
 import java.sql.SQLException;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
@@ -300,9 +303,48 @@ public class CT_Baocao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inActionPerformed
-     
+        try {
+            //Lấy ngày TEXT dd/MM/yyyy
+            String TUNGAY = txt_tu.getText();
+            String DENNGAY = txt_den.getText();        
+            
+            //Ép sang kiểu Date
+            Date DDEN = new SimpleDateFormat("dd/MM/yyyy").parse(DENNGAY);
+            Date TTU = new SimpleDateFormat("dd/MM/yyyy").parse(TUNGAY);  
+            
+            //Ép lại thành TEXT MM/dd/yyyy
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+            String TU = formatter.format(TTU);
+            String DEN = formatter.format(DDEN);
+            
+            XuatDS(TU, DEN);
+            System.out.println(TU + " - " + DEN);
+        } catch (ParseException ex) {
+            Logger.getLogger(Baocao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_inActionPerformed
 
+    public void XuatDS(String TU, String DEN) {
+        try {
+            ketnoi_sql sql = new ketnoi_sql();
+            Hashtable map = new Hashtable();
+            JasperDesign jd = JRXmlLoader.load("D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatBaoCaoCT.jrxml");
+            JasperReport jr = JasperCompileManager.compileReport("D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatBaoCaoCT.jrxml");
+
+            map.put("TU", TU);
+            map.put("DEN", DEN);
+
+            JasperPrint jp = JasperFillManager.fillReport(jr, map, sql.getConnection());
+            JasperViewer.viewReport(jp, false);
+            JasperExportManager.exportReportToPdfFile(jp, "D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatBaoCaoCT.jrxml");
+
+        } catch (ClassNotFoundException | SQLException | JRException e) {
+            JOptionPane.showMessageDialog(null, "Cannot show report" + e.getMessage());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+
+        }
+    }
     
     /**
      * @param args the command line arguments
