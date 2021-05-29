@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3caf8681-64e3-456c-826d-1ade374b04d6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="TU" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DEN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     hoadon."MaHoaDon" AS hoadon_MaHoaDon,
+     hoadon."Ngay" AS hoadon_Ngay,
+     hoadon."SDT" AS hoadon_SDT,
+     hoadon."TongTien" AS hoadon_TongTien,
+     hoadon."Username" AS hoadon_Username,
+     hoadon."GhiChu" AS hoadon_GhiChu,
+     "Tong" = (SELECT "TONG"= sum(TongTien)
+		FROM "dbo"."hoadon" hoadon
+		WHERE hoadon."Ngay" between $P{TU} and $P{DEN})
+FROM
+     "dbo"."hoadon" hoadon
+WHERE
+     hoadon."Ngay" between $P{TU} and $P{DEN}
+
+]]>
+	</queryString>
+	<field name="hoadon_MaHoaDon" class="java.lang.Integer"/>
+	<field name="hoadon_Ngay" class="java.sql.Timestamp"/>
+	<field name="hoadon_SDT" class="java.lang.String"/>
+	<field name="hoadon_TongTien" class="java.lang.Long"/>
+	<field name="hoadon_Username" class="java.lang.String"/>
+	<field name="hoadon_GhiChu" class="java.lang.String"/>
+	<field name="Tong" class="java.lang.Long"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="43fe6a43-1772-428b-bc46-609e5690f7a3"/>
+				<staticText>
+					<reportElement x="156" y="20" width="310" height="54" forecolor="#FFFFFF" uuid="0b8dd739-ed0a-4719-9594-01d456aed536"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[BÁO CÁO TỔNG]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="47">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="2" y="14" width="100" height="20" uuid="bd47ddbc-f0d2-457d-a6f8-5542af30970b"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TU}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="136" y="14" width="100" height="20" uuid="14760662-9bcc-4454-9a03-91836e0d6141"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DEN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="102" y="14" width="34" height="20" uuid="9ac07338-6bec-4287-894f-9d677ef4bc82"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="426" y="14" width="100" height="20" uuid="425d6ae1-6293-4676-befb-cf1af729a689"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Tong}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="326" y="14" width="100" height="20" uuid="8eed9e94-f3d7-44c0-9974-b96d115d13fd"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng tiền:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="648fc299-af1e-467d-bedf-f85054fe380b"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="49305a4d-77fa-47a7-a751-aebdd509d9f6"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã hoá đơn]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="92" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e364423a-ac11-480a-aef3-87d05416ae3b"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="184" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a174e4e0-2080-4aa6-97e9-e3c6144226e9"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số điện thoại]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="201d817e-baf0-4e41-a908-b4d5dc237394"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tiền]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="368" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b90e41b6-5a05-4360-a974-d7d914d2b9a4"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Người lập]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="460" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e0d5399a-d527-4ee7-ae7e-5487a8dd3127"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ghi chú]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="05f452cc-66e3-4d83-b38b-0346119cd05f"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="92" height="20" uuid="d91df632-3157-4dcc-89ef-71e04eece0b7"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hoadon_MaHoaDon}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yy">
+				<reportElement x="92" y="0" width="92" height="20" uuid="cdfec72e-a91c-4312-bdf0-fa2cec5d0acc"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hoadon_Ngay}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="184" y="0" width="92" height="20" uuid="9f611685-c06f-4417-b218-49b77bc4decd"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hoadon_SDT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="276" y="0" width="92" height="20" uuid="bb624bc7-defd-4a50-8dff-3475427c798a"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hoadon_TongTien}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="368" y="0" width="92" height="20" uuid="382763e8-567e-4a0d-8fd6-69decba18311"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hoadon_Username}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="460" y="0" width="92" height="20" uuid="bdf8be51-a3ed-497b-96b6-748033dc59e5"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hoadon_GhiChu}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="28">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="0331ea4c-0225-4312-b57c-194a9cb3985b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="0ed7ac49-b467-4bff-9fd6-cece93e106c6"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="ccf171b8-26af-4c25-8388-a7e44029010a"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

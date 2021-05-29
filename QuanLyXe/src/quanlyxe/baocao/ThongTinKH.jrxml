@@ -122,7 +122,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Email}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" pattern="¤ #,##0">
+				<textField isStretchWithOverflow="true" pattern="#,##0">
 					<reportElement style="Detail" x="640" y="0" width="160" height="15" uuid="fbdf0a65-71a8-4b73-a55d-bbce22330d44"/>
 					<textElement textAlignment="Center">
 						<font fontName="DejaVu Sans"/>

@@ -171,7 +171,7 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{sanpham_TenSP}]]></textFieldExpression>
 			</textField>
-			<textField pattern="¤ #,##0">
+			<textField pattern="#,##0">
 				<reportElement x="180" y="0" width="100" height="20" uuid="533e1250-2c13-4a4d-ac8c-40ad6ab173be"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{sanpham_GiaBan}]]></textFieldExpression>
@@ -181,7 +181,7 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{ct_hoadon_SoLuong}]]></textFieldExpression>
 			</textField>
-			<textField pattern="¤ #,##0">
+			<textField pattern="#,##0">
 				<reportElement x="380" y="0" width="100" height="20" uuid="2875672e-7191-436b-833c-f12b89bdef41"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{ct_hoadon_ThanhTien}]]></textFieldExpression>
@@ -197,7 +197,7 @@ WHERE
 				</textElement>
 				<text><![CDATA[Tổng tiền:]]></text>
 			</staticText>
-			<textField pattern="¤ #,##0">
+			<textField pattern="#,##0">
 				<reportElement x="408" y="20" width="100" height="20" uuid="f3b4bf0b-71b6-4683-a438-b5c4a17bd096"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{hoadon_TongTien}]]></textFieldExpression>

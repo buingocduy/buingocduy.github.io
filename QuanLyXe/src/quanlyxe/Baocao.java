@@ -5,15 +5,26 @@
  */
 package quanlyxe;
 
+import java.sql.SQLException;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Hashtable;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import quanlyxe.thucthe.*;
 import quanlyxe.xuly.*;
@@ -50,7 +61,6 @@ public class Baocao extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btn_Excel = new javax.swing.JButton();
         btn_in = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txt_tongtien = new javax.swing.JLabel();
@@ -79,16 +89,13 @@ public class Baocao extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(5).setMinWidth(100);
         }
 
-        btn_Excel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/Excel-icon.png"))); // NOI18N
-        btn_Excel.setText("Xuất ra Excel");
-        btn_Excel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ExcelActionPerformed(evt);
-            }
-        });
-
         btn_in.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinh/new.png"))); // NOI18N
         btn_in.setText("In ra");
+        btn_in.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -166,20 +173,16 @@ public class Baocao extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(636, 636, 636)
-                        .addComponent(btn_in)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_Excel))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_in, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -191,30 +194,58 @@ public class Baocao extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 63, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Excel)
-                    .addComponent(btn_in))
+                .addGap(18, 18, 18)
+                .addComponent(btn_in, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_ExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExcelActionPerformed
+    private void btn_inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inActionPerformed
         try {
-            ketnoi_sql myCon = new ketnoi_sql();
-            String reportPath = "C:\\Temp\\Sample_report.jrxml";
-            JasperReport jr = JasperCompileManager.compileReport(reportPath);
-            JasperPrint jp = JasperFillManager.fillReport(jr, null, myCon.getConnection());
-            JasperViewer.viewReport(jp);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            //Lấy ngày TEXT dd/MM/yyyy
+            String TUNGAY = txt_tu.getText();
+            String DENNGAY = txt_den.getText();        
+            
+            //Ép sang kiểu Date
+            Date DDEN = new SimpleDateFormat("dd/MM/yyyy").parse(DENNGAY);
+            Date TTU = new SimpleDateFormat("dd/MM/yyyy").parse(TUNGAY);  
+            
+            //Ép lại thành TEXT MM/dd/yyyy
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+            String TU = formatter.format(TTU);
+            String DEN = formatter.format(DDEN);
+            
+            XuatDS(TU, DEN);
+            System.out.println(TU + " - " + DEN);
+        } catch (ParseException ex) {
+            Logger.getLogger(Baocao.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btn_ExcelActionPerformed
+    }//GEN-LAST:event_btn_inActionPerformed
+    
+    public void XuatDS(String TU, String DEN) {
+        try {
+            ketnoi_sql sql = new ketnoi_sql();
+            Hashtable map = new Hashtable();
+            JasperDesign jd = JRXmlLoader.load("D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatBaoCao.jrxml");
+            JasperReport jr = JasperCompileManager.compileReport("D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatBaoCao.jrxml");
 
+            map.put("TU", TU);
+            map.put("DEN", DEN);
+
+            JasperPrint jp = JasperFillManager.fillReport(jr, map, sql.getConnection());
+            JasperViewer.viewReport(jp, false);
+            JasperExportManager.exportReportToPdfFile(jp, "D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatBaoCao.jrxml");
+
+        } catch (ClassNotFoundException | SQLException | JRException e) {
+            JOptionPane.showMessageDialog(null, "Cannot show report" + e.getMessage());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+
+        }
+    }
+        
     /**
      * @param args the command line arguments
      */
@@ -298,7 +329,6 @@ public class Baocao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Excel;
     private javax.swing.JButton btn_in;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

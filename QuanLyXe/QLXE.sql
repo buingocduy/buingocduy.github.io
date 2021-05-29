@@ -316,7 +316,10 @@ select 'SoLuong'=SUM(SoLuong), 'TongTien'=SUM(TongTien)
 from ct_hoadon,hoadon
 where ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '2021-02-07' and '2021-02-07' 
 
-select * from hoadon where  Ngay between '2021-02-07' and '2021-02-09' 
+--tính tổng hoá đơn theo ngày
+select MaHoaDon, sum(TongTien) 
+from hoadon 
+where  Ngay between '2021-02-07' and '2021-02-09' 
 
 UPDATE ct_phieuxuat SET MaPX = '1',MaSP ='EX',SoLuong = '4',DonGia = '40000' WHERE MaCTPX = '1'
 
