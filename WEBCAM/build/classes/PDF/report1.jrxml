@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6939c290-5926-4a95-8719-4d1b85a96dbf">
-	<property name="ireport.zoom" value="1.0000000000000004"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="130"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="NGAYVAO" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -47,12 +47,8 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="16" isBold="true"/>
 				</textElement>
-				<text><![CDATA[DANH SÁCH KHÁCH RA VÀO CÔNG TY NHỰA RẠNG ĐÔNG]]></text>
+				<text><![CDATA[DANH SÁCH KHÁCH RA VÀO CÔNG TY ]]></text>
 			</staticText>
-			<image>
-				<reportElement x="15" y="19" width="153" height="71" uuid="65f6faf5-8fa1-42b8-bde7-8a6e42979c35"/>
-				<imageExpression><![CDATA["D:\\BuiNgocDuy\\WEBCAM\\src\\logo\\rangdong.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -137,7 +133,7 @@ WHERE
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="26" splitType="Stretch">
+		<band height="96" splitType="Stretch">
 			<textField>
 				<reportElement x="324" y="0" width="159" height="20" uuid="fc05b727-1846-477f-b403-3f29c4f62981"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -174,7 +170,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{khachhang_GIOVAO}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="20" width="802" height="1" uuid="f32bbdfa-1762-49da-ac31-139b31acfc1b"/>
+				<reportElement x="0" y="95" width="802" height="1" uuid="f32bbdfa-1762-49da-ac31-139b31acfc1b"/>
 			</line>
 			<textField>
 				<reportElement x="127" y="1" width="106" height="20" uuid="7837efe6-fe26-4dd2-914d-4fda12c246eb"/>
@@ -183,6 +179,10 @@ WHERE
 				</textElement>
 				<textFieldExpression><![CDATA[$F{khachhang_SDT}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="23" y="21" width="127" height="58" uuid="c7e15eca-46c9-4167-b39f-e139ef0ad216"/>
+				<imageExpression><![CDATA[$F{khachhang_HINHANH}]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 	<columnFooter>

@@ -31,23 +31,51 @@ public class WEBCAM extends javax.swing.JFrame {
     private JLabel cameraSrceen;
     private JLabel linkhinh;
     private JButton btnCapture;
+    private JButton btnxem;
+    private JButton btn_back;
     private VideoCapture capture;
     private Mat image;
     private boolean clicked = false;
+    OPEN open = new OPEN();
 
     public WEBCAM() {
         setLayout(null);
-
         cameraSrceen = new JLabel();
         cameraSrceen.setBounds(15, 10, 500, 400);
         add(cameraSrceen);
 
         btnCapture = new JButton("Chụp");
-        btnCapture.setBounds(170, 450, 200, 40);
+        btnCapture.setBounds(170, 430, 200, 50);
         btnCapture.setForeground(Color.RED);
         btnCapture.setFont(new java.awt.Font("Tahoma", 1, 14));
         btnCapture.setBackground(new java.awt.Color(204, 255, 0));
         add(btnCapture);
+        
+        btnxem = new JButton("Xem dữ liệu chụp");
+        btnxem.setBounds(10, 520, 160, 30);
+        btnxem.setForeground(Color.RED);
+        btnxem.setFont(new java.awt.Font("Tahoma", 1, 14));
+        btnxem.setBackground(new java.awt.Color(204, 255, 0));
+        add(btnxem);
+        
+        btn_back = new JButton("Chỉnh đường dẫn");
+        btn_back.setBounds(360, 520, 160, 30);
+        btn_back.setForeground(Color.RED);
+        btn_back.setFont(new java.awt.Font("Tahoma", 1, 14));
+        btn_back.setBackground(new java.awt.Color(204, 255, 0));
+        add(btn_back);
+        
+        btnxem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xemActionPerformed(evt);
+            }
+        });
+        
+        btn_back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_backActionPerformed(evt);
+            }
+        });
 
         btnCapture.addActionListener(new ActionListener() {
             @Override
@@ -66,22 +94,38 @@ public class WEBCAM extends javax.swing.JFrame {
 
         });
 
-        setSize(new Dimension(550, 550));
+        setSize(new Dimension(550, 600));
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setTitle("Phần mềm quản lý ra vào Công Ty Nhựa Rạng Đông");
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
+        setTitle("Phần mềm quản lý ra vào");
         setResizable(false);
         setVisible(true);
-
     }
-
+      
+    private void btn_xemActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        XEM xem = new XEM();
+        xem.pack();
+        xem.setLocationRelativeTo(null);
+        xem.setVisible(true);
+        this.dispose();
+    }        
+    
+    private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        open.pack();
+        open.setLocationRelativeTo(null);
+        open.setVisible(true); 
+        this.dispose();
+    }  
+    
     //Tạo camera
-    public void startcamera() throws IOException {
+    public void startcamera(String url) throws IOException {
         capture = new VideoCapture(0);
         image = new Mat();
         byte[] imageData;
 
         ImageIcon icon;
+        try {
+            
         while (true) {
             //đọc hình vào ma trận
             capture.read(image);
@@ -102,41 +146,47 @@ public class WEBCAM extends javax.swing.JFrame {
                 if (name.equals("")) {
                     name = new SimpleDateFormat("dd-mm-yyyy-hh-mm-ss").format(new Date());
                 }
-                JOptionPane.showMessageDialog(this, "Chụp hình thành công");
-                        
-                Imgcodecs.imwrite("D:\\WEBCAM\\src\\images\\" + name + ".jpg", image);
+                JOptionPane.showMessageDialog(this, "Chụp hình thành công");        
+                
+                //Gán địa chỉ lưu ảnh
+                Imgcodecs.imwrite(url + "src\\images\\" + name + ".jpg", image);
                 System.out.println(name+".jpg");
-           
+                
+                //Gán tên cho hình ảnh
                 MENU menu = new MENU();
-                menu.setHinh("D:\\WEBCAM\\src\\images\\"+name+".jpg");
+                menu.setHinh(url + "src\\images\\"+name+".jpg","images\\"+name+".jpg");
                 menu.pack();
+      
                 menu.setLocationRelativeTo(null);
                 menu.setVisible(true);
+                this.dispose();
                 clicked = false;
             }
-
+        }
+        } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"Đường dẫn mở file opencv.dll sai hoặc không kết nối được với thiết bị");   
         }
     }
     
-
-    public static void main(String[] args) {
-        String opencvpath = "D:\\WEBCAM\\";
+    public void RUN (String url){
+        //Gọi opencv ra trên file
+        String opencvpath = url;
+        //String opencvpath = "T:\\BuiNgocDuy\\WEBCAM\\";
         String libPath = System.getProperty("java.library.path");
         System.load(opencvpath + Core.NATIVE_LIBRARY_NAME + ".dll");
         System.out.println("load thành công");
 
         EventQueue.invokeLater(new Runnable() {
-
             @Override
             public void run() {
                 WEBCAM webcam = new WEBCAM();
-
+   
                 //chạy camera 
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            webcam.startcamera();
+                            webcam.startcamera(url);                         
                         } catch (IOException ex) {
                             Logger.getLogger(WEBCAM.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -145,5 +195,5 @@ public class WEBCAM extends javax.swing.JFrame {
                 }).start();
             }
         });
-    }
+    }  
 }

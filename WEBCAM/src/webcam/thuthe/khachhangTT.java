@@ -5,14 +5,19 @@
  */
 package webcam.thuthe;
 
+import java.util.Date;
+
 /**
  *
  * @author BND6699
  */
 public class khachhangTT {
-    String STT,HOTEN,CMND,SDT,NGAYVAO,GIOVAO,TENCONGTY,LYDOVAO,HINHANH;
 
-    public khachhangTT(String STT, String HOTEN, String CMND, String SDT, String NGAYVAO, String GIOVAO, String TENCONGTY, String LYDOVAO, String HINHANH) {
+    String STT, HOTEN, CMND, SDT;
+    Date NGAYVAO;
+    String GIOVAO , TENCONGTY, LYDOVAO, HINHANH;
+
+    public khachhangTT(String STT, String HOTEN, String CMND, String SDT, Date NGAYVAO, String GIOVAO, String TENCONGTY, String LYDOVAO, String HINHANH) {
         this.STT = STT;
         this.HOTEN = HOTEN;
         this.CMND = CMND;
@@ -56,11 +61,11 @@ public class khachhangTT {
         this.SDT = SDT;
     }
 
-    public String getNGAYVAO() {
+    public Date getNGAYVAO() {
         return NGAYVAO;
     }
 
-    public void setNGAYVAO(String NGAYVAO) {
+    public void setNGAYVAO(Date NGAYVAO) {
         this.NGAYVAO = NGAYVAO;
     }
 
@@ -96,7 +101,5 @@ public class khachhangTT {
         this.HINHANH = HINHANH;
     }
 
- 
-
-  
+    
 }

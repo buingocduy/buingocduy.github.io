@@ -1,3 +1,7 @@
+Create database QLXE
+go
+use QLXE
+go
 
 /*TÀI KHOẢN*/
 Create table taikhoan

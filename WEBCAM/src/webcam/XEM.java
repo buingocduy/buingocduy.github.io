@@ -9,13 +9,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
-import java.util.Locale;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -32,26 +30,50 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import webcam.xuly.khachhang;
+import webcam.thuthe.duongdanTT;
+import webcam.xuly.khachhangXL;
 import webcam.thuthe.khachhangTT;
+import webcam.xuly.duongdanXL;
 import webcam.xuly.ketnoi_sql;
 
 /**
  *
  * @author Bùi Ngọc Duy 06/06/1999
  */
-public class XEM extends javax.swing.JFrame {
+public final class XEM extends javax.swing.JFrame {
 
     khachhangTT selectedKH = null;
-    khachhang KHservices = new khachhang();
-
+    khachhangXL KHservices = new khachhangXL();
     ArrayList<khachhangTT> dsKH = new ArrayList<>();
+    
+    duongdanXL dd = new duongdanXL();
+    ArrayList<duongdanTT> dsDD = new ArrayList<>();
 
     public XEM() {
         initComponents();
         showDataList();
+        showDataListLINK();
     }
+    
+     public void showDataListLINK(){
 
+        //load data
+        ArrayList<duongdanTT> list = dd.getAllRecords();
+        dsDD = list;
+
+        Object[] row = new Object[3];
+
+        for (int i = 0; i < list.size(); i++) {
+
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getLink();
+            
+            
+            txt_duongdan.setText(list.get(i).getLink());
+            System.out.println(list.get(i).getLink());
+        }
+    }
+    
     public void showDataList() {
 
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
@@ -61,6 +83,8 @@ public class XEM extends javax.swing.JFrame {
         ArrayList<khachhangTT> list = KHservices.getAllRecords();
         dsKH = list;
 
+        SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
+
         Object[] row = new Object[10];
 
         for (int i = 0; i < list.size(); i++) {
@@ -69,12 +93,13 @@ public class XEM extends javax.swing.JFrame {
             row[1] = list.get(i).getHOTEN();
             row[2] = list.get(i).getSDT();
             row[3] = list.get(i).getCMND();
-            row[4] = list.get(i).getNGAYVAO();
+            row[4] = formatter2.format(list.get(i).getNGAYVAO());
             row[5] = list.get(i).getGIOVAO();
             row[6] = list.get(i).getTENCONGTY();
             row[7] = list.get(i).getLYDOVAO();
             row[8] = list.get(i).getHINHANH();
 
+            System.out.println(list.get(i).getNGAYVAO());
             model.addRow(row);
         }
 
@@ -151,8 +176,10 @@ public class XEM extends javax.swing.JFrame {
         model.setRowCount(0);
 
         //load data
-        ArrayList<khachhangTT> list = KHservices.getRecords(TU,DEN);
+        ArrayList<khachhangTT> list = KHservices.getRecords(TU, DEN);
         dsKH = list;
+
+        SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
 
         Object[] row = new Object[10];
 
@@ -162,7 +189,7 @@ public class XEM extends javax.swing.JFrame {
             row[1] = list.get(i).getHOTEN();
             row[2] = list.get(i).getSDT();
             row[3] = list.get(i).getCMND();
-            row[4] = list.get(i).getNGAYVAO();
+            row[4] = formatter2.format(list.get(i).getNGAYVAO());
             row[5] = list.get(i).getGIOVAO();
             row[6] = list.get(i).getTENCONGTY();
             row[7] = list.get(i).getLYDOVAO();
@@ -191,6 +218,8 @@ public class XEM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -215,13 +244,32 @@ public class XEM extends javax.swing.JFrame {
         btn_xoa = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btn_in = new javax.swing.JButton();
-        txt_tu = new javax.swing.JTextField();
         btn_xem = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txt_den = new javax.swing.JTextField();
+        txt_tu = new com.toedter.calendar.JDateChooser();
+        txt_den = new com.toedter.calendar.JDateChooser();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        btn_chuphinh = new javax.swing.JMenu();
+        btn_camera = new javax.swing.JMenuItem();
+        btn_menu = new javax.swing.JMenuItem();
+        btn_link = new javax.swing.JMenuItem();
+        txt_duongdan = new javax.swing.JMenu();
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
 
         setTitle("Quản lý xem dữ liệu");
         setBackground(new java.awt.Color(153, 255, 0));
@@ -256,7 +304,7 @@ public class XEM extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txt_hinhanh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txt_hinhanh, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -351,14 +399,14 @@ public class XEM extends javax.swing.JFrame {
                     .addComponent(txt_hoten, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_cmnd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(txt_ngayvao, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_ngayvao, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
                         .addComponent(txt_giovao))
                     .addComponent(txt_lydovao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_tencongty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_sdt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_stt, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -444,30 +492,39 @@ public class XEM extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Đến");
 
+        txt_tu.setDateFormatString("dd/MM/yyyy");
+
+        txt_den.setDateFormatString("dd/MM/yyyy");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_in, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_xem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_in, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_xem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addComponent(jLabel1)
+                        .addGap(0, 162, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(140, 140, 140)
+                .addGap(132, 132, 132)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(txt_tu, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_den, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txt_tu, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                    .addComponent(txt_den, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -475,11 +532,11 @@ public class XEM extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_tu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(txt_tu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
                     .addComponent(txt_den, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
@@ -493,18 +550,55 @@ public class XEM extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Lọc và in", jPanel3);
 
+        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn_chuphinh.setText("Hệ thống");
+
+        btn_camera.setText("Chụp hình");
+        btn_camera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cameraActionPerformed(evt);
+            }
+        });
+        btn_chuphinh.add(btn_camera);
+
+        btn_menu.setText("Menu");
+        btn_menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_menuActionPerformed(evt);
+            }
+        });
+        btn_chuphinh.add(btn_menu);
+
+        btn_link.setText("Chỉnh đường dẫn");
+        btn_link.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_linkActionPerformed(evt);
+            }
+        });
+        btn_chuphinh.add(btn_link);
+
+        jMenuBar1.add(btn_chuphinh);
+
+        txt_duongdan.setBackground(new java.awt.Color(255, 255, 255));
+        txt_duongdan.setForeground(new java.awt.Color(255, 255, 255));
+        txt_duongdan.setText("xxxxx");
+        jMenuBar1.add(txt_duongdan);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jTabbedPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -513,9 +607,9 @@ public class XEM extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTabbedPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -523,9 +617,15 @@ public class XEM extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_xemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xemActionPerformed
-        String TU = txt_tu.getText().trim();
-        String DEN = txt_den.getText().trim();
-        showData(TU,DEN);
+        Date TUNGAY = txt_tu.getDate();
+        Date DENNGAY = txt_den.getDate();
+
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        String TU = formatter.format(TUNGAY);
+        String DEN = formatter.format(DENNGAY);
+
+        showData(TU, DEN);
     }//GEN-LAST:event_btn_xemActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -554,25 +654,54 @@ public class XEM extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_xoaActionPerformed
 
     private void btn_inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inActionPerformed
-        String TU = txt_tu.getText().trim();
-        String DEN = txt_den.getText().trim();
-        XuatDS(TU,DEN);
-        System.out.println(TU +" - "+ DEN);
+        Date TUNGAY = txt_tu.getDate();
+        Date DENNGAY = txt_den.getDate();
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        String TU = formatter.format(TUNGAY);
+        String DEN = formatter.format(DENNGAY);
+
+        XuatDS(TU, DEN);
+        System.out.println(TU + " - " + DEN);
     }//GEN-LAST:event_btn_inActionPerformed
 
+    private void btn_linkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_linkActionPerformed
+       OPEN open = new OPEN();
+       open.pack();
+       open.setVisible(true);
+       open.setLocationRelativeTo(null);
+       this.dispose();
+    }//GEN-LAST:event_btn_linkActionPerformed
+
+    private void btn_cameraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cameraActionPerformed
+       WEBCAM wb = new WEBCAM();
+       wb.RUN(txt_duongdan.getText().toString().trim());
+       wb.dispose();
+       this.dispose();
+    }//GEN-LAST:event_btn_cameraActionPerformed
+
+    private void btn_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_menuActionPerformed
+       MENU menu = new MENU();
+       menu.pack();
+       menu.setVisible(true);
+       menu.setLocationRelativeTo(null);
+       this.dispose();
+    }//GEN-LAST:event_btn_menuActionPerformed
+
     public void XuatDS(String TU, String DEN) {
+        String url = txt_duongdan.getText().toString().trim();
         try {
             ketnoi_sql sql = new ketnoi_sql();
             Hashtable map = new Hashtable();
-            JasperDesign jd = JRXmlLoader.load("D:\\BuiNgocDuy\\WEBCAM\\src\\PDF\\report1.jrxml");
-            JasperReport jr = JasperCompileManager.compileReport("D:\\BuiNgocDuy\\WEBCAM\\src\\PDF\\report1.jrxml");
+            JasperDesign jd = JRXmlLoader.load(url + "src\\PDF\\report1.jrxml");
+            JasperReport jr = JasperCompileManager.compileReport(url + "src\\PDF\\report1.jrxml");
 
-            map.put("TU",TU);
-            map.put("DEN",DEN);
-            
+            map.put("TU", TU);
+            map.put("DEN", DEN);
+
             JasperPrint jp = JasperFillManager.fillReport(jr, map, sql.getConnection());
             JasperViewer.viewReport(jp, false);
-            JasperExportManager.exportReportToPdfFile(jp, "D:\\BuiNgocDuy\\WEBCAM\\src\\PDF\\report1.pdf");
+            JasperExportManager.exportReportToPdfFile(jp,url + "src\\PDF\\report1.pdf");
 
         } catch (ClassNotFoundException | SQLException | JRException e) {
             JOptionPane.showMessageDialog(null, "Cannot show report" + e.getMessage());
@@ -618,7 +747,11 @@ public class XEM extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btn_camera;
+    private javax.swing.JMenu btn_chuphinh;
     private javax.swing.JButton btn_in;
+    private javax.swing.JMenuItem btn_link;
+    private javax.swing.JMenuItem btn_menu;
     private javax.swing.JButton btn_xem;
     private javax.swing.JButton btn_xoa;
     private javax.swing.JButton jButton1;
@@ -632,14 +765,18 @@ public class XEM extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JLabel txt_cmnd;
-    private javax.swing.JTextField txt_den;
+    private com.toedter.calendar.JDateChooser txt_den;
+    private javax.swing.JMenu txt_duongdan;
     private javax.swing.JLabel txt_giovao;
     private javax.swing.JLabel txt_hinhanh;
     private javax.swing.JLabel txt_hoten;
@@ -648,6 +785,6 @@ public class XEM extends javax.swing.JFrame {
     private javax.swing.JLabel txt_sdt;
     private javax.swing.JLabel txt_stt;
     private javax.swing.JLabel txt_tencongty;
-    private javax.swing.JTextField txt_tu;
+    private com.toedter.calendar.JDateChooser txt_tu;
     // End of variables declaration//GEN-END:variables
 }
