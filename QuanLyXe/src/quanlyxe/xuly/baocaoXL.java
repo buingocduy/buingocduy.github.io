@@ -39,7 +39,7 @@ public class baocaoXL {
         ArrayList<tongtienTT> list = new ArrayList<tongtienTT>();
         try {
             hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("SELECT 'SoLuong'=SUM(ct_hoadon.SoLuong), 'TongTien'=SUM(hoadon.TongTien) "
+            ResultSet rs = acc.Query("SELECT 'SoLuong'=SUM(ct_hoadon.SoLuong), 'TongTien'=(select 'TongTien'= sum(TongTien) from hoadon where Ngay between '" + strngaybd + "' and '" + strngaytk + "')"
                                 + "FROM ct_hoadon,hoadon  "
                                 + "WHERE ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '" + strngaybd + "' and '" + strngaytk + "'");
 

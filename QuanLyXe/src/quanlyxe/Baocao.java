@@ -228,15 +228,15 @@ public class Baocao extends javax.swing.JFrame {
         try {
             ketnoi_sql sql = new ketnoi_sql();
             Hashtable map = new Hashtable();
-            JasperDesign jd = JRXmlLoader.load("D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatBaoCao.jrxml");
-            JasperReport jr = JasperCompileManager.compileReport("D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatBaoCao.jrxml");
+            JasperDesign jd = JRXmlLoader.load("\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatBaoCao.jrxml");
+            JasperReport jr = JasperCompileManager.compileReport("\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatBaoCao.jrxml");
 
             map.put("TU", TU);
             map.put("DEN", DEN);
 
             JasperPrint jp = JasperFillManager.fillReport(jr, map, sql.getConnection());
             JasperViewer.viewReport(jp, false);
-            JasperExportManager.exportReportToPdfFile(jp, "D:\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatBaoCao.jrxml");
+            JasperExportManager.exportReportToPdfFile(jp, "\\BuiNgocDuy\\QuanLyXe\\src\\quanlyxe\\baocao\\XuatBaoCao.jrxml");
 
         } catch (ClassNotFoundException | SQLException | JRException e) {
             JOptionPane.showMessageDialog(null, "Cannot show report" + e.getMessage());

@@ -37,12 +37,12 @@ public class ct_baocaoXL {
         ArrayList<tongtienTT> list = new ArrayList<tongtienTT>();
         try {
             hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("SELECT 'SoLuong'=SUM(ct_hoadon.SoLuong),'TongTien'=SUM(hoadon.TongTien) "
+            ResultSet rs = acc.Query("SELECT DISTINCT 'ThanhTien'=SUM(ct_hoadon.SoLuong),'TongTien'=(select 'TongTien'= sum(TongTien) from hoadon where Ngay between '" + strngaybd + "' and '" + strngaytk + "')"
                                 + "FROM ct_hoadon,hoadon  "
                                 + "WHERE ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '" + strngaybd + "' and '" + strngaytk + "'");
 
             while (rs.next()) {
-                tongtienTT hd = new tongtienTT(rs.getLong("SoLuong"),rs.getLong("TongTien"));
+                tongtienTT hd = new tongtienTT(rs.getLong("ThanhTien"),rs.getLong("TongTien"));
                 list.add(hd);
             }
 
@@ -56,12 +56,12 @@ public class ct_baocaoXL {
         ArrayList<tongtienTT> list = new ArrayList<tongtienTT>();
         try {
             hienthi_sql acc = new hienthi_sql();
-            ResultSet rs = acc.Query("select 'SoLuong'=sum(ThanhTien),'TongTien'=sum(ct_hoadon.ThanhTien - hoadon.TongTien)"
+            ResultSet rs = acc.Query("select 'ThanhTien'=sum(ThanhTien),'TongTien'=sum(ct_hoadon.ThanhTien) - (select 'TongTien'= sum(TongTien) from hoadon where Ngay between '" + strngaybd + "' and '" + strngaytk + "')"
                                 + "FROM ct_hoadon,hoadon  "
                                 + "WHERE ct_hoadon.MaHoaDon = hoadon.MaHoaDon and Ngay between '" + strngaybd + "' and '" + strngaytk + "'");
 
             while (rs.next()) {
-                tongtienTT hd = new tongtienTT(rs.getLong("SoLuong"),rs.getLong("TongTien"));
+                tongtienTT hd = new tongtienTT(rs.getLong("ThanhTien"),rs.getLong("TongTien"));
                 list.add(hd);
             }
 
