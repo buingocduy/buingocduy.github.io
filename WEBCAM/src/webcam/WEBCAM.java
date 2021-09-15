@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -142,21 +143,20 @@ public class WEBCAM extends javax.swing.JFrame {
 
             //lưu file
             if (clicked) {
-                String name = "";
-                if (name.equals("")) {
-                    name = new SimpleDateFormat("dd-mm-yyyy-hh-mm-ss").format(new Date());
-                }
-                JOptionPane.showMessageDialog(this, "Chụp hình thành công");        
-                
+                String day = new SimpleDateFormat("dd").format(new Date());
+                String month = new SimpleDateFormat("MM").format(new Date());
+                String year = new SimpleDateFormat("YYYY").format(new Date());         
+                String name = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss").format(new Date());
+
+                                    
                 //Gán địa chỉ lưu ảnh
-                Imgcodecs.imwrite(url + "src\\images\\" + name + ".jpg", image);
+                Imgcodecs.imwrite(url + "src\\images\\"+ year +"\\"+ month +"\\"+ day +"\\"+ name +".jpg", image);
                 System.out.println(name+".jpg");
                 
                 //Gán tên cho hình ảnh
                 MENU menu = new MENU();
-                menu.setHinh(url + "src\\images\\"+name+".jpg","images\\"+name+".jpg");
-                menu.pack();
-      
+                menu.setHinh(url + "src\\images\\"+ year +"\\"+ month +"\\"+ day +"\\"+name+".jpg","images\\"+ year +"\\"+ month +"\\"+ day +"\\"+name+".jpg");
+                //menu.pack();
                 menu.setLocationRelativeTo(null);
                 menu.setVisible(true);
                 this.dispose();

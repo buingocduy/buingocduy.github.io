@@ -254,7 +254,6 @@ public final class XEM extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         btn_chuphinh = new javax.swing.JMenu();
         btn_camera = new javax.swing.JMenuItem();
-        btn_menu = new javax.swing.JMenuItem();
         btn_link = new javax.swing.JMenuItem();
         txt_duongdan = new javax.swing.JMenu();
 
@@ -562,14 +561,6 @@ public final class XEM extends javax.swing.JFrame {
         });
         btn_chuphinh.add(btn_camera);
 
-        btn_menu.setText("Menu");
-        btn_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_menuActionPerformed(evt);
-            }
-        });
-        btn_chuphinh.add(btn_menu);
-
         btn_link.setText("Chỉnh đường dẫn");
         btn_link.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -674,19 +665,14 @@ public final class XEM extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_linkActionPerformed
 
     private void btn_cameraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cameraActionPerformed
+       OPEN open = new OPEN();
+       open.TaoFolderAnh();
+        
        WEBCAM wb = new WEBCAM();
        wb.RUN(txt_duongdan.getText().toString().trim());
        wb.dispose();
        this.dispose();
     }//GEN-LAST:event_btn_cameraActionPerformed
-
-    private void btn_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_menuActionPerformed
-       MENU menu = new MENU();
-       menu.pack();
-       menu.setVisible(true);
-       menu.setLocationRelativeTo(null);
-       this.dispose();
-    }//GEN-LAST:event_btn_menuActionPerformed
 
     public void XuatDS(String TU, String DEN) {
         String url = txt_duongdan.getText().toString().trim();
@@ -751,7 +737,6 @@ public final class XEM extends javax.swing.JFrame {
     private javax.swing.JMenu btn_chuphinh;
     private javax.swing.JButton btn_in;
     private javax.swing.JMenuItem btn_link;
-    private javax.swing.JMenuItem btn_menu;
     private javax.swing.JButton btn_xem;
     private javax.swing.JButton btn_xoa;
     private javax.swing.JButton jButton1;

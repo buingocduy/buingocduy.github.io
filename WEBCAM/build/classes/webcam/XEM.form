@@ -43,14 +43,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cameraActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="btn_menu">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Menu"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_menuActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btn_link">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ch&#x1ec9;nh &#x111;&#x1b0;&#x1edd;ng d&#x1eab;n"/>

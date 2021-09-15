@@ -5,8 +5,11 @@
  */
 package webcam;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import webcam.thuthe.duongdanTT;
@@ -45,7 +48,6 @@ public class OPEN extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         btn_xem = new javax.swing.JMenuItem();
-        btn_menu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("OPEN CAMERA");
@@ -84,14 +86,6 @@ public class OPEN extends javax.swing.JFrame {
             }
         });
         jMenu2.add(btn_xem);
-
-        btn_menu.setText("Menu");
-        btn_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_menuActionPerformed(evt);
-            }
-        });
-        jMenu2.add(btn_menu);
 
         jMenuBar1.add(jMenu2);
 
@@ -175,8 +169,9 @@ public class OPEN extends javax.swing.JFrame {
         wb.RUN(txt_linkcamera.getText().toString().trim());
         wb.dispose();
         this.dispose();
+        TaoFolderAnh();
     }//GEN-LAST:event_btn_mocameraActionPerformed
-
+    
     private void btn_xemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xemActionPerformed
        XEM xem = new XEM();
        xem.pack();
@@ -184,16 +179,24 @@ public class OPEN extends javax.swing.JFrame {
        xem.setLocationRelativeTo(null);
        this.dispose();
     }//GEN-LAST:event_btn_xemActionPerformed
-
-    private void btn_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_menuActionPerformed
-       MENU menu = new MENU();
-       menu.pack();
-       menu.setVisible(true);
-       menu.setLocationRelativeTo(null);
-       this.dispose();
-    }//GEN-LAST:event_btn_menuActionPerformed
     
-     public void showDataList() {
+    // Tạo folder chứa ảnh theo ngày tháng năm
+    public void TaoFolderAnh(){   
+        String link = txt_linkcamera.getText().toString().trim();
+        String day = new SimpleDateFormat("dd").format(new Date());
+        String month = new SimpleDateFormat("MM").format(new Date());
+        String year = new SimpleDateFormat("YYYY").format(new Date());
+        
+        String dir = link +"src\\images\\"+ year +"\\"+ month +"\\"+ day;
+        File file = new File(dir);
+        if (file.mkdirs()) {
+            System.out.println("Tạo thư mục ảnh thành công " + year +"\\"+ month +"\\"+ day);
+        } else {
+            System.out.println("Thư mục đã tồn tại " + year +"\\"+ month +"\\"+ day);
+        }
+    }
+    
+    public void showDataList() {
 
         //load data
         ArrayList<duongdanTT> list = dd.getAllRecords();
@@ -250,7 +253,6 @@ public class OPEN extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_link;
     private javax.swing.JButton btn_luu;
-    private javax.swing.JMenuItem btn_menu;
     private javax.swing.JButton btn_mocamera;
     private javax.swing.JMenuItem btn_xem;
     private javax.swing.JLabel jLabel1;

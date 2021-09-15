@@ -82,7 +82,6 @@ public class MENU extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txt_ngayvao = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        txt_hinhanh = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txt_hovaten = new javax.swing.JTextField();
         btn_luu = new javax.swing.JButton();
@@ -97,6 +96,7 @@ public class MENU extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txt_cmnd = new javax.swing.JTextField();
         txt_duongdan = new javax.swing.JLabel();
+        txt_hinhanh = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
 
@@ -166,8 +166,6 @@ public class MENU extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Hình ảnh:");
 
-        txt_hinhanh.setText("0");
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Họ và tên:");
 
@@ -202,6 +200,8 @@ public class MENU extends javax.swing.JFrame {
         txt_duongdan.setForeground(new java.awt.Color(204, 255, 0));
         txt_duongdan.setText("xxxxxxx");
 
+        txt_hinhanh.setEnabled(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -222,15 +222,13 @@ public class MENU extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_cmnd)
                             .addComponent(txt_SDT)
+                            .addComponent(txt_hovaten)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_hinhanh)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(txt_ngayvao)
-                                        .addGap(110, 110, 110)
-                                        .addComponent(txt_giovao)))
+                                .addComponent(txt_ngayvao)
+                                .addGap(110, 110, 110)
+                                .addComponent(txt_giovao)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txt_hovaten)))
+                            .addComponent(txt_hinhanh)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -258,7 +256,7 @@ public class MENU extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txt_hinhanh))
+                    .addComponent(txt_hinhanh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -369,6 +367,9 @@ public class MENU extends javax.swing.JFrame {
     }
     
     private void btn_chuphinhtiepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chuphinhtiepActionPerformed
+        OPEN open = new OPEN();
+        open.TaoFolderAnh();
+        
         WEBCAM cam = new WEBCAM();
         cam.RUN(txt_duongdan.getText().toString().trim());
         cam.dispose();
@@ -469,7 +470,7 @@ public class MENU extends javax.swing.JFrame {
     private javax.swing.JTextField txt_cmnd;
     private javax.swing.JLabel txt_duongdan;
     private javax.swing.JLabel txt_giovao;
-    private javax.swing.JLabel txt_hinhanh;
+    private javax.swing.JTextField txt_hinhanh;
     private javax.swing.JLabel txt_hinhanhweb;
     private javax.swing.JTextField txt_hovaten;
     private javax.swing.JTextArea txt_lydovao;
